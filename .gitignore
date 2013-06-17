@@ -1,0 +1,15 @@
+syntax: glob
+build
+*.mode1v3
+*.pbxuser
+*.orig
+.DS_Store
+.metadata
+.project
+*.perspectivev3
+xcuserdata
+project.xcworkspace
+test-reports
+.hg
+.hgignore
+
