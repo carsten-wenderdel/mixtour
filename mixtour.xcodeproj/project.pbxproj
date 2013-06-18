@@ -20,7 +20,10 @@
 		AA040657176F9DF40051363A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040636176F9DF40051363A /* Foundation.framework */; };
 		AA040658176F9DF40051363A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA04063A176F9DF40051363A /* UIKit.framework */; };
 		AA040660176F9DF40051363A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA04065E176F9DF40051363A /* InfoPlist.strings */; };
-		AA040662176F9DF40051363A /* mixtourTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA040661176F9DF40051363A /* mixtourTests.m */; };
+		AA04066E176FA5F70051363A /* MIXCoreBoard.c in Sources */ = {isa = PBXBuildFile; fileRef = AA04066D176FA5F70051363A /* MIXCoreBoard.c */; };
+		AA040672176FB3D80051363A /* MIXCoreBoardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA040671176FB3D80051363A /* MIXCoreBoardTests.m */; };
+		AA28392A1770A7B800F229F7 /* MIXModelBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2839291770A7B800F229F7 /* MIXModelBoard.m */; };
+		AA28392D1770F25200F229F7 /* MIXModelBoardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28392C1770F25200F229F7 /* MIXModelBoardTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,13 +49,19 @@
 		AA040646176F9DF40051363A /* MIXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIXAppDelegate.m; sourceTree = "<group>"; };
 		AA040649176F9DF40051363A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA04064B176F9DF40051363A /* MIXViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIXViewController.h; sourceTree = "<group>"; };
-		AA04064C176F9DF40051363A /* MIXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIXViewController.m; sourceTree = "<group>"; };
+		AA04064C176F9DF40051363A /* MIXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MIXViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AA04064E176F9DF40051363A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AA040654176F9DF40051363A /* mixtourTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mixtourTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA040655176F9DF40051363A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AA04065D176F9DF40051363A /* mixtourTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mixtourTests-Info.plist"; sourceTree = "<group>"; };
 		AA04065F176F9DF40051363A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		AA040661176F9DF40051363A /* mixtourTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mixtourTests.m; sourceTree = "<group>"; };
+		AA04066D176FA5F70051363A /* MIXCoreBoard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = MIXCoreBoard.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		AA04066F176FA68F0051363A /* MIXCoreBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MIXCoreBoard.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		AA040671176FB3D80051363A /* MIXCoreBoardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXCoreBoardTests.m; sourceTree = "<group>"; };
+		AA2839281770A7B800F229F7 /* MIXModelBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXModelBoard.h; sourceTree = "<group>"; };
+		AA2839291770A7B800F229F7 /* MIXModelBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXModelBoard.m; sourceTree = "<group>"; };
+		AA28392B1770EB3A00F229F7 /* MIXCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXCore.h; sourceTree = "<group>"; };
+		AA28392C1770F25200F229F7 /* MIXModelBoardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXModelBoardTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +121,8 @@
 		AA04063C176F9DF40051363A /* mixtour */ = {
 			isa = PBXGroup;
 			children = (
+				AA04066B176FA1AB0051363A /* core */,
+				AA2839261770A6D700F229F7 /* model */,
 				AA040645176F9DF40051363A /* MIXAppDelegate.h */,
 				AA040646176F9DF40051363A /* MIXAppDelegate.m */,
 				AA040648176F9DF40051363A /* Main.storyboard */,
@@ -137,7 +148,8 @@
 		AA04065B176F9DF40051363A /* mixtourTests */ = {
 			isa = PBXGroup;
 			children = (
-				AA040661176F9DF40051363A /* mixtourTests.m */,
+				AA040670176FB39D0051363A /* core */,
+				AA2839271770A71F00F229F7 /* model */,
 				AA04065C176F9DF40051363A /* Supporting Files */,
 			);
 			path = mixtourTests;
@@ -150,6 +162,41 @@
 				AA04065E176F9DF40051363A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AA04066B176FA1AB0051363A /* core */ = {
+			isa = PBXGroup;
+			children = (
+				AA28392B1770EB3A00F229F7 /* MIXCore.h */,
+				AA04066F176FA68F0051363A /* MIXCoreBoard.h */,
+				AA04066D176FA5F70051363A /* MIXCoreBoard.c */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		AA040670176FB39D0051363A /* core */ = {
+			isa = PBXGroup;
+			children = (
+				AA040671176FB3D80051363A /* MIXCoreBoardTests.m */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		AA2839261770A6D700F229F7 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				AA2839281770A7B800F229F7 /* MIXModelBoard.h */,
+				AA2839291770A7B800F229F7 /* MIXModelBoard.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		AA2839271770A71F00F229F7 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				AA28392C1770F25200F229F7 /* MIXModelBoardTests.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,8 +298,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA040643176F9DF40051363A /* main.m in Sources */,
+				AA04066E176FA5F70051363A /* MIXCoreBoard.c in Sources */,
 				AA040647176F9DF40051363A /* MIXAppDelegate.m in Sources */,
 				AA04064D176F9DF40051363A /* MIXViewController.m in Sources */,
+				AA28392A1770A7B800F229F7 /* MIXModelBoard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +309,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA040662176F9DF40051363A /* mixtourTests.m in Sources */,
+				AA040672176FB3D80051363A /* MIXCoreBoardTests.m in Sources */,
+				AA28392D1770F25200F229F7 /* MIXModelBoardTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +505,7 @@
 				AA040667176F9DF40051363A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AA040668176F9DF40051363A /* Build configuration list for PBXNativeTarget "mixtourTests" */ = {
 			isa = XCConfigurationList;
@@ -463,6 +514,7 @@
 				AA04066A176F9DF40051363A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
