@@ -43,6 +43,7 @@ bool isSquareEmpty(MIXCoreBoardRef boardRef, MIXCoreSquare square);
 
 uint8_t heightOfSquare(MIXCoreBoardRef boardRef, MIXCoreSquare square);
 
+void setPiece(MIXCoreBoardRef boardRef, MIXCoreSquare square);
 
 
 #endif

@@ -56,3 +56,17 @@ uint8_t heightOfSquare(MIXCoreBoardRef boardRef, MIXCoreSquare square) {
 }
 
 
+void setPiece(MIXCoreBoardRef boardRef, MIXCoreSquare square) {
+    
+    boardRef->height[square.column][square.line] = 1;
+    
+    if (MIXCorePlayerWhite == boardRef->turn) {
+        boardRef->whitePieces--;
+        boardRef->turn = MIXCorePlayerBlack;
+    } else {
+        boardRef->blackPieces--;
+        boardRef->turn = MIXCorePlayerWhite;
+        boardRef->colors[square.column][square.line] = 1;
+    }
+}
+
