@@ -33,6 +33,30 @@
     }
 }
 
+
+- (void)testPlayerOnTurn {
+    MIXModelBoard *board = [[MIXModelBoard alloc] init];
+    XCTAssertEquals([board playerOnTurn], MIXCorePlayerWhite, @"");
+    
+    [board setPiece:MIXCoreSquareMake(1, 1)];
+    XCTAssertEquals([board playerOnTurn], MIXCorePlayerBlack, @"");
+    
+    [board setPiece:MIXCoreSquareMake(1, 2)];
+    XCTAssertEquals([board playerOnTurn], MIXCorePlayerWhite, @"");
+    
+    [board setPiece:MIXCoreSquareMake(2, 2)];
+    XCTAssertEquals([board playerOnTurn], MIXCorePlayerBlack, @"");
+    
+    [board dragPiecesFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(1, 2) withNumber:1];
+    XCTAssertEquals([board playerOnTurn], MIXCorePlayerWhite, @"");
+    
+    [board dragPiecesFrom:MIXCoreSquareMake(2, 2) to:MIXCoreSquareMake(1, 2) withNumber:1];
+    XCTAssertEquals([board playerOnTurn], MIXCorePlayerWhite, @"illegal move, turn stays");
+    
+    [board dragPiecesFrom:MIXCoreSquareMake(1, 2) to:MIXCoreSquareMake(2, 2) withNumber:1];
+    XCTAssertEquals([board playerOnTurn], MIXCorePlayerBlack, @"");
+}
+
 - (void)testSetPiece {
     MIXModelBoard *board = [[MIXModelBoard alloc] init];
     
@@ -77,10 +101,10 @@
     XCTAssertEquals([board colorOfSquare:square3 atPosition:0u], MIXCorePlayerBlack, @"");
     XCTAssertEquals([board colorOfSquare:square4 atPosition:0u], MIXCorePlayerWhite, @"");
     
-    [board movePieceFrom:square1 to:square0 withNumber:1u];
-    [board movePieceFrom:square4 to:square3 withNumber:1u];
-    [board movePieceFrom:square3 to:square2 withNumber:2u];
-    [board movePieceFrom:square2 to:square0 withNumber:2u];
+    [board dragPiecesFrom:square1 to:square0 withNumber:1u];
+    [board dragPiecesFrom:square4 to:square3 withNumber:1u];
+    [board dragPiecesFrom:square3 to:square2 withNumber:2u];
+    [board dragPiecesFrom:square2 to:square0 withNumber:2u]; // not all!
     
     XCTAssertEquals([board colorOfSquare:square0 atPosition:3u], MIXCorePlayerWhite, @"here from the beginning");
     XCTAssertEquals([board colorOfSquare:square0 atPosition:2u], MIXCorePlayerBlack, @"originally at square1");
@@ -89,6 +113,82 @@
     XCTAssertEquals([board colorOfSquare:square2 atPosition:0u], MIXCorePlayerWhite, @"here from the beginning");
     
     NSLog(@"bla");
+}
+
+
+- (MIXModelBoard *)boardForTestingMoves {
+    
+    MIXModelBoard *board = [[MIXModelBoard alloc] init];
+    
+    // from top to bottom: black, white, white on 1/1
+    [board setPiece:MIXCoreSquareMake(1, 1)];
+    [board setPiece:MIXCoreSquareMake(0, 1)];
+    [board setPiece:MIXCoreSquareMake(0, 0)];
+    [board dragPiecesFrom:MIXCoreSquareMake(0, 1) to:MIXCoreSquareMake(0, 0) withNumber:1];
+    [board dragPiecesFrom:MIXCoreSquareMake(0, 0) to:MIXCoreSquareMake(1, 1) withNumber:2];
+    
+    // from top to bottom: white, black, black on 4/4
+    [board setPiece:MIXCoreSquareMake(4, 4)];
+    [board setPiece:MIXCoreSquareMake(2, 4)];
+    [board setPiece:MIXCoreSquareMake(3, 4)];
+    [board dragPiecesFrom:MIXCoreSquareMake(2, 4) to:MIXCoreSquareMake(3, 4) withNumber:1];
+    [board dragPiecesFrom:MIXCoreSquareMake(3, 4) to:MIXCoreSquareMake(4, 4) withNumber:2];
+    
+    // from top to bottom: black, white on 1/4
+    [board setPiece:MIXCoreSquareMake(1, 4)];
+    [board setPiece:MIXCoreSquareMake(2, 4)];
+    [board dragPiecesFrom:MIXCoreSquareMake(2, 4) to:MIXCoreSquareMake(1, 4) withNumber:1];
+    
+    // white on 0/0
+    [board setPiece:MIXCoreSquareMake(0, 0)];
+    
+    // black on 0/1
+    [board setPiece:MIXCoreSquareMake(0, 1)];
+    
+    return board;
+}
+
+
+- (void)testHeight {
+    
+    MIXModelBoard *board = [self boardForTestingMoves];
+    
+    XCTAssertEquals([board heightOfSquare:MIXCoreSquareMake(1, 1)], 3u, @"");
+    XCTAssertEquals([board heightOfSquare:MIXCoreSquareMake(4, 4)], 3u, @"");
+    XCTAssertEquals([board heightOfSquare:MIXCoreSquareMake(1, 4)], 2u, @"");
+    XCTAssertEquals([board heightOfSquare:MIXCoreSquareMake(0, 0)], 1u, @"");
+    XCTAssertEquals([board heightOfSquare:MIXCoreSquareMake(3, 3)], 0u, @"nothing set here");
+}
+
+
+- (void)testIsDragLegal {
+    
+    MIXModelBoard *board = [self boardForTestingMoves];
+    
+    // legal drags:
+    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(4, 4) to:MIXCoreSquareMake(1, 1)], @"");
+    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(4, 4)], @"");
+    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(1, 1)], @"");
+    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(4, 4)], @"");
+    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(0, 1)], @"");
+    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(0, 0)], @"");
+    
+    // illegal drags because of wrong height:
+    XCTAssertFalseNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(1, 4)], @"");
+    XCTAssertFalseNoThrow([board isDragLegalFrom:MIXCoreSquareMake(4, 4) to:MIXCoreSquareMake(1, 4)], @"");
+    XCTAssertFalseNoThrow([board isDragLegalFrom:MIXCoreSquareMake(0, 0) to:MIXCoreSquareMake(1, 1)], @"");
+    
+    // put some pieces between -> legal becomes illegal
+    [board setPiece:MIXCoreSquareMake(2, 2)];
+    XCTAssertFalseNoThrow([board isDragLegalFrom:MIXCoreSquareMake(4, 4) to:MIXCoreSquareMake(1, 1)], @"");
+    XCTAssertFalseNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(4, 4)], @"");
+    
+    [board setPiece:MIXCoreSquareMake(1, 3)];
+    [board setPiece:MIXCoreSquareMake(3, 4)];
+    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(1, 1)], @"");
+    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(4, 4)], @"");
+    
+    
 }
 
 

@@ -9,6 +9,9 @@
 
 #include "MIXCoreBoard.h"
 
+#include <stdlib.h>
+#include "MIXCoreHelper.h"
+
 
 #define NUMBER_OF_PIECES_OF_ONE_COLOR 25
 
@@ -84,25 +87,96 @@ void setPiece(MIXCoreBoardRef boardRef, MIXCoreSquare square) {
 }
 
 
-void movePiece(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfMovedPieces) {
-
-    boardRef->height[from.column][from.line] -= numberOfMovedPieces;
-    boardRef->height[to.column][to.line] += numberOfMovedPieces;
+bool isDistanceRight(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to) {
     
-    // Make a mask that has zeros for the last "numberOfMovedPieces" bits, ones everywhere else
-    uint8_t mask = UINT8_MAX << numberOfMovedPieces;
+    uint8_t height = boardRef->height[to.column][to.line];
+    
+    if (from.column == to.column) {
+        if (abs(from.line - to.line) == height) {
+            return true; // vertical drag
+        } else {
+            return false;
+        }
+    }
+    if (abs(from.column - to.column) == height) {
+        if (from.line == to.line) {
+            return true; // horizontal drag
+        } else if (abs(from.line - to.line) == height) {
+            return true; // cross drag
+        }
+    }
+    return false;
+}
+
+
+bool isAPieceBetween(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to) {
+
+    int columnIncrement = signum(to.column - from.column);
+    int lineIncrement = signum(to.column - from.column);
+    
+    uint8_t columnToCheck = from.column + columnIncrement;
+    uint8_t lineToCheck = from.line + lineIncrement;
+    // don't use "<" or ">" for comparison - increments could be positive or
+    // negative we could come from any side.
+    // Also we need to check both column and line as one increment could be 0.
+    while (columnToCheck != to.column && lineToCheck != to.line) {
+        if (boardRef->height[columnToCheck][lineToCheck] != 0u) {
+            return true; // a piece is between
+        }
+        columnToCheck += columnIncrement;
+        lineToCheck += lineIncrement;
+    }
+    
+    return false; // nothing found
+}
+
+
+bool isDragLegal(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to) {
+    
+    if (from.column == to.column && from.line == to.line) {
+        return false;
+    }
+    
+    if (!isDistanceRight(boardRef, from, to)) {
+        return false;
+    }
+    
+    uint8_t height = boardRef->height[to.column][to.line];
+    if (1u == height) {
+        // drag to field right next => no piece between => legal
+        return true;
+    }
+    
+    if (isAPieceBetween(boardRef, from, to)) {
+        return false;
+    }
+    
+    return true; // nothing found, looks good
+}
+
+
+
+void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfDraggedPieces) {
+
+    boardRef->height[from.column][from.line] -= numberOfDraggedPieces;
+    boardRef->height[to.column][to.line] += numberOfDraggedPieces;
+    
+    // Make a mask that has zeros for the last "numberOfDraggedPieces" bits, ones everywhere else
+    uint8_t mask = UINT8_MAX << numberOfDraggedPieces;
     // now the last bits are set, the others not.
     mask = ~mask;
     // Remove all bits of those positions which are not removed.
     // In the last bits we then have the important information, 0 for white, 1 for black
-    uint8_t colorsToMove = (boardRef->colors[from.column][from.line] & mask);
+    uint8_t colorsToDrag = (boardRef->colors[from.column][from.line] & mask);
     
     // Remove the pieces from "from"
-    boardRef->colors[from.column][from.line] >>= numberOfMovedPieces;
+    boardRef->colors[from.column][from.line] >>= numberOfDraggedPieces;
     
     // Make space for the new pieces at "to"
-    boardRef->colors[to.column][to.line] <<= numberOfMovedPieces;
+    boardRef->colors[to.column][to.line] <<= numberOfDraggedPieces;
     // Add the new pieces
-    boardRef->colors[to.column][to.line] |= colorsToMove;
+    boardRef->colors[to.column][to.line] |= colorsToDrag;
+    
+    boardRef->turn = !boardRef->turn;
 }
 

@@ -55,14 +55,22 @@ uint8_t heightOfSquare(MIXCoreBoardRef boardRef, MIXCoreSquare square);
 MIXCorePlayer colorOfSquareAtPosition(MIXCoreBoardRef boardRef, MIXCoreSquare square, uint_fast8_t position);
 
 /**
- Does not check wether setting is legal.
+ Does not check whether setting is legal.
  */
 void setPiece(MIXCoreBoardRef boardRef, MIXCoreSquare square);
 
+bool isDistanceRight(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to);
+
 /**
- Does not check wether setting is legal.
+ Does check distance and whether pieces are between.
+ Does not check whether game is over or move recreates the previous position
  */
-void movePiece(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfMovedPieces);
+bool isDragLegal(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to);
+
+/**
+ Does not check whether setting is legal.
+ */
+void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, uint8_t numberODraggedPieces);
 
 
 #endif

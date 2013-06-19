@@ -73,11 +73,21 @@
 }
 
 
-- (BOOL)movePieceFrom:(MIXCoreSquare)from to:(MIXCoreSquare)to
-           withNumber:(NSUInteger)numberOfMovedPieces {
-    // TODO: insert checks
-    movePiece(&_coreBoard, from, to, numberOfMovedPieces);
-    return YES;
+- (BOOL)isDragLegalFrom:(MIXCoreSquare)from to:(MIXCoreSquare)to {
+    
+    return isDragLegal(&_coreBoard, from, to);
+}
+
+
+- (BOOL)dragPiecesFrom:(MIXCoreSquare)from to:(MIXCoreSquare)to
+           withNumber:(NSUInteger)numberOfDraggedPieces {
+    
+    if (isDragLegal(&_coreBoard, from, to)) {
+        dragPieces(&_coreBoard, from, to, numberOfDraggedPieces);
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 
