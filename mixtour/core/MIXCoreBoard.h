@@ -18,6 +18,11 @@
 
 
 
+/**
+ - height is pretty simple - a "4" means 4 pieces
+ - colors is a bit more difficult - only the last "height" bits are interesting.
+   A "0" means white, a "1" means black. The first bits are undefined.
+ */
 struct MIXCoreBoard {
     uint8_t height[5][5];
     uint8_t colors[5][5];
@@ -43,7 +48,21 @@ bool isSquareEmpty(MIXCoreBoardRef boardRef, MIXCoreSquare square);
 
 uint8_t heightOfSquare(MIXCoreBoardRef boardRef, MIXCoreSquare square);
 
+/**
+ The uppermost piece has the position 0.
+ When the height is n, the lowermost piece has the position n-1
+ */
+MIXCorePlayer colorOfSquareAtPosition(MIXCoreBoardRef boardRef, MIXCoreSquare square, uint_fast8_t position);
+
+/**
+ Does not check wether setting is legal.
+ */
 void setPiece(MIXCoreBoardRef boardRef, MIXCoreSquare square);
+
+/**
+ Does not check wether setting is legal.
+ */
+void movePiece(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfMovedPieces);
 
 
 #endif

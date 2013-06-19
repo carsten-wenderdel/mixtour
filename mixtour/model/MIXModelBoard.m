@@ -50,6 +50,12 @@
 }
 
 
+- (MIXCorePlayer)colorOfSquare:(MIXCoreSquare)square atPosition:(uint_fast8_t)position {
+    
+    return colorOfSquareAtPosition(&_coreBoard, square, position);
+}
+
+
 - (BOOL)setPiece:(MIXCoreSquare)square {
     
     if (! isSquareEmpty(&_coreBoard, square)) {
@@ -65,6 +71,16 @@
     setPiece(&_coreBoard, square);
     return YES;
 }
+
+
+- (BOOL)movePieceFrom:(MIXCoreSquare)from to:(MIXCoreSquare)to
+           withNumber:(NSUInteger)numberOfMovedPieces {
+    // TODO: insert checks
+    movePiece(&_coreBoard, from, to, numberOfMovedPieces);
+    return YES;
+}
+
+
 
 
 @end

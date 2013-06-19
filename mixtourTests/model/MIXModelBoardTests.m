@@ -54,4 +54,42 @@
     XCTAssertEquals([board heightOfSquare:MIXCoreSquareMake(0, 0)], 0u, @"nothing set here");
 }
 
+
+- (void)testColorAtPosition {
+    
+    MIXModelBoard *board = [[MIXModelBoard alloc] init];
+    
+    MIXCoreSquare square0 = MIXCoreSquareMake(0, 3);
+    MIXCoreSquare square1 = MIXCoreSquareMake(1, 3);
+    MIXCoreSquare square2 = MIXCoreSquareMake(2, 3);
+    MIXCoreSquare square3 = MIXCoreSquareMake(3, 3);
+    MIXCoreSquare square4 = MIXCoreSquareMake(4, 3);
+
+    [board setPiece:square0]; // white
+    [board setPiece:square1]; // black
+    [board setPiece:square2]; // white
+    [board setPiece:square3]; // black
+    [board setPiece:square4]; // white
+    
+    XCTAssertEquals([board colorOfSquare:square0 atPosition:0u], MIXCorePlayerWhite, @"");
+    XCTAssertEquals([board colorOfSquare:square1 atPosition:0u], MIXCorePlayerBlack, @"");
+    XCTAssertEquals([board colorOfSquare:square2 atPosition:0u], MIXCorePlayerWhite, @"");
+    XCTAssertEquals([board colorOfSquare:square3 atPosition:0u], MIXCorePlayerBlack, @"");
+    XCTAssertEquals([board colorOfSquare:square4 atPosition:0u], MIXCorePlayerWhite, @"");
+    
+    [board movePieceFrom:square1 to:square0 withNumber:1u];
+    [board movePieceFrom:square4 to:square3 withNumber:1u];
+    [board movePieceFrom:square3 to:square2 withNumber:2u];
+    [board movePieceFrom:square2 to:square0 withNumber:2u];
+    
+    XCTAssertEquals([board colorOfSquare:square0 atPosition:3u], MIXCorePlayerWhite, @"here from the beginning");
+    XCTAssertEquals([board colorOfSquare:square0 atPosition:2u], MIXCorePlayerBlack, @"originally at square1");
+    XCTAssertEquals([board colorOfSquare:square0 atPosition:1u], MIXCorePlayerBlack, @"originally at square3");
+    XCTAssertEquals([board colorOfSquare:square0 atPosition:0u], MIXCorePlayerWhite, @"originally at square4");
+    XCTAssertEquals([board colorOfSquare:square2 atPosition:0u], MIXCorePlayerWhite, @"here from the beginning");
+    
+    NSLog(@"bla");
+}
+
+
 @end
