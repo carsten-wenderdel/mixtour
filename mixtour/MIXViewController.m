@@ -8,17 +8,22 @@
 
 #import "MIXViewController.h"
 
+#import "MIXGameBackgroundView.h"
+
+
 @interface MIXViewController ()
 
 @end
 
 @implementation MIXViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    UIView *gameBackgroundView = [[MIXGameBackgroundView alloc] initWithFrame:self.view.frame];
+	[self.view addSubview:gameBackgroundView];
 }
+
 
 - (void)didReceiveMemoryWarning
 {

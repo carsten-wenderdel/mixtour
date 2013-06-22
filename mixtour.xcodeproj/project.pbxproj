@@ -24,6 +24,7 @@
 		AA040672176FB3D80051363A /* MIXCoreBoardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA040671176FB3D80051363A /* MIXCoreBoardTests.m */; };
 		AA28392A1770A7B800F229F7 /* MIXModelBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2839291770A7B800F229F7 /* MIXModelBoard.m */; };
 		AA28392D1770F25200F229F7 /* MIXModelBoardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28392C1770F25200F229F7 /* MIXModelBoardTests.m */; };
+		AA9E4A9C17769380007CEA4B /* MIXGameBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9E4A9B17769380007CEA4B /* MIXGameBackgroundView.m */; };
 		AAE463AB1772657700008778 /* MIXCoreHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = AAE463AA1772657700008778 /* MIXCoreHelper.c */; };
 		AAE463AE177265ED00008778 /* MIXCoreHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE463AD177265ED00008778 /* MIXCoreHelperTests.m */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,8 @@
 		AA2839291770A7B800F229F7 /* MIXModelBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXModelBoard.m; sourceTree = "<group>"; };
 		AA28392B1770EB3A00F229F7 /* MIXCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXCore.h; sourceTree = "<group>"; };
 		AA28392C1770F25200F229F7 /* MIXModelBoardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXModelBoardTests.m; sourceTree = "<group>"; };
+		AA9E4A9A17769380007CEA4B /* MIXGameBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXGameBackgroundView.h; sourceTree = "<group>"; };
+		AA9E4A9B17769380007CEA4B /* MIXGameBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXGameBackgroundView.m; sourceTree = "<group>"; };
 		AAE463AA1772657700008778 /* MIXCoreHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MIXCoreHelper.c; sourceTree = "<group>"; };
 		AAE463AC1772658800008778 /* MIXCoreHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIXCoreHelper.h; sourceTree = "<group>"; };
 		AAE463AD177265ED00008778 /* MIXCoreHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXCoreHelperTests.m; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 			children = (
 				AA04066B176FA1AB0051363A /* core */,
 				AA2839261770A6D700F229F7 /* model */,
+				AA9E4A9917769277007CEA4B /* gameviews */,
 				AA040645176F9DF40051363A /* MIXAppDelegate.h */,
 				AA040646176F9DF40051363A /* MIXAppDelegate.m */,
 				AA040648176F9DF40051363A /* Main.storyboard */,
@@ -205,6 +209,15 @@
 				AA28392C1770F25200F229F7 /* MIXModelBoardTests.m */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		AA9E4A9917769277007CEA4B /* gameviews */ = {
+			isa = PBXGroup;
+			children = (
+				AA9E4A9A17769380007CEA4B /* MIXGameBackgroundView.h */,
+				AA9E4A9B17769380007CEA4B /* MIXGameBackgroundView.m */,
+			);
+			path = gameviews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +321,7 @@
 				AA040643176F9DF40051363A /* main.m in Sources */,
 				AA04066E176FA5F70051363A /* MIXCoreBoard.c in Sources */,
 				AA040647176F9DF40051363A /* MIXAppDelegate.m in Sources */,
+				AA9E4A9C17769380007CEA4B /* MIXGameBackgroundView.m in Sources */,
 				AAE463AB1772657700008778 /* MIXCoreHelper.c in Sources */,
 				AA04064D176F9DF40051363A /* MIXViewController.m in Sources */,
 				AA28392A1770A7B800F229F7 /* MIXModelBoard.m in Sources */,
