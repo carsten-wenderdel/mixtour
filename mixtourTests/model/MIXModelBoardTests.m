@@ -21,8 +21,8 @@
     MIXModelBoard *modelBoard = [[MIXModelBoard alloc] init];
 
     XCTAssertEquals([modelBoard playerOnTurn], MIXCorePlayerWhite, @"White should start game");
-    XCTAssertEquals([modelBoard numberOfPiecesForPlayer:MIXCorePlayerWhite], 25u, @"25 pieces at the start");
-    XCTAssertEquals([modelBoard numberOfPiecesForPlayer:MIXCorePlayerBlack], 25u, @"25 pieces at the start");
+    XCTAssertEquals([modelBoard numberOfPiecesForPlayer:MIXCorePlayerWhite], 20u, @"25 pieces at the start");
+    XCTAssertEquals([modelBoard numberOfPiecesForPlayer:MIXCorePlayerBlack], 20u, @"25 pieces at the start");
     
     for (uint8_t i = 0; i < 5; i++) {
         for (uint8_t j = 0; j < 5; j++) {
@@ -69,8 +69,8 @@
     XCTAssertFalse([board setPiece:square1], @"There should already be a piece");
     XCTAssertTrue([board setPiece:square3], @"this should be empty and therefore legal");
     
-    XCTAssertEquals([board numberOfPiecesForPlayer:MIXCorePlayerWhite], 23u, @"two pieces set");
-    XCTAssertEquals([board numberOfPiecesForPlayer:MIXCorePlayerBlack], 24u,
+    XCTAssertEquals([board numberOfPiecesForPlayer:MIXCorePlayerWhite], 18u, @"two pieces set");
+    XCTAssertEquals([board numberOfPiecesForPlayer:MIXCorePlayerBlack], 19u,
                     @"only one piece set, one move attempt was illegal");
     
     XCTAssertEquals([board heightOfSquare:square2], 1u, @"one piece set -> height 1");

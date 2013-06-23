@@ -13,7 +13,7 @@
 #include "MIXCoreHelper.h"
 
 
-#define NUMBER_OF_PIECES_OF_ONE_COLOR 25
+#define NUMBER_OF_PIECES_OF_ONE_COLOR 20
 
 
 MIXCoreSquare MIXCoreSquareMake(uint8_t column, uint8_t line) {
