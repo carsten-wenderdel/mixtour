@@ -8,7 +8,8 @@
 
 #import "MIXViewController.h"
 
-#import "MIXGameBackgroundView.h"
+#import "MIXGameView.h"
+#import "MIXGamePieceView.h"
 
 
 @interface MIXViewController ()
@@ -20,7 +21,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    UIView *gameBackgroundView = [[MIXGameBackgroundView alloc] initWithFrame:self.view.frame];
+    UIView *gameBackgroundView = [[MIXGameView alloc] initWithFrame:self.view.frame];
 	[self.view addSubview:gameBackgroundView];
 }
 
