@@ -34,6 +34,53 @@
 }
 
 
+- (void)testGameOver {
+    MIXModelBoard *board = [[MIXModelBoard alloc] init];
+    XCTAssertFalseNoThrow([board isGameOver], @"");
+    
+    [board setPiece:MIXCoreSquareMake(0, 0)];
+    for (int i = 1; i < 5; i++) {
+        XCTAssertFalseNoThrow([board isGameOver], @"");
+        MIXCoreSquare oldSquare = MIXCoreSquareMake(0, i - 1);
+        MIXCoreSquare newSquare = MIXCoreSquareMake(0, i);
+        [board setPiece:newSquare];
+        [board dragPiecesFrom:oldSquare to:newSquare withNumber:i];
+    }
+    
+    XCTAssertTrueNoThrow([board isGameOver], @"");
+}
+
+
+- (void)testWinner {
+    MIXModelBoard *board = [[MIXModelBoard alloc] init];
+    XCTAssertEquals([board winner], MIXCorePlayerUndefined, @"");
+    
+    [board setPiece:MIXCoreSquareMake(0, 0)];
+    for (int i = 1; i < 5; i++) {
+        XCTAssertEquals([board winner], MIXCorePlayerUndefined, @"");
+        MIXCoreSquare oldSquare = MIXCoreSquareMake(0, i - 1);
+        MIXCoreSquare newSquare = MIXCoreSquareMake(0, i);
+        [board setPiece:newSquare];
+        [board dragPiecesFrom:oldSquare to:newSquare withNumber:i];
+    }
+    
+    XCTAssertEquals([board winner], MIXCorePlayerWhite, @"");
+    
+    // and now the same, but place one additional piece at the beginning somewhere else.
+    board = [[MIXModelBoard alloc] init];
+    [board setPiece:MIXCoreSquareMake(3, 3)];
+    [board setPiece:MIXCoreSquareMake(0, 0)];
+    for (int i = 1; i < 5; i++) {
+        MIXCoreSquare oldSquare = MIXCoreSquareMake(0, i - 1);
+        MIXCoreSquare newSquare = MIXCoreSquareMake(0, i);
+        [board setPiece:newSquare];
+        [board dragPiecesFrom:oldSquare to:newSquare withNumber:i];
+    }
+    
+    XCTAssertEquals([board winner], MIXCorePlayerBlack, @"");
+}
+
+
 - (void)testPlayerOnTurn {
     MIXModelBoard *board = [[MIXModelBoard alloc] init];
     XCTAssertEquals([board playerOnTurn], MIXCorePlayerWhite, @"");
@@ -187,8 +234,6 @@
     [board setPiece:MIXCoreSquareMake(3, 4)];
     XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(1, 1)], @"");
     XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(4, 4)], @"");
-    
-    
 }
 
 

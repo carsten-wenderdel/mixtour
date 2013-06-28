@@ -20,6 +20,7 @@
 typedef enum {
     MIXCorePlayerWhite = 0,
     MIXCorePlayerBlack = 1,
+    MIXCorePlayerUndefined = -1
 } MIXCorePlayer;
 
 

@@ -17,6 +17,7 @@
 #include "MIXCore.h"
 
 
+#define LENGTH_OF_BOARD 5
 
 /**
  - height is pretty simple - a "4" means 4 pieces
@@ -24,10 +25,11 @@
    A "0" means white, a "1" means black. The first bits are undefined.
  */
 struct MIXCoreBoard {
-    uint8_t height[5][5];
-    uint8_t colors[5][5];
+    uint8_t height[LENGTH_OF_BOARD][LENGTH_OF_BOARD];
+    uint8_t colors[LENGTH_OF_BOARD][LENGTH_OF_BOARD];
     uint8_t whitePieces;
     uint8_t blackPieces;
+    uint8_t gameBits;
     MIXCorePlayer turn;
 };
 
@@ -41,6 +43,13 @@ typedef struct MIXCoreBoard *MIXCoreBoardRef;
 void resetCoreBoard(MIXCoreBoardRef boardRef);
 
 MIXCorePlayer playerOnTurn(MIXCoreBoardRef boardRef);
+
+bool isGameOver(MIXCoreBoardRef boardRef);
+
+/**
+ returns MIXCorePlayerUndefined when game is not over yet.
+ */
+MIXCorePlayer winner(MIXCoreBoardRef boardRef);
 
 uint8_t numberOfPiecesForPlayer(MIXCoreBoardRef boardRef, MIXCorePlayer player);
 

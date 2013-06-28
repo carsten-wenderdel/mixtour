@@ -16,6 +16,10 @@
 
 - (MIXCorePlayer)playerOnTurn;
 
+- (BOOL)isGameOver;
+
+- (MIXCorePlayer)winner;
+
 - (NSUInteger)numberOfPiecesForPlayer:(MIXCorePlayer)player;
 
 - (BOOL)isSquareEmpty:(MIXCoreSquare)square;

@@ -13,7 +13,16 @@
 #include "MIXCoreHelper.h"
 
 
-#define NUMBER_OF_PIECES_OF_ONE_COLOR 20
+#define MIX_CORE_NUMBER_OF_PIECES_OF_ONE_COLOR 20
+#define MIX_CORE_NUMBER_OF_PIECES_TO_WIN 5
+
+
+enum MIXCoreGameBits {
+    MIXCoreGameBitsWinner = 1,
+    MIXCoreGameBitsGameOver = 1 << 1
+    
+};
+typedef enum MIXCoreGameBits MIXCoreGameBits;
 
 
 MIXCoreSquare MIXCoreSquareMake(uint8_t column, uint8_t line) {
@@ -26,13 +35,29 @@ void resetCoreBoard(MIXCoreBoardRef boardRef) {
     
     *boardRef = (struct MIXCoreBoard){0};
     boardRef->turn = MIXCorePlayerWhite;
-    boardRef->whitePieces = boardRef->blackPieces = NUMBER_OF_PIECES_OF_ONE_COLOR;
+    boardRef->whitePieces = boardRef->blackPieces = MIX_CORE_NUMBER_OF_PIECES_OF_ONE_COLOR;
 }
 
 
 MIXCorePlayer playerOnTurn(MIXCoreBoardRef boardRef) {
     
     return boardRef->turn;
+}
+
+
+bool isGameOver(MIXCoreBoardRef boardRef)
+{
+    return (boardRef->gameBits & MIXCoreGameBitsGameOver) != 0;
+}
+
+
+MIXCorePlayer winner(MIXCoreBoardRef boardRef)
+{
+    if (isGameOver(boardRef)) {
+        return boardRef->gameBits & MIXCoreGameBitsWinner;
+    } else {
+        return MIXCorePlayerUndefined;
+    }
 }
 
 
@@ -178,5 +203,15 @@ void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, 
     boardRef->colors[to.column][to.line] |= colorsToDrag;
     
     boardRef->turn = !boardRef->turn;
+    
+    if (boardRef->height[to.column][to.line] >= MIX_CORE_NUMBER_OF_PIECES_TO_WIN) {
+        // game over!
+        boardRef->gameBits |= MIXCoreGameBitsGameOver;
+        MIXCorePlayer winnerColor = colorOfSquareAtPosition(boardRef, to, 0);
+        if (winnerColor) {
+            // That means the bit is set. One of the players is "0", the other one is "1".
+            boardRef->gameBits |= MIXCoreGameBitsWinner;
+        }
+    }
 }
 

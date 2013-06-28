@@ -35,6 +35,14 @@
 }
 
 
+- (BOOL)isGameOver {
+    return isGameOver(&_coreBoard);
+}
+
+- (MIXCorePlayer)winner {
+    return winner(&_coreBoard);
+}
+
 - (NSUInteger)numberOfPiecesForPlayer:(MIXCorePlayer)player {
     return numberOfPiecesForPlayer(&_coreBoard, player);
 }
