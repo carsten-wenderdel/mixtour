@@ -237,4 +237,40 @@
 }
 
 
+- (void)testIsSettingPossible {
+    
+    MIXModelBoard *board = [[MIXModelBoard alloc] init];
+    
+    // setting pieces everywhere
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            XCTAssertTrueNoThrow([board isSettingPossible], @"still something free");
+            [board setPiece:MIXCoreSquareMake(i, j)];
+        }
+    }
+    XCTAssertFalseNoThrow([board isSettingPossible], @"all 25 squares covered");
+    
+    // clearing squares as much as possible with the exception of j==0
+    // and setting 15 pieces on resulting empty squares
+    for (int i = 0; i < 5; i++) {
+        for (int j = 2; j < 5; j++) {
+            MIXCoreSquare from = MIXCoreSquareMake(i, j-1);
+            MIXCoreSquare to = MIXCoreSquareMake(i, j);
+            [board dragPiecesFrom:from to:to withNumber:i];
+            XCTAssertTrueNoThrow([board isSettingPossible], @"");
+            [board setPiece:from];
+        }
+    }
+    // now we have towers of 4 at j==5 and towers of 1 everywhere else
+    XCTAssertFalseNoThrow([board isSettingPossible], @"all 25 squares covered");
+    
+    // everyone should have 5 pieces left
+    
+    // setting 15 more pieces
+    for (int i = 0; i < 5; i++) {
+
+    }
+}
+
+
 @end

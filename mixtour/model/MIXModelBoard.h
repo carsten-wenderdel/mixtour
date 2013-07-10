@@ -39,4 +39,10 @@
 - (BOOL)dragPiecesFrom:(MIXCoreSquare)from to:(MIXCoreSquare)to
            withNumber:(NSUInteger)numberODraggedPieces;
 
+- (BOOL)isSettingPossible;
+
+- (BOOL)isDraggingPossible;
+
+- (BOOL)isSettingOrDraggingPossbile;
+
 @end

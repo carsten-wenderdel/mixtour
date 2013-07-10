@@ -99,6 +99,21 @@
 }
 
 
+- (BOOL)isSettingPossible {
+    return YES;
+}
+
+
+- (BOOL)isDraggingPossible {
+    
+    return YES;
+}
+
+
+- (BOOL)isSettingOrDraggingPossbile {
+    
+    return YES;
+}
 
 
 @end
