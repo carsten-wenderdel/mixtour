@@ -36,18 +36,17 @@
 
 - (void)testGameOver {
     MIXModelBoard *board = [[MIXModelBoard alloc] init];
-    XCTAssertFalseNoThrow([board isGameOver], @"");
+    XCTAssertFalse([board isGameOver], @"");
     
     [board setPiece:MIXCoreSquareMake(0, 0)];
     for (int i = 1; i < 5; i++) {
-        XCTAssertFalseNoThrow([board isGameOver], @"");
+        XCTAssertFalse([board isGameOver], @"");
         MIXCoreSquare oldSquare = MIXCoreSquareMake(0, i - 1);
         MIXCoreSquare newSquare = MIXCoreSquareMake(0, i);
         [board setPiece:newSquare];
         [board dragPiecesFrom:oldSquare to:newSquare withNumber:i];
     }
-    
-    XCTAssertTrueNoThrow([board isGameOver], @"");
+    XCTAssertTrue([board isGameOver], @"");
 }
 
 
@@ -213,27 +212,27 @@
     MIXModelBoard *board = [self boardForTestingMoves];
     
     // legal drags:
-    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(4, 4) to:MIXCoreSquareMake(1, 1)], @"");
-    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(4, 4)], @"");
-    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(1, 1)], @"");
-    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(4, 4)], @"");
-    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(0, 1)], @"");
-    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(0, 0)], @"");
+    XCTAssertTrue([board isDragLegalFrom:MIXCoreSquareMake(4, 4) to:MIXCoreSquareMake(1, 1)], @"");
+    XCTAssertTrue([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(4, 4)], @"");
+    XCTAssertTrue([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(1, 1)], @"");
+    XCTAssertTrue([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(4, 4)], @"");
+    XCTAssertTrue([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(0, 1)], @"");
+    XCTAssertTrue([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(0, 0)], @"");
     
     // illegal drags because of wrong height:
-    XCTAssertFalseNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(1, 4)], @"");
-    XCTAssertFalseNoThrow([board isDragLegalFrom:MIXCoreSquareMake(4, 4) to:MIXCoreSquareMake(1, 4)], @"");
-    XCTAssertFalseNoThrow([board isDragLegalFrom:MIXCoreSquareMake(0, 0) to:MIXCoreSquareMake(1, 1)], @"");
+    XCTAssertFalse([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(1, 4)], @"");
+    XCTAssertFalse([board isDragLegalFrom:MIXCoreSquareMake(4, 4) to:MIXCoreSquareMake(1, 4)], @"");
+    XCTAssertFalse([board isDragLegalFrom:MIXCoreSquareMake(0, 0) to:MIXCoreSquareMake(1, 1)], @"");
     
     // put some pieces between -> legal becomes illegal
     [board setPiece:MIXCoreSquareMake(2, 2)];
-    XCTAssertFalseNoThrow([board isDragLegalFrom:MIXCoreSquareMake(4, 4) to:MIXCoreSquareMake(1, 1)], @"");
-    XCTAssertFalseNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(4, 4)], @"");
+    XCTAssertFalse([board isDragLegalFrom:MIXCoreSquareMake(4, 4) to:MIXCoreSquareMake(1, 1)], @"");
+    XCTAssertFalse([board isDragLegalFrom:MIXCoreSquareMake(1, 1) to:MIXCoreSquareMake(4, 4)], @"");
     
     [board setPiece:MIXCoreSquareMake(1, 3)];
     [board setPiece:MIXCoreSquareMake(3, 4)];
-    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(1, 1)], @"");
-    XCTAssertTrueNoThrow([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(4, 4)], @"");
+    XCTAssertTrue([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(1, 1)], @"");
+    XCTAssertTrue([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(4, 4)], @"");
 }
 
 
@@ -244,11 +243,11 @@
     // setting pieces everywhere
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
-            XCTAssertTrueNoThrow([board isSettingPossible], @"still something free");
+            XCTAssertTrue([board isSettingPossible], @"still something free");
             [board setPiece:MIXCoreSquareMake(i, j)];
         }
     }
-    XCTAssertFalseNoThrow([board isSettingPossible], @"all 25 squares covered");
+    XCTAssertFalse([board isSettingPossible], @"all 25 squares covered");
     
     // clearing squares as much as possible with the exception of j==0
     // and setting 15 pieces on resulting empty squares
@@ -257,12 +256,12 @@
             MIXCoreSquare from = MIXCoreSquareMake(i, j-1);
             MIXCoreSquare to = MIXCoreSquareMake(i, j);
             [board dragPiecesFrom:from to:to withNumber:i];
-            XCTAssertTrueNoThrow([board isSettingPossible], @"");
+            XCTAssertTrue([board isSettingPossible], @"");
             [board setPiece:from];
         }
     }
     // now we have towers of 4 at j==5 and towers of 1 everywhere else
-    XCTAssertFalseNoThrow([board isSettingPossible], @"all 25 squares covered");
+    XCTAssertFalse([board isSettingPossible], @"all 25 squares covered");
     
     // everyone should have 5 pieces left
     
