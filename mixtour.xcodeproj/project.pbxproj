@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10DC19E17A3FD3900E42832 /* MixCoreBoard_private.c in Sources */ = {isa = PBXBuildFile; fileRef = A10DC19D17A3FD3900E42832 /* MixCoreBoard_private.c */; };
+		A10DC1A017A4033300E42832 /* MIXCoreBoard_privateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A10DC19F17A4033300E42832 /* MIXCoreBoard_privateTests.m */; };
 		AA040637176F9DF40051363A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040636176F9DF40051363A /* Foundation.framework */; };
 		AA040639176F9DF40051363A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040638176F9DF40051363A /* CoreGraphics.framework */; };
 		AA04063B176F9DF40051363A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA04063A176F9DF40051363A /* UIKit.framework */; };
@@ -42,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A10DC19C17A3FD1100E42832 /* MixCoreBoard_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixCoreBoard_private.h; sourceTree = "<group>"; };
+		A10DC19D17A3FD3900E42832 /* MixCoreBoard_private.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MixCoreBoard_private.c; sourceTree = "<group>"; };
+		A10DC19F17A4033300E42832 /* MIXCoreBoard_privateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXCoreBoard_privateTests.m; sourceTree = "<group>"; };
 		AA040633176F9DF40051363A /* mixtour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mixtour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA040636176F9DF40051363A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AA040638176F9DF40051363A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -185,6 +190,8 @@
 				AA28392B1770EB3A00F229F7 /* MIXCore.h */,
 				AA04066F176FA68F0051363A /* MIXCoreBoard.h */,
 				AA04066D176FA5F70051363A /* MIXCoreBoard.c */,
+				A10DC19C17A3FD1100E42832 /* MixCoreBoard_private.h */,
+				A10DC19D17A3FD3900E42832 /* MixCoreBoard_private.c */,
 				AAE463AC1772658800008778 /* MIXCoreHelper.h */,
 				AAE463AA1772657700008778 /* MIXCoreHelper.c */,
 			);
@@ -195,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				AA040671176FB3D80051363A /* MIXCoreBoardTests.m */,
+				A10DC19F17A4033300E42832 /* MIXCoreBoard_privateTests.m */,
 				AAE463AD177265ED00008778 /* MIXCoreHelperTests.m */,
 			);
 			path = core;
@@ -336,6 +344,7 @@
 				AA920CE517765CC900677839 /* MIXGameView.m in Sources */,
 				AA04064D176F9DF40051363A /* MIXViewController.m in Sources */,
 				AA9E4AA017769B87007CEA4B /* MIXGamePieceView.m in Sources */,
+				A10DC19E17A3FD3900E42832 /* MixCoreBoard_private.c in Sources */,
 				AA28392A1770A7B800F229F7 /* MIXModelBoard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,6 +355,7 @@
 			files = (
 				AA040672176FB3D80051363A /* MIXCoreBoardTests.m in Sources */,
 				AA28392D1770F25200F229F7 /* MIXModelBoardTests.m in Sources */,
+				A10DC1A017A4033300E42832 /* MIXCoreBoard_privateTests.m in Sources */,
 				AAE463AE177265ED00008778 /* MIXCoreHelperTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -235,7 +235,7 @@
     XCTAssertTrue([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(4, 4)], @"");
 }
 
-
+/*
 - (void)testIsSettingPossible {
     
     MIXModelBoard *board = [[MIXModelBoard alloc] init];
@@ -270,6 +270,7 @@
 
     }
 }
+*/
 
 
 @end
