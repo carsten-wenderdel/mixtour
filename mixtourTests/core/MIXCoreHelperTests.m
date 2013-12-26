@@ -19,11 +19,11 @@
 
 - (void)testSignum
 {
-    XCTAssertEquals(signum(-3), -1, @"");
-    XCTAssertEquals(signum(-1), -1, @"");
-    XCTAssertEquals(signum(0), 0, @"");
-    XCTAssertEquals(signum(1), 1, @"");
-    XCTAssertEquals(signum(3), 1, @"");
+    XCTAssertEqual(signum(-3), -1, @"");
+    XCTAssertEqual(signum(-1), -1, @"");
+    XCTAssertEqual(signum(0), 0, @"");
+    XCTAssertEqual(signum(1), 1, @"");
+    XCTAssertEqual(signum(3), 1, @"");
 }
 
 @end

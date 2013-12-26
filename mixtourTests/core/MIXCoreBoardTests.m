@@ -19,7 +19,7 @@
 
 - (void)testSize {
     struct MIXCoreBoard testStruct;
-    XCTAssertEquals((size_t)60, sizeof(testStruct), @"core board has not proper size");
+    XCTAssertEqual((size_t)60, sizeof(testStruct), @"core board has not proper size");
 }
 
 
