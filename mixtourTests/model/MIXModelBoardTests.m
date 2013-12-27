@@ -235,7 +235,7 @@
     XCTAssertTrue([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(4, 4)], @"");
 }
 
-/*
+
 - (void)testIsSettingPossible {
     
     MIXModelBoard *board = [[MIXModelBoard alloc] init];
@@ -249,28 +249,53 @@
     }
     XCTAssertFalse([board isSettingPossible], @"all 25 squares covered");
     
-    // clearing squares as much as possible with the exception of j==0
-    // and setting 15 pieces on resulting empty squares
+    // clearing (15) squares as much as possible with the exception of j==0
     for (int i = 0; i < 5; i++) {
-        for (int j = 2; j < 5; j++) {
-            MIXCoreSquare from = MIXCoreSquareMake(i, j-1);
-            MIXCoreSquare to = MIXCoreSquareMake(i, j);
-            [board dragPiecesFrom:from to:to withNumber:i];
+        for (int j = 1; j < 4; j++) {
+            MIXCoreSquare from = MIXCoreSquareMake(i, j);
+            MIXCoreSquare to = MIXCoreSquareMake(i, j+1);
+            [board dragPiecesFrom:from to:to withNumber:j];
             XCTAssertTrue([board isSettingPossible], @"");
-            [board setPiece:from];
         }
     }
-    // now we have towers of 4 at j==5 and towers of 1 everywhere else
-    XCTAssertFalse([board isSettingPossible], @"all 25 squares covered");
     
-    // everyone should have 5 pieces left
+    XCTAssertEqual([board numberOfPiecesForPlayer:MIXCorePlayerWhite], 7u, @"");
+    XCTAssertEqual([board numberOfPiecesForPlayer:MIXCorePlayerBlack], 8u, @"");
+    XCTAssertEqual([board playerOnTurn], MIXCorePlayerWhite, @"");
     
-    // setting 15 more pieces
+    // setting 14 pieces on cleared squares
     for (int i = 0; i < 5; i++) {
-
+        for (int j = 1; j < 4; j++) {
+            if (i != 4 || j != 3) {
+                XCTAssertTrue([board isSettingPossible], @"");
+                MIXCoreSquare square = MIXCoreSquareMake(i, j);
+                XCTAssertTrue([board isSquareEmpty:square]);
+                [board setPiece:square];
+            }
+        }
     }
+    
+    XCTAssertEqual([board numberOfPiecesForPlayer:MIXCorePlayerWhite], 0u, @"");
+    XCTAssertEqual([board numberOfPiecesForPlayer:MIXCorePlayerBlack], 1u, @"");
+    XCTAssertEqual([board playerOnTurn], MIXCorePlayerWhite, @"");
+    
+    MIXCoreSquare emptySquare = MIXCoreSquareMake(4, 3);
+    XCTAssertTrue([board isSquareEmpty:emptySquare]);
+    XCTAssertFalse([board isSettingPossible], @"no pieces left for white");
+    
+    [board dragPiecesFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(1, 3) withNumber:3];
+    XCTAssertEqual([board playerOnTurn], MIXCorePlayerBlack, @"");
+    XCTAssertTrue([board isSettingPossible], @"");
+    [board setPiece:emptySquare];
+    
+    XCTAssertEqual([board playerOnTurn], MIXCorePlayerWhite, @"");
+    XCTAssertFalse([board isSettingPossible], @"");
+    [board dragPiecesFrom:MIXCoreSquareMake(1, 3) to:MIXCoreSquareMake(1, 4) withNumber:3];
+    
+    XCTAssertEqual([board playerOnTurn], MIXCorePlayerBlack, @"");
+    XCTAssertFalse([board isSettingPossible], @"no pieces left for black");
 }
-*/
+
 
 
 @end

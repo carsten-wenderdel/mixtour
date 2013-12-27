@@ -100,7 +100,19 @@
 
 
 - (BOOL)isSettingPossible {
-    return YES;
+    
+    if (numberOfPiecesForPlayer(&_coreBoard, playerOnTurn(&_coreBoard)) <= 0) {
+        return NO;
+    }
+    
+    for (int i = 0; i < LENGTH_OF_BOARD; i++) {
+        for (int j = 0; j < LENGTH_OF_BOARD; j++) {
+            if (isSquareEmpty(&_coreBoard, MIXCoreSquareMake(i, j))) {
+                return YES;
+            }
+        }
+    }
+    return NO;
 }
 
 
