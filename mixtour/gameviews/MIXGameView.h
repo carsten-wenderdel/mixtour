@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MIXGameView : UIView
+@interface MIXGameView : UIView<UIGestureRecognizerDelegate>
 
 @end

@@ -17,9 +17,13 @@
 
 @interface MIXGameView ()
 
-@property (readonly) CGPoint upperLeftPoint;
-@property (readonly) CGFloat boardLength;
-@property (readonly) CGFloat squareLength;
+@property (nonatomic, readonly) CGPoint upperLeftPoint;
+@property (nonatomic, readonly) CGFloat boardLength;
+@property (nonatomic, readonly) CGFloat squareLength;
+
+@property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
+@property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
+@property (nonatomic, weak) UIView *pannedView;
 
 @end
 
@@ -43,8 +47,26 @@
         
         [self setPiecesForBoard:[self boardForTryingOut]];
         
+        [self addGestureRecognizers];
     }
     return self;
+}
+
+
+- (void)addGestureRecognizers {
+    UILongPressGestureRecognizer *pressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                                         action:@selector(handlePressGesture:)];
+    pressGestureRecognizer.delegate = self;
+    pressGestureRecognizer.minimumPressDuration = 0.3;
+    [self addGestureRecognizer:pressGestureRecognizer];
+    self.longPressGestureRecognizer = pressGestureRecognizer;
+
+    UIPanGestureRecognizer *thePanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                                              action:@selector(handlePanGesture:)];
+    thePanGestureRecognizer.delegate = self;
+    thePanGestureRecognizer.maximumNumberOfTouches = thePanGestureRecognizer.minimumNumberOfTouches = 1;
+    [self addGestureRecognizer:thePanGestureRecognizer];
+    self.panGestureRecognizer = thePanGestureRecognizer;
 }
 
 
@@ -128,5 +150,49 @@
     return board;
 }
 
+#pragma mark GestureRecognizer Actions
+
+- (void)handlePressGesture:(UILongPressGestureRecognizer *)gestureRecognizer {
+    NSLog(@"handlePressGesture, state: %d", gestureRecognizer.state);
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan: {
+            CGPoint currentPoint = [gestureRecognizer locationInView:self];
+            UIView *upperMostView = [self hitTest:currentPoint withEvent:nil];
+            if ([upperMostView isKindOfClass:[MIXGamePieceView class]]) {
+                self.pannedView = upperMostView;
+                self.pannedView.alpha = 0.4f;
+            }
+            break;
+        }
+        case UIGestureRecognizerStateEnded:
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateFailed:
+            self.pannedView.alpha = 1.0f;
+            self.pannedView = nil;
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)handlePanGesture:(UIPanGestureRecognizer *)gestureRecognizer {
+    NSLog(@"handlePanGesture, state: %d", gestureRecognizer.state);
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan:
+        case UIGestureRecognizerStateChanged:
+        case UIGestureRecognizerStateEnded:
+            self.pannedView.center = [gestureRecognizer locationInView:self];
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark UIGestureRecognizer Delegate Methods
+
+ - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+         shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+     return YES;
+ }
 
 @end
