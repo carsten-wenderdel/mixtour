@@ -10,6 +10,7 @@ build
 xcuserdata
 project.xcworkspace
 test-reports
+.idea
 .hg
 .hgignore
 
