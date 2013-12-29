@@ -15,7 +15,9 @@
 #define numberOfSquares 5
 
 
-@interface MIXGameView ()
+@interface MIXGameView () {
+    NSArray *_fieldArray;
+}
 
 @property (nonatomic, readonly) CGPoint upperLeftPoint;
 @property (nonatomic, readonly) CGFloat boardLength;
@@ -25,7 +27,7 @@
 
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
-@property (nonatomic, weak) UIView *pannedView;
+@property (nonatomic, strong) NSArray *pannedViews;
 
 @end
 
@@ -52,6 +54,45 @@
         [self addGestureRecognizers];
     }
     return self;
+}
+
+/**
+* Not thread safe!
+* Out of bounds exception when square values are too big or too small - better crash than bugs that are hard to find
+*/
+- (NSMutableArray *)pieceViewArrayForSquare:(MIXCoreSquare)square {
+    if (nil == _fieldArray) {
+        NSMutableArray *lineArray = [NSMutableArray array];
+        for (int line = 0; line < numberOfSquares; line++) {
+            NSMutableArray *columnArray = [NSMutableArray array];
+            for (int column = 0; column < numberOfSquares; column++) {
+                NSMutableArray *viewArray = [NSMutableArray array];
+                [columnArray addObject:viewArray];
+            }
+            [lineArray addObject:[NSArray arrayWithArray:columnArray]];
+        }
+        _fieldArray = [NSArray arrayWithArray:lineArray];
+    }
+
+    NSArray *columnArray = [_fieldArray objectAtIndex:square.line];
+    NSMutableArray *viewArray = [columnArray objectAtIndex:square.column];
+    return viewArray;
+}
+
+- (NSMutableArray *)pieceArrayForView:(MIXGamePieceView *)view {
+    if (nil == _fieldArray) {
+        return nil;
+    }
+    for (NSArray *columnArray in _fieldArray) {
+        for (NSMutableArray *viewArray in columnArray) {
+            for (MIXGamePieceView *pieceView in viewArray) {
+                if (pieceView == view) {
+                    return viewArray;
+                }
+            }
+        }
+    }
+    return nil;
 }
 
 
@@ -130,6 +171,9 @@
     MIXGamePieceView *pieceView = [[MIXGamePieceView alloc] initWithFrame:pieceFrame
                                                                 withColor:color];
     [self addSubview:pieceView];
+    
+    NSMutableArray *viewArray = [self pieceViewArrayForSquare:square];
+    [viewArray addObject:pieceView];
 }
 
 
@@ -161,16 +205,29 @@
             CGPoint currentPoint = [gestureRecognizer locationInView:self];
             UIView *upperMostView = [self hitTest:currentPoint withEvent:nil];
             if ([upperMostView isKindOfClass:[MIXGamePieceView class]]) {
-                self.pannedView = upperMostView;
-                self.pannedView.alpha = 0.4f;
+                NSMutableArray *viewsToPan = [NSMutableArray array];
+                NSArray *viewArray = [self pieceArrayForView:(MIXGamePieceView *)upperMostView];
+                BOOL viewNeedsToBePanned = NO;
+                for (MIXGamePieceView *pieceView in viewArray) {
+                    if (pieceView == upperMostView) {
+                        viewNeedsToBePanned = YES;
+                    }
+                    if (viewNeedsToBePanned) {
+                        [viewsToPan addObject:pieceView];
+                        pieceView.alpha = 0.4f;
+                    }
+                }
+                self.pannedViews = viewsToPan;
             }
             break;
         }
         case UIGestureRecognizerStateEnded:
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateFailed:
-            self.pannedView.alpha = 1.0f;
-            self.pannedView = nil;
+            for (MIXGamePieceView *view in self.pannedViews) {
+                view.alpha = 1.0f;
+            }
+            self.pannedViews = nil;
             break;
         default:
             break;
@@ -182,9 +239,14 @@
     switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:
         case UIGestureRecognizerStateChanged:
-        case UIGestureRecognizerStateEnded:
-            self.pannedView.center = [gestureRecognizer locationInView:self];
+        case UIGestureRecognizerStateEnded: {
+            CGPoint center = [gestureRecognizer locationInView:self];
+            for (MIXGamePieceView *view in self.pannedViews) {
+                view.center = center;
+                center.y -= _pieceHeight;
+            }
             break;
+        }
         default:
             break;
     }
