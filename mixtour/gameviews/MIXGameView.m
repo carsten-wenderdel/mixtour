@@ -20,6 +20,8 @@
 @property (nonatomic, readonly) CGPoint upperLeftPoint;
 @property (nonatomic, readonly) CGFloat boardLength;
 @property (nonatomic, readonly) CGFloat squareLength;
+@property (nonatomic, readonly) CGFloat pieceWidth;
+@property (nonatomic, readonly) CGFloat pieceHeight;
 
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
@@ -86,6 +88,8 @@
     }
     
     _squareLength = _boardLength / (CGFloat)numberOfSquares;
+    _pieceWidth = _squareLength * 0.7f;
+    _pieceHeight = _squareLength * 0.17f;
 }
 
 
@@ -114,16 +118,14 @@
 - (void)setPieceWithColor:(UIColor *)color
                  onSquare:(MIXCoreSquare)square
              atUIPosition:(NSUInteger)uiPosition {
-    
-    CGFloat pieceWidth = self.squareLength * 0.7f;
-    CGFloat pieceHeight = self.squareLength * 0.17f;
+
     CGFloat startX = self.upperLeftPoint.x
             + self.squareLength * square.line
-            + ((self.squareLength - pieceWidth) / 2.0f);
+            + ((self.squareLength - _pieceWidth) / 2.0f);
     CGFloat startY = self.upperLeftPoint.y
             + self.squareLength * (square.column + 0.9)
-            - pieceHeight * (uiPosition + 1);
-    CGRect pieceFrame = CGRectMake(startX, startY, pieceWidth, pieceHeight);
+            - _pieceHeight * (uiPosition + 1);
+    CGRect pieceFrame = CGRectMake(startX, startY, _pieceWidth, _pieceHeight);
     
     MIXGamePieceView *pieceView = [[MIXGamePieceView alloc] initWithFrame:pieceFrame
                                                                 withColor:color];
