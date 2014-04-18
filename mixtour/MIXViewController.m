@@ -21,7 +21,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    UIView *gameBackgroundView = [[MIXGameView alloc] initWithFrame:self.view.frame];
+    MIXGameView *gameBackgroundView = [[MIXGameView alloc] initWithFrame:self.view.frame];
+    gameBackgroundView.delegate = self;
 	[self.view addSubview:gameBackgroundView];
 }
 
@@ -30,6 +31,19 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark MIXGameViewProtocol
+
+- (BOOL)tryToDragPiecesFrom:(MIXCoreSquare)from
+                         to:(MIXCoreSquare)to
+                 withNumber:(NSUInteger)numberOfDraggedPieces {
+    
+    NSLog(@"Try to drag %d pieces from %d/%d to %d/%d", numberOfDraggedPieces,
+          from.column, from.line, to.column, to.line);
+    
+    return YES;
 }
 
 @end

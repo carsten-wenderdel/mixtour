@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MIXViewController : UIViewController
+#import "MIXGameView.h"
+
+@interface MIXViewController : UIViewController<MIXGameViewProtocol>
 
 @end

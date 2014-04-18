@@ -28,6 +28,7 @@
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic, strong) NSArray *pannedViews;
+@property (nonatomic, assign) MIXCoreSquare pressedSquare;
 
 @end
 
@@ -227,6 +228,7 @@
                     }
                 }
                 self.pannedViews = viewsToPan;
+                self.pressedSquare = square;
             }
             break;
         }
@@ -249,6 +251,13 @@
         case UIGestureRecognizerStateBegan:
         case UIGestureRecognizerStateChanged:
         case UIGestureRecognizerStateEnded: {
+            if ((UIGestureRecognizerStateEnded == gestureRecognizer.state) && self.pannedViews) {
+                CGPoint currentPoint = [gestureRecognizer locationInView:self];
+                MIXCoreSquare currentSquare = [self squareForPosition:currentPoint];
+                [self.delegate tryToDragPiecesFrom:self.pressedSquare
+                                                to:currentSquare
+                                        withNumber:[self.pannedViews count]];
+            }
             CGPoint center = [gestureRecognizer locationInView:self];
             for (MIXGamePieceView *view in self.pannedViews) {
                 view.center = center;

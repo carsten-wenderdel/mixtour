@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MIXCore.h"
+
+@protocol MIXGameViewProtocol
+- (BOOL)tryToDragPiecesFrom:(MIXCoreSquare)from
+                         to:(MIXCoreSquare)to
+                 withNumber:(NSUInteger)numberOfDraggedPieces;
+@end
+
 @interface MIXGameView : UIView<UIGestureRecognizerDelegate>
+
+@property (nonatomic, weak) id<MIXGameViewProtocol> delegate;
 
 @end
