@@ -156,6 +156,14 @@
 }
 
 
+- (MIXCoreSquare)squareForPosition:(CGPoint)position {
+    MIXCoreSquare square;
+    square.line = (int)((position.x - self.upperLeftPoint.x) / self.squareLength);
+    square.column = (int)((position.y - self.upperLeftPoint.y) / self.squareLength);
+    return square;
+}
+
+
 - (void)setPieceWithColor:(UIColor *)color
                  onSquare:(MIXCoreSquare)square
              atUIPosition:(NSUInteger)uiPosition {
@@ -199,10 +207,11 @@
 #pragma mark GestureRecognizer Actions
 
 - (void)handlePressGesture:(UILongPressGestureRecognizer *)gestureRecognizer {
-    NSLog(@"handlePressGesture, state: %d", gestureRecognizer.state);
+    CGPoint currentPoint = [gestureRecognizer locationInView:self];
+    MIXCoreSquare square = [self squareForPosition:currentPoint];
+    NSLog(@"handlePressGesture at square %d/%d, state: %d", square.line, square.column, gestureRecognizer.state);
     switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan: {
-            CGPoint currentPoint = [gestureRecognizer locationInView:self];
             UIView *upperMostView = [self hitTest:currentPoint withEvent:nil];
             if ([upperMostView isKindOfClass:[MIXGamePieceView class]]) {
                 NSMutableArray *viewsToPan = [NSMutableArray array];
