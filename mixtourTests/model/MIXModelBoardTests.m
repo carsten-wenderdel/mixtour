@@ -235,6 +235,18 @@
     XCTAssertTrue([board isDragLegalFrom:MIXCoreSquareMake(1, 4) to:MIXCoreSquareMake(4, 4)], @"");
 }
 
+- (void)testIsDraggingLegalCross {
+    MIXModelBoard *board = [[MIXModelBoard alloc] init];
+    for (int i = 1; i < 5; i++) {
+        for (int j = 1; j < 5; j++) {
+            [board setPiece:MIXCoreSquareMake(i, j)];
+        }
+    }
+    MIXCoreSquare squareWithTwoPieces = MIXCoreSquareMake(4, 1);
+    [board dragPiecesFrom:MIXCoreSquareMake(3, 2) to:squareWithTwoPieces withNumber:1u];
+    
+    XCTAssertTrue([board isDragLegalFrom:MIXCoreSquareMake(2, 3) to:squareWithTwoPieces], @"");
+}
 
 - (void)testIsSettingPossible {
     
