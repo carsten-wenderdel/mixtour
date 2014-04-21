@@ -27,6 +27,8 @@
 
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
+
+@property (nonatomic, strong) NSMutableArray *pieceViews;
 @property (nonatomic, strong) NSArray *pannedViews;
 @property (nonatomic, assign) MIXCoreSquare pressedSquare;
 
@@ -49,8 +51,6 @@
                                            self.boardLength);
         MIXGameBackgroundView *backgroundView = [[MIXGameBackgroundView alloc] initWithFrame:backgroundRect];
         [self addSubview:backgroundView];
-        
-        [self setPiecesForBoard:[self boardForTryingOut]];
         
         [self addGestureRecognizers];
     }
@@ -135,6 +135,16 @@
 }
 
 
+- (void)clearBoard {
+    for (NSArray *columnArray in _fieldArray) {
+        for (NSMutableArray *viewArray in columnArray) {
+            for (MIXGamePieceView *pieceView in viewArray) {
+                NSAssert([pieceView isKindOfClass:[MIXGamePieceView class]], nil);
+                [pieceView removeFromSuperview];
+            }
+        }
+    }
+}
 
 - (void)setPiecesForBoard:(MIXModelBoard *)board {
     
@@ -185,25 +195,6 @@
     [viewArray addObject:pieceView];
 }
 
-
-- (MIXModelBoard *)boardForTryingOut
-{
-    MIXModelBoard *board = [[MIXModelBoard alloc] init];
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
-            [board setPiece:MIXCoreSquareMake(i, j)];
-        }
-    }
-    
-    for (int i = 1; i <=2; i++) {
-        for (int j = 0; j <= 3; j++) {
-            [board dragPiecesFrom:MIXCoreSquareMake(i, j)
-                               to:MIXCoreSquareMake(i, j+1)
-                       withNumber:j+1];
-        }
-    }
-    return board;
-}
 
 #pragma mark GestureRecognizer Actions
 

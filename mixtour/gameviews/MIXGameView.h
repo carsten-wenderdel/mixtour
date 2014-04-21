@@ -10,14 +10,21 @@
 
 #import "MIXCore.h"
 
+@class MIXModelBoard;
+
+
 @protocol MIXGameViewProtocol
 - (BOOL)tryToDragPiecesFrom:(MIXCoreSquare)from
                          to:(MIXCoreSquare)to
                  withNumber:(NSUInteger)numberOfDraggedPieces;
 @end
 
+
 @interface MIXGameView : UIView<UIGestureRecognizerDelegate>
 
 @property (nonatomic, weak) id<MIXGameViewProtocol> delegate;
+
+- (void)setPiecesForBoard:(MIXModelBoard *)board;
+- (void)clearBoard;
 
 @end
