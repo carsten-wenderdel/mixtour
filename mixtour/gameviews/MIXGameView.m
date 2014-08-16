@@ -151,8 +151,10 @@
     for (int column = 0; column < numberOfSquares; column++) {
         for (int line = 0; line < numberOfSquares; line++) {
             MIXCoreSquare square = MIXCoreSquareMake(column, line);
-            NSUInteger height = [board heightOfSquare:square];
-            for (int position = height - 1; position >= 0; position--) {
+            NSInteger height = [board heightOfSquare:square];
+            for (NSInteger position = height - 1;
+                 position >= 0;
+                 position--) {
                 MIXCorePlayer player = [board colorOfSquare:square atPosition:position];
                 UIColor *color = (MIXCorePlayerWhite == player) ?
                 [UIColor yellowColor] :
@@ -201,7 +203,7 @@
 - (void)handlePressGesture:(UILongPressGestureRecognizer *)gestureRecognizer {
     CGPoint currentPoint = [gestureRecognizer locationInView:self];
     MIXCoreSquare square = [self squareForPosition:currentPoint];
-    NSLog(@"handlePressGesture at square %d/%d, state: %d", square.line, square.column, gestureRecognizer.state);
+    NSLog(@"handlePressGesture at square %d/%d, state: %ld", square.line, square.column, gestureRecognizer.state);
     switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan: {
             UIView *upperMostView = [self hitTest:currentPoint withEvent:nil];
@@ -244,7 +246,7 @@
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)gestureRecognizer {
-    NSLog(@"handlePanGesture, state: %d", gestureRecognizer.state);
+    NSLog(@"handlePanGesture, state: %ld", gestureRecognizer.state);
     switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:
         case UIGestureRecognizerStateChanged:

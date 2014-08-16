@@ -47,7 +47,7 @@
                          to:(MIXCoreSquare)to
                  withNumber:(NSUInteger)numberOfDraggedPieces {
     
-    NSLog(@"Try to drag %d pieces from %d/%d to %d/%d", numberOfDraggedPieces,
+    NSLog(@"Try to drag %lu pieces from %d/%d to %d/%d", (unsigned long)numberOfDraggedPieces,
           from.column, from.line, to.column, to.line);
     
     // if move not possible, [dragPieces...] does nothing
