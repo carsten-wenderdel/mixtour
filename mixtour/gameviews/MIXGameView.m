@@ -203,7 +203,7 @@
 - (void)handlePressGesture:(UILongPressGestureRecognizer *)gestureRecognizer {
     CGPoint currentPoint = [gestureRecognizer locationInView:self];
     MIXCoreSquare square = [self squareForPosition:currentPoint];
-    NSLog(@"handlePressGesture at square %d/%d, state: %ld", square.line, square.column, gestureRecognizer.state);
+    NSLog(@"handlePressGesture at square %d/%d, state: %d", square.line, square.column, gestureRecognizer.state);
     switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan: {
             UIView *upperMostView = [self hitTest:currentPoint withEvent:nil];
@@ -246,7 +246,7 @@
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)gestureRecognizer {
-    NSLog(@"handlePanGesture, state: %ld", gestureRecognizer.state);
+    NSLog(@"handlePanGesture, state: %d", gestureRecognizer.state);
     switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:
         case UIGestureRecognizerStateChanged:
