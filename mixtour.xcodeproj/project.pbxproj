@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57D21AB31A0FF52E00D1ABBC /* MIXSwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D21AB21A0FF52E00D1ABBC /* MIXSwiftViewController.swift */; };
 		A10DC19E17A3FD3900E42832 /* MixCoreBoard_private.c in Sources */ = {isa = PBXBuildFile; fileRef = A10DC19D17A3FD3900E42832 /* MixCoreBoard_private.c */; };
 		A10DC1A017A4033300E42832 /* MIXCoreBoard_privateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A10DC19F17A4033300E42832 /* MIXCoreBoard_privateTests.m */; };
 		AA040637176F9DF40051363A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040636176F9DF40051363A /* Foundation.framework */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		57D21AB11A0FF52D00D1ABBC /* mixtour-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mixtour-Bridging-Header.h"; sourceTree = "<group>"; };
+		57D21AB21A0FF52E00D1ABBC /* MIXSwiftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXSwiftViewController.swift; sourceTree = "<group>"; };
 		A10DC19C17A3FD1100E42832 /* MixCoreBoard_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixCoreBoard_private.h; sourceTree = "<group>"; };
 		A10DC19D17A3FD3900E42832 /* MixCoreBoard_private.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MixCoreBoard_private.c; sourceTree = "<group>"; };
 		A10DC19F17A4033300E42832 /* MIXCoreBoard_privateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXCoreBoard_privateTests.m; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 				AA040648176F9DF40051363A /* Main.storyboard */,
 				AA04064B176F9DF40051363A /* MIXViewController.h */,
 				AA04064C176F9DF40051363A /* MIXViewController.m */,
+				57D21AB21A0FF52E00D1ABBC /* MIXSwiftViewController.swift */,
+				57D21AB11A0FF52D00D1ABBC /* mixtour-Bridging-Header.h */,
 				AA04064E176F9DF40051363A /* Images.xcassets */,
 				AA04063D176F9DF40051363A /* Supporting Files */,
 			);
@@ -346,6 +351,7 @@
 				AA9E4AA017769B87007CEA4B /* MIXGamePieceView.m in Sources */,
 				A10DC19E17A3FD3900E42832 /* MixCoreBoard_private.c in Sources */,
 				AA28392A1770A7B800F229F7 /* MIXModelBoard.m in Sources */,
+				57D21AB31A0FF52E00D1ABBC /* MIXSwiftViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,13 +477,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mixtour/mixtour-Prefix.pch";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "mixtour/mixtour-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "mixtour/mixtour-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -487,13 +497,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "mixtour/mixtour-Prefix.pch";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "mixtour/mixtour-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "mixtour/mixtour-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
