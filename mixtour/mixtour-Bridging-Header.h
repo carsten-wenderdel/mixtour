@@ -3,4 +3,6 @@
 //
 
 #import "MIXViewController.h"
+#import "MIXGameView.h"
+#import "MIXModelBoard.h"
 

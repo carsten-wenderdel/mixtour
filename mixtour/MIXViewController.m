@@ -12,26 +12,7 @@
 #import "MIXModelBoard.h"
 
 
-@interface MIXViewController ()
-
-@property (nonatomic, strong) MIXModelBoard *board;
-@property (nonatomic, strong) MIXGameView *gameView;
-
-@end
-
 @implementation MIXViewController
-
-- (void)viewDidLoad {
-    
-    [super viewDidLoad];
-    [self.gameView removeFromSuperview];
-    MIXGameView *newGameView = [[MIXGameView alloc] initWithFrame:self.view.frame];
-    newGameView.delegate = self;
-    self.board = [self boardForTryingOut];
-    [newGameView setPiecesForBoard:self.board];
-	[self.view addSubview:newGameView];
-    self.gameView = newGameView;
-}
 
 
 - (void)didReceiveMemoryWarning
