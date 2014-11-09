@@ -10,7 +10,7 @@
 
 #import "MIXGameView.h"
 
-@interface MIXViewController : UIViewController<MIXGameViewProtocol>
+@interface MIXViewController : UIViewController
 
 @property (nonatomic, strong) MIXModelBoard *board;
 @property (nonatomic, strong) MIXGameView *gameView;

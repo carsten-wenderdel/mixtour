@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MIXSwiftViewController: MIXViewController {
+class MIXSwiftViewController: MIXViewController, MIXGameViewProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +42,21 @@ class MIXSwiftViewController: MIXViewController {
         return board
     }
     
+
+    // MARK: MIXGameViewProtocol
+
+     func tryToDragPiecesFrom(from: MIXCoreSquare, to: MIXCoreSquare, withNumber numberOfDraggedPieces: UInt) -> Bool {
+
+        NSLog("Try to drag %lu pieces from %d/%d to %d/%d", numberOfDraggedPieces, from.column, from.line, to.column, to.line)
+        
+        // if move not possible, .dragPieces(...) does nothing
+        let movePossible = self.board.dragPiecesFrom(from, to: to, withNumber: numberOfDraggedPieces)
+        self.gameView.clearBoard()
+        self.gameView.setPiecesForBoard(self.board)
+        
+        return movePossible
+    }
+
 }
 
 
