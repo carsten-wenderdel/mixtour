@@ -39,25 +39,5 @@
     return movePossible;
 }
 
-#pragma mark Methods
-
-- (MIXModelBoard *)boardForTryingOut
-{
-    MIXModelBoard *board = [[MIXModelBoard alloc] init];
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
-            [board setPiece:MIXCoreSquareMake(i, j)];
-        }
-    }
-    
-    for (int i = 1; i <=2; i++) {
-        for (int j = 0; j <= 3; j++) {
-            [board dragPiecesFrom:MIXCoreSquareMake(i, j)
-                               to:MIXCoreSquareMake(i, j+1)
-                       withNumber:j+1];
-        }
-    }
-    return board;
-}
 
 @end

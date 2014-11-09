@@ -21,6 +21,27 @@ class MIXSwiftViewController: MIXViewController {
         self.gameView = newGameView
     }
 
+
+    // MARK: Methods
+    
+    func boardForTryingOut() -> MIXModelBoard! {
+        
+        let board = MIXModelBoard()
+        for i:UInt8 in 0..<5 {
+            for j:UInt8 in 0..<5 {
+                board.setPiece(MIXCoreSquareMake(i, j))
+            }
+        }
+        for i:UInt8 in 1...2 {
+            for j:UInt8 in 0...3 {
+                board.dragPiecesFrom(MIXCoreSquareMake(i, j),
+                        to: MIXCoreSquareMake(i, j+1),
+                        withNumber: UInt(j) + 1)
+            }
+        }
+        return board
+    }
+    
 }
 
 

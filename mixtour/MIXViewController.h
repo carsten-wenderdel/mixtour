@@ -15,6 +15,4 @@
 @property (nonatomic, strong) MIXModelBoard *board;
 @property (nonatomic, strong) MIXGameView *gameView;
 
-- (MIXModelBoard *)boardForTryingOut;
-
 @end
