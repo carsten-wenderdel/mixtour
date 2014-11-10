@@ -17,7 +17,6 @@
 		AA040643176F9DF40051363A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA040642176F9DF40051363A /* main.m */; };
 		AA040647176F9DF40051363A /* MIXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA040646176F9DF40051363A /* MIXAppDelegate.m */; };
 		AA04064A176F9DF40051363A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA040648176F9DF40051363A /* Main.storyboard */; };
-		AA04064D176F9DF40051363A /* MIXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA04064C176F9DF40051363A /* MIXViewController.m */; };
 		AA04064F176F9DF40051363A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA04064E176F9DF40051363A /* Images.xcassets */; };
 		AA040656176F9DF40051363A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040655176F9DF40051363A /* XCTest.framework */; };
 		AA040657176F9DF40051363A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040636176F9DF40051363A /* Foundation.framework */; };
@@ -61,8 +60,6 @@
 		AA040645176F9DF40051363A /* MIXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIXAppDelegate.h; sourceTree = "<group>"; };
 		AA040646176F9DF40051363A /* MIXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIXAppDelegate.m; sourceTree = "<group>"; };
 		AA040649176F9DF40051363A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AA04064B176F9DF40051363A /* MIXViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIXViewController.h; sourceTree = "<group>"; };
-		AA04064C176F9DF40051363A /* MIXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MIXViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AA04064E176F9DF40051363A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AA040654176F9DF40051363A /* mixtourTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mixtourTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA040655176F9DF40051363A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -149,8 +146,6 @@
 				AA040645176F9DF40051363A /* MIXAppDelegate.h */,
 				AA040646176F9DF40051363A /* MIXAppDelegate.m */,
 				AA040648176F9DF40051363A /* Main.storyboard */,
-				AA04064B176F9DF40051363A /* MIXViewController.h */,
-				AA04064C176F9DF40051363A /* MIXViewController.m */,
 				57D21AB21A0FF52E00D1ABBC /* MIXSwiftViewController.swift */,
 				57D21AB11A0FF52D00D1ABBC /* mixtour-Bridging-Header.h */,
 				AA04064E176F9DF40051363A /* Images.xcassets */,
@@ -347,7 +342,6 @@
 				AA9E4A9C17769380007CEA4B /* MIXGameBackgroundView.m in Sources */,
 				AAE463AB1772657700008778 /* MIXCoreHelper.c in Sources */,
 				AA920CE517765CC900677839 /* MIXGameView.m in Sources */,
-				AA04064D176F9DF40051363A /* MIXViewController.m in Sources */,
 				AA9E4AA017769B87007CEA4B /* MIXGamePieceView.m in Sources */,
 				A10DC19E17A3FD3900E42832 /* MixCoreBoard_private.c in Sources */,
 				AA28392A1770A7B800F229F7 /* MIXModelBoard.m in Sources */,

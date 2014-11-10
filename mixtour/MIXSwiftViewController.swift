@@ -9,13 +9,22 @@
 import Foundation
 import UIKit
 
-class MIXSwiftViewController: MIXViewController, MIXGameViewProtocol {
+class MIXSwiftViewController: UIViewController, MIXGameViewProtocol {
+
+    var gameView: MIXGameView?
+    let board: MIXModelBoard
+    
+    required init(coder aDecoder: NSCoder) {
+        self.board = MIXModelBoard()
+        super.init(coder:aDecoder)
+        self.board = self.boardForTryingOut()
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let newGameView = MIXGameView(frame: self.view.frame)
         newGameView.delegate = self
-        self.board = self.boardForTryingOut()
         newGameView.setPiecesForBoard(self.board)
         self.view.addSubview(newGameView)
         self.gameView = newGameView
@@ -24,7 +33,7 @@ class MIXSwiftViewController: MIXViewController, MIXGameViewProtocol {
 
     // MARK: Methods
     
-    func boardForTryingOut() -> MIXModelBoard! {
+    func boardForTryingOut() -> MIXModelBoard {
         
         let board = MIXModelBoard()
         for i:UInt8 in 0..<5 {
@@ -51,8 +60,10 @@ class MIXSwiftViewController: MIXViewController, MIXGameViewProtocol {
         
         // if move not possible, .dragPieces(...) does nothing
         let movePossible = self.board.dragPiecesFrom(from, to: to, withNumber: numberOfDraggedPieces)
-        self.gameView.clearBoard()
-        self.gameView.setPiecesForBoard(self.board)
+        if let gameView = self.gameView {
+            gameView.clearBoard()
+            gameView.setPiecesForBoard(self.board)
+        }
         
         return movePossible
     }
