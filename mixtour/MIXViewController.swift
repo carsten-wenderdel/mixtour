@@ -1,5 +1,5 @@
 //
-//  MIXSwiftViewController.swift
+//  MIXViewController.swift
 //  mixtour
 //
 //  Created by Wenderdel, Carsten on 09/11/14.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MIXSwiftViewController: UIViewController, MIXGameViewProtocol {
+class MIXViewController: UIViewController, MIXGameViewProtocol {
 
     var gameView: MIXGameView?
     let board: MIXModelBoard
