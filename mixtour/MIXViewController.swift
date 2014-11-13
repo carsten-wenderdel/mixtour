@@ -12,29 +12,8 @@ import UIKit
 class MIXViewController: UIViewController, MIXGameViewProtocol {
 
     var gameView: MIXGameView?
-    let board: MIXModelBoard
-    
-    required init(coder aDecoder: NSCoder) {
-        self.board = MIXModelBoard()
-        super.init(coder:aDecoder)
-        self.board = self.boardForTryingOut()
 
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let newGameView = MIXGameView(frame: self.view.frame)
-        newGameView.delegate = self
-        newGameView.setPiecesForBoard(self.board)
-        self.view.addSubview(newGameView)
-        self.gameView = newGameView
-    }
-
-
-    // MARK: Methods
-    
-    func boardForTryingOut() -> MIXModelBoard {
-        
+    lazy var board: MIXModelBoard = {
         let board = MIXModelBoard()
         for i:UInt8 in 0..<5 {
             for j:UInt8 in 0..<5 {
@@ -49,6 +28,17 @@ class MIXViewController: UIViewController, MIXGameViewProtocol {
             }
         }
         return board
+    }()
+
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let newGameView = MIXGameView(frame: self.view.frame)
+        newGameView.delegate = self
+        newGameView.setPiecesForBoard(self.board)
+        newGameView.setPiecesForBoard(self.board)
+        self.view.addSubview(newGameView)
+        self.gameView = newGameView
     }
     
 
