@@ -11,7 +11,7 @@ import UIKit
 
 class MIXViewController: UIViewController, MIXGameViewProtocol {
 
-    var gameView: MIXGameView?
+    var gameView: GameView?
 
     lazy var board: MIXModelBoard = {
         let board = MIXModelBoard()
@@ -33,7 +33,7 @@ class MIXViewController: UIViewController, MIXGameViewProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let newGameView = MIXGameView(frame: self.view.frame)
+        let newGameView = GameView(frame: self.view.frame)
         newGameView.delegate = self
         newGameView.setPiecesForBoard(self.board)
         newGameView.setPiecesForBoard(self.board)
