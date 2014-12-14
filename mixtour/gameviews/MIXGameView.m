@@ -7,6 +7,7 @@
 //
 
 #import "MIXGameView.h"
+#import "MIXGameView_private.h"
 
 #import "MIXGameBackgroundView.h"
 #import "MIXGamePieceView.h"
@@ -23,13 +24,11 @@
 @property (nonatomic, readonly) CGFloat boardLength;
 @property (nonatomic, readonly) CGFloat squareLength;
 @property (nonatomic, readonly) CGFloat pieceWidth;
-@property (nonatomic, readonly) CGFloat pieceHeight;
 
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 
 @property (nonatomic, strong) NSMutableArray *pieceViews;
-@property (nonatomic, strong) NSArray *pannedViews;
 @property (nonatomic, assign) MIXCoreSquare pressedSquare;
 
 @end
@@ -246,21 +245,6 @@
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)gestureRecognizer {
-    NSLog(@"handlePanGesture, state: %ld", gestureRecognizer.state);
-    switch (gestureRecognizer.state) {
-        case UIGestureRecognizerStateBegan:
-        case UIGestureRecognizerStateChanged:
-        case UIGestureRecognizerStateEnded: {
-            CGPoint center = [gestureRecognizer locationInView:self];
-            for (MIXGamePieceView *view in self.pannedViews) {
-                view.center = center;
-                center.y -= _pieceHeight;
-            }
-            break;
-        }
-        default:
-            break;
-    }
 }
 
 

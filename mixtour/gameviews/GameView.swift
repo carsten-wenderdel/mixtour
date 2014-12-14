@@ -11,6 +11,26 @@ import UIKit
 class GameView: MIXGameView {
 
 
+    // MARK: pragma mark GestureRecognizer Actions
+
+    override func handlePanGesture(gestureRecognizer: UIPanGestureRecognizer!) {
+        println("handlePanGesture, state: %ld", gestureRecognizer.state);
+        switch gestureRecognizer.state {
+        case .Began, .Changed, .Ended:
+            // TODO: remove casting and nil checking
+            if let pannedViews = self.pannedViews? {
+                var center = gestureRecognizer.locationInView(self)
+                for object in pannedViews {
+                    var view = object as UIView
+                    view.center = center;
+                    center.y -= self.pieceHeight;
+                }
+            }
+        default: ()
+        }
+    }
+    
+    
     // MARK: UIGestureRecognizer Delegate Methods
     
 

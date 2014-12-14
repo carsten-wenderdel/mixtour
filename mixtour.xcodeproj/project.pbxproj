@@ -44,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		574132F51A3E41100048441B /* MIXGameView_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXGameView_private.h; sourceTree = "<group>"; };
 		5744E51F1A374B1D00F2812B /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		574588071A174F3700BBADCE /* MIXAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXAppDelegate.swift; sourceTree = "<group>"; };
 		57D21AB11A0FF52D00D1ABBC /* mixtour-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mixtour-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -230,6 +231,7 @@
 				AA9E4A9E17769B87007CEA4B /* MIXGamePieceView.h */,
 				AA9E4A9F17769B87007CEA4B /* MIXGamePieceView.m */,
 				AA920CE317765CC900677839 /* MIXGameView.h */,
+				574132F51A3E41100048441B /* MIXGameView_private.h */,
 				AA920CE417765CC900677839 /* MIXGameView.m */,
 				5744E51F1A374B1D00F2812B /* GameView.swift */,
 			);
