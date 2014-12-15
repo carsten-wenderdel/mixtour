@@ -122,28 +122,6 @@
     }
 }
 
-- (void)setPiecesForBoard:(MIXModelBoard *)board {
-    
-    for (int column = 0; column < numberOfSquares; column++) {
-        for (int line = 0; line < numberOfSquares; line++) {
-            MIXCoreSquare square = MIXCoreSquareMake(column, line);
-            NSInteger height = [board heightOfSquare:square];
-            for (NSInteger position = height - 1;
-                 position >= 0;
-                 position--) {
-                MIXCorePlayer player = [board colorOfSquare:square atPosition:position];
-                UIColor *color = (MIXCorePlayerWhite == player) ?
-                [UIColor yellowColor] :
-                [UIColor redColor];
-                // When there are 5 pieces, the upper most has - as always -
-                // the position 0, but the ui position 4
-                NSUInteger uiPosition = height - position - 1;
-                [self setPieceWithColor:color onSquare:square atUIPosition:uiPosition];
-            }
-        }
-    }
-}
-
 
 - (MIXCoreSquare)squareForPosition:(CGPoint)position {
     MIXCoreSquare square;

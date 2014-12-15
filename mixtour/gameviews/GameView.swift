@@ -10,6 +10,8 @@ import UIKit
 
 class GameView: MIXGameView {
 
+    let numberOfSquares = 5
+
     var pressedSquare: MIXCoreSquare?
     var pannedViews = [MIXGamePieceView]()
     
@@ -34,6 +36,26 @@ class GameView: MIXGameView {
         panGestureRecognizer.maximumNumberOfTouches = 1
         panGestureRecognizer.minimumNumberOfTouches = 1
         self.addGestureRecognizer(panGestureRecognizer)
+    }
+    
+    
+    func setPiecesForBoard(board: MIXModelBoard) {
+        for column in 0..<numberOfSquares {
+            for line in 0..<numberOfSquares {
+                let square = MIXCoreSquareMake(UInt8(column), UInt8(line))
+                let height = board.heightOfSquare(square)
+                for var position = Int(height) - 1; position >= 0; position-- {
+                    let player:MIXCorePlayer = board.colorOfSquare(square, atPosition: UInt8(position))
+                    let color = (player.value == MIXCorePlayerWhite.value)
+                        ? UIColor.yellowColor()
+                        : UIColor.redColor()
+                    // When there are 5 pieces, the upper most has - as always -
+                    // the position 0, but the ui position 4
+                    let uiPosition = height - position - 1
+                    self.setPieceWithColor(color, onSquare: square, atUIPosition: uiPosition)
+                }
+            }
+        }
     }
     
     
