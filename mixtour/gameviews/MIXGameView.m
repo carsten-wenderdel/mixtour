@@ -29,7 +29,6 @@
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 
 @property (nonatomic, strong) NSMutableArray *pieceViews;
-@property (nonatomic, assign) MIXCoreSquare pressedSquare;
 
 @end
 
@@ -200,48 +199,6 @@
 #pragma mark GestureRecognizer Actions
 
 - (void)handlePressGesture:(UILongPressGestureRecognizer *)gestureRecognizer {
-    CGPoint currentPoint = [gestureRecognizer locationInView:self];
-    MIXCoreSquare square = [self squareForPosition:currentPoint];
-    NSLog(@"handlePressGesture at square %d/%d, state: %ld", square.line, square.column, gestureRecognizer.state);
-    switch (gestureRecognizer.state) {
-        case UIGestureRecognizerStateBegan: {
-            UIView *upperMostView = [self hitTest:currentPoint withEvent:nil];
-            if ([upperMostView isKindOfClass:[MIXGamePieceView class]]) {
-                NSMutableArray *viewsToPan = [NSMutableArray array];
-                NSArray *viewArray = [self pieceArrayForView:(MIXGamePieceView *)upperMostView];
-                BOOL viewNeedsToBePanned = NO;
-                for (MIXGamePieceView *pieceView in viewArray) {
-                    if (pieceView == upperMostView) {
-                        viewNeedsToBePanned = YES;
-                    }
-                    if (viewNeedsToBePanned) {
-                        [viewsToPan addObject:pieceView];
-                        pieceView.alpha = 0.4f;
-                    }
-                }
-                self.pannedViews = viewsToPan;
-                self.pressedSquare = square;
-            }
-            break;
-        }
-        case UIGestureRecognizerStateEnded:
-        case UIGestureRecognizerStateCancelled:
-        case UIGestureRecognizerStateFailed:
-            for (MIXGamePieceView *view in self.pannedViews) {
-                view.alpha = 1.0f;
-            }
-            if ((UIGestureRecognizerStateEnded == gestureRecognizer.state) && self.pannedViews) {
-                CGPoint currentPoint = [gestureRecognizer locationInView:self];
-                MIXCoreSquare currentSquare = [self squareForPosition:currentPoint];
-                [self.delegate tryToDragPiecesFrom:self.pressedSquare
-                                                to:currentSquare
-                                        withNumber:[self.pannedViews count]];
-            }
-            self.pannedViews = nil;
-            break;
-        default:
-            break;
-    }
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)gestureRecognizer {

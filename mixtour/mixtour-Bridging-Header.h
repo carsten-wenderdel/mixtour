@@ -5,4 +5,5 @@
 #import "MIXGameView.h"
 #import "MixGameView_private.h"
 #import "MIXModelBoard.h"
+#import "MIXGamePieceView.h"
 
