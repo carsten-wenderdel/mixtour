@@ -12,8 +12,6 @@
 
 @property (nonatomic, readonly) CGFloat pieceHeight;
 
-- (void)handlePanGesture:(UIPanGestureRecognizer *)gestureRecognizer;
-- (void)handlePressGesture:(UILongPressGestureRecognizer *)gestureRecognizer;
 - (MIXCoreSquare)squareForPosition:(CGPoint)position;
 - (NSMutableArray *)pieceArrayForView:(MIXGamePieceView *)view;
 

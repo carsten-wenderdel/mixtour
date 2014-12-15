@@ -25,9 +25,6 @@
 @property (nonatomic, readonly) CGFloat squareLength;
 @property (nonatomic, readonly) CGFloat pieceWidth;
 
-@property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
-@property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
-
 @property (nonatomic, strong) NSMutableArray *pieceViews;
 
 @end
@@ -49,8 +46,6 @@
                                            self.boardLength);
         MIXGameBackgroundView *backgroundView = [[MIXGameBackgroundView alloc] initWithFrame:backgroundRect];
         [self addSubview:backgroundView];
-        
-        [self addGestureRecognizers];
     }
     return self;
 }
@@ -92,23 +87,6 @@
         }
     }
     return nil;
-}
-
-
-- (void)addGestureRecognizers {
-    UILongPressGestureRecognizer *pressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-                                                                                                         action:@selector(handlePressGesture:)];
-    pressGestureRecognizer.delegate = self;
-    pressGestureRecognizer.minimumPressDuration = 0.3;
-    [self addGestureRecognizer:pressGestureRecognizer];
-    self.longPressGestureRecognizer = pressGestureRecognizer;
-
-    UIPanGestureRecognizer *thePanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
-                                                                                              action:@selector(handlePanGesture:)];
-    thePanGestureRecognizer.delegate = self;
-    thePanGestureRecognizer.maximumNumberOfTouches = thePanGestureRecognizer.minimumNumberOfTouches = 1;
-    [self addGestureRecognizer:thePanGestureRecognizer];
-    self.panGestureRecognizer = thePanGestureRecognizer;
 }
 
 
@@ -193,15 +171,6 @@
     
     NSMutableArray *viewArray = [self pieceViewArrayForSquare:square];
     [viewArray addObject:pieceView];
-}
-
-
-#pragma mark GestureRecognizer Actions
-
-- (void)handlePressGesture:(UILongPressGestureRecognizer *)gestureRecognizer {
-}
-
-- (void)handlePanGesture:(UIPanGestureRecognizer *)gestureRecognizer {
 }
 
 
