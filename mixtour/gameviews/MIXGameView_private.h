@@ -10,9 +10,7 @@
 
 @interface MIXGameView()
 
-@property (nonatomic, readonly) CGFloat pieceHeight;
-
-- (MIXCoreSquare)squareForPosition:(CGPoint)position;
 - (NSMutableArray *)pieceArrayForView:(MIXGamePieceView *)view;
+- (NSMutableArray *)pieceViewArrayForSquare:(MIXCoreSquare)square;
 
 @end

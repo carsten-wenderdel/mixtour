@@ -24,9 +24,6 @@
 
 @property (nonatomic, weak) id<MIXGameViewProtocol> delegate;
 
-- (void)setPieceWithColor:(UIColor *)color
-                 onSquare:(MIXCoreSquare)square
-             atUIPosition:(NSUInteger)uiPosition;
 - (void)clearBoard;
 
 @end

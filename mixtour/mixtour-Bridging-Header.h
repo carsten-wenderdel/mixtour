@@ -6,4 +6,5 @@
 #import "MixGameView_private.h"
 #import "MIXModelBoard.h"
 #import "MIXGamePieceView.h"
+#import "MIXGameBackGroundView.h"
 
