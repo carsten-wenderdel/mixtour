@@ -21,7 +21,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     var delegate: GameViewDelegate?
 
     var pressedSquare: MIXCoreSquare?
-    var pannedViews = [MIXGamePieceView]()
+    var pannedViews = [GamePieceView]()
     
     let upperLeftPoint: CGPoint
     let boardLength: CGFloat
@@ -29,12 +29,12 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     let pieceWidth: CGFloat
     let pieceHeight: CGFloat
     
-    lazy var fieldArray: [[[MIXGamePieceView]]] = {
-        var lineArray = [[[MIXGamePieceView]]]()
+    lazy var fieldArray: [[[GamePieceView]]] = {
+        var lineArray = [[[GamePieceView]]]()
         for line in 0..<numberOfSquares {
-            var columnArray = [[MIXGamePieceView]]()
+            var columnArray = [[GamePieceView]]()
             for column in 0..<numberOfSquares {
-                let viewArray = [MIXGamePieceView]()
+                let viewArray = [GamePieceView]()
                 columnArray.append(viewArray)
             }
             lineArray.append(columnArray)
@@ -73,7 +73,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     
     // MARK: Manage logical arrangement of views in fieldArray
     
-    private func pieceArrayForView(view: MIXGamePieceView) -> [MIXGamePieceView] {
+    private func pieceArrayForView(view: GamePieceView) -> [GamePieceView] {
         for columnArray in self.fieldArray {
             for viewArray in columnArray {
                 for pieceView in viewArray {
@@ -84,7 +84,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
             }
         }
         assert(false, "view is not in fieldArray, but should be")
-        return [MIXGamePieceView]()
+        return [GamePieceView]()
     }
     
     func clearBoard() {
@@ -142,7 +142,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
             - (pieceHeight * CGFloat(uiPosition + 1))
         let pieceFrame = CGRectMake(startX, startY, pieceWidth, pieceHeight)
         
-        let pieceView = MIXGamePieceView(frame: pieceFrame, withColor: color)
+        let pieceView = GamePieceView(frame: pieceFrame, baseColor: color)
 
         // display it
         addSubview(pieceView)
@@ -169,8 +169,8 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         switch gestureRecognizer.state {
         case .Began:
             let upperMostView = self.hitTest(currentPoint, withEvent: nil)
-            if let pressedPieceView = upperMostView as? MIXGamePieceView {
-                var viewsToPan = [MIXGamePieceView]()
+            if let pressedPieceView = upperMostView as? GamePieceView {
+                var viewsToPan = [GamePieceView]()
                 let viewArray = self.pieceArrayForView(pressedPieceView)
                 var viewNeedsToBePanned = false
                 for pieceView in viewArray {

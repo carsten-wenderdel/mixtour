@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5744E5201A374B1D00F2812B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5744E51F1A374B1D00F2812B /* GameView.swift */; };
 		574588081A174F3700BBADCE /* MIXAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574588071A174F3700BBADCE /* MIXAppDelegate.swift */; };
+		57C207FA1A489917002DAFB3 /* GamePieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C207F91A489917002DAFB3 /* GamePieceView.swift */; };
 		57D21AB31A0FF52E00D1ABBC /* MIXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D21AB21A0FF52E00D1ABBC /* MIXViewController.swift */; };
 		A10DC19E17A3FD3900E42832 /* MixCoreBoard_private.c in Sources */ = {isa = PBXBuildFile; fileRef = A10DC19D17A3FD3900E42832 /* MixCoreBoard_private.c */; };
 		A10DC1A017A4033300E42832 /* MIXCoreBoard_privateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A10DC19F17A4033300E42832 /* MIXCoreBoard_privateTests.m */; };
@@ -27,7 +28,6 @@
 		AA28392A1770A7B800F229F7 /* MIXModelBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2839291770A7B800F229F7 /* MIXModelBoard.m */; };
 		AA28392D1770F25200F229F7 /* MIXModelBoardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28392C1770F25200F229F7 /* MIXModelBoardTests.m */; };
 		AA9E4A9C17769380007CEA4B /* MIXGameBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9E4A9B17769380007CEA4B /* MIXGameBackgroundView.m */; };
-		AA9E4AA017769B87007CEA4B /* MIXGamePieceView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9E4A9F17769B87007CEA4B /* MIXGamePieceView.m */; };
 		AAE463AB1772657700008778 /* MIXCoreHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = AAE463AA1772657700008778 /* MIXCoreHelper.c */; };
 		AAE463AE177265ED00008778 /* MIXCoreHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE463AD177265ED00008778 /* MIXCoreHelperTests.m */; };
 /* End PBXBuildFile section */
@@ -45,6 +45,7 @@
 /* Begin PBXFileReference section */
 		5744E51F1A374B1D00F2812B /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		574588071A174F3700BBADCE /* MIXAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXAppDelegate.swift; sourceTree = "<group>"; };
+		57C207F91A489917002DAFB3 /* GamePieceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePieceView.swift; sourceTree = "<group>"; };
 		57D21AB11A0FF52D00D1ABBC /* mixtour-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mixtour-Bridging-Header.h"; sourceTree = "<group>"; };
 		57D21AB21A0FF52E00D1ABBC /* MIXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXViewController.swift; sourceTree = "<group>"; };
 		A10DC19C17A3FD1100E42832 /* MixCoreBoard_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixCoreBoard_private.h; sourceTree = "<group>"; };
@@ -72,8 +73,6 @@
 		AA28392C1770F25200F229F7 /* MIXModelBoardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXModelBoardTests.m; sourceTree = "<group>"; };
 		AA9E4A9A17769380007CEA4B /* MIXGameBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXGameBackgroundView.h; sourceTree = "<group>"; };
 		AA9E4A9B17769380007CEA4B /* MIXGameBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXGameBackgroundView.m; sourceTree = "<group>"; };
-		AA9E4A9E17769B87007CEA4B /* MIXGamePieceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXGamePieceView.h; sourceTree = "<group>"; };
-		AA9E4A9F17769B87007CEA4B /* MIXGamePieceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXGamePieceView.m; sourceTree = "<group>"; };
 		AAE463AA1772657700008778 /* MIXCoreHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MIXCoreHelper.c; sourceTree = "<group>"; };
 		AAE463AC1772658800008778 /* MIXCoreHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIXCoreHelper.h; sourceTree = "<group>"; };
 		AAE463AD177265ED00008778 /* MIXCoreHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXCoreHelperTests.m; sourceTree = "<group>"; };
@@ -224,8 +223,7 @@
 			children = (
 				AA9E4A9A17769380007CEA4B /* MIXGameBackgroundView.h */,
 				AA9E4A9B17769380007CEA4B /* MIXGameBackgroundView.m */,
-				AA9E4A9E17769B87007CEA4B /* MIXGamePieceView.h */,
-				AA9E4A9F17769B87007CEA4B /* MIXGamePieceView.m */,
+				57C207F91A489917002DAFB3 /* GamePieceView.swift */,
 				5744E51F1A374B1D00F2812B /* GameView.swift */,
 			);
 			path = gameviews;
@@ -334,7 +332,7 @@
 				AAE463AB1772657700008778 /* MIXCoreHelper.c in Sources */,
 				574588081A174F3700BBADCE /* MIXAppDelegate.swift in Sources */,
 				5744E5201A374B1D00F2812B /* GameView.swift in Sources */,
-				AA9E4AA017769B87007CEA4B /* MIXGamePieceView.m in Sources */,
+				57C207FA1A489917002DAFB3 /* GamePieceView.swift in Sources */,
 				A10DC19E17A3FD3900E42832 /* MixCoreBoard_private.c in Sources */,
 				AA28392A1770A7B800F229F7 /* MIXModelBoard.m in Sources */,
 				57D21AB31A0FF52E00D1ABBC /* MIXViewController.swift in Sources */,
