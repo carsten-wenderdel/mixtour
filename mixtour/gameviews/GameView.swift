@@ -8,9 +8,17 @@
 
 import UIKit
 
+
+protocol GameViewDelegate {
+    func gameView(gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: MIXCoreSquare, to: MIXCoreSquare) -> Bool
+}
+
+
 private let numberOfSquares = 5
 
-class GameView: MIXGameView {
+class GameView: UIView, UIGestureRecognizerDelegate {
+
+    var delegate: GameViewDelegate?
 
     var pressedSquare: MIXCoreSquare?
     var pannedViews = [MIXGamePieceView]()
@@ -65,7 +73,7 @@ class GameView: MIXGameView {
     
     // MARK: Manage logical arrangement of views in fieldArray
     
-    func pieceArrayForView(view: MIXGamePieceView) -> [MIXGamePieceView] {
+    private func pieceArrayForView(view: MIXGamePieceView) -> [MIXGamePieceView] {
         for columnArray in self.fieldArray {
             for viewArray in columnArray {
                 for pieceView in viewArray {
@@ -90,7 +98,7 @@ class GameView: MIXGameView {
     }
     
     
-    func addGestureRecognizers() {
+    private func addGestureRecognizers() {
         let pressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "handlePressGesture:")
         pressGestureRecognizer.delegate = self
         pressGestureRecognizer.minimumPressDuration = 0.3
@@ -124,7 +132,7 @@ class GameView: MIXGameView {
     }
     
     
-    func setPieceWithColor(color: UIColor, onSquare square: MIXCoreSquare, atUIPosition uiPosition: UInt) {
+    private func setPieceWithColor(color: UIColor, onSquare square: MIXCoreSquare, atUIPosition uiPosition: UInt) {
         // find out where to place it
         let startX = upperLeftPoint.x
                 + (squareLength * CGFloat(square.line))
@@ -144,7 +152,7 @@ class GameView: MIXGameView {
     }
     
 
-    func squareForPosition(position: CGPoint) -> MIXCoreSquare {
+    private func squareForPosition(position: CGPoint) -> MIXCoreSquare {
         let column = (position.y - upperLeftPoint.y) / squareLength
         let line = (position.x - upperLeftPoint.x) / squareLength
         var square = MIXCoreSquare(column: UInt8(column), line: UInt8(line))
@@ -170,8 +178,7 @@ class GameView: MIXGameView {
                         viewNeedsToBePanned = true
                     }
                     if viewNeedsToBePanned {
-                        // TODO: remove casting
-                        viewsToPan.append(pieceView as MIXGamePieceView)
+                        viewsToPan.append(pieceView)
                     }
                 }
                 self.pannedViews = viewsToPan
@@ -184,8 +191,7 @@ class GameView: MIXGameView {
             if (.Ended == gestureRecognizer.state) && (self.pannedViews.count > 0) {
                 let currentPoint = gestureRecognizer.locationInView(self)
                 let currentSquare = self.squareForPosition(currentPoint)
-                // TODO: maybe rethink UInt / Int
-                self.delegate .tryToDragPiecesFrom(self.pressedSquare!, to: currentSquare, withNumber:UInt(self.pannedViews.count))
+                delegate?.gameView(self, tryToDragPieces: pannedViews.count, from: pressedSquare!, to: currentSquare)
             }
             self.pannedViews.removeAll(keepCapacity: false)
         default: ()
@@ -210,7 +216,7 @@ class GameView: MIXGameView {
     // MARK: UIGestureRecognizer Delegate Methods
     
 
-    override func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true;
     }
 }

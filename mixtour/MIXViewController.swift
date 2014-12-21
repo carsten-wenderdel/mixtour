@@ -9,9 +9,7 @@
 import Foundation
 import UIKit
 
-class MIXViewController: UIViewController, MIXGameViewProtocol {
-
-    var gameView: GameView?
+class MIXViewController: UIViewController, GameViewDelegate {
 
     lazy var board: MIXModelBoard = {
         let board = MIXModelBoard()
@@ -38,22 +36,21 @@ class MIXViewController: UIViewController, MIXGameViewProtocol {
         newGameView.setPiecesForBoard(self.board)
         newGameView.setPiecesForBoard(self.board)
         self.view.addSubview(newGameView)
-        self.gameView = newGameView
     }
     
 
-    // MARK: MIXGameViewProtocol
+    // MARK: GameViewDelegate
 
-     func tryToDragPiecesFrom(from: MIXCoreSquare, to: MIXCoreSquare, withNumber numberOfDraggedPieces: UInt) -> Bool {
-
-        NSLog("Try to drag %lu pieces from %d/%d to %d/%d", numberOfDraggedPieces, from.column, from.line, to.column, to.line)
+    func gameView(gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: MIXCoreSquare, to: MIXCoreSquare) -> Bool {
+        
+        println("Try to drag \(numberOfDraggedPieces) pieces from \(from.column)/\(from.line) to \(to.column)/\(to.line)")
         
         // if move not possible, .dragPieces(...) does nothing
-        let movePossible = self.board.dragPiecesFrom(from, to: to, withNumber: numberOfDraggedPieces)
-        if let gameView = self.gameView {
-            gameView.clearBoard()
-            gameView.setPiecesForBoard(self.board)
-        }
+        let movePossible = self.board.dragPiecesFrom(from, to: to, withNumber: UInt(numberOfDraggedPieces))
+        
+        // display new state. If move not possible, this also moves the dragged piece to the old correct position
+        gameView.clearBoard()
+        gameView.setPiecesForBoard(self.board)
         
         return movePossible
     }

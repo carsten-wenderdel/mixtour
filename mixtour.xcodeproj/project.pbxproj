@@ -26,7 +26,6 @@
 		AA040672176FB3D80051363A /* MIXCoreBoardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA040671176FB3D80051363A /* MIXCoreBoardTests.m */; };
 		AA28392A1770A7B800F229F7 /* MIXModelBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2839291770A7B800F229F7 /* MIXModelBoard.m */; };
 		AA28392D1770F25200F229F7 /* MIXModelBoardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28392C1770F25200F229F7 /* MIXModelBoardTests.m */; };
-		AA920CE517765CC900677839 /* MIXGameView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA920CE417765CC900677839 /* MIXGameView.m */; };
 		AA9E4A9C17769380007CEA4B /* MIXGameBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9E4A9B17769380007CEA4B /* MIXGameBackgroundView.m */; };
 		AA9E4AA017769B87007CEA4B /* MIXGamePieceView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9E4A9F17769B87007CEA4B /* MIXGamePieceView.m */; };
 		AAE463AB1772657700008778 /* MIXCoreHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = AAE463AA1772657700008778 /* MIXCoreHelper.c */; };
@@ -44,7 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		574132F51A3E41100048441B /* MIXGameView_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXGameView_private.h; sourceTree = "<group>"; };
 		5744E51F1A374B1D00F2812B /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		574588071A174F3700BBADCE /* MIXAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXAppDelegate.swift; sourceTree = "<group>"; };
 		57D21AB11A0FF52D00D1ABBC /* mixtour-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mixtour-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -72,8 +70,6 @@
 		AA2839291770A7B800F229F7 /* MIXModelBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXModelBoard.m; sourceTree = "<group>"; };
 		AA28392B1770EB3A00F229F7 /* MIXCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXCore.h; sourceTree = "<group>"; };
 		AA28392C1770F25200F229F7 /* MIXModelBoardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXModelBoardTests.m; sourceTree = "<group>"; };
-		AA920CE317765CC900677839 /* MIXGameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXGameView.h; sourceTree = "<group>"; };
-		AA920CE417765CC900677839 /* MIXGameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXGameView.m; sourceTree = "<group>"; };
 		AA9E4A9A17769380007CEA4B /* MIXGameBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXGameBackgroundView.h; sourceTree = "<group>"; };
 		AA9E4A9B17769380007CEA4B /* MIXGameBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXGameBackgroundView.m; sourceTree = "<group>"; };
 		AA9E4A9E17769B87007CEA4B /* MIXGamePieceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXGamePieceView.h; sourceTree = "<group>"; };
@@ -230,9 +226,6 @@
 				AA9E4A9B17769380007CEA4B /* MIXGameBackgroundView.m */,
 				AA9E4A9E17769B87007CEA4B /* MIXGamePieceView.h */,
 				AA9E4A9F17769B87007CEA4B /* MIXGamePieceView.m */,
-				AA920CE317765CC900677839 /* MIXGameView.h */,
-				574132F51A3E41100048441B /* MIXGameView_private.h */,
-				AA920CE417765CC900677839 /* MIXGameView.m */,
 				5744E51F1A374B1D00F2812B /* GameView.swift */,
 			);
 			path = gameviews;
@@ -341,7 +334,6 @@
 				AAE463AB1772657700008778 /* MIXCoreHelper.c in Sources */,
 				574588081A174F3700BBADCE /* MIXAppDelegate.swift in Sources */,
 				5744E5201A374B1D00F2812B /* GameView.swift in Sources */,
-				AA920CE517765CC900677839 /* MIXGameView.m in Sources */,
 				AA9E4AA017769B87007CEA4B /* MIXGamePieceView.m in Sources */,
 				A10DC19E17A3FD3900E42832 /* MixCoreBoard_private.c in Sources */,
 				AA28392A1770A7B800F229F7 /* MIXModelBoard.m in Sources */,
