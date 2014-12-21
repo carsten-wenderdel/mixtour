@@ -10,7 +10,5 @@
 
 @interface MIXGameView()
 
-- (NSMutableArray *)pieceArrayForView:(MIXGamePieceView *)view;
-- (NSMutableArray *)pieceViewArrayForSquare:(MIXCoreSquare)square;
 
 @end

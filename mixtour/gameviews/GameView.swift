@@ -8,9 +8,9 @@
 
 import UIKit
 
-class GameView: MIXGameView {
+private let numberOfSquares = 5
 
-    let numberOfSquares = 5
+class GameView: MIXGameView {
 
     var pressedSquare: MIXCoreSquare?
     var pannedViews = [MIXGamePieceView]()
@@ -21,6 +21,18 @@ class GameView: MIXGameView {
     let pieceWidth: CGFloat
     let pieceHeight: CGFloat
     
+    lazy var fieldArray: [[[MIXGamePieceView]]] = {
+        var lineArray = [[[MIXGamePieceView]]]()
+        for line in 0..<numberOfSquares {
+            var columnArray = [[MIXGamePieceView]]()
+            for column in 0..<numberOfSquares {
+                let viewArray = [MIXGamePieceView]()
+                columnArray.append(viewArray)
+            }
+            lineArray.append(columnArray)
+        }
+        return lineArray;
+    }()
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -48,6 +60,33 @@ class GameView: MIXGameView {
         addSubview(backgroundView)
         
         addGestureRecognizers()
+    }
+    
+    
+    // MARK: Manage logical arrangement of views in fieldArray
+    
+    func pieceArrayForView(view: MIXGamePieceView) -> [MIXGamePieceView] {
+        for columnArray in self.fieldArray {
+            for viewArray in columnArray {
+                for pieceView in viewArray {
+                    if (pieceView == view) {
+                        return viewArray
+                    }
+                }
+            }
+        }
+        assert(false, "view is not in fieldArray, but should be")
+        return [MIXGamePieceView]()
+    }
+    
+    func clearBoard() {
+        for columnArray in self.fieldArray {
+            for viewArray in columnArray {
+                for pieceView in viewArray {
+                    pieceView.removeFromSuperview()
+                }
+            }
+        }
     }
     
     
@@ -86,6 +125,7 @@ class GameView: MIXGameView {
     
     
     func setPieceWithColor(color: UIColor, onSquare square: MIXCoreSquare, atUIPosition uiPosition: UInt) {
+        // find out where to place it
         let startX = upperLeftPoint.x
                 + (squareLength * CGFloat(square.line))
                 + ((squareLength - pieceWidth) / 2.0)
@@ -95,10 +135,15 @@ class GameView: MIXGameView {
         let pieceFrame = CGRectMake(startX, startY, pieceWidth, pieceHeight)
         
         let pieceView = MIXGamePieceView(frame: pieceFrame, withColor: color)
+
+        // display it
         addSubview(pieceView)
-        pieceViewArrayForSquare(square).addObject(pieceView)
+        
+        // manage position logically
+        fieldArray[Int(square.column)][Int(square.line)].append(pieceView)
     }
     
+
     func squareForPosition(position: CGPoint) -> MIXCoreSquare {
         let column = (position.y - upperLeftPoint.y) / squareLength
         let line = (position.x - upperLeftPoint.x) / squareLength
@@ -106,7 +151,8 @@ class GameView: MIXGameView {
         return square
     }
     
-    // MARK: pragma mark GestureRecognizer Actions
+
+    // MARK: GestureRecognizer Actions
 
     func handlePressGesture(gestureRecognizer: UILongPressGestureRecognizer) {
         var currentPoint = gestureRecognizer.locationInView(self)

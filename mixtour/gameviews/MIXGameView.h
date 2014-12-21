@@ -24,6 +24,4 @@
 
 @property (nonatomic, weak) id<MIXGameViewProtocol> delegate;
 
-- (void)clearBoard;
-
 @end
