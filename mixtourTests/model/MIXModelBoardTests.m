@@ -17,23 +17,6 @@
 @implementation MIXModelBoardTests
 
 
-- (void)testInit {
-    MIXModelBoard *modelBoard = [[MIXModelBoard alloc] init];
-
-    XCTAssertEqual([modelBoard playerOnTurn], MIXCorePlayerWhite, @"White should start game");
-    XCTAssertEqual([modelBoard numberOfPiecesForPlayer:MIXCorePlayerWhite], 20u, @"25 pieces at the start");
-    XCTAssertEqual([modelBoard numberOfPiecesForPlayer:MIXCorePlayerBlack], 20u, @"25 pieces at the start");
-    
-    for (uint8_t i = 0; i < 5; i++) {
-        for (uint8_t j = 0; j < 5; j++) {
-            MIXCoreSquare square = MIXCoreSquareMake(i, j);
-            XCTAssertTrue([modelBoard isSquareEmpty:square], @"at the the start everything is empty");
-            XCTAssertEqual([modelBoard heightOfSquare:MIXCoreSquareMake(i, j)], 0u, @"at the start everything should be empty");
-        }
-    }
-}
-
-
 - (void)testGameOver {
     MIXModelBoard *board = [[MIXModelBoard alloc] init];
     XCTAssertFalse([board isGameOver], @"");
