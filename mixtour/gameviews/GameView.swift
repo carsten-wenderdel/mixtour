@@ -14,7 +14,7 @@ protocol GameViewDelegate {
 }
 
 
-private let numberOfSquares = 5
+let numberOfSquares = 5
 
 class GameView: UIView, UIGestureRecognizerDelegate {
 
@@ -64,7 +64,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         
         // Background view with squares in two colors
         let backgroundRect = CGRectMake(upperLeftPoint.x, upperLeftPoint.y, boardLength, boardLength)
-        let backgroundView = MIXGameBackgroundView(frame: backgroundRect)
+        let backgroundView = GameBackgroundView(frame: backgroundRect)
         addSubview(backgroundView)
         
         addGestureRecognizers()
