@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol GameViewDelegate {
+protocol GameViewDelegate: class {
     func gameView(gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: MIXCoreSquare, to: MIXCoreSquare) -> Bool
 }
 
@@ -18,7 +18,7 @@ let numberOfSquares = 5
 
 class GameView: UIView, UIGestureRecognizerDelegate {
 
-    var delegate: GameViewDelegate?
+    weak var delegate: GameViewDelegate?
 
     var pressedSquare: MIXCoreSquare?
     var pannedViews = [GamePieceView]()
@@ -74,7 +74,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     // MARK: Manage logical arrangement of views in fieldArray
     
     private func pieceArrayForView(view: GamePieceView) -> [GamePieceView] {
-        for columnArray in self.fieldArray {
+        for columnArray in fieldArray {
             for viewArray in columnArray {
                 for pieceView in viewArray {
                     if (pieceView == view) {
@@ -88,7 +88,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     }
     
     func clearBoard() {
-        for columnArray in self.fieldArray {
+        for columnArray in fieldArray {
             for viewArray in columnArray {
                 for pieceView in viewArray {
                     pieceView.removeFromSuperview()
@@ -102,13 +102,13 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         let pressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "handlePressGesture:")
         pressGestureRecognizer.delegate = self
         pressGestureRecognizer.minimumPressDuration = 0.3
-        self.addGestureRecognizer(pressGestureRecognizer)
+        addGestureRecognizer(pressGestureRecognizer)
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
         panGestureRecognizer.delegate = self
         panGestureRecognizer.maximumNumberOfTouches = 1
         panGestureRecognizer.minimumNumberOfTouches = 1
-        self.addGestureRecognizer(panGestureRecognizer)
+        addGestureRecognizer(panGestureRecognizer)
     }
     
     
@@ -125,7 +125,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
                     // When there are 5 pieces, the upper most has - as always -
                     // the position 0, but the ui position 4
                     let uiPosition = height - position - 1
-                    self.setPieceWithColor(color, onSquare: square, atUIPosition: uiPosition)
+                    setPieceWithColor(color, onSquare: square, atUIPosition: uiPosition)
                 }
             }
         }
@@ -164,14 +164,14 @@ class GameView: UIView, UIGestureRecognizerDelegate {
 
     func handlePressGesture(gestureRecognizer: UILongPressGestureRecognizer) {
         var currentPoint = gestureRecognizer.locationInView(self)
-        var square = self.squareForPosition(currentPoint)
+        var square = squareForPosition(currentPoint)
         println("handlePressGesture at square \(square.line)/\(square.column), state: \(gestureRecognizer.state.rawValue)")
         switch gestureRecognizer.state {
         case .Began:
-            let upperMostView = self.hitTest(currentPoint, withEvent: nil)
+            let upperMostView = hitTest(currentPoint, withEvent: nil)
             if let pressedPieceView = upperMostView as? GamePieceView {
                 var viewsToPan = [GamePieceView]()
-                let viewArray = self.pieceArrayForView(pressedPieceView)
+                let viewArray = pieceArrayForView(pressedPieceView)
                 var viewNeedsToBePanned = false
                 for pieceView in viewArray {
                     if pieceView === pressedPieceView {
@@ -181,19 +181,19 @@ class GameView: UIView, UIGestureRecognizerDelegate {
                         viewsToPan.append(pieceView)
                     }
                 }
-                self.pannedViews = viewsToPan
-                self.pressedSquare = square
+                pannedViews = viewsToPan
+                pressedSquare = square
             }
         case .Ended, .Cancelled, .Failed:
-            for view in self.pannedViews {
+            for view in pannedViews {
                 view.alpha = 1.0
             }
-            if (.Ended == gestureRecognizer.state) && (self.pannedViews.count > 0) {
+            if (.Ended == gestureRecognizer.state) && (pannedViews.count > 0) {
                 let currentPoint = gestureRecognizer.locationInView(self)
-                let currentSquare = self.squareForPosition(currentPoint)
+                let currentSquare = squareForPosition(currentPoint)
                 delegate?.gameView(self, tryToDragPieces: pannedViews.count, from: pressedSquare!, to: currentSquare)
             }
-            self.pannedViews.removeAll(keepCapacity: false)
+            pannedViews.removeAll(keepCapacity: false)
         default: ()
         }
     }
@@ -204,9 +204,9 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         switch gestureRecognizer.state {
         case .Began, .Changed, .Ended:
             var center = gestureRecognizer.locationInView(self)
-            for view in self.pannedViews {
+            for view in pannedViews {
                 view.center = center;
-                center.y -= self.pieceHeight;
+                center.y -= pieceHeight;
             }
         default: ()
         }
