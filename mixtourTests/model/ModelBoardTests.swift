@@ -11,7 +11,7 @@ import XCTest
 class ModelBoardTests : XCTestCase {
     
     func testInit() {
-        let modelBoard = MIXModelBoard()
+        let modelBoard = ModelBoard()
         
         XCTAssertEqual(modelBoard.playerOnTurn().value, MIXCorePlayerWhite.value, "White should start game")
         XCTAssertEqual(modelBoard.numberOfPiecesForPlayer(MIXCorePlayerWhite), UInt(20), "20 pieces at the start")
@@ -28,7 +28,7 @@ class ModelBoardTests : XCTestCase {
     
     
     func testGameOver() {
-        let board = MIXModelBoard()
+        let board = ModelBoard()
         XCTAssertFalse(board.isGameOver(), "")
         
         board.setPiece(MIXCoreSquareMake(0, 0))
@@ -44,7 +44,7 @@ class ModelBoardTests : XCTestCase {
     
     
     func testWinner() {
-        var board = MIXModelBoard()
+        var board = ModelBoard()
         XCTAssertEqual(board.winner().value, MIXCorePlayerUndefined.value, "")
         
         board.setPiece(MIXCoreSquareMake(0, 0))
@@ -59,7 +59,7 @@ class ModelBoardTests : XCTestCase {
         XCTAssertEqual(board.winner().value, MIXCorePlayerWhite.value, "")
         
         // and now the same, but place one additional piece at the beginning somewhere else.
-        board = MIXModelBoard()
+        board = ModelBoard()
         board.setPiece(MIXCoreSquareMake(3, 3))
         board.setPiece(MIXCoreSquareMake(0, 0))
         for i in 1..<5 {
@@ -74,7 +74,7 @@ class ModelBoardTests : XCTestCase {
     
     
     func testPlayerOnTurn() {
-        let board = MIXModelBoard()
+        let board = ModelBoard()
         XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "")
         
         board.setPiece(MIXCoreSquareMake(1, 1))
@@ -97,7 +97,7 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testSetPiece() {
-        let board = MIXModelBoard()
+        let board = ModelBoard()
         
         let square1 = MIXCoreSquareMake(1, 3)
         let square2 = MIXCoreSquareMake(2, 3)
@@ -120,7 +120,7 @@ class ModelBoardTests : XCTestCase {
     
     func testColorAtPosition() {
         
-        let board = MIXModelBoard()
+        let board = ModelBoard()
         
         let square0 = MIXCoreSquareMake(0, 3)
         let square1 = MIXCoreSquareMake(1, 3)
@@ -155,9 +155,9 @@ class ModelBoardTests : XCTestCase {
     }
     
     
-    func boardForTestingMoves() -> MIXModelBoard {
+    func boardForTestingMoves() -> ModelBoard {
         
-        let board = MIXModelBoard()
+        let board = ModelBoard()
         
         // from top to bottom: black, white, white on 1/1
         board.setPiece(MIXCoreSquareMake(1, 1))
@@ -229,7 +229,7 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testIsDraggingLegalCross() {
-        let board = MIXModelBoard()
+        let board = ModelBoard()
         for i in 1..<5 {
             for j in 1..<5 {
                 board.setPiece(MIXCoreSquareMake(UInt8(i), UInt8(j)))
@@ -243,7 +243,7 @@ class ModelBoardTests : XCTestCase {
     
     func testIsSettingPossible() {
         
-        let board = MIXModelBoard()
+        let board = ModelBoard()
         
         // setting pieces everywhere
         for i in 0..<5 {

@@ -112,7 +112,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     }
     
     
-    func setPiecesForBoard(board: MIXModelBoard) {
+    func setPiecesForBoard(board: ModelBoard) {
         for column in 0..<numberOfSquares {
             for line in 0..<numberOfSquares {
                 let square = MIXCoreSquareMake(UInt8(column), UInt8(line))

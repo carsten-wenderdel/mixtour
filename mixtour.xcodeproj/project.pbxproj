@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5743AEAC1A4ACFAB0087D033 /* ModelBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */; };
+		5743AEAE1A4AD1780087D033 /* ModelBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */; };
 		5744E5201A374B1D00F2812B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5744E51F1A374B1D00F2812B /* GameView.swift */; };
 		574588081A174F3700BBADCE /* MIXAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574588071A174F3700BBADCE /* MIXAppDelegate.swift */; };
 		57943FEF1A49DD9400744ABE /* GameBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57943FEE1A49DD9400744ABE /* GameBackgroundView.swift */; };
@@ -43,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBoard.swift; sourceTree = "<group>"; };
 		5744E51F1A374B1D00F2812B /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		574588071A174F3700BBADCE /* MIXAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXAppDelegate.swift; sourceTree = "<group>"; };
 		57943FEE1A49DD9400744ABE /* GameBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBackgroundView.swift; sourceTree = "<group>"; };
@@ -206,6 +209,7 @@
 			children = (
 				AA2839281770A7B800F229F7 /* MIXModelBoard.h */,
 				AA2839291770A7B800F229F7 /* MIXModelBoard.m */,
+				5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -333,6 +337,7 @@
 				574588081A174F3700BBADCE /* MIXAppDelegate.swift in Sources */,
 				5744E5201A374B1D00F2812B /* GameView.swift in Sources */,
 				57C207FA1A489917002DAFB3 /* GamePieceView.swift in Sources */,
+				5743AEAC1A4ACFAB0087D033 /* ModelBoard.swift in Sources */,
 				A10DC19E17A3FD3900E42832 /* MixCoreBoard_private.c in Sources */,
 				AA28392A1770A7B800F229F7 /* MIXModelBoard.m in Sources */,
 				57D21AB31A0FF52E00D1ABBC /* MIXViewController.swift in Sources */,
@@ -344,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA040672176FB3D80051363A /* MIXCoreBoardTests.m in Sources */,
+				5743AEAE1A4AD1780087D033 /* ModelBoard.swift in Sources */,
 				A10DC1A017A4033300E42832 /* MIXCoreBoard_privateTests.m in Sources */,
 				AAE463AE177265ED00008778 /* MIXCoreHelperTests.m in Sources */,
 				57943FF21A49E4EF00744ABE /* ModelBoardTests.swift in Sources */,
