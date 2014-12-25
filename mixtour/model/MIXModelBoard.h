@@ -14,11 +14,12 @@
 @interface MIXModelBoard : NSObject
 
 
+@property (readonly) struct MIXCoreBoard coreBoard;
+
+
 - (MIXCorePlayer)playerOnTurn;
 
 - (BOOL)isGameOver;
-
-- (MIXCorePlayer)winner;
 
 - (NSUInteger)numberOfPiecesForPlayer:(MIXCorePlayer)player;
 

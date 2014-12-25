@@ -66,7 +66,7 @@
 		AA040644176F9DF40051363A /* mixtour-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mixtour-Prefix.pch"; sourceTree = "<group>"; };
 		AA040649176F9DF40051363A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA04064E176F9DF40051363A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AA040654176F9DF40051363A /* mixtourTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mixtourTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA040654176F9DF40051363A /* mixtour.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mixtour.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA040655176F9DF40051363A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AA04065D176F9DF40051363A /* mixtourTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mixtourTests-Info.plist"; sourceTree = "<group>"; };
 		AA04065F176F9DF40051363A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				AA040633176F9DF40051363A /* mixtour.app */,
-				AA040654176F9DF40051363A /* mixtourTests.xctest */,
+				AA040654176F9DF40051363A /* mixtour.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -268,7 +268,7 @@
 			);
 			name = mixtourTests;
 			productName = mixtourTests;
-			productReference = AA040654176F9DF40051363A /* mixtourTests.xctest */;
+			productReference = AA040654176F9DF40051363A /* mixtour.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -518,7 +518,7 @@
 				);
 				INFOPLIST_FILE = "mixtourTests/mixtourTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = mixtour;
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtourTests/model/mixtourTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -539,7 +539,7 @@
 				GCC_PREFIX_HEADER = "mixtour/mixtour-Prefix.pch";
 				INFOPLIST_FILE = "mixtourTests/mixtourTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = mixtour;
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtourTests/model/mixtourTests-Bridging-Header.h";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

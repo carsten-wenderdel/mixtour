@@ -10,4 +10,10 @@ import Foundation
 
 class ModelBoard: MIXModelBoard {
     
+    func winner() -> MIXCorePlayer {
+        // TODO: Remove tempVar
+        var tempVar = self.coreBoard
+        return mixtour.winner(&tempVar)
+    }
+
 }

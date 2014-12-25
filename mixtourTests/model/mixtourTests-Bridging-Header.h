@@ -3,3 +3,5 @@
 //
 
 #import "MIXModelBoard.h"
+#import "MIXCore.h"
+#import "MIXCoreBoard.h"
