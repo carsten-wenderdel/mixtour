@@ -45,18 +45,18 @@ class ModelBoardTests : XCTestCase {
     
     func testWinner() {
         var board = ModelBoard()
-        XCTAssertEqual(board.winner().value, MIXCorePlayerUndefined.value, "")
+        XCTAssertEqual(board.winner(), ModelPlayer.Undefined)
         
         board.setPiece(MIXCoreSquareMake(0, 0))
         for i in 1..<5 {
-            XCTAssertEqual(board.winner().value, MIXCorePlayerUndefined.value, "")
+            XCTAssertEqual(board.winner(), ModelPlayer.Undefined)
             let oldSquare = MIXCoreSquareMake(UInt8(0), UInt8(i - 1))
             let newSquare = MIXCoreSquareMake(UInt8(0), UInt8(i))
             board.setPiece(newSquare)
             board.dragPiecesFrom(oldSquare, to:newSquare, withNumber:UInt(i))
         }
         
-        XCTAssertEqual(board.winner().value, MIXCorePlayerWhite.value, "")
+        XCTAssertEqual(board.winner(), ModelPlayer.White)
         
         // and now the same, but place one additional piece at the beginning somewhere else.
         board = ModelBoard()
@@ -69,7 +69,7 @@ class ModelBoardTests : XCTestCase {
             board.dragPiecesFrom(oldSquare, to:newSquare, withNumber:UInt(i))
         }
         
-        XCTAssertEqual(board.winner().value, MIXCorePlayerBlack.value, "")
+        XCTAssertEqual(board.winner(), ModelPlayer.Black)
     }
     
     
