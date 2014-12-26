@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5705DF311A4DFE7C00C3DB01 /* ModelSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705DF301A4DFE7C00C3DB01 /* ModelSquare.swift */; };
+		5705DF321A4E036A00C3DB01 /* ModelSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705DF301A4DFE7C00C3DB01 /* ModelSquare.swift */; };
+		5705DF341A4E14B000C3DB01 /* ModelSquareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705DF331A4E14B000C3DB01 /* ModelSquareTests.swift */; };
 		5743AEAC1A4ACFAB0087D033 /* ModelBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */; };
 		5743AEAE1A4AD1780087D033 /* ModelBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */; };
 		5743AEB21A4B7DF00087D033 /* ModelPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEB11A4B7DF00087D033 /* ModelPlayer.swift */; };
@@ -48,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5705DF301A4DFE7C00C3DB01 /* ModelSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSquare.swift; sourceTree = "<group>"; };
+		5705DF331A4E14B000C3DB01 /* ModelSquareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSquareTests.swift; sourceTree = "<group>"; };
 		5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBoard.swift; sourceTree = "<group>"; };
 		5743AEB11A4B7DF00087D033 /* ModelPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelPlayer.swift; sourceTree = "<group>"; };
 		5743AEB31A4B7FAF0087D033 /* ModelPlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelPlayerTests.swift; sourceTree = "<group>"; };
@@ -216,6 +221,7 @@
 				AA2839291770A7B800F229F7 /* MIXModelBoard.m */,
 				5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */,
 				5743AEB11A4B7DF00087D033 /* ModelPlayer.swift */,
+				5705DF301A4DFE7C00C3DB01 /* ModelSquare.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -225,6 +231,7 @@
 			children = (
 				57943FF11A49E4EF00744ABE /* ModelBoardTests.swift */,
 				5743AEB31A4B7FAF0087D033 /* ModelPlayerTests.swift */,
+				5705DF331A4E14B000C3DB01 /* ModelSquareTests.swift */,
 				57943FF01A49E4EE00744ABE /* mixtourTests-Bridging-Header.h */,
 			);
 			path = model;
@@ -344,6 +351,7 @@
 				574588081A174F3700BBADCE /* MIXAppDelegate.swift in Sources */,
 				5744E5201A374B1D00F2812B /* GameView.swift in Sources */,
 				57C207FA1A489917002DAFB3 /* GamePieceView.swift in Sources */,
+				5705DF311A4DFE7C00C3DB01 /* ModelSquare.swift in Sources */,
 				5743AEAC1A4ACFAB0087D033 /* ModelBoard.swift in Sources */,
 				A10DC19E17A3FD3900E42832 /* MixCoreBoard_private.c in Sources */,
 				AA28392A1770A7B800F229F7 /* MIXModelBoard.m in Sources */,
@@ -362,6 +370,8 @@
 				A10DC1A017A4033300E42832 /* MIXCoreBoard_privateTests.m in Sources */,
 				AAE463AE177265ED00008778 /* MIXCoreHelperTests.m in Sources */,
 				5743AEB41A4B7FAF0087D033 /* ModelPlayerTests.swift in Sources */,
+				5705DF321A4E036A00C3DB01 /* ModelSquare.swift in Sources */,
+				5705DF341A4E14B000C3DB01 /* ModelSquareTests.swift in Sources */,
 				57943FF21A49E4EF00744ABE /* ModelBoardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

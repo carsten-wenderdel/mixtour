@@ -205,27 +205,27 @@ class ModelBoardTests : XCTestCase {
         let board = boardForTestingMoves()
         
         // legal drags:
-        XCTAssertTrue(board.isDragLegalFrom(MIXCoreSquareMake(4, 4), to:MIXCoreSquareMake(1, 1)), "")
-        XCTAssertTrue(board.isDragLegalFrom(MIXCoreSquareMake(1, 1), to:MIXCoreSquareMake(4, 4)), "")
-        XCTAssertTrue(board.isDragLegalFrom(MIXCoreSquareMake(1, 4), to:MIXCoreSquareMake(1, 1)), "")
-        XCTAssertTrue(board.isDragLegalFrom(MIXCoreSquareMake(1, 4), to:MIXCoreSquareMake(4, 4)), "")
-        XCTAssertTrue(board.isDragLegalFrom(MIXCoreSquareMake(1, 1), to:MIXCoreSquareMake(0, 1)), "")
-        XCTAssertTrue(board.isDragLegalFrom(MIXCoreSquareMake(1, 1), to:MIXCoreSquareMake(0, 0)), "")
+        XCTAssertTrue(board.isDragLegalFrom(ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 1)))
+        XCTAssertTrue(board.isDragLegalFrom(ModelSquare(column: 1, line: 1), to:ModelSquare(column: 4, line: 4)))
+        XCTAssertTrue(board.isDragLegalFrom(ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 1)))
+        XCTAssertTrue(board.isDragLegalFrom(ModelSquare(column: 1, line: 4), to:ModelSquare(column: 4, line: 4)))
+        XCTAssertTrue(board.isDragLegalFrom(ModelSquare(column: 1, line: 1), to:ModelSquare(column: 0, line: 1)))
+        XCTAssertTrue(board.isDragLegalFrom(ModelSquare(column: 1, line: 1), to:ModelSquare(column: 0, line: 0)))
         
         // illegal drags because of wrong height:
-        XCTAssertFalse(board.isDragLegalFrom(MIXCoreSquareMake(1, 1), to:MIXCoreSquareMake(1, 4)), "")
-        XCTAssertFalse(board.isDragLegalFrom(MIXCoreSquareMake(4, 4), to:MIXCoreSquareMake(1, 4)), "")
-        XCTAssertFalse(board.isDragLegalFrom(MIXCoreSquareMake(0, 0), to:MIXCoreSquareMake(1, 1)), "")
+        XCTAssertFalse(board.isDragLegalFrom(ModelSquare(column: 1, line: 1), to:ModelSquare(column: 1, line: 4)))
+        XCTAssertFalse(board.isDragLegalFrom(ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 4)))
+        XCTAssertFalse(board.isDragLegalFrom(ModelSquare(column: 0, line: 0), to:ModelSquare(column: 1, line: 1)))
         
         // put some pieces between -> legal becomes illegal
         board.setPiece(MIXCoreSquareMake(2, 2))
-        XCTAssertFalse(board.isDragLegalFrom(MIXCoreSquareMake(4, 4), to:MIXCoreSquareMake(1, 1)), "")
-        XCTAssertFalse(board.isDragLegalFrom(MIXCoreSquareMake(1, 1), to:MIXCoreSquareMake(4, 4)), "")
+        XCTAssertFalse(board.isDragLegalFrom(ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 1)))
+        XCTAssertFalse(board.isDragLegalFrom(ModelSquare(column: 1, line: 1), to:ModelSquare(column: 4, line: 4)))
         
         board.setPiece(MIXCoreSquareMake(1, 3))
         board.setPiece(MIXCoreSquareMake(3, 4))
-        XCTAssertTrue(board.isDragLegalFrom(MIXCoreSquareMake(1, 4), to:MIXCoreSquareMake(1, 1)), "")
-        XCTAssertTrue(board.isDragLegalFrom(MIXCoreSquareMake(1, 4), to:MIXCoreSquareMake(4, 4)), "")
+        XCTAssertTrue(board.isDragLegalFrom(ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 1)))
+        XCTAssertTrue(board.isDragLegalFrom(ModelSquare(column: 1, line: 4), to:ModelSquare(column: 4, line: 4)))
     }
     
     func testIsDraggingLegalCross() {
@@ -238,7 +238,7 @@ class ModelBoardTests : XCTestCase {
         let squareWithTwoPieces = MIXCoreSquareMake(4, 1)
         board.dragPiecesFrom(MIXCoreSquareMake(3, 2), to:squareWithTwoPieces, withNumber:UInt(1))
         
-        XCTAssertTrue(board.isDragLegalFrom(MIXCoreSquareMake(2, 3), to:squareWithTwoPieces), "")
+        XCTAssertTrue(board.isDragLegalFrom(ModelSquare(column: 2, line: 3), to:ModelSquare(coreSquare: squareWithTwoPieces)))
     }
     
     func testIsSettingPossible() {

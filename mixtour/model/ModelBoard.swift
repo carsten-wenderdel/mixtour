@@ -16,5 +16,11 @@ class ModelBoard: MIXModelBoard {
         let corePlayer = mixtour.winner(&tempVar)
         return ModelPlayer(corePlayer: corePlayer)
     }
+    
+    func isDragLegalFrom(from: ModelSquare, to: ModelSquare) -> Bool {
+        // TODO: Remove tempBoard
+        var tempBoard = self.coreBoard
+        return isDragLegal(&tempBoard, from.coreSquare(), to.coreSquare())
+    }
 
 }

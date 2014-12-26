@@ -35,8 +35,6 @@
  */
 - (BOOL)setPiece:(MIXCoreSquare)square;
 
-- (BOOL)isDragLegalFrom:(MIXCoreSquare)from to:(MIXCoreSquare)to;
-
 - (BOOL)dragPiecesFrom:(MIXCoreSquare)from to:(MIXCoreSquare)to
            withNumber:(NSUInteger)numberODraggedPieces;
 
