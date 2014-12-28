@@ -14,8 +14,6 @@ protocol GameViewDelegate: class {
 }
 
 
-let numberOfSquares = 5
-
 class GameView: UIView, UIGestureRecognizerDelegate {
 
     weak var delegate: GameViewDelegate?
