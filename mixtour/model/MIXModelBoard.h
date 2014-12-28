@@ -17,8 +17,4 @@
 @property (assign, nonatomic) struct MIXCoreBoard coreBoard;
 
 
-- (MIXCorePlayer)playerOnTurn;
-
-- (BOOL)isGameOver;
-
 @end

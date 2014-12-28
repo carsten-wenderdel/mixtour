@@ -13,7 +13,7 @@ class ModelBoardTests : XCTestCase {
     func testInit() {
         let modelBoard = ModelBoard()
         
-        XCTAssertEqual(modelBoard.playerOnTurn().value, MIXCorePlayerWhite.value, "White should start game")
+        XCTAssertEqual(modelBoard.playerOnTurn(), ModelPlayer.White, "White should start game")
         XCTAssertEqual(modelBoard.numberOfPiecesForPlayer(ModelPlayer.White), 20, "20 pieces at the start")
         XCTAssertEqual(modelBoard.numberOfPiecesForPlayer(ModelPlayer.Black), 20, "20 pieces at the start")
         
@@ -75,25 +75,25 @@ class ModelBoardTests : XCTestCase {
     
     func testPlayerOnTurn() {
         let board = ModelBoard()
-        XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "")
+        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.White)
         
         board.setPiece(ModelSquare(column: 1, line: 1))
-        XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerBlack.value, "")
+        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.Black)
         
         board.setPiece(ModelSquare(column: 1, line: 2))
-        XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "")
+        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.White)
         
         board.setPiece(ModelSquare(column: 2, line: 2))
-        XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerBlack.value, "")
+        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.Black)
         
         board.dragPiecesFrom(ModelSquare(column: 1, line: 1), to:ModelSquare(column: 1, line: 2), withNumber:1)
-        XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "")
+        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.White)
         
         board.dragPiecesFrom(ModelSquare(column: 2, line: 2), to:ModelSquare(column: 1, line: 2), withNumber:1)
-        XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "illegal move, turn stays")
+        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.White, "illegal move, turn stays")
         
         board.dragPiecesFrom(ModelSquare(column: 1, line: 2), to:ModelSquare(column: 2, line: 2), withNumber:1)
-        XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerBlack.value, "")
+        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.Black)
     }
     
     func testSetPiece() {
@@ -266,7 +266,7 @@ class ModelBoardTests : XCTestCase {
         
         XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.White), 7, "")
         XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.Black), 8, "")
-        XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "")
+        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.White)
         
         // setting 14 pieces on cleared squares
         for i in 0..<5 {
@@ -282,22 +282,22 @@ class ModelBoardTests : XCTestCase {
         
         XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.White), 0, "")
         XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.Black), 1, "")
-        XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "")
+        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.White)
         
         let emptySquare = ModelSquare(column: 4, line: 3)
         XCTAssertTrue(board.isSquareEmpty(emptySquare))
         XCTAssertFalse(board.isSettingPossible(), "no pieces left for white")
         
         board.dragPiecesFrom(ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 3), withNumber:3)
-        XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerBlack.value, "")
+        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.Black)
         XCTAssertTrue(board.isSettingPossible(), "")
         board.setPiece(emptySquare)
         
-        XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "")
+        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.White)
         XCTAssertFalse(board.isSettingPossible(), "")
         board.dragPiecesFrom(ModelSquare(column: 1, line: 3), to:ModelSquare(column: 1, line: 4), withNumber:3)
         
-        XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerBlack.value, "")
+        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.Black)
         XCTAssertFalse(board.isSettingPossible(), "no pieces left for black")
     }
     

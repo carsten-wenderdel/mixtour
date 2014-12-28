@@ -22,15 +22,4 @@
     return self;
 }
 
-
-- (MIXCorePlayer)playerOnTurn {
-    return playerOnTurn(&_coreBoard);
-}
-
-
-- (BOOL)isGameOver {
-    return isGameOver(&_coreBoard);
-}
-
-
 @end

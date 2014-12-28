@@ -14,10 +14,25 @@ let numberOfSquares = 5
 
 class ModelBoard: MIXModelBoard {
     
+    func isGameOver() -> Bool {
+        // TODO: Remove tempBoard
+        var tempBoard = self.coreBoard
+        return mixtour.isGameOver(&tempBoard)
+    }
+    
+    
     func winner() -> ModelPlayer {
         // TODO: Remove tempVar
         var tempVar = self.coreBoard
         let corePlayer = mixtour.winner(&tempVar)
+        return ModelPlayer(corePlayer: corePlayer)
+    }
+    
+    
+    func playerOnTurn() -> ModelPlayer {
+        // TODO: Remove tempBoard
+        var tempBoard = self.coreBoard
+        let corePlayer = mixtour.playerOnTurn(&tempBoard)
         return ModelPlayer(corePlayer: corePlayer)
     }
     
