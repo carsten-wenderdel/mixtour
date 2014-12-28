@@ -14,7 +14,7 @@
 @interface MIXModelBoard : NSObject
 
 
-@property (readonly) struct MIXCoreBoard coreBoard;
+@property (assign, nonatomic) struct MIXCoreBoard coreBoard;
 
 
 - (MIXCorePlayer)playerOnTurn;
@@ -34,8 +34,5 @@
  If it's an illegal move, the move is not made and NO is returned. The model is still fine.
  */
 - (BOOL)setPiece:(MIXCoreSquare)square;
-
-- (BOOL)dragPiecesFrom:(MIXCoreSquare)from to:(MIXCoreSquare)to
-           withNumber:(NSUInteger)numberODraggedPieces;
 
 @end

@@ -71,16 +71,4 @@
 }
 
 
-- (BOOL)dragPiecesFrom:(MIXCoreSquare)from to:(MIXCoreSquare)to
-           withNumber:(NSUInteger)numberOfDraggedPieces {
-    
-    if (isDragLegal(&_coreBoard, from, to)) {
-        dragPieces(&_coreBoard, from, to, numberOfDraggedPieces);
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-
 @end

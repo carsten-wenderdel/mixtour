@@ -18,11 +18,11 @@ class MIXViewController: UIViewController, GameViewDelegate {
                 board.setPiece(MIXCoreSquareMake(i, j))
             }
         }
-        for i:UInt8 in 1...2 {
-            for j:UInt8 in 0...3 {
-                board.dragPiecesFrom(MIXCoreSquareMake(i, j),
-                        to: MIXCoreSquareMake(i, j+1),
-                        withNumber: UInt(j) + 1)
+        for i in 1...2 {
+            for j in 0...3 {
+                board.dragPiecesFrom(ModelSquare(column: i, line: j),
+                        to: ModelSquare(column: i, line: j+1),
+                        withNumber: j+1)
             }
         }
         return board
@@ -46,7 +46,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
         println("Try to drag \(numberOfDraggedPieces) pieces from \(from.column)/\(from.line) to \(to.column)/\(to.line)")
         
         // if move not possible, .dragPieces(...) does nothing
-        let movePossible = self.board.dragPiecesFrom(from, to: to, withNumber: UInt(numberOfDraggedPieces))
+        let movePossible = self.board.dragPiecesFrom(ModelSquare(coreSquare: from), to: ModelSquare(coreSquare: to), withNumber: numberOfDraggedPieces)
         
         // display new state. If move not possible, this also moves the dragged piece to the old correct position
         gameView.clearBoard()

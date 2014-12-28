@@ -21,6 +21,22 @@ class ModelBoard: MIXModelBoard {
         return ModelPlayer(corePlayer: corePlayer)
     }
     
+    
+    func dragPiecesFrom(from: ModelSquare, to: ModelSquare, withNumber numberODraggedPieces: Int) -> Bool {
+        // TODO: Remove tempBoard
+        var tempBoard = self.coreBoard
+        let coreFrom = from.coreSquare()
+        let coreTo = to.coreSquare()
+        if mixtour.isDragLegal(&tempBoard, coreFrom, coreTo) {
+            mixtour.dragPieces(&tempBoard, coreFrom, coreTo, UInt8(numberODraggedPieces))
+            self.coreBoard = tempBoard
+            return true
+        } else {
+            return false
+        }
+    }
+    
+
     func isDragLegalFrom(from: ModelSquare, to: ModelSquare) -> Bool {
         // TODO: Remove tempBoard
         var tempBoard = self.coreBoard
