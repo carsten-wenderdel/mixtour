@@ -33,9 +33,4 @@
 }
 
 
-- (NSUInteger)numberOfPiecesForPlayer:(MIXCorePlayer)player {
-    return numberOfPiecesForPlayer(&_coreBoard, player);
-}
-
-
 @end

@@ -22,4 +22,15 @@ enum ModelPlayer: Int {
             self = .Undefined
         }
     }
+    
+    func corePlayer() -> MIXCorePlayer {
+        switch self {
+        case .White:
+            return MIXCorePlayerWhite
+        case .Black:
+            return MIXCorePlayerBlack
+        default:
+            return MIXCorePlayerUndefined
+        }
+    }
 }

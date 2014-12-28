@@ -14,8 +14,8 @@ class ModelBoardTests : XCTestCase {
         let modelBoard = ModelBoard()
         
         XCTAssertEqual(modelBoard.playerOnTurn().value, MIXCorePlayerWhite.value, "White should start game")
-        XCTAssertEqual(modelBoard.numberOfPiecesForPlayer(MIXCorePlayerWhite), UInt(20), "20 pieces at the start")
-        XCTAssertEqual(modelBoard.numberOfPiecesForPlayer(MIXCorePlayerBlack), UInt(20), "20 pieces at the start")
+        XCTAssertEqual(modelBoard.numberOfPiecesForPlayer(ModelPlayer.White), 20, "20 pieces at the start")
+        XCTAssertEqual(modelBoard.numberOfPiecesForPlayer(ModelPlayer.Black), 20, "20 pieces at the start")
         
         for i in 0..<5 {
             for j in 0..<5 {
@@ -108,8 +108,8 @@ class ModelBoardTests : XCTestCase {
         XCTAssertFalse(board.setPiece(square1), "There should already be a piece")
         XCTAssertTrue(board.setPiece(square3), "this should be empty and therefore legal")
         
-        XCTAssertEqual(board.numberOfPiecesForPlayer(MIXCorePlayerWhite), UInt(18), "two pieces set")
-        XCTAssertEqual(board.numberOfPiecesForPlayer(MIXCorePlayerBlack), UInt(19),
+        XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.White), 18, "two pieces set")
+        XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.Black), 19,
             "only one piece set, one move attempt was illegal")
         
         XCTAssertEqual(board.heightOfSquare(square2), 1, "one piece set -> height 1")
@@ -264,8 +264,8 @@ class ModelBoardTests : XCTestCase {
             }
         }
         
-        XCTAssertEqual(board.numberOfPiecesForPlayer(MIXCorePlayerWhite), UInt(7), "")
-        XCTAssertEqual(board.numberOfPiecesForPlayer(MIXCorePlayerBlack), UInt(8), "")
+        XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.White), 7, "")
+        XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.Black), 8, "")
         XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "")
         
         // setting 14 pieces on cleared squares
@@ -280,8 +280,8 @@ class ModelBoardTests : XCTestCase {
             }
         }
         
-        XCTAssertEqual(board.numberOfPiecesForPlayer(MIXCorePlayerWhite), UInt(0), "")
-        XCTAssertEqual(board.numberOfPiecesForPlayer(MIXCorePlayerBlack), UInt(1), "")
+        XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.White), 0, "")
+        XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.Black), 1, "")
         XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "")
         
         let emptySquare = ModelSquare(column: 4, line: 3)

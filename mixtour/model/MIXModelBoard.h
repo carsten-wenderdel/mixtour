@@ -21,6 +21,4 @@
 
 - (BOOL)isGameOver;
 
-- (NSUInteger)numberOfPiecesForPlayer:(MIXCorePlayer)player;
-
 @end
