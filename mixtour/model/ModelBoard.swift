@@ -12,56 +12,50 @@ import Foundation
 let numberOfSquares = 5
 
 
-class ModelBoard: MIXModelBoard {
+class ModelBoard {
+    
+    var coreBoard: MIXCoreBoard
+    
+    init() {
+        // put coreBoard on stack:
+        coreBoard = mixtour.createNonInitializedCoreBoard()
+        resetCoreBoard(&coreBoard)
+    }
     
     func isGameOver() -> Bool {
-        // TODO: Remove tempBoard
-        var tempBoard = self.coreBoard
-        return mixtour.isGameOver(&tempBoard)
+        return mixtour.isGameOver(&coreBoard)
     }
     
     
     func winner() -> ModelPlayer {
-        // TODO: Remove tempVar
-        var tempVar = self.coreBoard
-        let corePlayer = mixtour.winner(&tempVar)
+        let corePlayer = mixtour.winner(&coreBoard)
         return ModelPlayer(corePlayer: corePlayer)
     }
     
     
     func playerOnTurn() -> ModelPlayer {
-        // TODO: Remove tempBoard
-        var tempBoard = self.coreBoard
-        let corePlayer = mixtour.playerOnTurn(&tempBoard)
+        let corePlayer = mixtour.playerOnTurn(&coreBoard)
         return ModelPlayer(corePlayer: corePlayer)
     }
     
     
     func numberOfPiecesForPlayer(player: ModelPlayer) -> Int {
-        // TODO: Remove tempBoard
-        var tempBoard = self.coreBoard
-        return Int(mixtour.numberOfPiecesForPlayer(&tempBoard, player.corePlayer()))
+        return Int(mixtour.numberOfPiecesForPlayer(&coreBoard, player.corePlayer()))
     }
     
     
     func isSquareEmpty(square: ModelSquare) -> Bool {
-        // TODO: Remove tempBoard
-        var tempBoard = self.coreBoard
-        return mixtour.isSquareEmpty(&tempBoard, square.coreSquare())
+        return mixtour.isSquareEmpty(&coreBoard, square.coreSquare())
     }
     
     
     func heightOfSquare(square: ModelSquare) -> Int {
-        // TODO: Remove tempBoard
-        var tempBoard = self.coreBoard
-        return Int(mixtour.heightOfSquare(&tempBoard, square.coreSquare()))
+        return Int(mixtour.heightOfSquare(&coreBoard, square.coreSquare()))
     }
     
     
     func colorOfSquare(square: ModelSquare, atPosition position: Int) -> ModelPlayer{
-        // TODO: Remove tempBoard
-        var tempBoard = self.coreBoard
-        let corePlayer = colorOfSquareAtPosition(&tempBoard, square.coreSquare(), UInt8(position))
+        let corePlayer = colorOfSquareAtPosition(&coreBoard, square.coreSquare(), UInt8(position))
         return ModelPlayer(corePlayer: corePlayer)
     }
     
@@ -71,34 +65,28 @@ class ModelBoard: MIXModelBoard {
     If it's an illegal move, the move is not made and NO is returned. The model is still fine.
     */
     func setPiece(square: ModelSquare) -> Bool {
-        // TODO: Remove tempBoard
-        var tempBoard = self.coreBoard
         let coreSquare = square.coreSquare()
     
-        if !mixtour.isSquareEmpty(&tempBoard, coreSquare) {
+        if !mixtour.isSquareEmpty(&coreBoard, coreSquare) {
             return false
         }
 
-        let player = mixtour.playerOnTurn(&tempBoard)
-        if mixtour.numberOfPiecesForPlayer(&tempBoard, player) <= 0 {
+        let player = mixtour.playerOnTurn(&coreBoard)
+        if mixtour.numberOfPiecesForPlayer(&coreBoard, player) <= 0 {
             return false
         }
         
         // ok, it's a legal move
-        mixtour.setPiece(&tempBoard, coreSquare)
-        self.coreBoard = tempBoard
+        mixtour.setPiece(&coreBoard, coreSquare)
         return true
     }
     
 
     func dragPiecesFrom(from: ModelSquare, to: ModelSquare, withNumber numberODraggedPieces: Int) -> Bool {
-        // TODO: Remove tempBoard
-        var tempBoard = self.coreBoard
         let coreFrom = from.coreSquare()
         let coreTo = to.coreSquare()
-        if mixtour.isDragLegal(&tempBoard, coreFrom, coreTo) {
-            mixtour.dragPieces(&tempBoard, coreFrom, coreTo, UInt8(numberODraggedPieces))
-            self.coreBoard = tempBoard
+        if mixtour.isDragLegal(&coreBoard, coreFrom, coreTo) {
+            mixtour.dragPieces(&coreBoard, coreFrom, coreTo, UInt8(numberODraggedPieces))
             return true
         } else {
             return false
@@ -107,23 +95,19 @@ class ModelBoard: MIXModelBoard {
     
 
     func isDragLegalFrom(from: ModelSquare, to: ModelSquare) -> Bool {
-        // TODO: Remove tempBoard
-        var tempBoard = self.coreBoard
-        return isDragLegal(&tempBoard, from.coreSquare(), to.coreSquare())
+        return isDragLegal(&coreBoard, from.coreSquare(), to.coreSquare())
     }
 
     
     func isSettingPossible() -> Bool {
-        // TODO: Remove tempBoard
-        var tempBoard = self.coreBoard
-        let player = mixtour.playerOnTurn(&tempBoard)
-        if (mixtour.numberOfPiecesForPlayer(&tempBoard, player) <= 0) {
+        let player = mixtour.playerOnTurn(&coreBoard)
+        if (mixtour.numberOfPiecesForPlayer(&coreBoard, player) <= 0) {
             return false
         }
         
         for i in 0..<numberOfSquares {
             for j in 0..<numberOfSquares {
-                if mixtour.isSquareEmpty(&tempBoard, MIXCoreSquare(column: UInt8(i), line: UInt8(j))) {
+                if mixtour.isSquareEmpty(&coreBoard, MIXCoreSquare(column: UInt8(i), line: UInt8(j))) {
                     return true
                 }
             }

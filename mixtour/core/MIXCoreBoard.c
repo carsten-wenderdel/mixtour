@@ -31,6 +31,12 @@ MIXCoreSquare MIXCoreSquareMake(uint8_t column, uint8_t line) {
 }
 
 
+struct MIXCoreBoard createNonInitializedCoreBoard() {
+    struct MIXCoreBoard coreBoard;
+    return coreBoard;
+}
+
+
 void resetCoreBoard(MIXCoreBoardRef boardRef) {
     
     *boardRef = (struct MIXCoreBoard){0};

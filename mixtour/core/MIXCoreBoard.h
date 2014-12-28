@@ -36,6 +36,11 @@ struct MIXCoreBoard {
 typedef struct MIXCoreBoard *MIXCoreBoardRef;
 
 
+/**
+ Creates the struct on the stack and returns it.
+ Made for Swift code to avoid difficult init method
+ */
+struct MIXCoreBoard createNonInitializedCoreBoard();
 
 /**
  Resets the board to the state for a new game
