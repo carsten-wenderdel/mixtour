@@ -84,7 +84,7 @@ uint8_t heightOfSquare(MIXCoreBoardRef boardRef, MIXCoreSquare square) {
 }
 
 
-MIXCorePlayer colorOfSquareAtPosition(MIXCoreBoardRef boardRef, MIXCoreSquare square, uint_fast8_t position) {
+MIXCorePlayer colorOfSquareAtPosition(MIXCoreBoardRef boardRef, MIXCoreSquare square, uint8_t position) {
     
     // All colors at that position encoded in on integer variable:
     uint8_t color = boardRef->colors[square.column][square.line];

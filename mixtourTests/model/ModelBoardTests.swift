@@ -134,22 +134,22 @@ class ModelBoardTests : XCTestCase {
         board.setPiece(square3) // black
         board.setPiece(square4) // white
         
-        XCTAssertEqual(board.colorOfSquare(square0.coreSquare(), atPosition:UInt8(0)).value, MIXCorePlayerWhite.value, "")
-        XCTAssertEqual(board.colorOfSquare(square1.coreSquare(), atPosition:UInt8(0)).value, MIXCorePlayerBlack.value, "")
-        XCTAssertEqual(board.colorOfSquare(square2.coreSquare(), atPosition:UInt8(0)).value, MIXCorePlayerWhite.value, "")
-        XCTAssertEqual(board.colorOfSquare(square3.coreSquare(), atPosition:UInt8(0)).value, MIXCorePlayerBlack.value, "")
-        XCTAssertEqual(board.colorOfSquare(square4.coreSquare(), atPosition:UInt8(0)).value, MIXCorePlayerWhite.value, "")
+        XCTAssertEqual(board.colorOfSquare(square0, atPosition:0), ModelPlayer.White)
+        XCTAssertEqual(board.colorOfSquare(square1, atPosition:0), ModelPlayer.Black)
+        XCTAssertEqual(board.colorOfSquare(square2, atPosition:0), ModelPlayer.White)
+        XCTAssertEqual(board.colorOfSquare(square3, atPosition:0), ModelPlayer.Black)
+        XCTAssertEqual(board.colorOfSquare(square4, atPosition:0), ModelPlayer.White)
         
         board.dragPiecesFrom(square1, to:square0, withNumber:1)
         board.dragPiecesFrom(square4, to:square3, withNumber:1)
         board.dragPiecesFrom(square3, to:square2, withNumber:2)
         board.dragPiecesFrom(square2, to:square0, withNumber:2) // not all!
         
-        XCTAssertEqual(board.colorOfSquare(square0.coreSquare(), atPosition:UInt8(3)).value, MIXCorePlayerWhite.value, "here from the beginning")
-        XCTAssertEqual(board.colorOfSquare(square0.coreSquare(), atPosition:UInt8(2)).value, MIXCorePlayerBlack.value, "originally at square1")
-        XCTAssertEqual(board.colorOfSquare(square0.coreSquare(), atPosition:UInt8(1)).value, MIXCorePlayerBlack.value, "originally at square3")
-        XCTAssertEqual(board.colorOfSquare(square0.coreSquare(), atPosition:UInt8(0)).value, MIXCorePlayerWhite.value, "originally at square4")
-        XCTAssertEqual(board.colorOfSquare(square2.coreSquare(), atPosition:UInt8(0)).value, MIXCorePlayerWhite.value, "here from the beginning")
+        XCTAssertEqual(board.colorOfSquare(square0, atPosition:3), ModelPlayer.White, "here from the beginning")
+        XCTAssertEqual(board.colorOfSquare(square0, atPosition:2), ModelPlayer.Black, "originally at square1")
+        XCTAssertEqual(board.colorOfSquare(square0, atPosition:1), ModelPlayer.Black, "originally at square3")
+        XCTAssertEqual(board.colorOfSquare(square0, atPosition:0), ModelPlayer.White, "originally at square4")
+        XCTAssertEqual(board.colorOfSquare(square2, atPosition:0), ModelPlayer.White, "here from the beginning")
         
         NSLog("bla")
     }

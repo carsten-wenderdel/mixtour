@@ -48,10 +48,4 @@
 }
 
 
-- (MIXCorePlayer)colorOfSquare:(MIXCoreSquare)square atPosition:(uint_fast8_t)position {
-    
-    return colorOfSquareAtPosition(&_coreBoard, square, position);
-}
-
-
 @end

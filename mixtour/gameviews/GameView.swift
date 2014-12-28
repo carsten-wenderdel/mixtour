@@ -113,17 +113,17 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     func setPiecesForBoard(board: ModelBoard) {
         for column in 0..<numberOfSquares {
             for line in 0..<numberOfSquares {
-                let square = MIXCoreSquareMake(UInt8(column), UInt8(line))
-                let height = board.heightOfSquare(square)
+                let square = ModelSquare(column: column, line: line)
+                let height = board.heightOfSquare(square.coreSquare())
                 for var position = Int(height) - 1; position >= 0; position-- {
-                    let player:MIXCorePlayer = board.colorOfSquare(square, atPosition: UInt8(position))
-                    let color = (player.value == MIXCorePlayerWhite.value)
+                    let player = board.colorOfSquare(square, atPosition: position)
+                    let color = (player == ModelPlayer.White)
                         ? UIColor.yellowColor()
                         : UIColor.redColor()
                     // When there are 5 pieces, the upper most has - as always -
                     // the position 0, but the ui position 4
                     let uiPosition = height - position - 1
-                    setPieceWithColor(color, onSquare: square, atUIPosition: uiPosition)
+                    setPieceWithColor(color, onSquare: square.coreSquare(), atUIPosition: uiPosition)
                 }
             }
         }

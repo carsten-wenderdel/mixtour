@@ -61,7 +61,7 @@ uint8_t heightOfSquare(MIXCoreBoardRef boardRef, MIXCoreSquare square);
  The uppermost piece has the position 0.
  When the height is n, the lowermost piece has the position n-1
  */
-MIXCorePlayer colorOfSquareAtPosition(MIXCoreBoardRef boardRef, MIXCoreSquare square, uint_fast8_t position);
+MIXCorePlayer colorOfSquareAtPosition(MIXCoreBoardRef boardRef, MIXCoreSquare square, uint8_t position);
 
 /**
  Does not check whether setting is legal.

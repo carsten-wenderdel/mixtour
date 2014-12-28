@@ -27,6 +27,4 @@
 
 - (NSUInteger) heightOfSquare:(MIXCoreSquare)square;
 
-- (MIXCorePlayer)colorOfSquare:(MIXCoreSquare)square atPosition:(uint_fast8_t)position;
-
 @end

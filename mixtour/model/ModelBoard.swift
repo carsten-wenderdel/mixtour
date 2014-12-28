@@ -21,6 +21,14 @@ class ModelBoard: MIXModelBoard {
         return ModelPlayer(corePlayer: corePlayer)
     }
     
+    func colorOfSquare(square: ModelSquare, atPosition position: Int) -> ModelPlayer{
+        // TODO: Remove tempBoard
+        var tempBoard = self.coreBoard
+        let corePlayer = colorOfSquareAtPosition(&tempBoard, square.coreSquare(), UInt8(position))
+        return ModelPlayer(corePlayer: corePlayer)
+    }
+    
+    
     /**
     If this is a legal move, it returns YES.
     If it's an illegal move, the move is not made and NO is returned. The model is still fine.
