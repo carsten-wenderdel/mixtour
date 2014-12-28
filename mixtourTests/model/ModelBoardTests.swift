@@ -31,12 +31,12 @@ class ModelBoardTests : XCTestCase {
         let board = ModelBoard()
         XCTAssertFalse(board.isGameOver(), "")
         
-        board.setPiece(MIXCoreSquareMake(0, 0))
+        board.setPiece(ModelSquare(column: 0, line: 0))
         for i in 1..<5 {
             XCTAssertFalse(board.isGameOver(), "")
             let oldSquare = ModelSquare(column: 0, line: i - 1)
             let newSquare = ModelSquare(column: 0, line: i)
-            board.setPiece(newSquare.coreSquare())
+            board.setPiece(newSquare)
             board.dragPiecesFrom(oldSquare, to: newSquare, withNumber: i)
         }
         XCTAssertTrue(board.isGameOver(), "")
@@ -47,12 +47,12 @@ class ModelBoardTests : XCTestCase {
         var board = ModelBoard()
         XCTAssertEqual(board.winner(), ModelPlayer.Undefined)
         
-        board.setPiece(MIXCoreSquareMake(0, 0))
+        board.setPiece(ModelSquare(column: 0, line: 0))
         for i in 1..<5 {
             XCTAssertEqual(board.winner(), ModelPlayer.Undefined)
             let oldSquare = ModelSquare(column: 0, line: i - 1)
             let newSquare = ModelSquare(column: 0, line: i)
-            board.setPiece(newSquare.coreSquare())
+            board.setPiece(newSquare)
             board.dragPiecesFrom(oldSquare, to:newSquare, withNumber:i)
         }
         
@@ -60,12 +60,12 @@ class ModelBoardTests : XCTestCase {
         
         // and now the same, but place one additional piece at the beginning somewhere else.
         board = ModelBoard()
-        board.setPiece(MIXCoreSquareMake(3, 3))
-        board.setPiece(MIXCoreSquareMake(0, 0))
+        board.setPiece(ModelSquare(column: 3, line: 3))
+        board.setPiece(ModelSquare(column: 0, line: 0))
         for i in 1..<5 {
             let oldSquare = ModelSquare(column: 0, line: i - 1)
             let newSquare = ModelSquare(column: 0, line: i)
-            board.setPiece(newSquare.coreSquare())
+            board.setPiece(newSquare)
             board.dragPiecesFrom(oldSquare, to:newSquare, withNumber:i)
         }
         
@@ -77,13 +77,13 @@ class ModelBoardTests : XCTestCase {
         let board = ModelBoard()
         XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "")
         
-        board.setPiece(MIXCoreSquareMake(1, 1))
+        board.setPiece(ModelSquare(column: 1, line: 1))
         XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerBlack.value, "")
         
-        board.setPiece(MIXCoreSquareMake(1, 2))
+        board.setPiece(ModelSquare(column: 1, line: 2))
         XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "")
         
-        board.setPiece(MIXCoreSquareMake(2, 2))
+        board.setPiece(ModelSquare(column: 2, line: 2))
         XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerBlack.value, "")
         
         board.dragPiecesFrom(ModelSquare(column: 1, line: 1), to:ModelSquare(column: 1, line: 2), withNumber:1)
@@ -99,9 +99,9 @@ class ModelBoardTests : XCTestCase {
     func testSetPiece() {
         let board = ModelBoard()
         
-        let square1 = MIXCoreSquareMake(1, 3)
-        let square2 = MIXCoreSquareMake(2, 3)
-        let square3 = MIXCoreSquareMake(3, 3)
+        let square1 = ModelSquare(column: 1, line: 3)
+        let square2 = ModelSquare(column: 2, line: 3)
+        let square3 = ModelSquare(column: 3, line: 3)
         
         XCTAssertTrue(board.setPiece(square1), "this should be empty and therefore legal")
         XCTAssertTrue(board.setPiece(square2), "this should be empty and therefore legal")
@@ -112,8 +112,8 @@ class ModelBoardTests : XCTestCase {
         XCTAssertEqual(board.numberOfPiecesForPlayer(MIXCorePlayerBlack), UInt(19),
             "only one piece set, one move attempt was illegal")
         
-        XCTAssertEqual(board.heightOfSquare(square2), UInt(1), "one piece set -> height 1")
-        XCTAssertEqual(board.heightOfSquare(square1), UInt(1), "you can only set once -> height 1")
+        XCTAssertEqual(board.heightOfSquare(square2.coreSquare()), UInt(1), "one piece set -> height 1")
+        XCTAssertEqual(board.heightOfSquare(square1.coreSquare()), UInt(1), "you can only set once -> height 1")
         XCTAssertEqual(board.heightOfSquare(MIXCoreSquareMake(0, 0)), UInt(0), "nothing set here")
     }
     
@@ -128,11 +128,11 @@ class ModelBoardTests : XCTestCase {
         let square3 = ModelSquare(column: 3, line: 3)
         let square4 = ModelSquare(column: 4, line: 3)
         
-        board.setPiece(square0.coreSquare()) // white
-        board.setPiece(square1.coreSquare()) // black
-        board.setPiece(square2.coreSquare()) // white
-        board.setPiece(square3.coreSquare()) // black
-        board.setPiece(square4.coreSquare()) // white
+        board.setPiece(square0) // white
+        board.setPiece(square1) // black
+        board.setPiece(square2) // white
+        board.setPiece(square3) // black
+        board.setPiece(square4) // white
         
         XCTAssertEqual(board.colorOfSquare(square0.coreSquare(), atPosition:UInt8(0)).value, MIXCorePlayerWhite.value, "")
         XCTAssertEqual(board.colorOfSquare(square1.coreSquare(), atPosition:UInt8(0)).value, MIXCorePlayerBlack.value, "")
@@ -160,29 +160,29 @@ class ModelBoardTests : XCTestCase {
         let board = ModelBoard()
         
         // from top to bottom: black, white, white on 1/1
-        board.setPiece(MIXCoreSquareMake(1, 1))
-        board.setPiece(MIXCoreSquareMake(0, 1))
-        board.setPiece(MIXCoreSquareMake(0, 0))
+        board.setPiece(ModelSquare(column: 1, line: 1))
+        board.setPiece(ModelSquare(column: 0, line: 1))
+        board.setPiece(ModelSquare(column: 0, line: 0))
         board.dragPiecesFrom(ModelSquare(column: 0, line: 1), to:ModelSquare(column: 0, line: 0), withNumber:1)
         board.dragPiecesFrom(ModelSquare(column: 0, line: 0), to:ModelSquare(column: 1, line: 1), withNumber:2)
         
         // from top to bottom: white, black, black on 4/4
-        board.setPiece(MIXCoreSquareMake(4, 4))
-        board.setPiece(MIXCoreSquareMake(2, 4))
-        board.setPiece(MIXCoreSquareMake(3, 4))
+        board.setPiece(ModelSquare(column: 4, line: 4))
+        board.setPiece(ModelSquare(column: 2, line: 4))
+        board.setPiece(ModelSquare(column: 3, line: 4))
         board.dragPiecesFrom(ModelSquare(column: 2, line: 4), to:ModelSquare(column: 3, line: 4), withNumber:1)
         board.dragPiecesFrom(ModelSquare(column: 3, line: 4), to:ModelSquare(column: 4, line: 4), withNumber:2)
         
         // from top to bottom: black, white on 1/4
-        board.setPiece(MIXCoreSquareMake(1, 4))
-        board.setPiece(MIXCoreSquareMake(2, 4))
+        board.setPiece(ModelSquare(column: 1, line: 4))
+        board.setPiece(ModelSquare(column: 2, line: 4))
         board.dragPiecesFrom(ModelSquare(column: 2, line: 4), to:ModelSquare(column: 1, line: 4), withNumber:1)
         
         // white on 0/0
-        board.setPiece(MIXCoreSquareMake(0, 0))
+        board.setPiece(ModelSquare(column: 0, line: 0))
         
         // black on 0/1
-        board.setPiece(MIXCoreSquareMake(0, 1))
+        board.setPiece(ModelSquare(column: 0, line: 1))
         
         return board;
     }
@@ -218,12 +218,12 @@ class ModelBoardTests : XCTestCase {
         XCTAssertFalse(board.isDragLegalFrom(ModelSquare(column: 0, line: 0), to:ModelSquare(column: 1, line: 1)))
         
         // put some pieces between -> legal becomes illegal
-        board.setPiece(MIXCoreSquareMake(2, 2))
+        board.setPiece(ModelSquare(column: 2, line: 2))
         XCTAssertFalse(board.isDragLegalFrom(ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 1)))
         XCTAssertFalse(board.isDragLegalFrom(ModelSquare(column: 1, line: 1), to:ModelSquare(column: 4, line: 4)))
         
-        board.setPiece(MIXCoreSquareMake(1, 3))
-        board.setPiece(MIXCoreSquareMake(3, 4))
+        board.setPiece(ModelSquare(column: 1, line: 3))
+        board.setPiece(ModelSquare(column: 3, line: 4))
         XCTAssertTrue(board.isDragLegalFrom(ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 1)))
         XCTAssertTrue(board.isDragLegalFrom(ModelSquare(column: 1, line: 4), to:ModelSquare(column: 4, line: 4)))
     }
@@ -232,7 +232,7 @@ class ModelBoardTests : XCTestCase {
         let board = ModelBoard()
         for i in 1..<5 {
             for j in 1..<5 {
-                board.setPiece(MIXCoreSquareMake(UInt8(i), UInt8(j)))
+                board.setPiece(ModelSquare(column: i, line: j))
             }
         }
         let squareWithTwoPieces = ModelSquare(column: 4, line: 1)
@@ -249,7 +249,7 @@ class ModelBoardTests : XCTestCase {
         for i in 0..<5 {
             for j in 0..<5 {
                 XCTAssertTrue(board.isSettingPossible(), "still something free")
-                board.setPiece(MIXCoreSquareMake(UInt8(i), UInt8(j)))
+                board.setPiece(ModelSquare(column: i, line: j))
             }
         }
         XCTAssertFalse(board.isSettingPossible(), "all 25 squares covered")
@@ -273,8 +273,8 @@ class ModelBoardTests : XCTestCase {
             for j in 1..<4 {
                 if (i != 4 || j != 3) {
                     XCTAssertTrue(board.isSettingPossible(), "")
-                    let square = MIXCoreSquareMake(UInt8(i), UInt8(j))
-                    XCTAssertTrue(board.isSquareEmpty(square))
+                    let square = ModelSquare(column: i, line: j)
+                    XCTAssertTrue(board.isSquareEmpty(square.coreSquare()))
                     board.setPiece(square)
                 }
             }
@@ -284,8 +284,8 @@ class ModelBoardTests : XCTestCase {
         XCTAssertEqual(board.numberOfPiecesForPlayer(MIXCorePlayerBlack), UInt(1), "")
         XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "")
         
-        let emptySquare = MIXCoreSquareMake(4, 3)
-        XCTAssertTrue(board.isSquareEmpty(emptySquare))
+        let emptySquare = ModelSquare(column: 4, line: 3)
+        XCTAssertTrue(board.isSquareEmpty(emptySquare.coreSquare()))
         XCTAssertFalse(board.isSettingPossible(), "no pieces left for white")
         
         board.dragPiecesFrom(ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 3), withNumber:3)

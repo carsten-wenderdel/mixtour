@@ -29,10 +29,4 @@
 
 - (MIXCorePlayer)colorOfSquare:(MIXCoreSquare)square atPosition:(uint_fast8_t)position;
 
-/**
- If this is a legal move, it returns YES.
- If it's an illegal move, the move is not made and NO is returned. The model is still fine.
- */
-- (BOOL)setPiece:(MIXCoreSquare)square;
-
 @end

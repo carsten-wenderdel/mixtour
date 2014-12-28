@@ -54,21 +54,4 @@
 }
 
 
-- (BOOL)setPiece:(MIXCoreSquare)square {
-    
-    if (! isSquareEmpty(&_coreBoard, square)) {
-        return NO;
-    }
-    
-    MIXCorePlayer turn = playerOnTurn(&_coreBoard);
-    if (numberOfPiecesForPlayer(&_coreBoard, turn) <= 0) {
-       return NO;
-    }
-    
-    // ok, it's a legal move
-    setPiece(&_coreBoard, square);
-    return YES;
-}
-
-
 @end

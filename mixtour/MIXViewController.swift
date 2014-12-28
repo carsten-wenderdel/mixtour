@@ -13,9 +13,9 @@ class MIXViewController: UIViewController, GameViewDelegate {
 
     lazy var board: ModelBoard = {
         let board = ModelBoard()
-        for i:UInt8 in 0..<5 {
-            for j:UInt8 in 0..<5 {
-                board.setPiece(MIXCoreSquareMake(i, j))
+        for i in 0..<5 {
+            for j in 0..<5 {
+                board.setPiece(ModelSquare(column: i, line: j))
             }
         }
         for i in 1...2 {

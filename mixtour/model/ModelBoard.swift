@@ -21,7 +21,31 @@ class ModelBoard: MIXModelBoard {
         return ModelPlayer(corePlayer: corePlayer)
     }
     
+    /**
+    If this is a legal move, it returns YES.
+    If it's an illegal move, the move is not made and NO is returned. The model is still fine.
+    */
+    func setPiece(square: ModelSquare) -> Bool {
+        // TODO: Remove tempBoard
+        var tempBoard = self.coreBoard
+        let coreSquare = square.coreSquare()
     
+        if !mixtour.isSquareEmpty(&tempBoard, coreSquare) {
+            return false
+        }
+
+        let player = mixtour.playerOnTurn(&tempBoard)
+        if mixtour.numberOfPiecesForPlayer(&tempBoard, player) <= 0 {
+            return false
+        }
+        
+        // ok, it's a legal move
+        mixtour.setPiece(&tempBoard, coreSquare)
+        self.coreBoard = tempBoard
+        return true
+    }
+    
+
     func dragPiecesFrom(from: ModelSquare, to: ModelSquare, withNumber numberODraggedPieces: Int) -> Bool {
         // TODO: Remove tempBoard
         var tempBoard = self.coreBoard
