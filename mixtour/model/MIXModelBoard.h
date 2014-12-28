@@ -23,8 +23,4 @@
 
 - (NSUInteger)numberOfPiecesForPlayer:(MIXCorePlayer)player;
 
-- (BOOL)isSquareEmpty:(MIXCoreSquare)square;
-
-- (NSUInteger) heightOfSquare:(MIXCoreSquare)square;
-
 @end

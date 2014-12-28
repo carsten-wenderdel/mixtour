@@ -38,14 +38,4 @@
 }
 
 
-- (BOOL)isSquareEmpty:(MIXCoreSquare)square {
-    return isSquareEmpty(&_coreBoard, square);
-}
-
-
-- (NSUInteger)heightOfSquare:(MIXCoreSquare)square {
-    return heightOfSquare(&_coreBoard, square);
-}
-
-
 @end

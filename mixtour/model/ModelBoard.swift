@@ -21,6 +21,21 @@ class ModelBoard: MIXModelBoard {
         return ModelPlayer(corePlayer: corePlayer)
     }
     
+    
+    func isSquareEmpty(square: ModelSquare) -> Bool {
+        // TODO: Remove tempBoard
+        var tempBoard = self.coreBoard
+        return mixtour.isSquareEmpty(&tempBoard, square.coreSquare())
+    }
+    
+    
+    func heightOfSquare(square: ModelSquare) -> Int {
+        // TODO: Remove tempBoard
+        var tempBoard = self.coreBoard
+        return Int(mixtour.heightOfSquare(&tempBoard, square.coreSquare()))
+    }
+    
+    
     func colorOfSquare(square: ModelSquare, atPosition position: Int) -> ModelPlayer{
         // TODO: Remove tempBoard
         var tempBoard = self.coreBoard

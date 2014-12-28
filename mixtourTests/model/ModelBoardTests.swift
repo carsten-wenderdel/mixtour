@@ -19,9 +19,9 @@ class ModelBoardTests : XCTestCase {
         
         for i in 0..<5 {
             for j in 0..<5 {
-                let square = MIXCoreSquareMake(UInt8(i), UInt8(j))
+                let square = ModelSquare(column: i, line: j)
                 XCTAssertTrue(modelBoard.isSquareEmpty(square), "at the the start everything is empty")
-                XCTAssertEqual(modelBoard.heightOfSquare(MIXCoreSquareMake(UInt8(i), UInt8(j))), UInt(0), "at the start everything should be empty")
+                XCTAssertEqual(modelBoard.heightOfSquare(square), 0, "at the start everything should be empty")
             }
         }
     }
@@ -112,9 +112,9 @@ class ModelBoardTests : XCTestCase {
         XCTAssertEqual(board.numberOfPiecesForPlayer(MIXCorePlayerBlack), UInt(19),
             "only one piece set, one move attempt was illegal")
         
-        XCTAssertEqual(board.heightOfSquare(square2.coreSquare()), UInt(1), "one piece set -> height 1")
-        XCTAssertEqual(board.heightOfSquare(square1.coreSquare()), UInt(1), "you can only set once -> height 1")
-        XCTAssertEqual(board.heightOfSquare(MIXCoreSquareMake(0, 0)), UInt(0), "nothing set here")
+        XCTAssertEqual(board.heightOfSquare(square2), 1, "one piece set -> height 1")
+        XCTAssertEqual(board.heightOfSquare(square1), 1, "you can only set once -> height 1")
+        XCTAssertEqual(board.heightOfSquare(ModelSquare(column: 0, line: 0)), 0, "nothing set here")
     }
     
     
@@ -192,11 +192,11 @@ class ModelBoardTests : XCTestCase {
         
         let board = boardForTestingMoves()
         
-        XCTAssertEqual(board.heightOfSquare(MIXCoreSquareMake(1, 1)), UInt(3), "")
-        XCTAssertEqual(board.heightOfSquare(MIXCoreSquareMake(4, 4)), UInt(3), "")
-        XCTAssertEqual(board.heightOfSquare(MIXCoreSquareMake(1, 4)), UInt(2), "")
-        XCTAssertEqual(board.heightOfSquare(MIXCoreSquareMake(0, 0)), UInt(1), "")
-        XCTAssertEqual(board.heightOfSquare(MIXCoreSquareMake(3, 3)), UInt(0), "nothing set here")
+        XCTAssertEqual(board.heightOfSquare(ModelSquare(column: 1, line: 1)), 3)
+        XCTAssertEqual(board.heightOfSquare(ModelSquare(column: 4, line: 4)), 3)
+        XCTAssertEqual(board.heightOfSquare(ModelSquare(column: 1, line: 4)), 2)
+        XCTAssertEqual(board.heightOfSquare(ModelSquare(column: 0, line: 0)), 1)
+        XCTAssertEqual(board.heightOfSquare(ModelSquare(column: 3, line: 3)), 0, "nothing set here")
     }
     
     
@@ -274,7 +274,7 @@ class ModelBoardTests : XCTestCase {
                 if (i != 4 || j != 3) {
                     XCTAssertTrue(board.isSettingPossible(), "")
                     let square = ModelSquare(column: i, line: j)
-                    XCTAssertTrue(board.isSquareEmpty(square.coreSquare()))
+                    XCTAssertTrue(board.isSquareEmpty(square))
                     board.setPiece(square)
                 }
             }
@@ -285,7 +285,7 @@ class ModelBoardTests : XCTestCase {
         XCTAssertEqual(board.playerOnTurn().value, MIXCorePlayerWhite.value, "")
         
         let emptySquare = ModelSquare(column: 4, line: 3)
-        XCTAssertTrue(board.isSquareEmpty(emptySquare.coreSquare()))
+        XCTAssertTrue(board.isSquareEmpty(emptySquare))
         XCTAssertFalse(board.isSettingPossible(), "no pieces left for white")
         
         board.dragPiecesFrom(ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 3), withNumber:3)

@@ -114,7 +114,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         for column in 0..<numberOfSquares {
             for line in 0..<numberOfSquares {
                 let square = ModelSquare(column: column, line: line)
-                let height = board.heightOfSquare(square.coreSquare())
+                let height = board.heightOfSquare(square)
                 for var position = Int(height) - 1; position >= 0; position-- {
                     let player = board.colorOfSquare(square, atPosition: position)
                     let color = (player == ModelPlayer.White)
@@ -123,14 +123,14 @@ class GameView: UIView, UIGestureRecognizerDelegate {
                     // When there are 5 pieces, the upper most has - as always -
                     // the position 0, but the ui position 4
                     let uiPosition = height - position - 1
-                    setPieceWithColor(color, onSquare: square.coreSquare(), atUIPosition: uiPosition)
+                    setPieceWithColor(color, onSquare: square, atUIPosition: uiPosition)
                 }
             }
         }
     }
     
     
-    private func setPieceWithColor(color: UIColor, onSquare square: MIXCoreSquare, atUIPosition uiPosition: UInt) {
+    private func setPieceWithColor(color: UIColor, onSquare square: ModelSquare, atUIPosition uiPosition: Int) {
         // find out where to place it
         let startX = upperLeftPoint.x
                 + (squareLength * CGFloat(square.line))
@@ -146,7 +146,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         addSubview(pieceView)
         
         // manage position logically
-        fieldArray[Int(square.column)][Int(square.line)].append(pieceView)
+        fieldArray[square.column][square.line].append(pieceView)
     }
     
 
