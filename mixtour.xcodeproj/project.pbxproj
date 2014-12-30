@@ -19,6 +19,7 @@
 		574588081A174F3700BBADCE /* MIXAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574588071A174F3700BBADCE /* MIXAppDelegate.swift */; };
 		57943FEF1A49DD9400744ABE /* GameBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57943FEE1A49DD9400744ABE /* GameBackgroundView.swift */; };
 		57943FF21A49E4EF00744ABE /* ModelBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57943FF11A49E4EF00744ABE /* ModelBoardTests.swift */; };
+		579FF8521A53202F00730D92 /* MIXCoreBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579FF8511A53202F00730D92 /* MIXCoreBoardTests.swift */; };
 		57C207FA1A489917002DAFB3 /* GamePieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C207F91A489917002DAFB3 /* GamePieceView.swift */; };
 		57D21AB31A0FF52E00D1ABBC /* MIXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D21AB21A0FF52E00D1ABBC /* MIXViewController.swift */; };
 		A10DC19E17A3FD3900E42832 /* MixCoreBoard_private.c in Sources */ = {isa = PBXBuildFile; fileRef = A10DC19D17A3FD3900E42832 /* MixCoreBoard_private.c */; };
@@ -34,7 +35,6 @@
 		AA040658176F9DF40051363A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA04063A176F9DF40051363A /* UIKit.framework */; };
 		AA040660176F9DF40051363A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA04065E176F9DF40051363A /* InfoPlist.strings */; };
 		AA04066E176FA5F70051363A /* MIXCoreBoard.c in Sources */ = {isa = PBXBuildFile; fileRef = AA04066D176FA5F70051363A /* MIXCoreBoard.c */; };
-		AA040672176FB3D80051363A /* MIXCoreBoardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA040671176FB3D80051363A /* MIXCoreBoardTests.m */; };
 		AAE463AB1772657700008778 /* MIXCoreHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = AAE463AA1772657700008778 /* MIXCoreHelper.c */; };
 		AAE463AE177265ED00008778 /* MIXCoreHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE463AD177265ED00008778 /* MIXCoreHelperTests.m */; };
 /* End PBXBuildFile section */
@@ -60,6 +60,7 @@
 		57943FEE1A49DD9400744ABE /* GameBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBackgroundView.swift; sourceTree = "<group>"; };
 		57943FF01A49E4EE00744ABE /* mixtourTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mixtourTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		57943FF11A49E4EF00744ABE /* ModelBoardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBoardTests.swift; sourceTree = "<group>"; };
+		579FF8511A53202F00730D92 /* MIXCoreBoardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXCoreBoardTests.swift; sourceTree = "<group>"; };
 		57C207F91A489917002DAFB3 /* GamePieceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePieceView.swift; sourceTree = "<group>"; };
 		57D21AB11A0FF52D00D1ABBC /* mixtour-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mixtour-Bridging-Header.h"; sourceTree = "<group>"; };
 		57D21AB21A0FF52E00D1ABBC /* MIXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		AA04065F176F9DF40051363A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AA04066D176FA5F70051363A /* MIXCoreBoard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = MIXCoreBoard.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
 		AA04066F176FA68F0051363A /* MIXCoreBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MIXCoreBoard.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		AA040671176FB3D80051363A /* MIXCoreBoardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXCoreBoardTests.m; sourceTree = "<group>"; };
 		AA28392B1770EB3A00F229F7 /* MIXCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXCore.h; sourceTree = "<group>"; };
 		AAE463AA1772657700008778 /* MIXCoreHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MIXCoreHelper.c; sourceTree = "<group>"; };
 		AAE463AC1772658800008778 /* MIXCoreHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIXCoreHelper.h; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		AA040670176FB39D0051363A /* core */ = {
 			isa = PBXGroup;
 			children = (
-				AA040671176FB3D80051363A /* MIXCoreBoardTests.m */,
+				579FF8511A53202F00730D92 /* MIXCoreBoardTests.swift */,
 				A10DC19F17A4033300E42832 /* MIXCoreBoard_privateTests.m */,
 				AAE463AD177265ED00008778 /* MIXCoreHelperTests.m */,
 			);
@@ -358,10 +358,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA040672176FB3D80051363A /* MIXCoreBoardTests.m in Sources */,
 				5743AEAE1A4AD1780087D033 /* ModelBoard.swift in Sources */,
 				5743AEB51A4B81EC0087D033 /* ModelPlayer.swift in Sources */,
 				A10DC1A017A4033300E42832 /* MIXCoreBoard_privateTests.m in Sources */,
+				579FF8521A53202F00730D92 /* MIXCoreBoardTests.swift in Sources */,
 				AAE463AE177265ED00008778 /* MIXCoreHelperTests.m in Sources */,
 				5743AEB41A4B7FAF0087D033 /* ModelPlayerTests.swift in Sources */,
 				5705DF321A4E036A00C3DB01 /* ModelSquare.swift in Sources */,
