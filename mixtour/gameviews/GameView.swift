@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol GameViewDelegate: class {
-    func gameView(gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: MIXCoreSquare, to: MIXCoreSquare) -> Bool
+    func gameView(gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: ModelSquare, to: ModelSquare) -> Bool
 }
 
 
@@ -18,7 +18,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
 
     weak var delegate: GameViewDelegate?
 
-    var pressedSquare: MIXCoreSquare?
+    var pressedSquare: ModelSquare?
     var pannedViews = [GamePieceView]()
     
     let upperLeftPoint: CGPoint
@@ -150,10 +150,10 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     }
     
 
-    private func squareForPosition(position: CGPoint) -> MIXCoreSquare {
+    private func squareForPosition(position: CGPoint) -> ModelSquare {
         let column = (position.y - upperLeftPoint.y) / squareLength
         let line = (position.x - upperLeftPoint.x) / squareLength
-        var square = MIXCoreSquare(column: UInt8(column), line: UInt8(line))
+        let square = ModelSquare(column: Int(column), line: Int(line))
         return square
     }
     
