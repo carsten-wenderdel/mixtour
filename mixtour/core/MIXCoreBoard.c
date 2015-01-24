@@ -69,11 +69,10 @@ MIXCorePlayer winner(MIXCoreBoardRef boardRef)
 
 uint8_t numberOfPiecesForPlayer(MIXCoreBoardRef boardRef, MIXCorePlayer player) {
     
-    switch (player) {
-        case MIXCorePlayerWhite:
-            return boardRef->whitePieces;
-        default:
-            return boardRef->blackPieces;
+    if (MIXCorePlayerWhite == player) {
+        return boardRef->whitePieces;
+    } else {
+        return boardRef->blackPieces;
     }
 }
 

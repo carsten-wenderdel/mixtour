@@ -35,7 +35,7 @@
 		AA040657176F9DF40051363A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040636176F9DF40051363A /* Foundation.framework */; };
 		AA040658176F9DF40051363A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA04063A176F9DF40051363A /* UIKit.framework */; };
 		AA040660176F9DF40051363A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA04065E176F9DF40051363A /* InfoPlist.strings */; };
-		AA04066E176FA5F70051363A /* MIXCoreBoard.c in Sources */ = {isa = PBXBuildFile; fileRef = AA04066D176FA5F70051363A /* MIXCoreBoard.c */; };
+		AA04066E176FA5F70051363A /* MIXCoreBoard.c in Sources */ = {isa = PBXBuildFile; fileRef = AA04066D176FA5F70051363A /* MIXCoreBoard.c */; settings = {COMPILER_FLAGS = "-Wno-missing-field-initializers -Wno-missing-braces"; }; };
 		AAE463AB1772657700008778 /* MIXCoreHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = AAE463AA1772657700008778 /* MIXCoreHelper.c */; };
 /* End PBXBuildFile section */
 
@@ -484,12 +484,18 @@
 				CLANG_ENABLE_MODULES = YES;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "mixtour/mixtour-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CFLAGS = "-Wno-padded";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtour/mixtour-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+					"-Weverything",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -505,8 +511,14 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "mixtour/mixtour-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CFLAGS = "-Wno-padded";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtour/mixtour-Bridging-Header.h";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+					"-Weverything",
+				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
