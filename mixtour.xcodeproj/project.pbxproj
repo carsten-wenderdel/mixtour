@@ -10,6 +10,7 @@
 		5705DF311A4DFE7C00C3DB01 /* ModelSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705DF301A4DFE7C00C3DB01 /* ModelSquare.swift */; };
 		5705DF321A4E036A00C3DB01 /* ModelSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705DF301A4DFE7C00C3DB01 /* ModelSquare.swift */; };
 		5705DF341A4E14B000C3DB01 /* ModelSquareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705DF331A4E14B000C3DB01 /* ModelSquareTests.swift */; };
+		573620411A7C1EF700086A1E /* MIXCoreHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573620401A7C1EF700086A1E /* MIXCoreHelperTests.swift */; };
 		5743AEAC1A4ACFAB0087D033 /* ModelBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */; };
 		5743AEAE1A4AD1780087D033 /* ModelBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */; };
 		5743AEB21A4B7DF00087D033 /* ModelPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEB11A4B7DF00087D033 /* ModelPlayer.swift */; };
@@ -36,7 +37,6 @@
 		AA040660176F9DF40051363A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA04065E176F9DF40051363A /* InfoPlist.strings */; };
 		AA04066E176FA5F70051363A /* MIXCoreBoard.c in Sources */ = {isa = PBXBuildFile; fileRef = AA04066D176FA5F70051363A /* MIXCoreBoard.c */; };
 		AAE463AB1772657700008778 /* MIXCoreHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = AAE463AA1772657700008778 /* MIXCoreHelper.c */; };
-		AAE463AE177265ED00008778 /* MIXCoreHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE463AD177265ED00008778 /* MIXCoreHelperTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +52,7 @@
 /* Begin PBXFileReference section */
 		5705DF301A4DFE7C00C3DB01 /* ModelSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSquare.swift; sourceTree = "<group>"; };
 		5705DF331A4E14B000C3DB01 /* ModelSquareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSquareTests.swift; sourceTree = "<group>"; };
+		573620401A7C1EF700086A1E /* MIXCoreHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXCoreHelperTests.swift; sourceTree = "<group>"; };
 		5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBoard.swift; sourceTree = "<group>"; };
 		5743AEB11A4B7DF00087D033 /* ModelPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelPlayer.swift; sourceTree = "<group>"; };
 		5743AEB31A4B7FAF0087D033 /* ModelPlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelPlayerTests.swift; sourceTree = "<group>"; };
@@ -85,7 +86,6 @@
 		AA28392B1770EB3A00F229F7 /* MIXCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXCore.h; sourceTree = "<group>"; };
 		AAE463AA1772657700008778 /* MIXCoreHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MIXCoreHelper.c; sourceTree = "<group>"; };
 		AAE463AC1772658800008778 /* MIXCoreHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIXCoreHelper.h; sourceTree = "<group>"; };
-		AAE463AD177265ED00008778 /* MIXCoreHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXCoreHelperTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +206,7 @@
 			children = (
 				579FF8511A53202F00730D92 /* MIXCoreBoardTests.swift */,
 				579FF8541A53243700730D92 /* MIXCoreBoard_privateTests.swift */,
-				AAE463AD177265ED00008778 /* MIXCoreHelperTests.m */,
+				573620401A7C1EF700086A1E /* MIXCoreHelperTests.swift */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -361,12 +361,12 @@
 				5743AEAE1A4AD1780087D033 /* ModelBoard.swift in Sources */,
 				5743AEB51A4B81EC0087D033 /* ModelPlayer.swift in Sources */,
 				579FF8521A53202F00730D92 /* MIXCoreBoardTests.swift in Sources */,
-				AAE463AE177265ED00008778 /* MIXCoreHelperTests.m in Sources */,
 				5743AEB41A4B7FAF0087D033 /* ModelPlayerTests.swift in Sources */,
 				579FF8551A53243700730D92 /* MIXCoreBoard_privateTests.swift in Sources */,
 				5705DF321A4E036A00C3DB01 /* ModelSquare.swift in Sources */,
 				5705DF341A4E14B000C3DB01 /* ModelSquareTests.swift in Sources */,
 				57943FF21A49E4EF00744ABE /* ModelBoardTests.swift in Sources */,
+				573620411A7C1EF700086A1E /* MIXCoreHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

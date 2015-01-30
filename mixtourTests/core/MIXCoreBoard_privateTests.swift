@@ -8,7 +8,7 @@
 
 import XCTest
 
-class MIXCoreBoardTests2 : XCTestCase {
+class MIXCoreBoard_privateTests : XCTestCase {
     
     func testSetPiecesDirectly() {
         
