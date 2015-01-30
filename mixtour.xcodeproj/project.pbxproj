@@ -20,10 +20,10 @@
 		57943FEF1A49DD9400744ABE /* GameBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57943FEE1A49DD9400744ABE /* GameBackgroundView.swift */; };
 		57943FF21A49E4EF00744ABE /* ModelBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57943FF11A49E4EF00744ABE /* ModelBoardTests.swift */; };
 		579FF8521A53202F00730D92 /* MIXCoreBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579FF8511A53202F00730D92 /* MIXCoreBoardTests.swift */; };
+		579FF8551A53243700730D92 /* MIXCoreBoard_privateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579FF8541A53243700730D92 /* MIXCoreBoard_privateTests.swift */; };
 		57C207FA1A489917002DAFB3 /* GamePieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C207F91A489917002DAFB3 /* GamePieceView.swift */; };
 		57D21AB31A0FF52E00D1ABBC /* MIXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D21AB21A0FF52E00D1ABBC /* MIXViewController.swift */; };
 		A10DC19E17A3FD3900E42832 /* MixCoreBoard_private.c in Sources */ = {isa = PBXBuildFile; fileRef = A10DC19D17A3FD3900E42832 /* MixCoreBoard_private.c */; };
-		A10DC1A017A4033300E42832 /* MIXCoreBoard_privateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A10DC19F17A4033300E42832 /* MIXCoreBoard_privateTests.m */; };
 		AA040637176F9DF40051363A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040636176F9DF40051363A /* Foundation.framework */; };
 		AA040639176F9DF40051363A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040638176F9DF40051363A /* CoreGraphics.framework */; };
 		AA04063B176F9DF40051363A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA04063A176F9DF40051363A /* UIKit.framework */; };
@@ -61,12 +61,12 @@
 		57943FF01A49E4EE00744ABE /* mixtourTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mixtourTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		57943FF11A49E4EF00744ABE /* ModelBoardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBoardTests.swift; sourceTree = "<group>"; };
 		579FF8511A53202F00730D92 /* MIXCoreBoardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXCoreBoardTests.swift; sourceTree = "<group>"; };
+		579FF8541A53243700730D92 /* MIXCoreBoard_privateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXCoreBoard_privateTests.swift; sourceTree = "<group>"; };
 		57C207F91A489917002DAFB3 /* GamePieceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePieceView.swift; sourceTree = "<group>"; };
 		57D21AB11A0FF52D00D1ABBC /* mixtour-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mixtour-Bridging-Header.h"; sourceTree = "<group>"; };
 		57D21AB21A0FF52E00D1ABBC /* MIXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXViewController.swift; sourceTree = "<group>"; };
 		A10DC19C17A3FD1100E42832 /* MixCoreBoard_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixCoreBoard_private.h; sourceTree = "<group>"; };
 		A10DC19D17A3FD3900E42832 /* MixCoreBoard_private.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MixCoreBoard_private.c; sourceTree = "<group>"; };
-		A10DC19F17A4033300E42832 /* MIXCoreBoard_privateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIXCoreBoard_privateTests.m; sourceTree = "<group>"; };
 		AA040633176F9DF40051363A /* mixtour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mixtour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA040636176F9DF40051363A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AA040638176F9DF40051363A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -205,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				579FF8511A53202F00730D92 /* MIXCoreBoardTests.swift */,
-				A10DC19F17A4033300E42832 /* MIXCoreBoard_privateTests.m */,
+				579FF8541A53243700730D92 /* MIXCoreBoard_privateTests.swift */,
 				AAE463AD177265ED00008778 /* MIXCoreHelperTests.m */,
 			);
 			path = core;
@@ -360,10 +360,10 @@
 			files = (
 				5743AEAE1A4AD1780087D033 /* ModelBoard.swift in Sources */,
 				5743AEB51A4B81EC0087D033 /* ModelPlayer.swift in Sources */,
-				A10DC1A017A4033300E42832 /* MIXCoreBoard_privateTests.m in Sources */,
 				579FF8521A53202F00730D92 /* MIXCoreBoardTests.swift in Sources */,
 				AAE463AE177265ED00008778 /* MIXCoreHelperTests.m in Sources */,
 				5743AEB41A4B7FAF0087D033 /* ModelPlayerTests.swift in Sources */,
+				579FF8551A53243700730D92 /* MIXCoreBoard_privateTests.swift in Sources */,
 				5705DF321A4E036A00C3DB01 /* ModelSquare.swift in Sources */,
 				5705DF341A4E14B000C3DB01 /* ModelSquareTests.swift in Sources */,
 				57943FF21A49E4EF00744ABE /* ModelBoardTests.swift in Sources */,

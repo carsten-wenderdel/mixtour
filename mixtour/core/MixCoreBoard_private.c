@@ -26,13 +26,8 @@ void removeAllPieces(MIXCoreBoardRef boardRef, MIXCoreSquare square) {
 }
 
 
-void setPiecesDirectly(MIXCoreBoardRef boardRef, MIXCoreSquare square, int numberOfArguments, ...) {
-    
+void setPiecesDirectlyWithList(MIXCoreBoardRef boardRef, MIXCoreSquare square, int numberOfArguments, va_list ap) {
     boardRef->height[square.column][square.line] += numberOfArguments;
-    
-    va_list ap;
-    
-    va_start(ap, numberOfArguments);
     
     for (int i = 0; i < numberOfArguments; i++) {
         MIXCorePlayer color = va_arg(ap, MIXCorePlayer);
@@ -45,6 +40,14 @@ void setPiecesDirectly(MIXCoreBoardRef boardRef, MIXCoreSquare square, int numbe
             boardRef->blackPieces--;
         }
     }
+}
+
+
+void setPiecesDirectly(MIXCoreBoardRef boardRef, MIXCoreSquare square, int numberOfArguments, ...) {
+    va_list ap;
+    va_start(ap, numberOfArguments);
+    
+    setPiecesDirectlyWithList(boardRef, square, numberOfArguments, ap);
     
     va_end(ap);
 }

@@ -17,6 +17,13 @@
  Not intended for normal game play but for unit tests and similar.
  Does not change whose turn it is.
  */
+void setPiecesDirectlyWithList(MIXCoreBoardRef boardRef, MIXCoreSquare square, int numberOfArguments, va_list ap);
+
+
+/**
+ Not intended for normal game play but for unit tests and similar.
+ Does not change whose turn it is.
+ */
 void setPiecesDirectly(MIXCoreBoardRef boardRef, MIXCoreSquare square, MIXCorePlayer piece1, ...);
 
 

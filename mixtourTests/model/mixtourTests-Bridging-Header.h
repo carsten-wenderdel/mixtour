@@ -4,3 +4,4 @@
 
 #import "MIXCore.h"
 #import "MIXCoreBoard.h"
+#import "MixCoreBoard_private.h"
