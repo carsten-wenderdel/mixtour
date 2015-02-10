@@ -29,13 +29,13 @@ class ModelBoard {
     
     func winner() -> ModelPlayer {
         let corePlayer = mixtour.winner(&coreBoard)
-        return ModelPlayer(corePlayer: corePlayer)
+        return mixtour.ModelPlayer(corePlayer: corePlayer)
     }
     
     
     func playerOnTurn() -> ModelPlayer {
         let corePlayer = mixtour.playerOnTurn(&coreBoard)
-        return ModelPlayer(corePlayer: corePlayer)
+        return mixtour.ModelPlayer(corePlayer: corePlayer)
     }
     
     
@@ -56,7 +56,7 @@ class ModelBoard {
     
     func colorOfSquare(square: ModelSquare, atPosition position: Int) -> ModelPlayer{
         let corePlayer = colorOfSquareAtPosition(&coreBoard, square.coreSquare(), UInt8(position))
-        return ModelPlayer(corePlayer: corePlayer)
+        return mixtour.ModelPlayer(corePlayer: corePlayer)
     }
     
     

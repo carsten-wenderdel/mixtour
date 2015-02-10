@@ -17,9 +17,9 @@ class ModelPlayerTests : XCTestCase {
     }
     
     func testInitWorksForAllCoreValues() {
-        XCTAssertEqual(ModelPlayer(corePlayer: MIXCorePlayerWhite), ModelPlayer.White)
-        XCTAssertEqual(ModelPlayer(corePlayer: MIXCorePlayerBlack), ModelPlayer.Black)
-        XCTAssertEqual(ModelPlayer(corePlayer: MIXCorePlayerUndefined), ModelPlayer.Undefined)
+        XCTAssertEqual(mixtour.ModelPlayer(corePlayer: MIXCorePlayerWhite), ModelPlayer.White)
+        XCTAssertEqual(mixtour.ModelPlayer(corePlayer: MIXCorePlayerBlack), ModelPlayer.Black)
+        XCTAssertEqual(mixtour.ModelPlayer(corePlayer: MIXCorePlayerUndefined), ModelPlayer.Undefined)
     }
     
     func testCorePlayer() {

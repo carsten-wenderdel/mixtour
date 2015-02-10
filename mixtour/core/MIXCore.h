@@ -16,6 +16,8 @@
 #ifndef mixtour_MIXCore_h
 #define mixtour_MIXCore_h
 
+#include <stdint.h>
+
 
 typedef enum {
     MIXCorePlayerWhite = 0,
