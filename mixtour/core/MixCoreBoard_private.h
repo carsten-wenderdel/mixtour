@@ -24,7 +24,7 @@ void setPiecesDirectlyWithList(MIXCoreBoardRef boardRef, MIXCoreSquare square, i
  Not intended for normal game play but for unit tests and similar.
  Does not change whose turn it is.
  */
-void setPiecesDirectly(MIXCoreBoardRef boardRef, MIXCoreSquare square, MIXCorePlayer piece1, ...);
+void setPiecesDirectly(MIXCoreBoardRef boardRef, MIXCoreSquare square, int numberOfArguments, ...);
 
 
 /**

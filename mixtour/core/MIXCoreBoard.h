@@ -56,6 +56,9 @@ bool isGameOver(MIXCoreBoardRef boardRef);
  */
 MIXCorePlayer winner(MIXCoreBoardRef boardRef);
 
+/**
+ Return value not defined for player values not equal to MIXCorePlayerWhite or MIXCorePlayerBlacks
+ */
 uint8_t numberOfPiecesForPlayer(MIXCoreBoardRef boardRef, MIXCorePlayer player);
 
 bool isSquareEmpty(MIXCoreBoardRef boardRef, MIXCoreSquare square);
