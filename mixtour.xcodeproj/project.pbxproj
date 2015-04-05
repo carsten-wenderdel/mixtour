@@ -37,6 +37,10 @@
 		AA040660176F9DF40051363A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA04065E176F9DF40051363A /* InfoPlist.strings */; };
 		AA04066E176FA5F70051363A /* MIXCoreBoard.c in Sources */ = {isa = PBXBuildFile; fileRef = AA04066D176FA5F70051363A /* MIXCoreBoard.c */; settings = {COMPILER_FLAGS = "-Wno-missing-field-initializers -Wno-missing-braces"; }; };
 		AAE463AB1772657700008778 /* MIXCoreHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = AAE463AA1772657700008778 /* MIXCoreHelper.c */; };
+		CB63B25F8023150F93275209 /* MIXCore.c in Sources */ = {isa = PBXBuildFile; fileRef = CB63B827737C40F9984DE3AA /* MIXCore.c */; };
+		CB63B3EEE1E68BD0344DD3E0 /* ModelMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB63BC8D4EBA3A20D132D90A /* ModelMove.swift */; };
+		CB63B885CCB2E6807CFA6772 /* ModelMoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB63BF904B1FED6132F89868 /* ModelMoveTests.swift */; };
+		CB63BBAB39ADD6E0EC1BE992 /* ModelMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB63BC8D4EBA3A20D132D90A /* ModelMove.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +89,9 @@
 		AA28392B1770EB3A00F229F7 /* MIXCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXCore.h; sourceTree = "<group>"; };
 		AAE463AA1772657700008778 /* MIXCoreHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MIXCoreHelper.c; sourceTree = "<group>"; };
 		AAE463AC1772658800008778 /* MIXCoreHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIXCoreHelper.h; sourceTree = "<group>"; };
+		CB63B827737C40F9984DE3AA /* MIXCore.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MIXCore.c; sourceTree = "<group>"; };
+		CB63BC8D4EBA3A20D132D90A /* ModelMove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelMove.swift; sourceTree = "<group>"; };
+		CB63BF904B1FED6132F89868 /* ModelMoveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelMoveTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +202,7 @@
 				A10DC19D17A3FD3900E42832 /* MixCoreBoard_private.c */,
 				AAE463AC1772658800008778 /* MIXCoreHelper.h */,
 				AAE463AA1772657700008778 /* MIXCoreHelper.c */,
+				CB63B827737C40F9984DE3AA /* MIXCore.c */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -215,6 +223,7 @@
 				5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */,
 				5743AEB11A4B7DF00087D033 /* ModelPlayer.swift */,
 				5705DF301A4DFE7C00C3DB01 /* ModelSquare.swift */,
+				CB63BC8D4EBA3A20D132D90A /* ModelMove.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -226,6 +235,7 @@
 				5743AEB31A4B7FAF0087D033 /* ModelPlayerTests.swift */,
 				5705DF331A4E14B000C3DB01 /* ModelSquareTests.swift */,
 				57943FF01A49E4EE00744ABE /* mixtourTests-Bridging-Header.h */,
+				CB63BF904B1FED6132F89868 /* ModelMoveTests.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -349,6 +359,8 @@
 				A10DC19E17A3FD3900E42832 /* MixCoreBoard_private.c in Sources */,
 				57D21AB31A0FF52E00D1ABBC /* MIXViewController.swift in Sources */,
 				5743AEB21A4B7DF00087D033 /* ModelPlayer.swift in Sources */,
+				CB63B25F8023150F93275209 /* MIXCore.c in Sources */,
+				CB63B3EEE1E68BD0344DD3E0 /* ModelMove.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +377,8 @@
 				5705DF341A4E14B000C3DB01 /* ModelSquareTests.swift in Sources */,
 				57943FF21A49E4EF00744ABE /* ModelBoardTests.swift in Sources */,
 				573620411A7C1EF700086A1E /* MIXCoreHelperTests.swift in Sources */,
+				CB63BBAB39ADD6E0EC1BE992 /* ModelMove.swift in Sources */,
+				CB63B885CCB2E6807CFA6772 /* ModelMoveTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

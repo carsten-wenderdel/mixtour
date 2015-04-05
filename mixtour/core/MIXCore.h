@@ -17,6 +17,7 @@
 #define mixtour_MIXCore_h
 
 #include <stdint.h>
+#include <stdbool.h>
 
 
 typedef enum {
@@ -33,6 +34,16 @@ typedef struct {
 
 
 MIXCoreSquare MIXCoreSquareMake(uint8_t column, uint8_t line);
+
+
+typedef struct {
+    MIXCoreSquare from;
+    MIXCoreSquare to;
+} MIXCoreMove;
+
+MIXCoreMove MIXCoreMoveMakeDrag(MIXCoreSquare from, MIXCoreSquare to);
+MIXCoreMove MIXCoreMoveMakeSet(MIXCoreSquare to);
+bool isMoveDrag(MIXCoreMove move);
 
 
 #endif
