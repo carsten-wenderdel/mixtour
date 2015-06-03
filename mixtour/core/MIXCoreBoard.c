@@ -161,27 +161,35 @@ bool isAPieceBetween(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare
 }
 
 
-bool isDragLegal(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to) {
-    
-    if (from.column == to.column && from.line == to.line) {
+bool isMoveLegal(MIXCoreBoardRef boardRef, MIXCoreMove move) {
+
+    if (isMoveDrag(move)) {
+        MIXCoreSquare from = move.from;
+        MIXCoreSquare to = move.to;
+        
+        if (from.column == to.column && from.line == to.line) {
+            return false;
+        }
+        
+        if (!isDistanceRight(boardRef, from, to)) {
+            return false;
+        }
+        
+        uint8_t height = boardRef->height[to.column][to.line];
+        if (1u == height) {
+            // drag to field right next => no piece between => legal
+            return true;
+        }
+        
+        if (isAPieceBetween(boardRef, from, to)) {
+            return false;
+        }
+        
+        return true; // nothing found, looks good
+    } else {
+        // TODO: implement setting
         return false;
     }
-    
-    if (!isDistanceRight(boardRef, from, to)) {
-        return false;
-    }
-    
-    uint8_t height = boardRef->height[to.column][to.line];
-    if (1u == height) {
-        // drag to field right next => no piece between => legal
-        return true;
-    }
-    
-    if (isAPieceBetween(boardRef, from, to)) {
-        return false;
-    }
-    
-    return true; // nothing found, looks good
 }
 
 

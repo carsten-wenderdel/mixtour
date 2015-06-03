@@ -79,10 +79,10 @@ void setPiece(MIXCoreBoardRef boardRef, MIXCoreSquare square);
 bool isDistanceRight(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to);
 
 /**
- Does check distance and whether pieces are between.
+ For dragging: Does check distance and whether pieces are between.
  Does not check whether game is over or move recreates the previous position
  */
-bool isDragLegal(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to);
+bool isMoveLegal(MIXCoreBoardRef boardRef, MIXCoreMove move);
 
 /**
  Does not check whether setting is legal.

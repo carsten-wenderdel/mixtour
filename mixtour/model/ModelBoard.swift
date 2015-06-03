@@ -85,7 +85,8 @@ class ModelBoard {
     func dragPiecesFrom(from: ModelSquare, to: ModelSquare, withNumber numberODraggedPieces: Int) -> Bool {
         let coreFrom = from.coreSquare()
         let coreTo = to.coreSquare()
-        if mixtour.isDragLegal(&coreBoard, coreFrom, coreTo) {
+        let modelMove = ModelMove(from: from, to: to)
+        if isMoveLegal(modelMove) {
             mixtour.dragPieces(&coreBoard, coreFrom, coreTo, UInt8(numberODraggedPieces))
             return true
         } else {
@@ -94,8 +95,8 @@ class ModelBoard {
     }
     
 
-    func isDragLegalFrom(from: ModelSquare, to: ModelSquare) -> Bool {
-        return isDragLegal(&coreBoard, from.coreSquare(), to.coreSquare())
+    func isMoveLegal(move: ModelMove) -> Bool {
+        return mixtour.isMoveLegal(&coreBoard, move.coreMove());
     }
 
     
