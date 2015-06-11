@@ -43,7 +43,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
 
     func gameView(gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: ModelSquare, to: ModelSquare) -> Bool {
         
-        println("Try to drag \(numberOfDraggedPieces) pieces from \(from.column)/\(from.line) to \(to.column)/\(to.line)")
+        print("Try to drag \(numberOfDraggedPieces) pieces from \(from.column)/\(from.line) to \(to.column)/\(to.line)")
         
         // if move not possible, .dragPieces(...) does nothing
         let movePossible = self.board.dragPiecesFrom(from, to: to, withNumber: numberOfDraggedPieces)

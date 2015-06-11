@@ -11,9 +11,9 @@ import XCTest
 class ModelPlayerTests : XCTestCase {
 
     func testEnumValuesMatchCoreCEnum() {
-        XCTAssertEqual(ModelPlayer.White.rawValue, Int(MIXCorePlayerWhite.value))
-        XCTAssertEqual(ModelPlayer.Black.rawValue, Int(MIXCorePlayerBlack.value))
-        XCTAssertEqual(ModelPlayer.Undefined.rawValue, Int(MIXCorePlayerUndefined.value))
+        XCTAssertEqual(ModelPlayer.White.rawValue, Int(MIXCorePlayerWhite.rawValue))
+        XCTAssertEqual(ModelPlayer.Black.rawValue, Int(MIXCorePlayerBlack.rawValue))
+        XCTAssertEqual(ModelPlayer.Undefined.rawValue, Int(MIXCorePlayerUndefined.rawValue))
     }
     
     func testInitWorksForAllCoreValues() {
@@ -23,9 +23,9 @@ class ModelPlayerTests : XCTestCase {
     }
     
     func testCorePlayer() {
-        XCTAssertEqual(ModelPlayer.White.corePlayer().value, MIXCorePlayerWhite.value)
-        XCTAssertEqual(ModelPlayer.Black.corePlayer().value, MIXCorePlayerBlack.value)
-        XCTAssertEqual(ModelPlayer.Undefined.corePlayer().value, MIXCorePlayerUndefined.value)
+        XCTAssertEqual(ModelPlayer.White.corePlayer().rawValue, MIXCorePlayerWhite.rawValue)
+        XCTAssertEqual(ModelPlayer.Black.corePlayer().rawValue, MIXCorePlayerBlack.rawValue)
+        XCTAssertEqual(ModelPlayer.Undefined.corePlayer().rawValue, MIXCorePlayerUndefined.rawValue)
 
     }
 }

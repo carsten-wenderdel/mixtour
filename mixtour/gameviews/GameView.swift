@@ -161,9 +161,9 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     // MARK: GestureRecognizer Actions
 
     func handlePressGesture(gestureRecognizer: UILongPressGestureRecognizer) {
-        var currentPoint = gestureRecognizer.locationInView(self)
-        var square = squareForPosition(currentPoint)
-        println("handlePressGesture at square \(square.line)/\(square.column), state: \(gestureRecognizer.state.rawValue)")
+        let currentPoint = gestureRecognizer.locationInView(self)
+        let square = squareForPosition(currentPoint)
+        print("handlePressGesture at square \(square.line)/\(square.column), state: \(gestureRecognizer.state.rawValue)")
         switch gestureRecognizer.state {
         case .Began:
             let upperMostView = hitTest(currentPoint, withEvent: nil)
@@ -198,7 +198,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     
     
     func handlePanGesture(gestureRecognizer: UIPanGestureRecognizer) {
-        println("handlePanGesture, state: \(gestureRecognizer.state.rawValue)");
+        print("handlePanGesture, state: \(gestureRecognizer.state.rawValue)");
         switch gestureRecognizer.state {
         case .Began, .Changed, .Ended:
             var center = gestureRecognizer.locationInView(self)

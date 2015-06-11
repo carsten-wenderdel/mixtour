@@ -12,7 +12,7 @@ class MIXCoreBoardTests : XCTestCase {
     
     func testBoard() {
         // Not sure about the difference between strideof and sizeof. Currently Swift documention is not clear enough about it. So better use both in unit test - 60 bytes for C struct!
-        var varStruct : MIXCoreBoard = mixtour.createNonInitializedCoreBoard()
+        let varStruct : MIXCoreBoard = mixtour.createNonInitializedCoreBoard()
         XCTAssertEqual(60, sizeofValue(varStruct))
         XCTAssertEqual(60, strideofValue(varStruct))
 

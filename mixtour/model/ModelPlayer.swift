@@ -13,10 +13,10 @@ enum ModelPlayer: Int {
     case Black = 1
     
     init(corePlayer: MIXCorePlayer) {
-        switch corePlayer.value {
-        case MIXCorePlayerWhite.value:
+        switch corePlayer.rawValue {
+        case MIXCorePlayerWhite.rawValue:
             self = .White
-        case MIXCorePlayerBlack.value:
+        case MIXCorePlayerBlack.rawValue:
             self = .Black
         default:
             self = .Undefined
