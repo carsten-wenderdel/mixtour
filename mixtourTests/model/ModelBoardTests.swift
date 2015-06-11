@@ -205,10 +205,6 @@ class ModelBoardTests : XCTestCase {
         let board = boardForTestingMoves()
         
         // legal drags:
-        let move = ModelMove(from: ModelSquare(column: 4, line: 4), to: ModelSquare(column: 1, line: 1))
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 4, line: 4), to: ModelSquare(column: 1, line: 1))))
-
-
         XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 1))))
         XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 4, line: 4))))
         XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 1))))
