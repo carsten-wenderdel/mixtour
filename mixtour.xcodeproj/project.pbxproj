@@ -518,7 +518,6 @@
 					"-Wextra",
 					"-Weverything",
 				);
-				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
@@ -542,7 +541,6 @@
 					"-Wextra",
 					"-Weverything",
 				);
-				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
@@ -562,7 +560,6 @@
 				PRODUCT_NAME = mixtour;
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtourTests/model/mixtourTests-Bridging-Header.h";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
@@ -578,7 +575,6 @@
 				PRODUCT_NAME = mixtour;
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtourTests/model/mixtourTests-Bridging-Header.h";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
