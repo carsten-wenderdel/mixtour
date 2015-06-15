@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import mixtour
 
 class MIXCoreBoard_privateTests : XCTestCase {
     

@@ -7,8 +7,8 @@
 //
 
 import Foundation
-
 import XCTest
+@testable import mixtour
 
 class ModelSquareTests : XCTestCase {
     

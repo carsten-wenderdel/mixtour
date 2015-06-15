@@ -8,14 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		5705DF311A4DFE7C00C3DB01 /* ModelSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705DF301A4DFE7C00C3DB01 /* ModelSquare.swift */; };
-		5705DF321A4E036A00C3DB01 /* ModelSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705DF301A4DFE7C00C3DB01 /* ModelSquare.swift */; };
 		5705DF341A4E14B000C3DB01 /* ModelSquareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705DF331A4E14B000C3DB01 /* ModelSquareTests.swift */; };
 		573620411A7C1EF700086A1E /* MIXCoreHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573620401A7C1EF700086A1E /* MIXCoreHelperTests.swift */; };
 		5743AEAC1A4ACFAB0087D033 /* ModelBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */; };
-		5743AEAE1A4AD1780087D033 /* ModelBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */; };
 		5743AEB21A4B7DF00087D033 /* ModelPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEB11A4B7DF00087D033 /* ModelPlayer.swift */; };
 		5743AEB41A4B7FAF0087D033 /* ModelPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEB31A4B7FAF0087D033 /* ModelPlayerTests.swift */; };
-		5743AEB51A4B81EC0087D033 /* ModelPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEB11A4B7DF00087D033 /* ModelPlayer.swift */; };
 		5744E5201A374B1D00F2812B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5744E51F1A374B1D00F2812B /* GameView.swift */; };
 		574588081A174F3700BBADCE /* MIXAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574588071A174F3700BBADCE /* MIXAppDelegate.swift */; };
 		57943FEF1A49DD9400744ABE /* GameBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57943FEE1A49DD9400744ABE /* GameBackgroundView.swift */; };
@@ -40,7 +37,6 @@
 		CB63B25F8023150F93275209 /* MIXCore.c in Sources */ = {isa = PBXBuildFile; fileRef = CB63B827737C40F9984DE3AA /* MIXCore.c */; };
 		CB63B3EEE1E68BD0344DD3E0 /* ModelMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB63BC8D4EBA3A20D132D90A /* ModelMove.swift */; };
 		CB63B885CCB2E6807CFA6772 /* ModelMoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB63BF904B1FED6132F89868 /* ModelMoveTests.swift */; };
-		CB63BBAB39ADD6E0EC1BE992 /* ModelMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB63BC8D4EBA3A20D132D90A /* ModelMove.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +76,7 @@
 		AA040640176F9DF40051363A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AA040649176F9DF40051363A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA04064E176F9DF40051363A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AA040654176F9DF40051363A /* mixtour.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mixtour.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA040654176F9DF40051363A /* mixtourTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mixtourTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA040655176F9DF40051363A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AA04065D176F9DF40051363A /* mixtourTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mixtourTests-Info.plist"; sourceTree = "<group>"; };
 		AA04065F176F9DF40051363A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -132,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				AA040633176F9DF40051363A /* mixtour.app */,
-				AA040654176F9DF40051363A /* mixtour.xctest */,
+				AA040654176F9DF40051363A /* mixtourTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -285,7 +281,7 @@
 			);
 			name = mixtourTests;
 			productName = mixtourTests;
-			productReference = AA040654176F9DF40051363A /* mixtour.xctest */;
+			productReference = AA040654176F9DF40051363A /* mixtourTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -369,16 +365,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5743AEAE1A4AD1780087D033 /* ModelBoard.swift in Sources */,
-				5743AEB51A4B81EC0087D033 /* ModelPlayer.swift in Sources */,
 				579FF8521A53202F00730D92 /* MIXCoreBoardTests.swift in Sources */,
 				5743AEB41A4B7FAF0087D033 /* ModelPlayerTests.swift in Sources */,
 				579FF8551A53243700730D92 /* MIXCoreBoard_privateTests.swift in Sources */,
-				5705DF321A4E036A00C3DB01 /* ModelSquare.swift in Sources */,
 				5705DF341A4E14B000C3DB01 /* ModelSquareTests.swift in Sources */,
 				57943FF21A49E4EF00744ABE /* ModelBoardTests.swift in Sources */,
 				573620411A7C1EF700086A1E /* MIXCoreHelperTests.swift in Sources */,
-				CB63BBAB39ADD6E0EC1BE992 /* ModelMove.swift in Sources */,
 				CB63B885CCB2E6807CFA6772 /* ModelMoveTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,14 +542,13 @@
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/mixtour.app/mixtour";
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "mixtour/mixtour-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "mixtourTests/mixtourTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = mixtour;
+				PRODUCT_NAME = mixtourTests;
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtourTests/model/mixtourTests-Bridging-Header.h";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -569,10 +560,9 @@
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/mixtour.app/mixtour";
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "mixtour/mixtour-Prefix.pch";
 				INFOPLIST_FILE = "mixtourTests/mixtourTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = mixtour;
+				PRODUCT_NAME = mixtourTests;
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtourTests/model/mixtourTests-Bridging-Header.h";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
