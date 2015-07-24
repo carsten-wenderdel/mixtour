@@ -66,19 +66,14 @@ class ModelBoard {
     */
     func setPiece(square: ModelSquare) -> Bool {
         let coreSquare = square.coreSquare()
-    
-        if !mixtour.isSquareEmpty(&coreBoard, coreSquare) {
-            return false
-        }
-
-        let player = mixtour.playerOnTurn(&coreBoard)
-        if mixtour.numberOfPiecesForPlayer(&coreBoard, player) <= 0 {
-            return false
-        }
+        let move = ModelMove(setPieceTo: square)
         
-        // ok, it's a legal move
-        mixtour.setPiece(&coreBoard, coreSquare)
-        return true
+        if !isMoveLegal(move) {
+            return false
+        } else {
+            mixtour.setPiece(&coreBoard, coreSquare)
+            return true
+        }
     }
     
 

@@ -186,9 +186,21 @@ bool isMoveLegal(MIXCoreBoardRef boardRef, MIXCoreMove move) {
         }
         
         return true; // nothing found, looks good
+        
     } else {
-        // TODO: implement setting
-        return false;
+        
+        MIXCoreSquare square = move.to;
+        
+        if (! isSquareEmpty(boardRef, square)) {
+            return false;
+        }
+        
+        MIXCorePlayer player = playerOnTurn(boardRef);
+        if (numberOfPiecesForPlayer(boardRef, player) <= 0) {
+            return false;
+        }
+        
+        return true; // nothing found, looks good
     }
 }
 
