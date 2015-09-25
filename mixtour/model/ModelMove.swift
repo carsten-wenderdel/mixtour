@@ -10,9 +10,10 @@ let kMoveSetIndicator = 6
 struct ModelMove {
 
     var from, to: ModelSquare
+    var numberOfPieces: Int
 
     func coreMove() -> MIXCoreMove {
-        return MIXCoreMove(from: from.coreSquare(), to: to.coreSquare())
+        return MIXCoreMove(from: from.coreSquare(), to: to.coreSquare(), numberOfPieces: UInt8(numberOfPieces))
     }
     
     func isMoveDrag() -> Bool {
@@ -27,10 +28,12 @@ extension ModelMove {
     init(setPieceTo: ModelSquare) {
         from = ModelSquare(column:kMoveSetIndicator, line:0) // 0 is not important, just any number is fine
         to = setPieceTo
+        numberOfPieces = 0
     }
 
     init(coreMove: MIXCoreMove) {
         from = ModelSquare(coreSquare: coreMove.from)
         to = ModelSquare(coreSquare: coreMove.to)
+        numberOfPieces = Int(coreMove.numberOfPieces)
     }
 }

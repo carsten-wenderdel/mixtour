@@ -14,7 +14,7 @@ class ModelMoveTests: XCTestCase {
     func testDragMoveModelToCore() {
         let fromSquare = ModelSquare(column: 3, line: 2)
         let toSquare = ModelSquare(column: 4, line: 1)
-        let move = ModelMove(from: fromSquare, to: toSquare)
+        let move = ModelMove(from: fromSquare, to: toSquare, numberOfPieces: 1)
         
         XCTAssert(move.isMoveDrag())
 
@@ -43,7 +43,7 @@ class ModelMoveTests: XCTestCase {
     func testDragMoveCoreToModel() {
         let coreSquareFrom = MIXCoreSquareMake(3, 2)
         let coreSquareTo = MIXCoreSquareMake(4, 1)
-        let coreMove = MIXCoreMoveMakeDrag(coreSquareFrom, coreSquareTo)
+        let coreMove = MIXCoreMoveMakeDrag(coreSquareFrom, coreSquareTo, 1)
         
         XCTAssert(isMoveDrag(coreMove))
     

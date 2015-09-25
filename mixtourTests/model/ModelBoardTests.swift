@@ -206,27 +206,27 @@ class ModelBoardTests : XCTestCase {
         let board = boardForTestingMoves()
         
         // legal drags:
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 1))))
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 4, line: 4))))
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 1))))
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 4, line: 4))))
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 0, line: 1))))
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 0, line: 0))))
+        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 1), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 4, line: 4), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 1), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 4, line: 4), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 0, line: 1), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 0, line: 0), numberOfPieces: 1)))
         
         // illegal drags because of wrong height:
-        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 1, line: 4))))
-        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 4))))
-        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 0, line: 0), to:ModelSquare(column: 1, line: 1))))
+        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 1, line: 4), numberOfPieces: 1)))
+        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 4), numberOfPieces: 1)))
+        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 0, line: 0), to:ModelSquare(column: 1, line: 1), numberOfPieces: 1)))
         
         // put some pieces between -> legal becomes illegal
         board.setPiece(ModelSquare(column: 2, line: 2))
-        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 1))))
-        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 4, line: 4))))
+        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 1), numberOfPieces: 1)))
+        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 4, line: 4), numberOfPieces: 1)))
         
         board.setPiece(ModelSquare(column: 1, line: 3))
         board.setPiece(ModelSquare(column: 3, line: 4))
-        (board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 1))))
-        (board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 4, line: 4))))
+        (board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 1), numberOfPieces: 1)))
+        (board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 4, line: 4), numberOfPieces: 1)))
     }
     
     func testIsDraggingLegalCross() {
@@ -239,7 +239,7 @@ class ModelBoardTests : XCTestCase {
         let squareWithTwoPieces = ModelSquare(column: 4, line: 1)
         board.dragPiecesFrom(ModelSquare(column: 3, line: 2), to:squareWithTwoPieces, withNumber:1)
         
-        XCTAssertTrue(board.isMoveLegal(ModelMove(from: ModelSquare(column: 2, line: 3), to: squareWithTwoPieces)))
+        XCTAssertTrue(board.isMoveLegal(ModelMove(from: ModelSquare(column: 2, line: 3), to: squareWithTwoPieces, numberOfPieces: 1)))
     }
     
     func testIsSettingPossible() {

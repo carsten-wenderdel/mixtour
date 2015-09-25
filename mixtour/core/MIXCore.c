@@ -10,10 +10,11 @@
 
 static const uint8_t kMoveSetIndicator = 6;
 
-MIXCoreMove MIXCoreMoveMakeDrag(MIXCoreSquare from, MIXCoreSquare to) {
+MIXCoreMove MIXCoreMoveMakeDrag(MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfPieces) {
     MIXCoreMove move;
     move.from = from;
     move.to = to;
+    move.numberOfPieces = numberOfPieces;
     return move;
 }
 

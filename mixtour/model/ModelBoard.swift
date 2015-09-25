@@ -80,7 +80,7 @@ class ModelBoard {
     func dragPiecesFrom(from: ModelSquare, to: ModelSquare, withNumber numberODraggedPieces: Int) -> Bool {
         let coreFrom = from.coreSquare()
         let coreTo = to.coreSquare()
-        let modelMove = ModelMove(from: from, to: to)
+        let modelMove = ModelMove(from: from, to: to, numberOfPieces: numberODraggedPieces)
         if isMoveLegal(modelMove) {
             mixtour.dragPieces(&coreBoard, coreFrom, coreTo, UInt8(numberODraggedPieces))
             return true

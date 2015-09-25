@@ -204,6 +204,13 @@ bool isMoveLegal(MIXCoreBoardRef boardRef, MIXCoreMove move) {
     }
 }
 
+void makeMove(MIXCoreBoardRef boardRef, MIXCoreMove move) {
+    if (isMoveDrag(move)) {
+        dragPieces(boardRef, move.from, move.to, move.numberOfPieces);
+    } else {
+        setPiece(boardRef, move.to);
+    }
+}
 
 
 void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfDraggedPieces) {

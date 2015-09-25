@@ -39,9 +39,10 @@ MIXCoreSquare MIXCoreSquareMake(uint8_t column, uint8_t line);
 typedef struct {
     MIXCoreSquare from;
     MIXCoreSquare to;
+    uint8_t numberOfPieces;
 } MIXCoreMove;
 
-MIXCoreMove MIXCoreMoveMakeDrag(MIXCoreSquare from, MIXCoreSquare to);
+MIXCoreMove MIXCoreMoveMakeDrag(MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfPieces);
 MIXCoreMove MIXCoreMoveMakeSet(MIXCoreSquare to);
 bool isMoveDrag(MIXCoreMove move);
 
