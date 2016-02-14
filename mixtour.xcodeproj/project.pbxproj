@@ -292,7 +292,7 @@
 			attributes = {
 				CLASSPREFIX = MIX;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Carsten Wenderdel";
 				TargetAttributes = {
 					AA040653176F9DF40051363A = {
@@ -502,6 +502,7 @@
 				INFOPLIST_FILE = "mixtour/mixtour-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = "-Wno-padded";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wenderdel.games.stein.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtour/mixtour-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -525,6 +526,7 @@
 				INFOPLIST_FILE = "mixtour/mixtour-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = "-Wno-padded";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wenderdel.games.stein.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtour/mixtour-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -548,6 +550,7 @@
 				);
 				INFOPLIST_FILE = "mixtourTests/mixtourTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wenderdel.games.stein.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = mixtourTests;
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtourTests/model/mixtourTests-Bridging-Header.h";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -562,6 +565,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "mixtourTests/mixtourTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wenderdel.games.stein.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = mixtourTests;
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtourTests/model/mixtourTests-Bridging-Header.h";
 				TEST_HOST = "$(BUNDLE_LOADER)";
