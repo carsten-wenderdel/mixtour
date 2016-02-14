@@ -14,11 +14,9 @@ let numberOfSquares = 5
 
 class ModelBoard {
     
-    var coreBoard: MIXCoreBoard
+    var coreBoard = MIXCoreBoard()
     
     init() {
-        // put coreBoard on stack:
-        coreBoard = mixtour.createNonInitializedCoreBoard()
         resetCoreBoard(&coreBoard)
     }
     
