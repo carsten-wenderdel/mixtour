@@ -33,9 +33,6 @@ typedef struct {
 } MIXCoreSquare;
 
 
-MIXCoreSquare MIXCoreSquareMake(uint8_t column, uint8_t line);
-
-
 typedef struct {
     MIXCoreSquare from;
     MIXCoreSquare to;

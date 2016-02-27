@@ -20,14 +20,14 @@ class MIXCoreBoard_privateTests : XCTestCase {
         XCTAssertEqual(mixtour.numberOfPiecesForPlayer(&coreBoard, MIXCorePlayerBlack), UInt8(20))
         XCTAssertEqual(playerOnTurn(&coreBoard).rawValue, MIXCorePlayerWhite.rawValue)
         
-        let square = MIXCoreSquareMake(UInt8(1), UInt8(1))
+        let square = MIXCoreSquare(column:1, line:1)
         setPiecesDirectlyWithList(&coreBoard, square, 1, getVaList([MIXCorePlayerBlack.rawValue]))
         
         XCTAssertEqual(heightOfSquare(&coreBoard, square), UInt8(1))
         XCTAssertEqual(colorOfSquareAtPosition(&coreBoard, square, 0).rawValue, MIXCorePlayerBlack.rawValue)
         for i in 0..<5 {
             for j in 0..<5 {
-                let testSquare = MIXCoreSquareMake(UInt8(i), UInt8(j))
+                let testSquare = MIXCoreSquare(column:UInt8(i), line: UInt8(j))
                 if (testSquare.column != square.column || testSquare.line != square.line) {
                     XCTAssertEqual(heightOfSquare(&coreBoard, testSquare), UInt8(0))
                 }
@@ -38,7 +38,7 @@ class MIXCoreBoard_privateTests : XCTestCase {
         XCTAssertEqual(mixtour.numberOfPiecesForPlayer(&coreBoard, MIXCorePlayerBlack), UInt8(19))
         XCTAssertEqual(playerOnTurn(&coreBoard).rawValue, MIXCorePlayerWhite.rawValue)
         
-        let square2 = MIXCoreSquareMake(UInt8(2), UInt8(2))
+        let square2 = MIXCoreSquare(column: 2, line: 2)
         mixtour.setPiecesDirectlyWithList(&coreBoard, square2, 3, getVaList([MIXCorePlayerBlack.rawValue, MIXCorePlayerWhite.rawValue, MIXCorePlayerBlack.rawValue]))
         
         XCTAssertEqual(heightOfSquare(&coreBoard, square2), UInt8(3))
@@ -64,7 +64,7 @@ class MIXCoreBoard_privateTests : XCTestCase {
         
         for i in 0..<5 {
             for j in 0..<5 {
-                let testSquare = MIXCoreSquareMake(UInt8(i), UInt8(j))
+                let testSquare = MIXCoreSquare(column: UInt8(i), line: UInt8(j))
                 if ((testSquare.column != square.column || testSquare.line != square.line)
                     && (testSquare.column != square2.column || testSquare.line != square2.line)) {
                         XCTAssertEqual(heightOfSquare(&coreBoard, testSquare), UInt8(0))
@@ -91,7 +91,7 @@ class MIXCoreBoard_privateTests : XCTestCase {
         setTurnDirectly(&coreBoard, MIXCorePlayerBlack)
         XCTAssertEqual(playerOnTurn(&coreBoard).rawValue, MIXCorePlayerBlack.rawValue)
         
-        setPiece(&coreBoard, MIXCoreSquareMake(UInt8(UInt(0)), UInt8(UInt(0))))
+        setPiece(&coreBoard, MIXCoreSquare(column: 0, line: 0))
         XCTAssertEqual(playerOnTurn(&coreBoard).rawValue, MIXCorePlayerWhite.rawValue)
         XCTAssertEqual(mixtour.numberOfPiecesForPlayer(&coreBoard, MIXCorePlayerWhite), UInt8(20))
         XCTAssertEqual(mixtour.numberOfPiecesForPlayer(&coreBoard, MIXCorePlayerBlack), UInt8(19))

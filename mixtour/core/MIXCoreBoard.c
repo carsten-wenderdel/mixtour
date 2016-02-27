@@ -25,11 +25,6 @@ enum MIXCoreGameBits {
 typedef enum MIXCoreGameBits MIXCoreGameBits;
 
 
-MIXCoreSquare MIXCoreSquareMake(uint8_t column, uint8_t line) {
-    MIXCoreSquare square = {column, line};
-    return square;
-}
-
 
 void resetCoreBoard(MIXCoreBoardRef boardRef) {
     
