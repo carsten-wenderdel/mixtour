@@ -135,8 +135,8 @@ bool isDistanceRight(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare
 
 bool isAPieceBetween(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to) {
 
-    int columnIncrement = signum(to.column - from.column);
-    int lineIncrement = signum(to.line - from.line);
+    int8_t columnIncrement = signum(to.column - from.column);
+    int8_t lineIncrement = signum(to.line - from.line);
     
     uint8_t columnToCheck = from.column + columnIncrement;
     uint8_t lineToCheck = from.line + lineIncrement;
@@ -213,7 +213,7 @@ void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, 
     boardRef->height[to.column][to.line] += numberOfDraggedPieces;
     
     // Make a mask that has zeros for the last "numberOfDraggedPieces" bits, ones everywhere else
-    uint8_t mask = UINT8_MAX << numberOfDraggedPieces;
+    uint8_t mask = (uint8_t)(UINT8_MAX << numberOfDraggedPieces);
     // now the last bits are set, the others not.
     mask = ~mask;
     // Remove all bits of those positions which are not removed.

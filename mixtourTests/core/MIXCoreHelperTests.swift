@@ -11,11 +11,11 @@ import XCTest
 class MIXCoreHelperTests : XCTestCase {
     
     func testSignum() {
-    XCTAssertEqual(signum(-3), Int32(-1))
-    XCTAssertEqual(signum(-1), Int32(-1))
-    XCTAssertEqual(signum(0), Int32(0))
-    XCTAssertEqual(signum(1), Int32(1))
-    XCTAssertEqual(signum(3), Int32(1))
+        XCTAssertEqual(signum(-3), -1)
+        XCTAssertEqual(signum(-1), -1)
+        XCTAssertEqual(signum(0), 0)
+        XCTAssertEqual(signum(1), 1)
+        XCTAssertEqual(signum(3), 1)
     }
 }
 

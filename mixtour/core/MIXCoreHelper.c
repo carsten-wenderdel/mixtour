@@ -13,7 +13,7 @@
  returns "1" for i>0, "-1" for i<0, "0" for x==0;
  There's a unit test for it in this project.
  */
-int signum (int i) {
+int8_t signum (int8_t i) {
     
     return (i > 0) - (i < 0);
 }

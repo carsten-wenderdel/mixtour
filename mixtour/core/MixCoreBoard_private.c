@@ -14,7 +14,7 @@
 void removeAllPieces(MIXCoreBoardRef boardRef, MIXCoreSquare square) {
     
     for (int i = heightOfSquare(boardRef, square) - 1; i >= 0; i--) {
-        if (MIXCorePlayerBlack == colorOfSquareAtPosition(boardRef, square, i)) {
+        if (MIXCorePlayerBlack == colorOfSquareAtPosition(boardRef, square, (uint8_t)i)) {
             boardRef->blackPieces++;
         } else {
             boardRef->whitePieces++;

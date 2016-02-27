@@ -14,7 +14,7 @@
 /**
  returns "1" for i>0, "-1" for i<0, "0" for x==0;
  */
-int signum (int i);
+int8_t signum (int8_t i);
 
 
 #endif
