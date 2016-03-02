@@ -130,11 +130,11 @@ bool isDistanceRight(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare
 
 bool isAPieceBetween(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to) {
 
-    int8_t columnIncrement = signum(to.column - from.column);
-    int8_t lineIncrement = signum(to.line - from.line);
+    int8_t columnIncrement = signum((int8_t)to.column - from.column);
+    int8_t lineIncrement = signum((int8_t)to.line - from.line);
     
-    uint8_t columnToCheck = from.column + columnIncrement;
-    uint8_t lineToCheck = from.line + lineIncrement;
+    uint8_t columnToCheck = (uint8_t)(from.column + columnIncrement);
+    uint8_t lineToCheck = (uint8_t)(from.line + lineIncrement);
     // don't use "<" or ">" for comparison - increments could be positive or
     // negative we could come from any side.
     // Also we need to check both column and line as one increment could be 0.
