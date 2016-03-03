@@ -15,6 +15,7 @@
 
 #define MIX_CORE_NUMBER_OF_PIECES_OF_ONE_COLOR 20
 #define MIX_CORE_NUMBER_OF_PIECES_TO_WIN 5
+#define MIX_CORE_NUMBR_OF_SQUARES 5
 
 
 enum MIXCoreGameBits {
@@ -234,5 +235,22 @@ void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, 
             boardRef->gameBits |= MIXCoreGameBitsWinner;
         }
     }
+}
+
+
+bool isSettingPossible(MIXCoreBoardRef boardRef) {
+    if (numberOfPiecesForPlayer(boardRef, boardRef->turn) <= 0) {
+        return false;
+    }
+    
+    for (uint8_t i = 0; i < MIX_CORE_NUMBR_OF_SQUARES; i++) {
+        for (uint8_t j = 0; j < MIX_CORE_NUMBR_OF_SQUARES; j++) {
+            MIXCoreSquare square = {i, j};
+            if (isSquareEmpty(boardRef, square)) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 

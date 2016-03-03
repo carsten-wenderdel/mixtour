@@ -83,5 +83,9 @@ bool isMoveLegal(MIXCoreBoardRef boardRef, MIXCoreMove move);
  */
 void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, uint8_t numberODraggedPieces);
 
+/**
+ Only valid for the player on turn
+ */
+bool isSettingPossible(MIXCoreBoardRef boardRef);
 
 #endif

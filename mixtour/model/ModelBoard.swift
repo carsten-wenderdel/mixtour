@@ -94,20 +94,7 @@ class ModelBoard {
 
     
     func isSettingPossible() -> Bool {
-        let player = mixtour.playerOnTurn(&coreBoard)
-        if (mixtour.numberOfPiecesForPlayer(&coreBoard, player) <= 0) {
-            return false
-        }
-        
-        for i in 0..<numberOfSquares {
-            for j in 0..<numberOfSquares {
-                if mixtour.isSquareEmpty(&coreBoard, MIXCoreSquare(column: UInt8(i), line: UInt8(j))) {
-                    return true
-                }
-            }
-        }
-        
-        return false
+        return mixtour.isSettingPossible(&coreBoard)
     }
     
     
