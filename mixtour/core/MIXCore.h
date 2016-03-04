@@ -32,6 +32,8 @@ typedef struct {
     uint8_t line;
 } MIXCoreSquare;
 
+MIXCoreSquareIsEqualToSquare(MIXCoreSquare square1, MIXCoreSquare square2);
+
 
 typedef struct {
     MIXCoreSquare from;
@@ -42,6 +44,7 @@ typedef struct {
 MIXCoreMove MIXCoreMoveMakeDrag(MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfPieces);
 MIXCoreMove MIXCoreMoveMakeSet(MIXCoreSquare to);
 bool isMoveDrag(MIXCoreMove move);
+
 
 
 #endif

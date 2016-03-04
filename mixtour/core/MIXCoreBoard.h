@@ -88,4 +88,6 @@ void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, 
  */
 bool isSettingPossible(MIXCoreBoardRef boardRef);
 
+bool isDraggingPossible(MIXCoreBoardRef boardRef);
+
 #endif

@@ -192,13 +192,13 @@
 			isa = PBXGroup;
 			children = (
 				AA28392B1770EB3A00F229F7 /* MIXCore.h */,
+				CB63B827737C40F9984DE3AA /* MIXCore.c */,
 				AA04066F176FA68F0051363A /* MIXCoreBoard.h */,
 				AA04066D176FA5F70051363A /* MIXCoreBoard.c */,
 				A10DC19C17A3FD1100E42832 /* MixCoreBoard_private.h */,
 				A10DC19D17A3FD3900E42832 /* MixCoreBoard_private.c */,
 				AAE463AC1772658800008778 /* MIXCoreHelper.h */,
 				AAE463AA1772657700008778 /* MIXCoreHelper.c */,
-				CB63B827737C40F9984DE3AA /* MIXCore.c */,
 			);
 			path = core;
 			sourceTree = "<group>";

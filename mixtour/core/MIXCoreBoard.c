@@ -15,7 +15,6 @@
 
 #define MIX_CORE_NUMBER_OF_PIECES_OF_ONE_COLOR 20
 #define MIX_CORE_NUMBER_OF_PIECES_TO_WIN 5
-#define MIX_CORE_NUMBR_OF_SQUARES 5
 
 
 enum MIXCoreGameBits {
@@ -131,11 +130,11 @@ bool isDistanceRight(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare
 
 bool isAPieceBetween(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to) {
 
-    int8_t columnIncrement = signum((int8_t)to.column - from.column);
-    int8_t lineIncrement = signum((int8_t)to.line - from.line);
+    int8_t columnSignum = signum((int8_t)to.column - from.column);
+    int8_t lineSignum = signum((int8_t)to.line - from.line);
     
-    uint8_t columnToCheck = (uint8_t)(from.column + columnIncrement);
-    uint8_t lineToCheck = (uint8_t)(from.line + lineIncrement);
+    uint8_t columnToCheck = (uint8_t)(from.column + columnSignum);
+    uint8_t lineToCheck = (uint8_t)(from.line + lineSignum);
     // don't use "<" or ">" for comparison - increments could be positive or
     // negative we could come from any side.
     // Also we need to check both column and line as one increment could be 0.
@@ -143,8 +142,8 @@ bool isAPieceBetween(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare
         if (boardRef->height[columnToCheck][lineToCheck] != 0u) {
             return true; // a piece is between
         }
-        columnToCheck += columnIncrement;
-        lineToCheck += lineIncrement;
+        columnToCheck += columnSignum;
+        lineToCheck += lineSignum;
     }
     
     return false; // nothing found
@@ -243,8 +242,8 @@ bool isSettingPossible(MIXCoreBoardRef boardRef) {
         return false;
     }
     
-    for (uint8_t i = 0; i < MIX_CORE_NUMBR_OF_SQUARES; i++) {
-        for (uint8_t j = 0; j < MIX_CORE_NUMBR_OF_SQUARES; j++) {
+    for (uint8_t i = 0; i < LENGTH_OF_BOARD; i++) {
+        for (uint8_t j = 0; j < LENGTH_OF_BOARD; j++) {
             MIXCoreSquare square = {i, j};
             if (isSquareEmpty(boardRef, square)) {
                 return true;
@@ -253,4 +252,52 @@ bool isSettingPossible(MIXCoreBoardRef boardRef) {
     }
     return false;
 }
+
+
+/**
+ square1 and square2 need to be on one line (horizontally, vertically or cross). Use only internally, columnSignum and lineSignum have to be correct.
+ */
+bool isSomethingBetweenSquares(MIXCoreBoardRef boardRef, MIXCoreSquare square1, MIXCoreSquare square2, int8_t columnSignum, int8_t lineSignum) {
+    MIXCoreSquare betweenSquare = {(uint8_t)(square1.column + columnSignum), (uint8_t)(square1.line + lineSignum)};
+    while (!MIXCoreSquareIsEqualToSquare(betweenSquare, square2)) {
+        if (!isSquareEmpty(boardRef, betweenSquare)) {
+            return true;
+        }
+        betweenSquare = (MIXCoreSquare){(uint8_t)(betweenSquare.column + columnSignum), (uint8_t)(betweenSquare.line + lineSignum)};
+    }
+    return false;
+}
+
+
+bool isDraggingPossible(MIXCoreBoardRef boardRef) {
+    for (uint8_t i = 0; i < LENGTH_OF_BOARD; i++) {
+        for (uint8_t j = 0; j < LENGTH_OF_BOARD; j++) {
+            MIXCoreSquare square = {i, j};
+            uint8_t height = heightOfSquare(boardRef, square);
+            if (height > 0) {
+                for (int8_t columnSignum = -1; columnSignum <= 1; columnSignum++) {
+                    for (int8_t lineSignum = -1; lineSignum <= 1; lineSignum++) {
+                        if (columnSignum != 0 || lineSignum != 0) { // don't look at orignal square
+                            MIXCoreSquare sourceSquare = {(uint8_t)(i + height*columnSignum), (uint8_t)(j + height*lineSignum)};
+                            // When the result is normally negative, we have a overflow, -1 becomes 255
+                            // So we don't have to ask for negative numbers, both 6 and 255 is beyond the board
+                            if (sourceSquare.column < LENGTH_OF_BOARD && sourceSquare.line < LENGTH_OF_BOARD) {
+                                if (!isSquareEmpty(boardRef, sourceSquare)) {
+                                    // So we can drag as long nothing is between. Check that:
+                                    if (!isSomethingBetweenSquares(boardRef, square, sourceSquare, columnSignum, lineSignum)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}
+
+
+
 

@@ -10,6 +10,10 @@
 
 static const uint8_t kMoveSetIndicator = 6;
 
+MIXCoreSquareIsEqualToSquare(MIXCoreSquare square1, MIXCoreSquare square2) {
+    return square1.column == square2.column && square1.line == square2.line;
+}
+
 MIXCoreMove MIXCoreMoveMakeDrag(MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfPieces) {
     MIXCoreMove move;
     move.from = from;

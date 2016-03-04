@@ -99,7 +99,7 @@ class ModelBoard {
     
     
     func isDraggingPossible() -> Bool {
-        return true
+        return mixtour.isDraggingPossible(&coreBoard)
     }
     
     
