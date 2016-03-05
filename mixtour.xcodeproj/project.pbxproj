@@ -50,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5704EB421C8B0299001ACE3F /* kvec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kvec.h; path = klib/kvec.h; sourceTree = "<group>"; };
 		5705DF301A4DFE7C00C3DB01 /* ModelSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSquare.swift; sourceTree = "<group>"; };
 		5705DF331A4E14B000C3DB01 /* ModelSquareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSquareTests.swift; sourceTree = "<group>"; };
 		573620401A7C1EF700086A1E /* MIXCoreHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXCoreHelperTests.swift; sourceTree = "<group>"; };
@@ -114,11 +115,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5704EB411C8B0216001ACE3F /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				5704EB421C8B0299001ACE3F /* kvec.h */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		AA04062A176F9DF40051363A = {
 			isa = PBXGroup;
 			children = (
 				AA04063C176F9DF40051363A /* mixtour */,
 				AA04065B176F9DF40051363A /* mixtourTests */,
+				5704EB411C8B0216001ACE3F /* lib */,
 				AA040635176F9DF40051363A /* Frameworks */,
 				AA040634176F9DF40051363A /* Products */,
 			);
