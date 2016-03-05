@@ -32,7 +32,7 @@ typedef struct {
     uint8_t line;
 } MIXCoreSquare;
 
-MIXCoreSquareIsEqualToSquare(MIXCoreSquare square1, MIXCoreSquare square2);
+bool MIXCoreSquareIsEqualToSquare(MIXCoreSquare square1, MIXCoreSquare square2);
 
 
 typedef struct {

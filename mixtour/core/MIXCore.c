@@ -10,7 +10,7 @@
 
 static const uint8_t kMoveSetIndicator = 6;
 
-MIXCoreSquareIsEqualToSquare(MIXCoreSquare square1, MIXCoreSquare square2) {
+bool MIXCoreSquareIsEqualToSquare(MIXCoreSquare square1, MIXCoreSquare square2) {
     return square1.column == square2.column && square1.line == square2.line;
 }
 
