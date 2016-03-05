@@ -37,3 +37,10 @@ extension ModelMove {
         numberOfPieces = Int(coreMove.numberOfPieces)
     }
 }
+
+
+extension ModelMove: Equatable {}
+
+func ==(lhs: ModelMove, rhs: ModelMove) -> Bool {
+    return lhs.from == rhs.from && lhs.to == rhs.to && lhs.numberOfPieces == rhs.numberOfPieces
+}

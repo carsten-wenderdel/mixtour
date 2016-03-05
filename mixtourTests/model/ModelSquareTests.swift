@@ -25,4 +25,16 @@ class ModelSquareTests : XCTestCase {
         XCTAssertEqual(modelSquare.line, Int(coreSquare.line))
         XCTAssertEqual(modelSquare.column, Int(coreSquare.column))
     }
+    
+    func testEquality() {
+        var square1 = ModelSquare(column: 4, line: 3)
+        var square2 = ModelSquare(column: 4, line: 4)
+        XCTAssertNotEqual(square1, square2)
+        
+        square2.line = 3
+        XCTAssertEqual(square1, square2)
+        
+        square1.column = 3
+        XCTAssertNotEqual(square1, square2)
+    }
 }
