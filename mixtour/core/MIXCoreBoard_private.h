@@ -1,13 +1,13 @@
 //
-//  MixCoreBoard_private.h
+//  MIXCoreBoard_private.h
 //  mixtour
 //
 //  Created by Carsten Wenderdel on 2013-07-27.
 //  Copyright (c) 2013 Carsten Wenderdel. All rights reserved.
 //
 
-#ifndef mixtour_MixCoreBoard_private_h
-#define mixtour_MixCoreBoard_private_h
+#ifndef mixtour_MIXCoreBoard_private_h
+#define mixtour_MIXCoreBoard_private_h
 
 
 #include "MIXCoreBoard.h"
