@@ -84,6 +84,11 @@ bool isDistanceRight(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare
 bool isMoveLegal(MIXCoreBoardRef boardRef, MIXCoreMove move);
 
 /**
+ Does not check whether move is legal.
+ */
+void makeMove(MIXCoreBoardRef boardRef, MIXCoreMove move);
+
+/**
  Does not check whether setting is legal.
  */
 void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, uint8_t numberODraggedPieces);
