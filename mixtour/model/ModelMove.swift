@@ -42,5 +42,9 @@ extension ModelMove {
 extension ModelMove: Equatable {}
 
 func ==(lhs: ModelMove, rhs: ModelMove) -> Bool {
-    return lhs.from == rhs.from && lhs.to == rhs.to && lhs.numberOfPieces == rhs.numberOfPieces
+    if lhs.isMoveDrag() {
+        return lhs.from == rhs.from && lhs.to == rhs.to && lhs.numberOfPieces == rhs.numberOfPieces
+    } else {
+        return lhs.to == rhs.to
+    }
 }
