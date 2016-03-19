@@ -106,4 +106,16 @@ class ModelBoard {
     func isSettingOrDraggingPossbile() -> Bool {
         return true
     }
+    
+
+    func allLegalMoves() -> [ModelMove] {
+        var swiftMoves = [ModelMove]()
+        let cMoves = mixtour.arrayOfLegalMoves(&coreBoard)
+        for i in 0..<cMoves.n {
+            let coreMove = cMoves.a[i]
+            swiftMoves.append(ModelMove(coreMove: coreMove))
+        }
+        mixtour.destroyMoveArray(cMoves)
+        return swiftMoves
+    }
 }

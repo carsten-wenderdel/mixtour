@@ -13,6 +13,8 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include "kvec.h"
+
 
 #include "MIXCore.h"
 
@@ -34,6 +36,9 @@ struct MIXCoreBoard {
 };
 
 typedef struct MIXCoreBoard *MIXCoreBoardRef;
+
+
+typedef kvec_t(MIXCoreMove) MIXMoveArray;
 
 
 /**
@@ -89,5 +94,12 @@ void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, 
 bool isSettingPossible(MIXCoreBoardRef boardRef);
 
 bool isDraggingPossible(MIXCoreBoardRef boardRef);
+
+/**
+ Caller is responsible for releasing memory by calling destroyMoveArray later
+ */
+MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef);
+
+void destroyMoveArray(MIXMoveArray moveArray);
 
 #endif
