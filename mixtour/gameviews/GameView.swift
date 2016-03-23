@@ -97,12 +97,12 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     
     
     private func addGestureRecognizers() {
-        let pressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "handlePressGesture:")
+        let pressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(GameView.handlePressGesture(_:)))
         pressGestureRecognizer.delegate = self
         pressGestureRecognizer.minimumPressDuration = 0.3
         addGestureRecognizer(pressGestureRecognizer)
         
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(GameView.handlePanGesture(_:)))
         panGestureRecognizer.delegate = self
         panGestureRecognizer.maximumNumberOfTouches = 1
         panGestureRecognizer.minimumNumberOfTouches = 1
@@ -115,7 +115,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
             for line in 0..<numberOfSquares {
                 let square = ModelSquare(column: column, line: line)
                 let height = board.heightOfSquare(square)
-                for var position = Int(height) - 1; position >= 0; position-- {
+                for position in (0..<Int(height)).reverse() {
                     let player = board.colorOfSquare(square, atPosition: position)
                     let color = (player == ModelPlayer.White)
                         ? UIColor.yellowColor()
