@@ -45,8 +45,21 @@ class MIXViewController: UIViewController, GameViewDelegate {
         
         print("Try to drag \(numberOfDraggedPieces) pieces from \(from.column)/\(from.line) to \(to.column)/\(to.line)")
         
-        // if move not possible, .dragPieces(...) does nothing
-        let movePossible = self.board.dragPiecesFrom(from, to: to, withNumber: numberOfDraggedPieces)
+        let move = ModelMove(from: from, to: to, numberOfPieces: numberOfDraggedPieces)
+        return self.gameView(gameView, tryToMakeMove: move)
+    }
+    
+    func gameView(gameView : GameView, tryToSetPieceTo to: ModelSquare) -> Bool {
+        
+        print("Try to set piece to \(to.column)/\(to.line)")
+        
+        let move = ModelMove(setPieceTo: to)
+        return self.gameView(gameView, tryToMakeMove: move)
+    }
+    
+    func gameView(gameView : GameView, tryToMakeMove move: ModelMove) -> Bool {
+        
+        let movePossible = board.makeMoveIfLegal(move)
         
         // display new state. If move not possible, this also moves the dragged piece to the old correct position
         gameView.clearBoard()

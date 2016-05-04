@@ -11,6 +11,8 @@ import UIKit
 
 protocol GameViewDelegate: class {
     func gameView(gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: ModelSquare, to: ModelSquare) -> Bool
+    func gameView(gameView : GameView, tryToSetPieceTo to: ModelSquare) -> Bool
+    func gameView(gameView : GameView, tryToMakeMove move: ModelMove) -> Bool
 }
 
 
@@ -107,6 +109,11 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         panGestureRecognizer.maximumNumberOfTouches = 1
         panGestureRecognizer.minimumNumberOfTouches = 1
         addGestureRecognizer(panGestureRecognizer)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GameView.handleDoubleTapGesture(_:)))
+        tapGestureRecognizer.delegate = self
+        tapGestureRecognizer.numberOfTapsRequired = 2
+        addGestureRecognizer(tapGestureRecognizer)
     }
     
     
@@ -159,6 +166,13 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     
 
     // MARK: GestureRecognizer Actions
+    
+    func handleDoubleTapGesture(gestureRecognizer: UITapGestureRecognizer) {
+        let currentPoint = gestureRecognizer.locationInView(self)
+        let square = squareForPosition(currentPoint)
+
+        delegate?.gameView(self, tryToSetPieceTo: square)
+    }
 
     func handlePressGesture(gestureRecognizer: UILongPressGestureRecognizer) {
         let currentPoint = gestureRecognizer.locationInView(self)
