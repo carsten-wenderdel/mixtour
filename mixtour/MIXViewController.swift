@@ -38,6 +38,24 @@ class MIXViewController: UIViewController, GameViewDelegate {
         self.view.addSubview(newGameView)
     }
     
+    private func calculateNextMoveForGameView(gameView: GameView) {
+       
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { [weak self] _ in
+            let move = self?.board.bestMove()
+            
+            if let bestMove = move {
+                dispatch_async(dispatch_get_main_queue(), {
+                    // TODO: self.board could be changed by user during AI calculation - freeze parts of the UI or make a deep copy of the board
+                    // Also the ownership of gameView and board is not thought through
+                    guard let this = self else {return}
+                    this.board.makeMoveIfLegal(bestMove)
+                    gameView.clearBoard()
+                    gameView.setPiecesForBoard(this.board)
+                })
+            }
+        })
+    }
+    
 
     // MARK: GameViewDelegate
 
@@ -64,6 +82,8 @@ class MIXViewController: UIViewController, GameViewDelegate {
         // display new state. If move not possible, this also moves the dragged piece to the old correct position
         gameView.clearBoard()
         gameView.setPiecesForBoard(self.board)
+        
+        calculateNextMoveForGameView(gameView)
         
         return movePossible
     }

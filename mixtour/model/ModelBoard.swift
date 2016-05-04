@@ -114,4 +114,14 @@ class ModelBoard {
         mixtour.destroyMoveArray(cMoves)
         return swiftMoves
     }
+    
+    
+    func bestMove() -> ModelMove? {
+        let allMoves = allLegalMoves()
+        if allMoves.isEmpty {
+            return nil
+        } else {
+            return allMoves[0]
+        }
+    }
 }
