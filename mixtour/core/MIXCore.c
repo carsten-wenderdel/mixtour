@@ -9,6 +9,9 @@
 #include "MIXCore.h"
 
 static const uint8_t kMoveSetIndicator = 6;
+static const uint8_t kMoveNoMoveIndicator = 7;
+
+const MIXCoreMove MIXCoreMoveNoMove = {{kMoveNoMoveIndicator, 0u}, {0u, 0u}, 0u};
 
 bool MIXCoreSquareIsEqualToSquare(MIXCoreSquare square1, MIXCoreSquare square2) {
     return square1.column == square2.column && square1.line == square2.line;
@@ -31,4 +34,8 @@ MIXCoreMove MIXCoreMoveMakeSet(MIXCoreSquare to) {
 
 bool isMoveDrag(MIXCoreMove move) {
     return move.from.column != kMoveSetIndicator;
+}
+
+bool isMoveANoMove(MIXCoreMove move)  {
+    return move.from.column == kMoveNoMoveIndicator;
 }

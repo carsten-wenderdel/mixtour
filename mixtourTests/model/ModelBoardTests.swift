@@ -409,7 +409,7 @@ class ModelBoardTests : XCTestCase {
     func testNumberOfMovesIsZeroIfNoPiecesAvailable() {
         let board = ModelBoardMock()
     
-        // given all 25 white pieces are set:
+        // given all 20 white pieces are set:
         board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 0), .White, .White, .White, .White)
         board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 1), .White, .White, .White, .White)
         board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 2), .White, .White, .White, .White)
@@ -442,6 +442,20 @@ class ModelBoardTests : XCTestCase {
         
         let someDragMove = ModelMove(from: ModelSquare(column: 4, line: 4), to: ModelSquare(column: 0, line: 0), numberOfPieces: 2)
         XCTAssertTrue(allMoves.contains(someDragMove))
+    }
+    
+    func testBestMoveIsNilForIfNoMoveIsPossible() {
+        let board = ModelBoardMock()
+        
+        // given all 20 white pieces are set:
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 0), .White, .White, .White, .White)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 1), .White, .White, .White, .White)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 2), .White, .White, .White, .White)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 3), .White, .White, .White, .White)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 4), .White, .White, .White, .White)
+        
+        let bestMove = board.bestMove()
+        XCTAssertNil(bestMove)
     }
 }
 

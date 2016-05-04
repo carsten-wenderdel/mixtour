@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5705DF311A4DFE7C00C3DB01 /* ModelSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705DF301A4DFE7C00C3DB01 /* ModelSquare.swift */; };
 		5705DF341A4E14B000C3DB01 /* ModelSquareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705DF331A4E14B000C3DB01 /* ModelSquareTests.swift */; };
+		570849F61CDA6FCE007E5713 /* MIXCoreBoard_AI.c in Sources */ = {isa = PBXBuildFile; fileRef = 570849F41CDA6FCE007E5713 /* MIXCoreBoard_AI.c */; };
 		573620411A7C1EF700086A1E /* MIXCoreHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573620401A7C1EF700086A1E /* MIXCoreHelperTests.swift */; };
 		5743AEAC1A4ACFAB0087D033 /* ModelBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */; };
 		5743AEB21A4B7DF00087D033 /* ModelPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEB11A4B7DF00087D033 /* ModelPlayer.swift */; };
@@ -53,6 +54,8 @@
 		5704EB421C8B0299001ACE3F /* kvec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kvec.h; path = klib/kvec.h; sourceTree = "<group>"; };
 		5705DF301A4DFE7C00C3DB01 /* ModelSquare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSquare.swift; sourceTree = "<group>"; };
 		5705DF331A4E14B000C3DB01 /* ModelSquareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSquareTests.swift; sourceTree = "<group>"; };
+		570849F41CDA6FCE007E5713 /* MIXCoreBoard_AI.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MIXCoreBoard_AI.c; sourceTree = "<group>"; };
+		570849F51CDA6FCE007E5713 /* MIXCoreBoard_AI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXCoreBoard_AI.h; sourceTree = "<group>"; };
 		573620401A7C1EF700086A1E /* MIXCoreHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXCoreHelperTests.swift; sourceTree = "<group>"; };
 		5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBoard.swift; sourceTree = "<group>"; };
 		5743AEB11A4B7DF00087D033 /* ModelPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelPlayer.swift; sourceTree = "<group>"; };
@@ -207,6 +210,8 @@
 				AA04066D176FA5F70051363A /* MIXCoreBoard.c */,
 				A10DC19C17A3FD1100E42832 /* MIXCoreBoard_private.h */,
 				A10DC19D17A3FD3900E42832 /* MIXCoreBoard_private.c */,
+				570849F51CDA6FCE007E5713 /* MIXCoreBoard_AI.h */,
+				570849F41CDA6FCE007E5713 /* MIXCoreBoard_AI.c */,
 				AAE463AC1772658800008778 /* MIXCoreHelper.h */,
 				AAE463AA1772657700008778 /* MIXCoreHelper.c */,
 			);
@@ -361,6 +366,7 @@
 				574588081A174F3700BBADCE /* MIXAppDelegate.swift in Sources */,
 				5744E5201A374B1D00F2812B /* GameView.swift in Sources */,
 				57C207FA1A489917002DAFB3 /* GamePieceView.swift in Sources */,
+				570849F61CDA6FCE007E5713 /* MIXCoreBoard_AI.c in Sources */,
 				5705DF311A4DFE7C00C3DB01 /* ModelSquare.swift in Sources */,
 				5743AEAC1A4ACFAB0087D033 /* ModelBoard.swift in Sources */,
 				A10DC19E17A3FD3900E42832 /* MIXCoreBoard_private.c in Sources */,

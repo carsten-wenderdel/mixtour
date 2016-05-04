@@ -41,9 +41,12 @@ typedef struct {
     uint8_t numberOfPieces;
 } MIXCoreMove;
 
+extern const MIXCoreMove MIXCoreMoveNoMove;
+
 MIXCoreMove MIXCoreMoveMakeDrag(MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfPieces);
 MIXCoreMove MIXCoreMoveMakeSet(MIXCoreSquare to);
 bool isMoveDrag(MIXCoreMove move);
+bool isMoveANoMove(MIXCoreMove move);
 
 
 

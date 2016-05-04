@@ -4,4 +4,5 @@
 
 #import "MIXCore.h"
 #import "MIXCoreBoard.h"
+#import "MIXCoreBoard_AI.h"
 

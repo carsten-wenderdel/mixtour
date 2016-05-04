@@ -117,11 +117,11 @@ class ModelBoard {
     
     
     func bestMove() -> ModelMove? {
-        let allMoves = allLegalMoves()
-        if allMoves.isEmpty {
+        let move = mixtour.bestMove(&coreBoard)
+        if mixtour.isMoveANoMove(move) {
             return nil
         } else {
-            return allMoves[0]
+            return ModelMove(coreMove: move)
         }
     }
 }
