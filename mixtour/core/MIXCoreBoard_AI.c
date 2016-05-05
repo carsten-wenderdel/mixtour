@@ -35,7 +35,7 @@ MIXCorePlayer winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
         }
         for (int i = 0; i < arraySize; i++) {
             MIXCoreMove testMove = kv_A(moves, i);
-            if (isMoveDrag(testMove)) {
+            if (isMoveDrag(testMove)) { // you cannot win with set moves
                 uint8_t heightOfFrom = heightOfSquare(boardRef, testMove.from);
                 uint8_t heightOfTo = heightOfSquare(boardRef, testMove.to);
                 if (heightOfTo + heightOfFrom >= 5) {
@@ -56,12 +56,11 @@ MIXCorePlayer winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
 MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
     srand(1);
 
-    MIXCoreMove move;
+    MIXCoreMove move = MIXCoreMoveNoMove;   // in case nothing is found
+    bool bestMoveFound = false;
     MIXMoveArray moves = arrayOfLegalMoves(boardRef);
     unsigned long arraySize = kv_size(moves);
-    if (arraySize == 0) {
-        move = MIXCoreMoveNoMove;
-    } else {
+    if (arraySize > 0) {
         int *winsOfBlack = calloc(arraySize, sizeof(int));
         
         struct MIXCoreBoard boardForTrials;
@@ -71,32 +70,45 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
         for (int trial = 0; trial < numberOfTrials; trial++) {
             for (int i = 0; i < (int)arraySize; i++) {
                 boardForTrials = *boardRef;
-                makeMove(trialRef, kv_A(moves, i));
-                MIXCorePlayer winner = winnerAfterRandomPlay(trialRef);
-                winsOfBlack[i] += winner;
+                MIXCoreMove trialMove = kv_A(moves, i);
+                makeMove(trialRef, trialMove);
+                MIXCorePlayer winnerOfTrial;
+                if (isGameOver(trialRef)) {
+                    move = trialMove;
+                    bestMoveFound = true;
+                    break;
+                } else {
+                    winnerOfTrial = winnerAfterRandomPlay(trialRef);
+                    winsOfBlack[i] += winnerOfTrial;
+                }
+            }
+            if (bestMoveFound) {
+                break;
             }
         }
         
-        // find the move with the most wins for black
-        int indexOfBestMove = 0;
-        
-        if (playerOnTurn(boardRef) == MIXCorePlayerWhite) {
-            // find min
-            for (int i = 1; i < (int)arraySize; i++) {
-                if (winsOfBlack[i] < winsOfBlack[indexOfBestMove]) {
-                    indexOfBestMove = i;
+        if (!bestMoveFound) {
+            // find the move with the most wins for black
+            int indexOfBestMove = 0;
+            
+            if (playerOnTurn(boardRef) == MIXCorePlayerWhite) {
+                // find min
+                for (int i = 1; i < (int)arraySize; i++) {
+                    if (winsOfBlack[i] < winsOfBlack[indexOfBestMove]) {
+                        indexOfBestMove = i;
+                    }
+                }
+            } else {
+                // find max
+                for (int i = 1; i < (int)arraySize; i++) {
+                    if (winsOfBlack[i] > winsOfBlack[indexOfBestMove]) {
+                        indexOfBestMove = i;
+                    }
                 }
             }
-        } else {
-            // find max
-            for (int i = 1; i < (int)arraySize; i++) {
-                if (winsOfBlack[i] > winsOfBlack[indexOfBestMove]) {
-                    indexOfBestMove = i;
-                }
-            }
+            move = kv_A(moves, indexOfBestMove);
         }
-        move = kv_A(moves, indexOfBestMove);
-
+        
         free(winsOfBlack);
     }
     destroyMoveArray(moves);
