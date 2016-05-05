@@ -43,6 +43,27 @@ class ModelBoardTests : XCTestCase {
     }
     
     
+    func testInitWithBoard() {
+        // given
+        let modelBoard = ModelBoard();
+        let modelSquare = ModelSquare(column: 1, line: 1)
+        modelBoard.makeMoveIfLegal(ModelMove(setPieceTo: modelSquare))
+        
+        // when
+        let copyBoard = ModelBoard(board: modelBoard)
+        
+        // assert
+        XCTAssertEqual(copyBoard.heightOfSquare(modelSquare), 1)
+        
+        // when
+        let modelSquare2 = ModelSquare(column: 2, line: 2)
+        copyBoard.makeMoveIfLegal(ModelMove(setPieceTo: modelSquare2))
+
+        // assert
+        XCTAssertEqual(copyBoard.heightOfSquare(modelSquare2), 1)
+        XCTAssertEqual(modelBoard.heightOfSquare(modelSquare2), 0)
+    }
+    
     func testGameOver() {
         let board = ModelBoard()
         XCTAssertFalse(board.isGameOver(), "")

@@ -20,6 +20,11 @@ class ModelBoard {
         resetCoreBoard(&coreBoard)
     }
     
+    init(board: ModelBoard) {
+        coreBoard = board.coreBoard
+    }
+    
+    
     func isGameOver() -> Bool {
         return mixtour.isGameOver(&coreBoard)
     }
