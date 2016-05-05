@@ -11,22 +11,7 @@ import UIKit
 
 class MIXViewController: UIViewController, GameViewDelegate {
 
-    lazy var board: ModelBoard = {
-        let board = ModelBoard()
-        for i in 0..<5 {
-            for j in 0..<5 {
-                board.setPiece(ModelSquare(column: i, line: j))
-            }
-        }
-        for i in 1...2 {
-            for j in 0...3 {
-                board.dragPiecesFrom(ModelSquare(column: i, line: j),
-                        to: ModelSquare(column: i, line: j+1),
-                        withNumber: j+1)
-            }
-        }
-        return board
-    }()
+    lazy var board: ModelBoard = ModelBoard()
 
 
     override func viewDidLoad() {
