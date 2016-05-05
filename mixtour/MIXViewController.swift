@@ -12,19 +12,36 @@ import UIKit
 class MIXViewController: UIViewController, GameViewDelegate {
 
     lazy var board: ModelBoard = ModelBoard()
+    var gameView: GameView!
+    var boardBeforeMove: ModelBoard?
 
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let newGameView = GameView(frame: self.view.frame)
-        newGameView.delegate = self
-        newGameView.setPiecesForBoard(self.board)
-        newGameView.setPiecesForBoard(self.board)
-        self.view.addSubview(newGameView)
+        gameView = GameView(frame: self.view.frame)
+        gameView.delegate = self
+        gameView.setPiecesForBoard(self.board)
+        gameView.setPiecesForBoard(self.board)
+        self.view.addSubview(gameView)
+        
+        let undoButton = UIButton(type: .System)
+        undoButton.frame = CGRectMake(0, 30, 50, 15)
+        undoButton.setTitle("Undo", forState: .Normal)
+        undoButton.addTarget(self, action: #selector(undoMove), forControlEvents: .TouchUpInside)
+        self.view.addSubview(undoButton);
+    }
+    
+    
+    func undoMove() {
+        if let undoBoard = boardBeforeMove {
+            board = undoBoard
+        }
+        gameView.clearBoard()
+        gameView.setPiecesForBoard(board)
     }
     
     private func calculateNextMoveForGameView(gameView: GameView) {
-       
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { [weak self] _ in
             let move = self?.board.bestMove()
             
@@ -62,6 +79,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
     
     func gameView(gameView : GameView, tryToMakeMove move: ModelMove) -> Bool {
         
+        boardBeforeMove = ModelBoard(board: board)
         let movePossible = board.makeMoveIfLegal(move)
         
         // display new state. If move not possible, this also moves the dragged piece to the old correct position
@@ -69,7 +87,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
         gameView.setPiecesForBoard(self.board)
         
         if (movePossible) {
-        calculateNextMoveForGameView(gameView)
+            calculateNextMoveForGameView(gameView)
         }
         
         return movePossible
