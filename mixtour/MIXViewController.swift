@@ -68,7 +68,9 @@ class MIXViewController: UIViewController, GameViewDelegate {
         gameView.clearBoard()
         gameView.setPiecesForBoard(self.board)
         
+        if (movePossible) {
         calculateNextMoveForGameView(gameView)
+        }
         
         return movePossible
     }
