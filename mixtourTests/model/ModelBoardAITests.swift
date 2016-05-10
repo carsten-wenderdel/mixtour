@@ -23,8 +23,22 @@ class ModelBoardAITests: XCTestCase {
         let blackMove = board.bestMove()
         
         // assert
-        XCTAssert(blackMove?.numberOfPieces != 4)
+        XCTAssert(blackMove!.numberOfPieces != 4)
     }
-
+    
+    func testPerformanceExample() {
+        // given
+        let board = ModelBoard()
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 0), .White, .White, .White, .White)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 1), .Black)
+        board.setTurnDirectly(.White)
+        
+        // when
+        self.measureBlock {
+            let whiteMove = board.bestMove()    // easy win - should be super fast
+            XCTAssert(whiteMove!.numberOfPieces == 4)
+        }
+    }
+    
 }
 
