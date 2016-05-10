@@ -67,13 +67,14 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
         MIXCoreBoardRef trialRef = &boardForTrials;
         
         // run "numberOfTrials" times through all possible moves
+        MIXCorePlayer aIPlayer = playerOnTurn(boardRef);
         for (int trial = 0; trial < numberOfTrials; trial++) {
             for (int i = 0; i < (int)arraySize; i++) {
                 boardForTrials = *boardRef;
                 MIXCoreMove trialMove = kv_A(moves, i);
                 makeMove(trialRef, trialMove);
                 MIXCorePlayer winnerOfTrial;
-                if (isGameOver(trialRef)) {
+                if (isGameOver(trialRef) && (winner(boardRef) == aIPlayer)) {
                     move = trialMove;
                     bestMoveFound = true;
                     break;
