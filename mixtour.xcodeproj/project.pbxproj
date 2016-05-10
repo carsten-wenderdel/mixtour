@@ -11,6 +11,7 @@
 		5705DF341A4E14B000C3DB01 /* ModelSquareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705DF331A4E14B000C3DB01 /* ModelSquareTests.swift */; };
 		570849F61CDA6FCE007E5713 /* MIXCoreBoard_AI.c in Sources */ = {isa = PBXBuildFile; fileRef = 570849F41CDA6FCE007E5713 /* MIXCoreBoard_AI.c */; };
 		573620411A7C1EF700086A1E /* MIXCoreHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573620401A7C1EF700086A1E /* MIXCoreHelperTests.swift */; };
+		5739A5EB1CE2347A009B27C0 /* ModelBoardTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739A5EA1CE2347A009B27C0 /* ModelBoardTestExtensions.swift */; };
 		5743AEAC1A4ACFAB0087D033 /* ModelBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */; };
 		5743AEB21A4B7DF00087D033 /* ModelPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEB11A4B7DF00087D033 /* ModelPlayer.swift */; };
 		5743AEB41A4B7FAF0087D033 /* ModelPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743AEB31A4B7FAF0087D033 /* ModelPlayerTests.swift */; };
@@ -57,6 +58,7 @@
 		570849F41CDA6FCE007E5713 /* MIXCoreBoard_AI.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MIXCoreBoard_AI.c; sourceTree = "<group>"; };
 		570849F51CDA6FCE007E5713 /* MIXCoreBoard_AI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIXCoreBoard_AI.h; sourceTree = "<group>"; };
 		573620401A7C1EF700086A1E /* MIXCoreHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXCoreHelperTests.swift; sourceTree = "<group>"; };
+		5739A5EA1CE2347A009B27C0 /* ModelBoardTestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBoardTestExtensions.swift; sourceTree = "<group>"; };
 		5743AEAB1A4ACFAB0087D033 /* ModelBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBoard.swift; sourceTree = "<group>"; };
 		5743AEB11A4B7DF00087D033 /* ModelPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelPlayer.swift; sourceTree = "<group>"; };
 		5743AEB31A4B7FAF0087D033 /* ModelPlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelPlayerTests.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		AA2839271770A71F00F229F7 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				5739A5EA1CE2347A009B27C0 /* ModelBoardTestExtensions.swift */,
 				57943FF11A49E4EF00744ABE /* ModelBoardTests.swift */,
 				5743AEB31A4B7FAF0087D033 /* ModelPlayerTests.swift */,
 				5705DF331A4E14B000C3DB01 /* ModelSquareTests.swift */,
@@ -385,6 +388,7 @@
 				5743AEB41A4B7FAF0087D033 /* ModelPlayerTests.swift in Sources */,
 				579FF8551A53243700730D92 /* MIXCoreBoard_privateTests.swift in Sources */,
 				5705DF341A4E14B000C3DB01 /* ModelSquareTests.swift in Sources */,
+				5739A5EB1CE2347A009B27C0 /* ModelBoardTestExtensions.swift in Sources */,
 				57943FF21A49E4EF00744ABE /* ModelBoardTests.swift in Sources */,
 				573620411A7C1EF700086A1E /* MIXCoreHelperTests.swift in Sources */,
 				CB63B885CCB2E6807CFA6772 /* ModelMoveTests.swift in Sources */,
