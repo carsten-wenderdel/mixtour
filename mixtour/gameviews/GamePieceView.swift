@@ -21,5 +21,6 @@ class GamePieceView: UIView {
         self.baseColor = baseColor;
         super.init(frame: frame);
         self.backgroundColor = baseColor;
+        self.layer.borderWidth = 1
     }
 }
