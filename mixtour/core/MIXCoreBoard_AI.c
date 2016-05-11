@@ -81,28 +81,24 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
     if (arraySize > 0) {
         int *winsOfBlack = calloc(arraySize, sizeof(int));
         
-        struct MIXCoreBoard boardForTrials;
-        MIXCoreBoardRef trialRef = &boardForTrials;
-        
         // run "numberOfTrials" times through all possible moves
         MIXCorePlayer aIPlayer = playerOnTurn(boardRef);
-        for (int trial = 0; trial < numberOfTrials; trial++) {
-            for (int i = 0; i < (int)arraySize; i++) {
-                boardForTrials = *boardRef;
-                MIXCoreMove trialMove = kv_A(moves, i);
-                makeMove(trialRef, trialMove);
-                MIXCorePlayer winnerOfTrial;
-                if (isGameOver(trialRef) && (winner(trialRef) == aIPlayer)) {
-                    move = trialMove;
-                    bestMoveFound = true;
-                    break;
-                } else {
-                    winnerOfTrial = winnerAfterRandomPlay(trialRef);
+        for (int i = 0; i < (int)arraySize; i++) {
+            struct MIXCoreBoard boardForTrials = *boardRef;
+            MIXCoreBoardRef trialRef = &boardForTrials;
+            MIXCoreMove trialMove = kv_A(moves, i);
+            makeMove(trialRef, trialMove);
+            
+            if (isGameOver(trialRef) && (winner(trialRef) == aIPlayer)) {
+                move = trialMove;
+                bestMoveFound = true;
+                break;
+            } else {
+                for (int trial = 0; trial < numberOfTrials; trial++) {
+                    struct MIXCoreBoard randomPlayBoard = boardForTrials;
+                    MIXCorePlayer winnerOfTrial = winnerAfterRandomPlay(&randomPlayBoard);
                     winsOfBlack[i] += winnerOfTrial;
                 }
-            }
-            if (bestMoveFound) {
-                break;
             }
         }
         
