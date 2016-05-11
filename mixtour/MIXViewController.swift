@@ -21,7 +21,6 @@ class MIXViewController: UIViewController, GameViewDelegate {
         gameView = GameView(frame: self.view.frame)
         gameView.delegate = self
         gameView.setPiecesForBoard(self.board)
-        gameView.setPiecesForBoard(self.board)
         self.view.addSubview(gameView)
         
         let undoButton = UIButton(type: .System)
@@ -36,7 +35,6 @@ class MIXViewController: UIViewController, GameViewDelegate {
         if let undoBoard = boardBeforeMove {
             board = undoBoard
         }
-        gameView.clearBoard()
         gameView.setPiecesForBoard(board)
     }
     
@@ -51,7 +49,6 @@ class MIXViewController: UIViewController, GameViewDelegate {
                     // Also the ownership of gameView and board is not thought through
                     guard let this = self else {return}
                     this.board.makeMoveIfLegal(bestMove)
-                    gameView.clearBoard()
                     gameView.setPiecesForBoard(this.board)
                 })
             }
@@ -83,7 +80,6 @@ class MIXViewController: UIViewController, GameViewDelegate {
         let movePossible = board.makeMoveIfLegal(move)
         
         // display new state. If move not possible, this also moves the dragged piece to the old correct position
-        gameView.clearBoard()
         gameView.setPiecesForBoard(self.board)
         
         if (movePossible) {

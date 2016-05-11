@@ -29,7 +29,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     let pieceWidth: CGFloat
     let pieceHeight: CGFloat
     
-    lazy var fieldArray: [[[GamePieceView]]] = {
+    lazy var fieldArray: [[[GamePieceView]]]! = {
         var lineArray = [[[GamePieceView]]]()
         for line in 0..<numberOfSquares {
             var columnArray = [[GamePieceView]]()
@@ -88,6 +88,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     }
     
     func clearBoard() {
+        // remove all references to piece views to avoid memory leaks
         for columnArray in fieldArray {
             for viewArray in columnArray {
                 for pieceView in viewArray {
@@ -95,6 +96,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
                 }
             }
         }
+        fieldArray = nil
     }
     
     
@@ -118,6 +120,8 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     
     
     func setPiecesForBoard(board: ModelBoard) {
+        clearBoard()
+
         for column in 0..<numberOfSquares {
             for line in 0..<numberOfSquares {
                 let square = ModelSquare(column: column, line: line)
