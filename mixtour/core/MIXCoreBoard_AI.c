@@ -28,11 +28,15 @@ MIXCoreMove firstMove(MIXCoreBoardRef boardRef) {
 
 MIXCorePlayer winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
     for (int m = 0; m < maximumNumberOfMoves; m++) {
+        MIXCorePlayer returnPlayer = MIXCorePlayerUndefined;   // in case nothing is found
+        bool winnerFound = false;
         MIXMoveArray moves = arrayOfLegalMoves(boardRef);
         int arraySize = (int)kv_size(moves);
         if (arraySize == 0) {
-            return MIXCorePlayerUndefined;
+            returnPlayer = MIXCorePlayerUndefined;
+            winnerFound = true;
         }
+        
         for (int i = 0; i < arraySize; i++) {
             MIXCoreMove testMove = kv_A(moves, i);
             if (isMoveDrag(testMove)) { // you cannot win with set moves
@@ -40,14 +44,21 @@ MIXCorePlayer winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
                 uint8_t heightOfTo = heightOfSquare(boardRef, testMove.to);
                 if (heightOfTo + heightOfFrom >= 5) {
                     MIXCorePlayer colorOfHeighestPiece = colorOfSquareAtPosition(boardRef, testMove.from, 0);
-                    return colorOfHeighestPiece;
+                    returnPlayer = colorOfHeighestPiece;
+                    winnerFound = true;
                 }
             }
         }
-        int randomIndex = rand() % arraySize;
-        MIXCoreMove randomMove = kv_A(moves, randomIndex);
-        makeMove(boardRef, randomMove);
+        
+        if (!winnerFound) {
+            int randomIndex = rand() % arraySize;
+            MIXCoreMove randomMove = kv_A(moves, randomIndex);
+            makeMove(boardRef, randomMove);
+        }
         destroyMoveArray(moves);
+        if (winnerFound) {
+            return returnPlayer;
+        }
     }
     return MIXCorePlayerUndefined;
 }
