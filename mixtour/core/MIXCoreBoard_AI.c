@@ -28,6 +28,10 @@ MIXCoreMove firstMove(MIXCoreBoardRef boardRef) {
 
 MIXCorePlayer winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
     for (int m = 0; m < maximumNumberOfMoves; m++) {
+        if (isGameOver(boardRef)) {
+            return winner(boardRef);
+        }
+        
         MIXCorePlayer returnPlayer = MIXCorePlayerUndefined;   // in case nothing is found
         bool winnerFound = false;
         MIXMoveArray moves = arrayOfLegalMoves(boardRef);
@@ -35,14 +39,14 @@ MIXCorePlayer winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
         if (arraySize == 0) {
             returnPlayer = MIXCorePlayerUndefined;
             winnerFound = true;
-        }
-        
-        MIXCorePlayer turn = playerOnTurn(boardRef);
-        for (int i = 0; i < arraySize; i++) {
-            MIXCoreMove testMove = kv_A(moves, i);
-            if (turn == potentialWinner(boardRef, testMove)) {
-                returnPlayer = turn;
-                winnerFound = true;
+        } else {
+            MIXCorePlayer turn = playerOnTurn(boardRef);
+            for (int i = 0; i < arraySize; i++) {
+                MIXCoreMove testMove = kv_A(moves, i);
+                if (turn == potentialWinner(boardRef, testMove)) {
+                    returnPlayer = turn;
+                    winnerFound = true;
+                }
             }
         }
         
@@ -50,10 +54,6 @@ MIXCorePlayer winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
             int randomIndex = rand() % arraySize;
             MIXCoreMove randomMove = kv_A(moves, randomIndex);
             makeMove(boardRef, randomMove);
-            if (isGameOver(boardRef)) {
-                returnPlayer = winner(boardRef);
-                winnerFound = true;
-            }
         }
         destroyMoveArray(moves);
         if (winnerFound) {
