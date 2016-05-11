@@ -78,6 +78,12 @@ void setPiece(MIXCoreBoardRef boardRef, MIXCoreSquare square);
 bool isDistanceRight(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to);
 
 /**
+ Returns MIXCorePlayerUndefined if it's not a winner move
+ Does not check whether move is legal or game is already over
+ */
+MIXCorePlayer potentialWinner(MIXCoreBoardRef boardRef, MIXCoreMove move);
+
+/**
  For dragging: Does check distance and whether pieces are between.
  Does not check whether game is over or move recreates the previous position
  */

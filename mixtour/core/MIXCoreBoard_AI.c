@@ -40,16 +40,9 @@ MIXCorePlayer winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
         MIXCorePlayer turn = playerOnTurn(boardRef);
         for (int i = 0; i < arraySize; i++) {
             MIXCoreMove testMove = kv_A(moves, i);
-            if (isMoveDrag(testMove)) { // you cannot win with set moves
-                uint8_t heightOfFrom = heightOfSquare(boardRef, testMove.from);
-                uint8_t heightOfTo = heightOfSquare(boardRef, testMove.to);
-                if (heightOfTo + heightOfFrom >= 5) {
-                    MIXCorePlayer colorOfHeighestPiece = colorOfSquareAtPosition(boardRef, testMove.from, 0);
-                    if (turn == colorOfHeighestPiece) {
-                        returnPlayer = turn;
-                        winnerFound = true;
-                    }   // TODO: implement the else part, don't follow that path
-                }
+            if (turn == potentialWinner(boardRef, testMove)) {
+                returnPlayer = turn;
+                winnerFound = true;
             }
         }
         
