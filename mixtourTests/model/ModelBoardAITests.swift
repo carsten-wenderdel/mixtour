@@ -26,6 +26,25 @@ class ModelBoardAITests: XCTestCase {
         XCTAssert(blackMove!.numberOfPieces != 4)
     }
     
+    func testAIPlayerDoesNotMakeOpponentWin2() {
+        // given
+        let board = ModelBoard()
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 0), .White, .White, .White)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 2), .White, .Black)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 2, line: 0), .White)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 2), .Black, .Black, .White)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 3), .Black, .White)
+        board.setTurnDirectly(.Black)
+        
+        // when
+        let blackMove = board.bestMove()
+        board.makeMoveIfLegal(blackMove!)
+        
+        // assert
+        XCTAssert(board.isGameOver())
+        XCTAssertEqual(board.winner(), ModelPlayer.Black)
+    }
+
     func testPerformanceExample() {
         // given
         let board = ModelBoard()

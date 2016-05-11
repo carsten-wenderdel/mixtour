@@ -92,7 +92,7 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
                 MIXCoreMove trialMove = kv_A(moves, i);
                 makeMove(trialRef, trialMove);
                 MIXCorePlayer winnerOfTrial;
-                if (isGameOver(trialRef) && (winner(boardRef) == aIPlayer)) {
+                if (isGameOver(trialRef) && (winner(trialRef) == aIPlayer)) {
                     move = trialMove;
                     bestMoveFound = true;
                     break;
