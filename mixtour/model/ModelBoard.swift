@@ -67,19 +67,19 @@ class ModelBoard {
     If this is a legal move, it returns YES.
     If it's an illegal move, the move is not made and NO is returned. The model is still fine.
     */
-    func setPiece(_ square: ModelSquare) -> Bool {
+    @discardableResult func setPiece(_ square: ModelSquare) -> Bool {
         let move = ModelMove(setPieceTo: square)
         return makeMoveIfLegal(move)
     }
     
 
-    func dragPiecesFrom(_ from: ModelSquare, to: ModelSquare, withNumber numberODraggedPieces: Int) -> Bool {
+    @discardableResult func dragPiecesFrom(_ from: ModelSquare, to: ModelSquare, withNumber numberODraggedPieces: Int) -> Bool {
         let modelMove = ModelMove(from: from, to: to, numberOfPieces: numberODraggedPieces)
         return makeMoveIfLegal(modelMove)
     }
     
     
-    func makeMoveIfLegal(_ move: ModelMove) -> Bool {
+    @discardableResult func makeMoveIfLegal(_ move: ModelMove) -> Bool {
         if isMoveLegal(move) {
             mixtour.makeMove(&coreBoard, move.coreMove())
             return true

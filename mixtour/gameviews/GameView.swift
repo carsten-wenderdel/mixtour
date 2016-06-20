@@ -10,9 +10,9 @@ import UIKit
 
 
 protocol GameViewDelegate: class {
-    func gameView(_ gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: ModelSquare, to: ModelSquare) -> Bool
-    func gameView(_ gameView : GameView, tryToSetPieceTo to: ModelSquare) -> Bool
-    func gameView(_ gameView : GameView, tryToMakeMove move: ModelMove) -> Bool
+    @discardableResult func gameView(_ gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: ModelSquare, to: ModelSquare) -> Bool
+    @discardableResult func gameView(_ gameView : GameView, tryToSetPieceTo to: ModelSquare) -> Bool
+    @discardableResult func gameView(_ gameView : GameView, tryToMakeMove move: ModelMove) -> Bool
 }
 
 
