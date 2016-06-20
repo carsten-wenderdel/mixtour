@@ -15,9 +15,9 @@ class ModelBoardAITests: XCTestCase {
     func testAIPlayerDoesNotMakeOpponentWin() {
         // given
         let board = ModelBoard()
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 0), .White, .White, .White, .White)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 1), .Black)
-        board.setTurnDirectly(.Black)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 0), .white, .white, .white, .white)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 1), .black)
+        board.setTurnDirectly(.black)
         
         // when
         let blackMove = board.bestMove()
@@ -29,12 +29,12 @@ class ModelBoardAITests: XCTestCase {
     func testPerformanceExample() {
         // given
         let board = ModelBoard()
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 0), .White, .White, .White, .White)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 1), .Black)
-        board.setTurnDirectly(.White)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 0), .white, .white, .white, .white)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 1), .black)
+        board.setTurnDirectly(.white)
         
         // when
-        self.measureBlock {
+        self.measure {
             let whiteMove = board.bestMove()    // easy win - should be super fast
             XCTAssert(whiteMove!.numberOfPieces == 4)
         }

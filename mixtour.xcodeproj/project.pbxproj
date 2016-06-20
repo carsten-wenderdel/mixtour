@@ -316,7 +316,11 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Carsten Wenderdel";
 				TargetAttributes = {
+					AA040632176F9DF40051363A = {
+						LastSwiftMigration = 0800;
+					};
 					AA040653176F9DF40051363A = {
+						LastSwiftMigration = 0800;
 						TestTargetID = AA040632176F9DF40051363A;
 					};
 				};
@@ -583,6 +587,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wenderdel.games.stein.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtour/mixtour-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
 					"-Wall",
@@ -607,6 +612,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wenderdel.games.stein.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtour/mixtour-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
 					"-Wall",
@@ -631,6 +637,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wenderdel.games.stein.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = mixtourTests;
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtourTests/model/mixtourTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Debug;
@@ -646,6 +653,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wenderdel.games.stein.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = mixtourTests;
 				SWIFT_OBJC_BRIDGING_HEADER = "mixtourTests/model/mixtourTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;

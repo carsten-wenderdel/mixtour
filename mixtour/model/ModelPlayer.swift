@@ -8,26 +8,26 @@
 
 
 enum ModelPlayer: Int {
-    case Undefined = -1  // TODO: Maybe use Swift optional and failable initializer instead?
-    case White = 0
-    case Black = 1
+    case undefined = -1  // TODO: Maybe use Swift optional and failable initializer instead?
+    case white = 0
+    case black = 1
     
     init(corePlayer: MIXCorePlayer) {
         switch corePlayer.rawValue {
         case MIXCorePlayerWhite.rawValue:
-            self = .White
+            self = .white
         case MIXCorePlayerBlack.rawValue:
-            self = .Black
+            self = .black
         default:
-            self = .Undefined
+            self = .undefined
         }
     }
     
     func corePlayer() -> MIXCorePlayer {
         switch self {
-        case .White:
+        case .white:
             return MIXCorePlayerWhite
-        case .Black:
+        case .black:
             return MIXCorePlayerBlack
         default:
             return MIXCorePlayerUndefined

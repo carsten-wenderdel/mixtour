@@ -10,15 +10,15 @@
 
 extension ModelBoard {
     
-    func setPiecesDirectlyToSquare(square: ModelSquare, _ args: ModelPlayer...) {
-        var corePlayers: [CVarArgType] = [CVarArgType]()
+    func setPiecesDirectlyToSquare(_ square: ModelSquare, _ args: ModelPlayer...) {
+        var corePlayers: [CVarArg] = [CVarArg]()
         for modelPlayer in args {
             corePlayers.append(modelPlayer.rawValue)
         }
         mixtour.setPiecesDirectlyWithList(&coreBoard, square.coreSquare(), Int32(corePlayers.count), getVaList(corePlayers))
     }
     
-    func setTurnDirectly(player: ModelPlayer) {
+    func setTurnDirectly(_ player: ModelPlayer) {
         mixtour.setTurnDirectly(&coreBoard, player.corePlayer())
     }
 }
