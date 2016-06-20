@@ -247,8 +247,8 @@ class ModelBoardTests : XCTestCase {
         
         board.setPiece(ModelSquare(column: 1, line: 3))
         board.setPiece(ModelSquare(column: 3, line: 4))
-        (board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 1), numberOfPieces: 1)))
-        (board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 4, line: 4), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 1), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 4, line: 4), numberOfPieces: 1)))
     }
     
     func testIsDraggingLegalCross() {
