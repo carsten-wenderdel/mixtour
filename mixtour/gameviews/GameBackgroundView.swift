@@ -22,7 +22,7 @@ class GameBackgroundView : UIView {
         
         for i in 0..<numberOfSquares {
             for j in 0..<numberOfSquares {
-                let squareFrame = CGRectMake(CGFloat(i) * squareWidth, CGFloat(j) * squareWidth, squareWidth, squareHeight)
+                let squareFrame = CGRect(x: CGFloat(i) * squareWidth, y: CGFloat(j) * squareWidth, width: squareWidth, height: squareHeight)
                 let squareView = UIView(frame: squareFrame)
                 if (i + j) % 2 == 0 {
                     squareView.backgroundColor = UIColor(red: 0.9, green: 0.93, blue: 1.0, alpha: 1.0)

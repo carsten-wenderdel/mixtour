@@ -23,10 +23,10 @@ class MIXViewController: UIViewController, GameViewDelegate {
         gameView.setPiecesForBoard(self.board)
         self.view.addSubview(gameView)
         
-        let undoButton = UIButton(type: .System)
-        undoButton.frame = CGRectMake(0, 30, 50, 15)
-        undoButton.setTitle("Undo", forState: .Normal)
-        undoButton.addTarget(self, action: #selector(undoMove), forControlEvents: .TouchUpInside)
+        let undoButton = UIButton(type: .system)
+        undoButton.frame = CGRect(x: 0, y: 30, width: 50, height: 15)
+        undoButton.setTitle("Undo", for: UIControlState())
+        undoButton.addTarget(self, action: #selector(undoMove), for: .touchUpInside)
         self.view.addSubview(undoButton);
     }
     
@@ -38,13 +38,13 @@ class MIXViewController: UIViewController, GameViewDelegate {
         gameView.setPiecesForBoard(board)
     }
     
-    private func calculateNextMoveForGameView(gameView: GameView) {
+    private func calculateNextMoveForGameView(_ gameView: GameView) {
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { [weak self] _ in
+        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosBackground).async(execute: { [weak self] _ in
             let move = self?.board.bestMove()
             
             if let bestMove = move {
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     // TODO: self.board could be changed by user during AI calculation - freeze parts of the UI or make a deep copy of the board
                     // Also the ownership of gameView and board is not thought through
                     guard let this = self else {return}
@@ -58,7 +58,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
 
     // MARK: GameViewDelegate
 
-    func gameView(gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: ModelSquare, to: ModelSquare) -> Bool {
+    func gameView(_ gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: ModelSquare, to: ModelSquare) -> Bool {
         
         print("Try to drag \(numberOfDraggedPieces) pieces from \(from.column)/\(from.line) to \(to.column)/\(to.line)")
         
@@ -66,7 +66,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
         return self.gameView(gameView, tryToMakeMove: move)
     }
     
-    func gameView(gameView : GameView, tryToSetPieceTo to: ModelSquare) -> Bool {
+    func gameView(_ gameView : GameView, tryToSetPieceTo to: ModelSquare) -> Bool {
         
         print("Try to set piece to \(to.column)/\(to.line)")
         
@@ -74,7 +74,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
         return self.gameView(gameView, tryToMakeMove: move)
     }
     
-    func gameView(gameView : GameView, tryToMakeMove move: ModelMove) -> Bool {
+    func gameView(_ gameView : GameView, tryToMakeMove move: ModelMove) -> Bool {
         
         boardBeforeMove = ModelBoard(board: board)
         let movePossible = board.makeMoveIfLegal(move)

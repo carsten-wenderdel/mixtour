@@ -10,9 +10,9 @@ import UIKit
 
 
 protocol GameViewDelegate: class {
-    func gameView(gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: ModelSquare, to: ModelSquare) -> Bool
-    func gameView(gameView : GameView, tryToSetPieceTo to: ModelSquare) -> Bool
-    func gameView(gameView : GameView, tryToMakeMove move: ModelMove) -> Bool
+    @discardableResult func gameView(_ gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: ModelSquare, to: ModelSquare) -> Bool
+    @discardableResult func gameView(_ gameView : GameView, tryToSetPieceTo to: ModelSquare) -> Bool
+    @discardableResult func gameView(_ gameView : GameView, tryToMakeMove move: ModelMove) -> Bool
 }
 
 
@@ -55,15 +55,15 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         let emptySpace = abs(frame.size.height - frame.size.width) / 2
         if frame.size.height > frame.size.width {
             // portrait view
-            upperLeftPoint = CGPointMake(0, emptySpace)
+            upperLeftPoint = CGPoint(x: 0, y: emptySpace)
         } else {
-            upperLeftPoint = CGPointMake(emptySpace, 0)
+            upperLeftPoint = CGPoint(x: emptySpace, y: 0)
         }
         
         super.init(frame: frame)
         
         // Background view with squares in two colors
-        let backgroundRect = CGRectMake(upperLeftPoint.x, upperLeftPoint.y, boardLength, boardLength)
+        let backgroundRect = CGRect(x: upperLeftPoint.x, y: upperLeftPoint.y, width: boardLength, height: boardLength)
         let backgroundView = GameBackgroundView(frame: backgroundRect)
         addSubview(backgroundView)
         
@@ -73,7 +73,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     
     // MARK: Manage logical arrangement of views in fieldArray
     
-    private func pieceArrayForView(view: GamePieceView) -> [GamePieceView] {
+    private func pieceArrayForView(_ view: GamePieceView) -> [GamePieceView] {
         for columnArray in fieldArray {
             for viewArray in columnArray {
                 for pieceView in viewArray {
@@ -119,18 +119,18 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     }
     
     
-    func setPiecesForBoard(board: ModelBoard) {
+    func setPiecesForBoard(_ board: ModelBoard) {
         clearBoard()
 
         for column in 0..<numberOfSquares {
             for line in 0..<numberOfSquares {
                 let square = ModelSquare(column: column, line: line)
                 let height = board.heightOfSquare(square)
-                for position in (0..<Int(height)).reverse() {
+                for position in (0..<Int(height)).reversed() {
                     let player = board.colorOfSquare(square, atPosition: position)
-                    let color = (player == ModelPlayer.White)
-                        ? UIColor.yellowColor()
-                        : UIColor.redColor()
+                    let color = (player == ModelPlayer.white)
+                        ? UIColor.yellow()
+                        : UIColor.red()
                     // When there are 5 pieces, the upper most has - as always -
                     // the position 0, but the ui position 4
                     let uiPosition = height - position - 1
@@ -141,7 +141,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     }
     
     
-    private func setPieceWithColor(color: UIColor, onSquare square: ModelSquare, atUIPosition uiPosition: Int) {
+    private func setPieceWithColor(_ color: UIColor, onSquare square: ModelSquare, atUIPosition uiPosition: Int) {
         // find out where to place it
         let startX = upperLeftPoint.x
                 + (squareLength * CGFloat(square.line))
@@ -149,7 +149,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         let startY = upperLeftPoint.y
             + (squareLength * (CGFloat(square.column) + 0.9))
             - (pieceHeight * CGFloat(uiPosition + 1))
-        let pieceFrame = CGRectMake(startX, startY, pieceWidth, pieceHeight)
+        let pieceFrame = CGRect(x: startX, y: startY, width: pieceWidth, height: pieceHeight)
         
         let pieceView = GamePieceView(frame: pieceFrame, baseColor: color)
 
@@ -161,7 +161,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     }
     
 
-    private func squareForPosition(position: CGPoint) -> ModelSquare {
+    private func squareForPosition(_ position: CGPoint) -> ModelSquare {
         let column = (position.y - upperLeftPoint.y) / squareLength
         let line = (position.x - upperLeftPoint.x) / squareLength
         let square = ModelSquare(column: Int(column), line: Int(line))
@@ -171,20 +171,20 @@ class GameView: UIView, UIGestureRecognizerDelegate {
 
     // MARK: GestureRecognizer Actions
     
-    func handleDoubleTapGesture(gestureRecognizer: UITapGestureRecognizer) {
-        let currentPoint = gestureRecognizer.locationInView(self)
+    func handleDoubleTapGesture(_ gestureRecognizer: UITapGestureRecognizer) {
+        let currentPoint = gestureRecognizer.location(in: self)
         let square = squareForPosition(currentPoint)
 
         delegate?.gameView(self, tryToSetPieceTo: square)
     }
 
-    func handlePressGesture(gestureRecognizer: UILongPressGestureRecognizer) {
-        let currentPoint = gestureRecognizer.locationInView(self)
+    func handlePressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        let currentPoint = gestureRecognizer.location(in: self)
         let square = squareForPosition(currentPoint)
         print("handlePressGesture at square \(square.line)/\(square.column), state: \(gestureRecognizer.state.rawValue)")
         switch gestureRecognizer.state {
-        case .Began:
-            let upperMostView = hitTest(currentPoint, withEvent: nil)
+        case .began:
+            let upperMostView = hitTest(currentPoint, with: nil)
             if let pressedPieceView = upperMostView as? GamePieceView {
                 var viewsToPan = [GamePieceView]()
                 let viewArray = pieceArrayForView(pressedPieceView)
@@ -200,26 +200,26 @@ class GameView: UIView, UIGestureRecognizerDelegate {
                 pannedViews = viewsToPan
                 pressedSquare = square
             }
-        case .Ended, .Cancelled, .Failed:
+        case .ended, .cancelled, .failed:
             for view in pannedViews {
                 view.alpha = 1.0
             }
-            if (.Ended == gestureRecognizer.state) && (pannedViews.count > 0) {
-                let currentPoint = gestureRecognizer.locationInView(self)
+            if (.ended == gestureRecognizer.state) && (pannedViews.count > 0) {
+                let currentPoint = gestureRecognizer.location(in: self)
                 let currentSquare = squareForPosition(currentPoint)
                 delegate?.gameView(self, tryToDragPieces: pannedViews.count, from: pressedSquare!, to: currentSquare)
             }
-            pannedViews.removeAll(keepCapacity: false)
+            pannedViews.removeAll(keepingCapacity: false)
         default: ()
         }
     }
     
     
-    func handlePanGesture(gestureRecognizer: UIPanGestureRecognizer) {
+    func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         print("handlePanGesture, state: \(gestureRecognizer.state.rawValue)");
         switch gestureRecognizer.state {
-        case .Began, .Changed, .Ended:
-            var center = gestureRecognizer.locationInView(self)
+        case .began, .changed, .ended:
+            var center = gestureRecognizer.location(in: self)
             for view in pannedViews {
                 view.center = center;
                 center.y -= pieceHeight;
@@ -232,7 +232,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     // MARK: UIGestureRecognizer Delegate Methods
     
 
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true;
     }
 }
