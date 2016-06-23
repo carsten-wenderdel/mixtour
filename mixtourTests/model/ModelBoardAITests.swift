@@ -29,12 +29,12 @@ class ModelBoardAITests: XCTestCase {
     func testAIPlayerDoesNotMakeOpponentWin2() {
         // given
         let board = ModelBoard()
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 0), .White, .White, .White)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 2), .White, .Black)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 2, line: 0), .White)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 2), .Black, .Black, .White)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 3), .Black, .White)
-        board.setTurnDirectly(.Black)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 0), .white, .white, .white)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 2), .white, .black)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 2, line: 0), .white)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 2), .black, .black, .white)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 3), .black, .white)
+        board.setTurnDirectly(.black)
         
         // when
         let blackMove = board.bestMove()
@@ -42,7 +42,7 @@ class ModelBoardAITests: XCTestCase {
         
         // assert
         XCTAssert(board.isGameOver())
-        XCTAssertEqual(board.winner(), ModelPlayer.Black)
+        XCTAssertEqual(board.winner(), ModelPlayer.black)
     }
 
     func testPerformanceExample() {
