@@ -91,7 +91,7 @@ class MIXCoreBoard_privateTests : XCTestCase {
         setTurnDirectly(&coreBoard, MIXCorePlayerBlack)
         XCTAssertEqual(playerOnTurn(&coreBoard).rawValue, MIXCorePlayerBlack.rawValue)
         
-        setPiece(&coreBoard, MIXCoreSquare(column: 0, line: 0))
+        makeMove(&coreBoard, MIXCoreMoveMakeSet(MIXCoreSquare(column: 0, line: 0)))
         XCTAssertEqual(playerOnTurn(&coreBoard).rawValue, MIXCorePlayerWhite.rawValue)
         XCTAssertEqual(mixtour.numberOfPiecesForPlayer(&coreBoard, MIXCorePlayerWhite), UInt8(20))
         XCTAssertEqual(mixtour.numberOfPiecesForPlayer(&coreBoard, MIXCorePlayerBlack), UInt8(19))

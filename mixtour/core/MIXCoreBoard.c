@@ -26,6 +26,10 @@ typedef enum MIXCoreGameBits MIXCoreGameBits;
 
 
 
+void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfDraggedPieces);
+
+    
+
 void resetCoreBoard(MIXCoreBoardRef boardRef) {
     
     *boardRef = (struct MIXCoreBoard){0};
@@ -91,6 +95,9 @@ MIXCorePlayer colorOfSquareAtPosition(MIXCoreBoardRef boardRef, MIXCoreSquare sq
 }
 
 
+/**
+ Does not check whether setting is legal.
+ */
 void setPiece(MIXCoreBoardRef boardRef, MIXCoreSquare square) {
     
     boardRef->height[square.column][square.line] = 1;
@@ -213,6 +220,9 @@ void makeMove(MIXCoreBoardRef boardRef, MIXCoreMove move) {
 }
 
 
+/**
+ Does not check whether move is legal.
+ */
 void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfDraggedPieces) {
 
     boardRef->height[from.column][from.line] -= numberOfDraggedPieces;

@@ -71,13 +71,6 @@ uint8_t heightOfSquare(MIXCoreBoardRef boardRef, MIXCoreSquare square);
 MIXCorePlayer colorOfSquareAtPosition(MIXCoreBoardRef boardRef, MIXCoreSquare square, uint8_t position);
 
 /**
- Does not check whether setting is legal.
- */
-void setPiece(MIXCoreBoardRef boardRef, MIXCoreSquare square);
-
-bool isDistanceRight(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to);
-
-/**
  Returns MIXCorePlayerUndefined if it's not a winner move
  Does not check whether move is legal or game is already over
  */
@@ -93,11 +86,6 @@ bool isMoveLegal(MIXCoreBoardRef boardRef, MIXCoreMove move);
  Does not check whether move is legal.
  */
 void makeMove(MIXCoreBoardRef boardRef, MIXCoreMove move);
-
-/**
- Does not check whether setting is legal.
- */
-void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, uint8_t numberODraggedPieces);
 
 /**
  Only valid for the player on turn
