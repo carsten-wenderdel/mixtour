@@ -49,6 +49,10 @@ bool isMoveDrag(MIXCoreMove move);
 bool isMoveANoMove(MIXCoreMove move);
 bool MIXCoreMoveEqualToMove(MIXCoreMove move1, MIXCoreMove move2);
 
+/**
+ Only works for drag moves
+ */
+bool isMoveRevertOfMove(MIXCoreMove move1, MIXCoreMove move2);
 
 
 #endif
