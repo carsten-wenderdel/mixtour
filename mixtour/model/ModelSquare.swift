@@ -29,5 +29,5 @@ extension ModelSquare {
 extension ModelSquare: Equatable {}
 
 func ==(lhs: ModelSquare, rhs: ModelSquare) -> Bool {
-    return lhs.column == rhs.column && lhs.line == rhs.line
+    return MIXCoreSquareIsEqualToSquare(lhs.coreSquare(), rhs.coreSquare())
 }

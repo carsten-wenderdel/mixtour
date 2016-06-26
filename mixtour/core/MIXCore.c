@@ -39,3 +39,14 @@ bool isMoveDrag(MIXCoreMove move) {
 bool isMoveANoMove(MIXCoreMove move)  {
     return move.from.column == kMoveNoMoveIndicator;
 }
+
+bool MIXCoreMoveEqualToMove(MIXCoreMove move1, MIXCoreMove move2) {
+    if (isMoveDrag(move1)) {
+        return MIXCoreSquareIsEqualToSquare(move1.from, move2.from) &&
+                MIXCoreSquareIsEqualToSquare(move2.to, move2.to) &&
+                move1.numberOfPieces == move2.numberOfPieces;
+    } else {
+        return MIXCoreSquareIsEqualToSquare(move1.to, move2.to);
+    }
+}
+

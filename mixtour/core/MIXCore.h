@@ -47,6 +47,7 @@ MIXCoreMove MIXCoreMoveMakeDrag(MIXCoreSquare from, MIXCoreSquare to, uint8_t nu
 MIXCoreMove MIXCoreMoveMakeSet(MIXCoreSquare to);
 bool isMoveDrag(MIXCoreMove move);
 bool isMoveANoMove(MIXCoreMove move);
+bool MIXCoreMoveEqualToMove(MIXCoreMove move1, MIXCoreMove move2);
 
 
 

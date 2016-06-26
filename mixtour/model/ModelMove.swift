@@ -42,9 +42,5 @@ extension ModelMove {
 extension ModelMove: Equatable {}
 
 func ==(lhs: ModelMove, rhs: ModelMove) -> Bool {
-    if lhs.isMoveDrag() {
-        return lhs.from == rhs.from && lhs.to == rhs.to && lhs.numberOfPieces == rhs.numberOfPieces
-    } else {
-        return lhs.to == rhs.to
-    }
+    return MIXCoreMoveEqualToMove(lhs.coreMove(), rhs.coreMove())
 }
