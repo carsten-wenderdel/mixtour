@@ -32,6 +32,7 @@ struct MIXCoreBoard {
     uint8_t whitePieces;
     uint8_t blackPieces;
     uint8_t gameBits;
+    MIXCoreMove lastMove;
     MIXCorePlayer turn;
 };
 

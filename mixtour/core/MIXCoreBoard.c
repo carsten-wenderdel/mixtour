@@ -160,6 +160,11 @@ bool isAPieceBetween(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare
 bool isMoveLegal(MIXCoreBoardRef boardRef, MIXCoreMove move) {
 
     if (isMoveDrag(move)) {
+
+        if (isMoveRevertOfMove(move, boardRef->lastMove)) {
+            return false;
+        }
+        
         MIXCoreSquare from = move.from;
         MIXCoreSquare to = move.to;
         
@@ -217,6 +222,7 @@ void makeMove(MIXCoreBoardRef boardRef, MIXCoreMove move) {
     } else {
         setPiece(boardRef, move.to);
     }
+    boardRef->lastMove = move;
 }
 
 
