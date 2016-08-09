@@ -40,7 +40,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
     
     private func calculateNextMoveForGameView(_ gameView: GameView) {
         
-        DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosBackground).async(execute: { [weak self] _ in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async(execute: { [weak self] _ in
             let move = self?.board.bestMove()
             
             if let bestMove = move {

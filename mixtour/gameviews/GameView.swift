@@ -129,8 +129,8 @@ class GameView: UIView, UIGestureRecognizerDelegate {
                 for position in (0..<Int(height)).reversed() {
                     let player = board.colorOfSquare(square, atPosition: position)
                     let color = (player == ModelPlayer.white)
-                        ? UIColor.yellow()
-                        : UIColor.red()
+                        ? UIColor.yellow
+                        : UIColor.red
                     // When there are 5 pieces, the upper most has - as always -
                     // the position 0, but the ui position 4
                     let uiPosition = height - position - 1
