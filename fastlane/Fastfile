@@ -26,7 +26,7 @@ platform :ios do
   desc "Runs all the tests"
   lane :test do
     scan(
-      devices: ["iPhone 6"]
+      destination: "platform=iOS Simulator,name=iPhone 6,OS=10.0"
     )
   end
 
