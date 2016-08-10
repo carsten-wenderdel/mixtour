@@ -16,7 +16,6 @@ fastlane_version "1.97.1"
 default_platform :ios
 
 platform :ios do
-  ENV['DEVELOPER_DIR'] = '/Applications/Xcode-beta.app/Contents/Developer'
 
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
