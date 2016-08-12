@@ -27,7 +27,7 @@ platform :ios do
   lane :test do
     scan(
       xcargs: "analyze",
-      destination: "platform=iOS Simulator,name=iPhone 6,OS=10.0"
+      device: "iPhone 6 (10.0)"
     )
   end
 
