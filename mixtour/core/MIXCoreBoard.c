@@ -316,7 +316,9 @@ MIXMoveArray arrayOfLegalDragMoves(MIXCoreBoardRef boardRef) {
                                     if (!isSomethingBetweenSquares(boardRef, square, sourceSquare, columnSignum, lineSignum)) {
                                         for (uint8_t pieces = heightOfSquare(boardRef, sourceSquare); pieces >= 1; pieces--) {
                                             MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
-                                            kv_push(MIXCoreMove, moveArray, move);
+                                            if (! isMoveRevertOfMove(move, boardRef->lastMove)) {
+                                                kv_push(MIXCoreMove, moveArray, move);
+                                            }
                                         }
                                     }
                                 }

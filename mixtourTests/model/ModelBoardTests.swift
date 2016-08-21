@@ -429,6 +429,30 @@ class ModelBoardTests : XCTestCase {
         XCTAssertEqual(allMoves.count, 25)
     }
     
+    func testLegalMovesDoesNotContainRevertMove() {
+        let board = ModelBoard()
+        
+        let square1 = ModelSquare(column: 1, line: 0)
+        let square2 = ModelSquare(column: 1, line: 1)
+        
+        board.setPiecesDirectlyToSquare(square1, .black, .white, .white)
+        board.setPiecesDirectlyToSquare(square2, .black)
+
+        var allMoves = board.allLegalMoves()
+        XCTAssertEqual(allMoves.count, 26)
+        for move in allMoves {
+            XCTAssert(board.isMoveLegal(move))
+        }
+        
+        board.makeMoveIfLegal(ModelMove(from: square1, to: square2, numberOfPieces: 2))
+        
+        allMoves = board.allLegalMoves()
+        XCTAssertEqual(allMoves.count, 25)
+        for move in allMoves {
+            XCTAssert(board.isMoveLegal(move))
+        }
+    }
+    
     func testNumberOfMovesIsZeroIfNoPiecesAvailable() {
         let board = ModelBoard()
     
