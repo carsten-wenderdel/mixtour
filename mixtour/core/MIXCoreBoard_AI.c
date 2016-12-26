@@ -51,7 +51,11 @@ MIXCorePlayer winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
         }
         
         if (!winnerFound) {
-            int randomIndex = rand() % arraySize;
+            int randomIndex = 0;
+            // suppress Clang static analyzer warning
+#ifndef __clang_analyzer__
+            randomIndex = rand() % arraySize;
+#endif
             MIXCoreMove randomMove = kv_A(moves, randomIndex);
             makeMove(boardRef, randomMove);
         }
