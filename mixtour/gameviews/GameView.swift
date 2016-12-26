@@ -144,10 +144,10 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     private func setPieceWithColor(_ color: UIColor, onSquare square: ModelSquare, atUIPosition uiPosition: Int) {
         // find out where to place it
         let startX = upperLeftPoint.x
-                + (squareLength * CGFloat(square.line))
+                + (squareLength * CGFloat(square.column))
                 + ((squareLength - pieceWidth) / 2.0)
         let startY = upperLeftPoint.y
-            + (squareLength * (CGFloat(square.column) + 0.9))
+            + (squareLength * (CGFloat(square.line) + 0.9))
             - (pieceHeight * CGFloat(uiPosition + 1))
         let pieceFrame = CGRect(x: startX, y: startY, width: pieceWidth, height: pieceHeight)
         
@@ -162,8 +162,8 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     
 
     private func squareForPosition(_ position: CGPoint) -> ModelSquare {
-        let column = (position.y - upperLeftPoint.y) / squareLength
-        let line = (position.x - upperLeftPoint.x) / squareLength
+        let line = (position.y - upperLeftPoint.y) / squareLength
+        let column = (position.x - upperLeftPoint.x) / squareLength
         let square = ModelSquare(column: Int(column), line: Int(line))
         return square
     }
