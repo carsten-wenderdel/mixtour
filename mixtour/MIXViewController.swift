@@ -14,6 +14,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
     lazy var board: ModelBoard = ModelBoard()
     var gameView: GameView!
     var boardBeforeMove: ModelBoard?
+    var undoButton: UIButton?
 
     
     override func viewDidLoad() {
@@ -23,16 +24,20 @@ class MIXViewController: UIViewController, GameViewDelegate {
         gameView.setPiecesForBoard(self.board)
         self.view.addSubview(gameView)
         
-        let undoButton = UIButton(type: .system)
-        undoButton.frame = CGRect(x: 0, y: 30, width: 50, height: 15)
-        undoButton.setTitle("Undo", for: UIControlState())
-        undoButton.addTarget(self, action: #selector(undoMove), for: .touchUpInside)
-        self.view.addSubview(undoButton);
+        let theUndoButton = UIButton(type: .system)
+        theUndoButton.frame = CGRect(x: 0, y: 30, width: 50, height: 15)
+        theUndoButton.setTitle("Undo", for: UIControlState())
+        theUndoButton.addTarget(self, action: #selector(undoMove), for: .touchUpInside)
+        theUndoButton.isEnabled = (nil != boardBeforeMove)
+        self.view.addSubview(theUndoButton);
+        self.undoButton = theUndoButton;
     }
     
     
     func undoMove() {
         if let undoBoard = boardBeforeMove {
+            boardBeforeMove = nil;
+            undoButton?.isEnabled = false
             board = undoBoard
         }
         gameView.setPiecesForBoard(board)
@@ -76,13 +81,15 @@ class MIXViewController: UIViewController, GameViewDelegate {
     
     func gameView(_ gameView : GameView, tryToMakeMove move: ModelMove) -> Bool {
         
-        boardBeforeMove = ModelBoard(board: board)
+        let oldBoard = ModelBoard(board: board)
         let movePossible = board.makeMoveIfLegal(move)
         
         // display new state. If move not possible, this also moves the dragged piece to the old correct position
         gameView.setPiecesForBoard(self.board)
         
         if (movePossible) {
+            boardBeforeMove = oldBoard
+            undoButton?.isEnabled = (nil != boardBeforeMove)
             calculateNextMoveForGameView(gameView)
         }
         
