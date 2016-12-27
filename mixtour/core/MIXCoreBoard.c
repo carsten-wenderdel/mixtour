@@ -211,7 +211,7 @@ MIXCorePlayer potentialWinner(MIXCoreBoardRef boardRef, MIXCoreMove move) {
         uint8_t fromHeight = heightOfSquare(boardRef, move.from);
         uint8_t toHeight = heightOfSquare(boardRef, move.to);
         if (fromHeight + toHeight >= MIX_CORE_NUMBER_OF_PIECES_TO_WIN) {
-            return colorOfSquareAtPosition(boardRef, move.to, 0);
+            return colorOfSquareAtPosition(boardRef, move.from, 0);
         }
     }
     return MIXCorePlayerUndefined;

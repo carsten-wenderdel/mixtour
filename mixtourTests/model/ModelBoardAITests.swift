@@ -44,6 +44,30 @@ class ModelBoardAITests: XCTestCase {
         XCTAssert(board.isGameOver())
         XCTAssertEqual(board.winner(), ModelPlayer.black)
     }
+    
+    func testAIPlayerDoesNotLetOpponentWinInNextMove() {
+        // given
+        let board = ModelBoard()
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 2), .black)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 3), .black, .black, .black)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 2, line: 0), .white, .white, .white)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 0), .white, .white)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 2), .white, .black, .black, .white)
+        board.setTurnDirectly(.black)
+        
+        // when
+        let blackMove = board.bestMove()
+        
+        // then
+        
+        // that move would be horrible
+        XCTAssertNotEqual(blackMove, ModelMove(setPieceTo: ModelSquare(column: 3, line: 1)))
+        
+        // that move looks good, maybe another number of pieces is even better
+        XCTAssertEqual(blackMove, ModelMove(from: ModelSquare(column: 3, line: 2),
+                                            to: ModelSquare(column: 3, line:1),
+                                            numberOfPieces: 1))
+    }
 
     func testPerformanceExample() {
         // given
