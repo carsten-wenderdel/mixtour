@@ -131,34 +131,6 @@ class ModelBoard {
     }
     
     func printDescription() -> Void {
-        var lineDivider = ""
-        for _ in 0...30 {
-            lineDivider += "-"
-        }
-        print(lineDivider)
-        var boardString = lineDivider
-        for line in 0...4 {
-            boardString = "|"
-            for column in 0...4 {
-                let square = ModelSquare(column: column, line: line)
-                for positionFromBottom in 0...4 {
-                    let height = heightOfSquare(square)
-                    if height > positionFromBottom {
-                        let position = height - positionFromBottom - 1
-                        if colorOfSquare(square, atPosition: position) == ModelPlayer.white {
-                            boardString += "O"
-                        } else {
-                            boardString += "X"
-                        }
-                    } else {
-                        boardString += " "
-                    }
-                }
-                boardString += "|"
-            }
-            print(boardString)
-            print(lineDivider)
-        }
-        return
+        printBoardDescription(&coreBoard);
     }
 }

@@ -102,4 +102,7 @@ MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef);
 
 void destroyMoveArray(MIXMoveArray moveArray);
 
+#pragma mark debug prints
+void printBoardDescription(MIXCoreBoardRef boardRef);
+
 #endif

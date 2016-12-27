@@ -9,6 +9,7 @@
 
 #include "MIXCoreBoard.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "MIXCoreHelper.h"
 
@@ -364,4 +365,38 @@ bool isDraggingPossible(MIXCoreBoardRef boardRef) {
     return numberOfMoves > 0;
 }
 
+
+#pragma mark debug prints
+
+void printLineDivider() {
+    for (int i = 0; i < 31; i++) {
+        printf("-");
+    }
+    printf("\n");
+}
+
+void printBoardDescription(MIXCoreBoardRef boardRef) {
+    for (uint8_t line = 0; line < LENGTH_OF_BOARD; line++) {
+        printLineDivider();
+        for (uint8_t column = 0; column < LENGTH_OF_BOARD; column++) {
+            printf("|");
+            MIXCoreSquare square = {column, line};
+            uint8_t height = heightOfSquare(boardRef, square);
+            for (int8_t positionFromBottom = 0; positionFromBottom < 5; positionFromBottom++) {
+                if (positionFromBottom >= height) {
+                    printf(" ");
+                } else {
+                    int8_t position = height - positionFromBottom - 1;
+                    if (MIXCorePlayerBlack == colorOfSquareAtPosition(boardRef, square, (uint8_t)position)) {
+                        printf("X");
+                    } else {
+                        printf("0");
+                    }
+                }
+            }
+        }
+        printf("|\n");
+    }
+    printLineDivider();
+}
 
