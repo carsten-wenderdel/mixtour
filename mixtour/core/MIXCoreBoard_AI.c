@@ -46,6 +46,7 @@ MIXCorePlayer winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
                 if (turn == potentialWinner(boardRef, testMove)) {
                     returnPlayer = turn;
                     winnerFound = true;
+                    break;
                 }
             }
         }
