@@ -49,8 +49,8 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     override init(frame: CGRect) {
         boardLength = min(frame.size.height, frame.size.width)
         squareLength = boardLength / CGFloat(numberOfSquares)
-        pieceWidth = squareLength * 0.7
-        pieceHeight = squareLength * 0.17
+        pieceWidth = squareLength * 0.8
+        pieceHeight = squareLength * 0.18
         
         let emptySpace = abs(frame.size.height - frame.size.width) / 2
         if frame.size.height > frame.size.width {
