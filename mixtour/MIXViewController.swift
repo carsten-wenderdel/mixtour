@@ -31,6 +31,12 @@ class MIXViewController: UIViewController, GameViewDelegate {
         theUndoButton.isEnabled = (nil != boardBeforeMove)
         self.view.addSubview(theUndoButton);
         self.undoButton = theUndoButton;
+        
+        let restartButton = UIButton(type: .system)
+        restartButton.frame = CGRect(x: 70, y: 30, width: 50, height: 15)
+        restartButton.setTitle("New", for: UIControlState())
+        restartButton.addTarget(self, action: #selector(restartGame), for: .touchUpInside)
+        self.view.addSubview(restartButton);
     }
     
     
@@ -41,6 +47,12 @@ class MIXViewController: UIViewController, GameViewDelegate {
             board = undoBoard
         }
         gameView.setPiecesForBoard(board)
+    }
+    
+    func restartGame() {
+        self.board = ModelBoard()
+        self.gameView .setPiecesForBoard(self.board)
+        self.undoButton?.isEnabled = false
     }
     
     private func calculateNextMoveForGameView(_ gameView: GameView) {
