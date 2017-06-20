@@ -191,14 +191,14 @@ class GameView: UIView, UIGestureRecognizerDelegate {
 
     // MARK: GestureRecognizer Actions
     
-    func handleDoubleTapGesture(_ gestureRecognizer: UITapGestureRecognizer) {
+    @objc func handleDoubleTapGesture(_ gestureRecognizer: UITapGestureRecognizer) {
         let currentPoint = gestureRecognizer.location(in: self)
         let square = squareForPosition(currentPoint)
 
         delegate?.gameView(self, tryToSetPieceTo: square)
     }
 
-    func handlePressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
+    @objc func handlePressGesture(_ gestureRecognizer: UILongPressGestureRecognizer) {
         let currentPoint = gestureRecognizer.location(in: self)
         let square = squareForPosition(currentPoint)
         print("handlePressGesture at square \(square.line)/\(square.column), state: \(gestureRecognizer.state.rawValue)")
@@ -235,7 +235,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     }
     
     
-    func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+    @objc func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         print("handlePanGesture, state: \(gestureRecognizer.state.rawValue)");
         switch gestureRecognizer.state {
         case .began, .changed, .ended:
@@ -248,7 +248,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         }
     }
     
-    func handlePieceDividerGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+    @objc func handlePieceDividerGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         let currentPoint = gestureRecognizer.location(in: self)
         let square = squareForPosition(currentPoint)
         print("handlePieceDividerGesture at square \(square.line)/\(square.column), state: \(gestureRecognizer.state.rawValue)")

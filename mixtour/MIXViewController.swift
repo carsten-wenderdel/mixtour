@@ -40,7 +40,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
     }
     
     
-    func undoMove() {
+    @objc func undoMove() {
         if let undoBoard = boardBeforeMove {
             boardBeforeMove = nil;
             undoButton?.isEnabled = false
@@ -49,7 +49,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
         gameView.setPiecesForBoard(board)
     }
     
-    func restartGame() {
+    @objc func restartGame() {
         self.board = ModelBoard()
         self.gameView .setPiecesForBoard(self.board)
         self.undoButton?.isEnabled = false
