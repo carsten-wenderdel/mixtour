@@ -18,6 +18,9 @@ protocol GameViewDelegate: class {
 
 class GameView: UIView, UIGestureRecognizerDelegate {
 
+    let usePieceDivider = false
+    var dividerStartSquare: ModelSquare?
+    
     weak var delegate: GameViewDelegate?
 
     var pressedSquare: ModelSquare?
@@ -105,12 +108,21 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         pressGestureRecognizer.delegate = self
         pressGestureRecognizer.minimumPressDuration = 0.3
         addGestureRecognizer(pressGestureRecognizer)
+        pressGestureRecognizer.isEnabled = !usePieceDivider
         
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(GameView.handlePanGesture(_:)))
+        var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(GameView.handlePanGesture(_:)))
         panGestureRecognizer.delegate = self
         panGestureRecognizer.maximumNumberOfTouches = 1
         panGestureRecognizer.minimumNumberOfTouches = 1
         addGestureRecognizer(panGestureRecognizer)
+        panGestureRecognizer.isEnabled = !usePieceDivider
+        
+        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePieceDividerGesture(_:)))
+        panGestureRecognizer.delegate = self
+        panGestureRecognizer.maximumNumberOfTouches = 1
+        panGestureRecognizer.minimumNumberOfTouches = 1
+        addGestureRecognizer(panGestureRecognizer)
+        panGestureRecognizer.isEnabled = usePieceDivider
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(GameView.handleDoubleTapGesture(_:)))
         tapGestureRecognizer.delegate = self
@@ -142,15 +154,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     
     
     private func setPieceWithColor(_ color: UIColor, onSquare square: ModelSquare, atUIPosition uiPosition: Int) {
-        // find out where to place it
-        let startX = upperLeftPoint.x
-                + (squareLength * CGFloat(square.column))
-                + ((squareLength - pieceWidth) / 2.0)
-        let startY = upperLeftPoint.y
-            + (squareLength * (CGFloat(square.line) + 0.9))
-            - (pieceHeight * CGFloat(uiPosition + 1))
-        let pieceFrame = CGRect(x: startX, y: startY, width: pieceWidth, height: pieceHeight)
-        
+        let pieceFrame = frameOnSquare(square, atUIPosition: uiPosition)
         let pieceView = GamePieceView(frame: pieceFrame, baseColor: color)
 
         // display it
@@ -160,7 +164,23 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         fieldArray[square.column][square.line].append(pieceView)
     }
     
-
+    private func frameOnSquare(_ square: ModelSquare, atUIPosition uiPosition: Int) -> CGRect {
+        let startX = upperLeftPoint.x
+            + (squareLength * CGFloat(square.column))
+            + ((squareLength - pieceWidth) / 2.0)
+        let startY = upperLeftPoint.y
+            + (squareLength * (CGFloat(square.line) + 0.9))
+            - (pieceHeight * CGFloat(uiPosition + 1))
+        let pieceFrame = CGRect(x: startX, y: startY, width: pieceWidth, height: pieceHeight)
+        return pieceFrame
+    }
+    
+    private func uiPositionForPosition(_ position: CGPoint) -> Int {
+        let yPositionInSquare = (position.y - upperLeftPoint.y).truncatingRemainder(dividingBy: squareLength)
+        let uiPosition = (0.9 * squareLength - yPositionInSquare) / pieceHeight
+        return Int(uiPosition)
+    }
+    
     private func squareForPosition(_ position: CGPoint) -> ModelSquare {
         let line = (position.y - upperLeftPoint.y) / squareLength
         let column = (position.x - upperLeftPoint.x) / squareLength
@@ -224,6 +244,38 @@ class GameView: UIView, UIGestureRecognizerDelegate {
                 view.center = center;
                 center.y -= pieceHeight;
             }
+        default: ()
+        }
+    }
+    
+    func handlePieceDividerGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+        let currentPoint = gestureRecognizer.location(in: self)
+        let square = squareForPosition(currentPoint)
+        print("handlePieceDividerGesture at square \(square.line)/\(square.column), state: \(gestureRecognizer.state.rawValue)")
+        
+        switch gestureRecognizer.state {
+        case .began :
+            dividerStartSquare = square
+        case .changed:
+            guard let square = dividerStartSquare else {
+                break
+            }
+            let uiPosition = uiPositionForPosition(currentPoint)
+            print("uiPosition: \(uiPosition)")
+            let pieceViewsInSquare = fieldArray[square.column][square.line]
+            if pieceViewsInSquare.count > uiPosition {
+                for (index, pieceView) in pieceViewsInSquare.enumerated() {
+                    var pieceFrame = self.frameOnSquare(square, atUIPosition: index)
+                    print ("old: \(pieceView.frame), new: \(pieceFrame)")
+                    if index >= uiPosition {
+                        pieceFrame.origin.y -= 20
+                    }
+                    pieceView.frame = pieceFrame;
+                }
+            }
+
+        case .ended:
+            delegate?.gameView(self, tryToSetPieceTo: ModelSquare(column: 10, line: 10))
         default: ()
         }
     }
