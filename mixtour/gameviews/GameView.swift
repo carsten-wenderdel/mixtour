@@ -32,18 +32,27 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     let pieceWidth: CGFloat
     let pieceHeight: CGFloat
     
-    lazy var fieldArray: [[[GamePieceView]]]! = {
-        var lineArray = [[[GamePieceView]]]()
-        for line in 0..<numberOfSquares {
-            var columnArray = [[GamePieceView]]()
-            for column in 0..<numberOfSquares {
-                let viewArray = [GamePieceView]()
-                columnArray.append(viewArray)
+    private var _fieldArray: [[[GamePieceView]]]?
+    var fieldArray: [[[GamePieceView]]]! {
+        get {
+            if (nil == _fieldArray) {
+                var lineArray = [[[GamePieceView]]]()
+                for _ in 0..<numberOfSquares { // line
+                    var columnArray = [[GamePieceView]]()
+                    for _ in 0..<numberOfSquares { // column
+                        let viewArray = [GamePieceView]()
+                        columnArray.append(viewArray)
+                    }
+                    lineArray.append(columnArray)
+                }
+                _fieldArray = lineArray;
             }
-            lineArray.append(columnArray)
+            return _fieldArray
         }
-        return lineArray;
-    }()
+        set {
+            _fieldArray = newValue
+        }
+    }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
