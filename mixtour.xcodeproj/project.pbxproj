@@ -332,10 +332,9 @@
 			};
 			buildConfigurationList = AA04062E176F9DF40051363A /* Build configuration list for PBXProject "mixtour" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
