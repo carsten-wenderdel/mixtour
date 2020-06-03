@@ -26,7 +26,7 @@ platform :ios do
   desc "Runs all the tests"
   lane :test do
     scan(
-      device: "iPhone 6 (10.0)"
+      device: "iPhone 8 (13.5)"
     )
   end
 
@@ -39,15 +39,6 @@ platform :ios do
 
     # sh "your_script.sh"
     # You can also use other beta testing services here (run `fastlane actions`)
-  end
-
-  desc "Deploy a new version to the App Store"
-  lane :appstore do
-    # match(type: "appstore")
-    # snapshot
-    gym # Build your app - more options available
-    deliver(force: true)
-    # frameit
   end
 
   # You can define as many lanes as you want
