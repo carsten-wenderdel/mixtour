@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Carsten Wenderdel. All rights reserved.
 //
 
+import Core
 
 enum ModelPlayer: Int {
     case undefined = -1  // TODO: Maybe use Swift optional and failable initializer instead?

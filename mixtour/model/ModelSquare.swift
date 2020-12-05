@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Core
 
 struct ModelSquare {
     var column, line: Int

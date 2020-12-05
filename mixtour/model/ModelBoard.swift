@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Core
 
 let numberOfSquares = 5
 
@@ -26,34 +26,34 @@ class ModelBoard {
     
     
     func isGameOver() -> Bool {
-        return mixtour.isGameOver(&coreBoard)
+        return Core.isGameOver(&coreBoard)
     }
     
     
     func winner() -> ModelPlayer {
-        let corePlayer = mixtour.winner(&coreBoard)
+        let corePlayer = Core.winner(&coreBoard)
         return mixtour.ModelPlayer(corePlayer: corePlayer)
     }
     
     
     func playerOnTurn() -> ModelPlayer {
-        let corePlayer = mixtour.playerOnTurn(&coreBoard)
+        let corePlayer = Core.playerOnTurn(&coreBoard)
         return mixtour.ModelPlayer(corePlayer: corePlayer)
     }
     
     
     func numberOfPiecesForPlayer(_ player: ModelPlayer) -> Int {
-        return Int(mixtour.numberOfPiecesForPlayer(&coreBoard, player.corePlayer()))
+        return Int(Core.numberOfPiecesForPlayer(&coreBoard, player.corePlayer()))
     }
     
     
     func isSquareEmpty(_ square: ModelSquare) -> Bool {
-        return mixtour.isSquareEmpty(&coreBoard, square.coreSquare())
+        return Core.isSquareEmpty(&coreBoard, square.coreSquare())
     }
     
     
     func heightOfSquare(_ square: ModelSquare) -> Int {
-        return Int(mixtour.heightOfSquare(&coreBoard, square.coreSquare()))
+        return Int(Core.heightOfSquare(&coreBoard, square.coreSquare()))
     }
     
     
@@ -81,7 +81,7 @@ class ModelBoard {
     
     @discardableResult func makeMoveIfLegal(_ move: ModelMove) -> Bool {
         if isMoveLegal(move) {
-            mixtour.makeMove(&coreBoard, move.coreMove())
+            Core.makeMove(&coreBoard, move.coreMove())
             return true
         } else {
             return false
@@ -90,17 +90,17 @@ class ModelBoard {
     
 
     func isMoveLegal(_ move: ModelMove) -> Bool {
-        return mixtour.isMoveLegal(&coreBoard, move.coreMove())
+        return Core.isMoveLegal(&coreBoard, move.coreMove())
     }
 
     
     func isSettingPossible() -> Bool {
-        return mixtour.isSettingPossible(&coreBoard)
+        return Core.isSettingPossible(&coreBoard)
     }
     
     
     func isDraggingPossible() -> Bool {
-        return mixtour.isDraggingPossible(&coreBoard)
+        return Core.isDraggingPossible(&coreBoard)
     }
     
     
@@ -111,19 +111,19 @@ class ModelBoard {
 
     func allLegalMoves() -> [ModelMove] {
         var swiftMoves = [ModelMove]()
-        let cMoves = mixtour.arrayOfLegalMoves(&coreBoard)
+        let cMoves = Core.arrayOfLegalMoves(&coreBoard)
         for i in 0..<cMoves.n {
             let coreMove = cMoves.a[i]
             swiftMoves.append(ModelMove(coreMove: coreMove))
         }
-        mixtour.destroyMoveArray(cMoves)
+        Core.destroyMoveArray(cMoves)
         return swiftMoves
     }
     
     
     func bestMove() -> ModelMove? {
-        let move = mixtour.bestMove(&coreBoard)
-        if mixtour.isMoveANoMove(move) {
+        let move = Core.bestMove(&coreBoard)
+        if Core.isMoveANoMove(move) {
             return nil
         } else {
             return ModelMove(coreMove: move)

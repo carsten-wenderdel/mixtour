@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Core
 
 class MIXCoreTests: XCTestCase {
 
