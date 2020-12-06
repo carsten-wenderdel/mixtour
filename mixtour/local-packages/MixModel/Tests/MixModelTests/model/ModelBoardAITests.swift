@@ -7,8 +7,7 @@
 //
 
 import XCTest
-@testable import mixtour
-
+@testable import MixModel
 
 class ModelBoardAITests: XCTestCase {
     

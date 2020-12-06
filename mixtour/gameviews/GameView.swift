@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MixModel
 
 protocol GameViewDelegate: class {
     @discardableResult func gameView(_ gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: ModelSquare, to: ModelSquare) -> Bool

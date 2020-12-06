@@ -8,10 +8,15 @@ import Core
 
 let kMoveSetIndicator = 6
 
-struct ModelMove {
-
+public struct ModelMove {
     var from, to: ModelSquare
     var numberOfPieces: Int
+
+    public init(from: ModelSquare, to: ModelSquare, numberOfPieces: Int) {
+        self.from = from
+        self.to = to
+        self.numberOfPieces = numberOfPieces
+    }
 
     func coreMove() -> MIXCoreMove {
         return MIXCoreMove(from: from.coreSquare(), to: to.coreSquare(), numberOfPieces: UInt8(numberOfPieces))
@@ -26,7 +31,7 @@ struct ModelMove {
 // See "Initializer Delegation for Value Types" in "The Swift Programming Language"
 extension ModelMove {
 
-    init(setPieceTo: ModelSquare) {
+    public init(setPieceTo: ModelSquare) {
         from = ModelSquare(column:kMoveSetIndicator, line:0) // 0 is not important, just any number is fine
         to = setPieceTo
         numberOfPieces = 0
@@ -42,6 +47,6 @@ extension ModelMove {
 
 extension ModelMove: Equatable {}
 
-func ==(lhs: ModelMove, rhs: ModelMove) -> Bool {
+public func ==(lhs: ModelMove, rhs: ModelMove) -> Bool {
     return MIXCoreMoveEqualToMove(lhs.coreMove(), rhs.coreMove())
 }

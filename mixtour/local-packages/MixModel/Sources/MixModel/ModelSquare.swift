@@ -9,9 +9,14 @@
 import Foundation
 import Core
 
-struct ModelSquare {
-    var column, line: Int
-    
+public struct ModelSquare {
+    public var column, line: Int
+
+    public init(column: Int, line: Int) {
+        self.column = column
+        self.line = line
+    }
+
     func coreSquare() -> MIXCoreSquare {
         return MIXCoreSquare(column: UInt8(column), line: UInt8(line))
     }
@@ -29,6 +34,6 @@ extension ModelSquare {
 
 extension ModelSquare: Equatable {}
 
-func ==(lhs: ModelSquare, rhs: ModelSquare) -> Bool {
+public func ==(lhs: ModelSquare, rhs: ModelSquare) -> Bool {
     return MIXCoreSquareIsEqualToSquare(lhs.coreSquare(), rhs.coreSquare())
 }

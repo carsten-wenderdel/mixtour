@@ -7,8 +7,8 @@
 //
 
 import XCTest
-import Core
-@testable import mixtour
+@testable import Core
+@testable import MixModel
 
 class ModelPlayerTests : XCTestCase {
 
@@ -19,9 +19,9 @@ class ModelPlayerTests : XCTestCase {
     }
     
     func testInitWorksForAllCoreValues() {
-        XCTAssertEqual(mixtour.ModelPlayer(corePlayer: MIXCorePlayerWhite), ModelPlayer.white)
-        XCTAssertEqual(mixtour.ModelPlayer(corePlayer: MIXCorePlayerBlack), ModelPlayer.black)
-        XCTAssertEqual(mixtour.ModelPlayer(corePlayer: MIXCorePlayerUndefined), ModelPlayer.undefined)
+        XCTAssertEqual(ModelPlayer(corePlayer: MIXCorePlayerWhite), ModelPlayer.white)
+        XCTAssertEqual(ModelPlayer(corePlayer: MIXCorePlayerBlack), ModelPlayer.black)
+        XCTAssertEqual(ModelPlayer(corePlayer: MIXCorePlayerUndefined), ModelPlayer.undefined)
     }
     
     func testCorePlayer() {

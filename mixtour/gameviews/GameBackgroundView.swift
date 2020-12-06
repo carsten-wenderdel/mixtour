@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MixModel
 
 class GameBackgroundView : UIView {
 

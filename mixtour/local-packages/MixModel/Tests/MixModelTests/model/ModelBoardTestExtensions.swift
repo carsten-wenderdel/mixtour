@@ -7,7 +7,7 @@
 //
 
 import Core
-@testable import mixtour
+@testable import MixModel
 
 extension ModelBoard {
     

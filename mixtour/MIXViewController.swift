@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MixModel
 
 class MIXViewController: UIViewController, GameViewDelegate {
 

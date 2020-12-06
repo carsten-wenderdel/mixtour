@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 import Core
-@testable import mixtour
+@testable import MixModel
 
 class ModelSquareTests : XCTestCase {
     

@@ -9,18 +9,19 @@
 import Foundation
 import Core
 
-let numberOfSquares = 5
+// TODO: move it into some class or enum?
+public let numberOfSquares = 5
 
 
-class ModelBoard {
+public class ModelBoard {
     
     var coreBoard = MIXCoreBoard()
     
-    init() {
+    public init() {
         resetCoreBoard(&coreBoard)
     }
     
-    init(board: ModelBoard) {
+    public init(board: ModelBoard) {
         coreBoard = board.coreBoard
     }
     
@@ -32,13 +33,13 @@ class ModelBoard {
     
     func winner() -> ModelPlayer {
         let corePlayer = Core.winner(&coreBoard)
-        return mixtour.ModelPlayer(corePlayer: corePlayer)
+        return ModelPlayer(corePlayer: corePlayer)
     }
     
     
     func playerOnTurn() -> ModelPlayer {
         let corePlayer = Core.playerOnTurn(&coreBoard)
-        return mixtour.ModelPlayer(corePlayer: corePlayer)
+        return ModelPlayer(corePlayer: corePlayer)
     }
     
     
@@ -52,14 +53,14 @@ class ModelBoard {
     }
     
     
-    func heightOfSquare(_ square: ModelSquare) -> Int {
+    public func heightOfSquare(_ square: ModelSquare) -> Int {
         return Int(Core.heightOfSquare(&coreBoard, square.coreSquare()))
     }
     
     
-    func colorOfSquare(_ square: ModelSquare, atPosition position: Int) -> ModelPlayer{
+    public func colorOfSquare(_ square: ModelSquare, atPosition position: Int) -> ModelPlayer{
         let corePlayer = colorOfSquareAtPosition(&coreBoard, square.coreSquare(), UInt8(position))
-        return mixtour.ModelPlayer(corePlayer: corePlayer)
+        return ModelPlayer(corePlayer: corePlayer)
     }
     
     
@@ -79,7 +80,7 @@ class ModelBoard {
     }
     
     
-    @discardableResult func makeMoveIfLegal(_ move: ModelMove) -> Bool {
+    @discardableResult public func makeMoveIfLegal(_ move: ModelMove) -> Bool {
         if isMoveLegal(move) {
             Core.makeMove(&coreBoard, move.coreMove())
             return true
@@ -121,7 +122,7 @@ class ModelBoard {
     }
     
     
-    func bestMove() -> ModelMove? {
+    public func bestMove() -> ModelMove? {
         let move = Core.bestMove(&coreBoard)
         if Core.isMoveANoMove(move) {
             return nil
