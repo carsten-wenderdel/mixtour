@@ -21,7 +21,6 @@
 		AA040641176F9DF40051363A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA04063F176F9DF40051363A /* InfoPlist.strings */; };
 		AA04064A176F9DF40051363A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA040648176F9DF40051363A /* Main.storyboard */; };
 		AA04064F176F9DF40051363A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA04064E176F9DF40051363A /* Images.xcassets */; };
-		AA040656176F9DF40051363A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040655176F9DF40051363A /* XCTest.framework */; };
 		AA040657176F9DF40051363A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040636176F9DF40051363A /* Foundation.framework */; };
 		AA040658176F9DF40051363A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA04063A176F9DF40051363A /* UIKit.framework */; };
 /* End PBXBuildFile section */
@@ -54,7 +53,6 @@
 		AA040649176F9DF40051363A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA04064E176F9DF40051363A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AA040654176F9DF40051363A /* mixtourTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mixtourTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA040655176F9DF40051363A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AA04065D176F9DF40051363A /* mixtourTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mixtourTests-Info.plist"; sourceTree = "<group>"; };
 		AA04065F176F9DF40051363A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,7 +74,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA040656176F9DF40051363A /* XCTest.framework in Frameworks */,
 				AA040658176F9DF40051363A /* UIKit.framework in Frameworks */,
 				AA040657176F9DF40051363A /* Foundation.framework in Frameworks */,
 			);
@@ -112,7 +109,6 @@
 				AA040636176F9DF40051363A /* Foundation.framework */,
 				AA040638176F9DF40051363A /* CoreGraphics.framework */,
 				AA04063A176F9DF40051363A /* UIKit.framework */,
-				AA040655176F9DF40051363A /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
