@@ -13,7 +13,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "../kvec.h"
+#include "kvec.h"
 
 
 #include "MIXCore.h"
