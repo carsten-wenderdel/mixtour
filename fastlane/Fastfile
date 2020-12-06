@@ -6,8 +6,10 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan(
-      device: "iPhone 8"
+    spm(
+      command: "test",
+      package_path: "./mixtour/local-packages/MixModel",
+      verbose: "true",
     )
   end
 
