@@ -2,6 +2,8 @@ import SwiftUI
 import MixModel
 
 struct GameBackgroundView: View {
+    var board: ModelBoard
+
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 0) {
@@ -11,8 +13,14 @@ struct GameBackgroundView: View {
                             let color = (line + column) % 2 == 0
                                 ? Color(red: 0.9, green: 0.93, blue: 1.0)
                                 : Color(red: 0.8, green: 0.85, blue: 1.0)
-                            Rectangle()
-                                .foregroundColor(color)
+
+                            let square = ModelSquare(column: column, line: line)
+
+                            ZStack() {
+                                Rectangle()
+                                    .foregroundColor(color)
+                                Text("\(board.heightOfSquare(square))")
+                            }
                         }
                     }
                 }
@@ -24,6 +32,6 @@ struct GameBackgroundView: View {
 
 struct GameBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        GameBackgroundView()
+        GameBackgroundView(board: .example)
     }
 }

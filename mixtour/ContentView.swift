@@ -1,8 +1,9 @@
 import SwiftUI
+import MixModel
 
 struct ContentView: View {
     var body: some View {
-        GameBackgroundView()
+        GameBackgroundView(board: ModelBoard())
     }
 }
 
