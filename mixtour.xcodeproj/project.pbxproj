@@ -217,7 +217,6 @@
 				ORGANIZATIONNAME = "Carsten Wenderdel";
 				TargetAttributes = {
 					AA040632176F9DF40051363A = {
-						DevelopmentTeam = RKX7FEU7U3;
 						LastSwiftMigration = 1150;
 						ProvisioningStyle = Automatic;
 					};
