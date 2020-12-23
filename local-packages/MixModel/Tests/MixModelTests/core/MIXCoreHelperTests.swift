@@ -1,11 +1,3 @@
-//
-//  MIXCoreHelperTests.swift
-//  mixtour
-//
-//  Created by Wenderdel, Carsten on 30/01/15.
-//  Copyright (c) 2015 Carsten Wenderdel. All rights reserved.
-//
-
 import XCTest
 import Core
 

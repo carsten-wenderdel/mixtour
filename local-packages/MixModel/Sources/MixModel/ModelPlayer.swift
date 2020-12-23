@@ -1,11 +1,3 @@
-//
-//  ModelPlayer.swift
-//  mixtour
-//
-//  Created by Wenderdel, Carsten on 25/12/14.
-//  Copyright (c) 2014 Carsten Wenderdel. All rights reserved.
-//
-
 import Core
 
 public enum ModelPlayer: Int {

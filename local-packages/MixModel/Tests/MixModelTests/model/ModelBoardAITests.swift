@@ -1,11 +1,3 @@
-//
-//  ModelBoardAITests.swift
-//  mixtour
-//
-//  Created by Wenderdel, Carsten on 10/05/16.
-//  Copyright © 2016 Carsten Wenderdel. All rights reserved.
-//
-
 import XCTest
 @testable import MixModel
 

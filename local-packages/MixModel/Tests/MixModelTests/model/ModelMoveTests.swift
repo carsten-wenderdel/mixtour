@@ -1,11 +1,3 @@
-//
-//  ModelMoveTests.swift
-//  mixtour
-//
-//  Created by Carsten Wenderdel on 2015-04-02.
-//  Copyright (c) 2015 Carsten Wenderdel. All rights reserved.
-//
-
 import XCTest
 import Core
 @testable import MixModel
