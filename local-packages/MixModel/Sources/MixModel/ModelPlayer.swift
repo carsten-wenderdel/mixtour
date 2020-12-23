@@ -1,6 +1,8 @@
 import Core
 
-public enum ModelPlayer: Int {
+public enum ModelPlayer: Int, Identifiable {
+    public var id: Int { rawValue }
+
     case undefined = -1  // TODO: Maybe use Swift optional and failable initializer instead?
     case white = 0
     case black = 1

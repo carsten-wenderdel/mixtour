@@ -22,6 +22,7 @@
 		679DCFAD257C367800E9310E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFAC257C367800E9310E /* Core */; };
 		679DCFD5257C4BFB00E9310E /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFD4257C4BFB00E9310E /* MixModel */; };
 		679DCFE3257C577100E9310E /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679DCFE2257C577100E9310E /* ExampleTests.swift */; };
+		67CBE7882593DD4B00D913A1 /* PieceStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CBE7872593DD4B00D913A1 /* PieceStackView.swift */; };
 		AA040637176F9DF40051363A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040636176F9DF40051363A /* Foundation.framework */; };
 		AA040639176F9DF40051363A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040638176F9DF40051363A /* CoreGraphics.framework */; };
 		AA04063B176F9DF40051363A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA04063A176F9DF40051363A /* UIKit.framework */; };
@@ -58,6 +59,7 @@
 		679DCF8B257C28FC00E9310E /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = "local-packages/Core"; sourceTree = "<group>"; };
 		679DCFC7257C489A00E9310E /* MixModel */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MixModel; path = "local-packages/MixModel"; sourceTree = "<group>"; };
 		679DCFE2257C577100E9310E /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
+		67CBE7872593DD4B00D913A1 /* PieceStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceStackView.swift; sourceTree = "<group>"; };
 		AA040633176F9DF40051363A /* mixtour-uikit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mixtour-uikit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA040636176F9DF40051363A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AA040638176F9DF40051363A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -108,6 +110,7 @@
 		675384252593B4B5002F5BEC /* mixtour */ = {
 			isa = PBXGroup;
 			children = (
+				67CBE7872593DD4B00D913A1 /* PieceStackView.swift */,
 				6753843C2593BED4002F5BEC /* GameBackgroundView.swift */,
 				675384262593B4B5002F5BEC /* mixtourApp.swift */,
 				675384282593B4B5002F5BEC /* ContentView.swift */,
@@ -352,6 +355,7 @@
 			files = (
 				6753843D2593BED4002F5BEC /* GameBackgroundView.swift in Sources */,
 				675384292593B4B5002F5BEC /* ContentView.swift in Sources */,
+				67CBE7882593DD4B00D913A1 /* PieceStackView.swift in Sources */,
 				675384272593B4B5002F5BEC /* mixtourApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

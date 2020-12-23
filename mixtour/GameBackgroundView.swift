@@ -19,7 +19,7 @@ struct GameBackgroundView: View {
                             ZStack() {
                                 Rectangle()
                                     .foregroundColor(color)
-                                Text("\(board.heightOfSquare(square))")
+                                PieceStackView(pieces: board.piecesAtSquare(square))
                             }
                         }
                     }

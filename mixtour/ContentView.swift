@@ -3,7 +3,7 @@ import MixModel
 
 struct ContentView: View {
     var body: some View {
-        GameBackgroundView(board: ModelBoard())
+        GameBackgroundView(board: .example)
     }
 }
 

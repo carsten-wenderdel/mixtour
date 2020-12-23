@@ -49,12 +49,20 @@ public class ModelBoard {
         return Int(Core.heightOfSquare(&coreBoard, square.coreSquare()))
     }
     
-    
+    /// position 0 is the upper most piece
     public func colorOfSquare(_ square: ModelSquare, atPosition position: Int) -> ModelPlayer{
         let corePlayer = colorOfSquareAtPosition(&coreBoard, square.coreSquare(), UInt8(position))
         return ModelPlayer(corePlayer: corePlayer)
     }
-    
+
+    /// position 0 is the upper most piece
+    public func piecesAtSquare(_ square: ModelSquare) -> [ModelPlayer] {
+        var pieces = [ModelPlayer]()
+        for position in 0..<heightOfSquare(square) {
+            pieces.append(colorOfSquare(square, atPosition: position))
+        }
+        return pieces
+    }
     
     /**
     If this is a legal move, it returns YES.

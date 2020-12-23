@@ -132,7 +132,7 @@ class ModelBoardTests : XCTestCase {
     }
     
     
-    func testColorAtPosition() {
+    func testColorOfSquare() {
         
         let board = ModelBoard()
         
@@ -164,10 +164,32 @@ class ModelBoardTests : XCTestCase {
         XCTAssertEqual(board.colorOfSquare(square0, atPosition:1), ModelPlayer.black, "originally at square3")
         XCTAssertEqual(board.colorOfSquare(square0, atPosition:0), ModelPlayer.white, "originally at square4")
         XCTAssertEqual(board.colorOfSquare(square2, atPosition:0), ModelPlayer.white, "here from the beginning")
-        
-        NSLog("bla")
     }
-    
+
+    func testPiecesAtSquare() {
+        // Given
+        let square0 = ModelSquare(column: 0, line: 3)
+        let square1 = ModelSquare(column: 1, line: 3)
+
+        let board = ModelBoard()
+
+        // When
+        board.setPiece(square0)
+        var pieces = board.piecesAtSquare(square0)
+
+        // Then
+        XCTAssertEqual(pieces, [.white])
+
+        // And When
+        board.setPiece(square1)
+        board.dragPiecesFrom(square0, to: square1, withNumber: 1)
+        pieces = board.piecesAtSquare(square1)
+        let noPieces = board.piecesAtSquare(square0)
+
+        // Then
+        XCTAssertEqual(pieces, [.white, .black])
+        XCTAssertEqual(noPieces, [])
+    }
     
     func boardForTestingMoves() -> ModelBoard {
         
