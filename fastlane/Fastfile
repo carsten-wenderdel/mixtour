@@ -8,7 +8,7 @@ platform :ios do
   lane :test do
     spm(
       command: "test",
-      package_path: "./mixtour/local-packages/MixModel",
+      package_path: "./local-packages/MixModel",
       verbose: "true",
     )
   end
