@@ -16,6 +16,9 @@
 		675384292593B4B5002F5BEC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675384282593B4B5002F5BEC /* ContentView.swift */; };
 		6753842B2593B4B6002F5BEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6753842A2593B4B6002F5BEC /* Assets.xcassets */; };
 		6753842E2593B4B6002F5BEC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6753842D2593B4B6002F5BEC /* Preview Assets.xcassets */; };
+		6753843D2593BED4002F5BEC /* GameBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6753843C2593BED4002F5BEC /* GameBackgroundView.swift */; };
+		675384422593C6D9002F5BEC /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 675384412593C6D9002F5BEC /* Core */; };
+		675384442593C6DD002F5BEC /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 675384432593C6DD002F5BEC /* MixModel */; };
 		679DCFAD257C367800E9310E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFAC257C367800E9310E /* Core */; };
 		679DCFD5257C4BFB00E9310E /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFD4257C4BFB00E9310E /* MixModel */; };
 		679DCFE3257C577100E9310E /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679DCFE2257C577100E9310E /* ExampleTests.swift */; };
@@ -51,6 +54,7 @@
 		6753842A2593B4B6002F5BEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6753842D2593B4B6002F5BEC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6753842F2593B4B6002F5BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6753843C2593BED4002F5BEC /* GameBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBackgroundView.swift; sourceTree = "<group>"; };
 		679DCF8B257C28FC00E9310E /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = "local-packages/Core"; sourceTree = "<group>"; };
 		679DCFC7257C489A00E9310E /* MixModel */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MixModel; path = "local-packages/MixModel"; sourceTree = "<group>"; };
 		679DCFE2257C577100E9310E /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				675384422593C6D9002F5BEC /* Core in Frameworks */,
+				675384442593C6DD002F5BEC /* MixModel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +108,7 @@
 		675384252593B4B5002F5BEC /* mixtour */ = {
 			isa = PBXGroup;
 			children = (
+				6753843C2593BED4002F5BEC /* GameBackgroundView.swift */,
 				675384262593B4B5002F5BEC /* mixtourApp.swift */,
 				675384282593B4B5002F5BEC /* ContentView.swift */,
 				6753842A2593B4B6002F5BEC /* Assets.xcassets */,
@@ -218,6 +225,10 @@
 			dependencies = (
 			);
 			name = mixtour;
+			packageProductDependencies = (
+				675384412593C6D9002F5BEC /* Core */,
+				675384432593C6DD002F5BEC /* MixModel */,
+			);
 			productName = mixtour;
 			productReference = 675384242593B4B5002F5BEC /* mixtour.app */;
 			productType = "com.apple.product-type.application";
@@ -339,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6753843D2593BED4002F5BEC /* GameBackgroundView.swift in Sources */,
 				675384292593B4B5002F5BEC /* ContentView.swift in Sources */,
 				675384272593B4B5002F5BEC /* mixtourApp.swift in Sources */,
 			);
@@ -758,6 +770,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		675384412593C6D9002F5BEC /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		675384432593C6DD002F5BEC /* MixModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MixModel;
+		};
 		679DCFAC257C367800E9310E /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
