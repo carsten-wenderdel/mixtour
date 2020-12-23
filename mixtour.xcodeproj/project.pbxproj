@@ -44,7 +44,7 @@
 		679DCF8B257C28FC00E9310E /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = "mixtour/local-packages/Core"; sourceTree = "<group>"; };
 		679DCFC7257C489A00E9310E /* MixModel */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MixModel; path = "mixtour/local-packages/MixModel"; sourceTree = "<group>"; };
 		679DCFE2257C577100E9310E /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
-		AA040633176F9DF40051363A /* mixtour-uikit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mixtour-uikit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA040633176F9DF40051363A /* mixtour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mixtour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA040636176F9DF40051363A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AA040638176F9DF40051363A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AA04063A176F9DF40051363A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -87,7 +87,7 @@
 			children = (
 				679DCF8B257C28FC00E9310E /* Core */,
 				679DCFC7257C489A00E9310E /* MixModel */,
-				AA04063C176F9DF40051363A /* mixtour-uikit */,
+				AA04063C176F9DF40051363A /* mixtour */,
 				AA04065B176F9DF40051363A /* mixtourTests */,
 				AA040635176F9DF40051363A /* Frameworks */,
 				AA040634176F9DF40051363A /* Products */,
@@ -97,7 +97,7 @@
 		AA040634176F9DF40051363A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA040633176F9DF40051363A /* mixtour-uikit.app */,
+				AA040633176F9DF40051363A /* mixtour.app */,
 				AA040654176F9DF40051363A /* mixtourTests.xctest */,
 			);
 			name = Products;
@@ -113,7 +113,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AA04063C176F9DF40051363A /* mixtour-uikit */ = {
+		AA04063C176F9DF40051363A /* mixtour */ = {
 			isa = PBXGroup;
 			children = (
 				AA9E4A9917769277007CEA4B /* gameviews */,
@@ -123,7 +123,7 @@
 				AA04064E176F9DF40051363A /* Images.xcassets */,
 				AA04063D176F9DF40051363A /* Supporting Files */,
 			);
-			path = "mixtour-uikit";
+			path = mixtour;
 			sourceTree = "<group>";
 		};
 		AA04063D176F9DF40051363A /* Supporting Files */ = {
@@ -166,9 +166,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA040632176F9DF40051363A /* mixtour-uikit */ = {
+		AA040632176F9DF40051363A /* mixtour */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA040665176F9DF40051363A /* Build configuration list for PBXNativeTarget "mixtour-uikit" */;
+			buildConfigurationList = AA040665176F9DF40051363A /* Build configuration list for PBXNativeTarget "mixtour" */;
 			buildPhases = (
 				AA04062F176F9DF40051363A /* Sources */,
 				AA040630176F9DF40051363A /* Frameworks */,
@@ -178,13 +178,13 @@
 			);
 			dependencies = (
 			);
-			name = "mixtour-uikit";
+			name = mixtour;
 			packageProductDependencies = (
 				679DCFAC257C367800E9310E /* Core */,
 				679DCFD4257C4BFB00E9310E /* MixModel */,
 			);
 			productName = mixtour;
-			productReference = AA040633176F9DF40051363A /* mixtour-uikit.app */;
+			productReference = AA040633176F9DF40051363A /* mixtour.app */;
 			productType = "com.apple.product-type.application";
 		};
 		AA040653176F9DF40051363A /* mixtourTests */ = {
@@ -239,7 +239,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA040632176F9DF40051363A /* mixtour-uikit */,
+				AA040632176F9DF40051363A /* mixtour */,
 				AA040653176F9DF40051363A /* mixtourTests */,
 			);
 		};
@@ -291,7 +291,7 @@
 /* Begin PBXTargetDependency section */
 		AA04065A176F9DF40051363A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AA040632176F9DF40051363A /* mixtour-uikit */;
+			target = AA040632176F9DF40051363A /* mixtour */;
 			targetProxy = AA040659176F9DF40051363A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -585,7 +585,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA040665176F9DF40051363A /* Build configuration list for PBXNativeTarget "mixtour-uikit" */ = {
+		AA040665176F9DF40051363A /* Build configuration list for PBXNativeTarget "mixtour" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA040666176F9DF40051363A /* Debug */,

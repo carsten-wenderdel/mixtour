@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AA040632176F9DF40051363A"
-               BuildableName = "mixtour-uikit.app"
-               BlueprintName = "mixtour-uikit"
+               BuildableName = "mixtour.app"
+               BlueprintName = "mixtour"
                ReferencedContainer = "container:mixtour.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -31,8 +31,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA040632176F9DF40051363A"
-            BuildableName = "mixtour-uikit.app"
-            BlueprintName = "mixtour-uikit"
+            BuildableName = "mixtour.app"
+            BlueprintName = "mixtour"
             ReferencedContainer = "container:mixtour.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA040632176F9DF40051363A"
-            BuildableName = "mixtour-uikit.app"
-            BlueprintName = "mixtour-uikit"
+            BuildableName = "mixtour.app"
+            BlueprintName = "mixtour"
             ReferencedContainer = "container:mixtour.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -81,8 +81,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA040632176F9DF40051363A"
-            BuildableName = "mixtour-uikit.app"
-            BlueprintName = "mixtour-uikit"
+            BuildableName = "mixtour.app"
+            BlueprintName = "mixtour"
             ReferencedContainer = "container:mixtour.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
