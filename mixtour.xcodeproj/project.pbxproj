@@ -12,6 +12,10 @@
 		57943FEF1A49DD9400744ABE /* GameBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57943FEE1A49DD9400744ABE /* GameBackgroundView.swift */; };
 		57C207FA1A489917002DAFB3 /* GamePieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C207F91A489917002DAFB3 /* GamePieceView.swift */; };
 		57D21AB31A0FF52E00D1ABBC /* MIXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D21AB21A0FF52E00D1ABBC /* MIXViewController.swift */; };
+		6753B90F25939F9F00F32BAC /* mixtourApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6753B90E25939F9F00F32BAC /* mixtourApp.swift */; };
+		6753B91125939F9F00F32BAC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6753B91025939F9F00F32BAC /* ContentView.swift */; };
+		6753B91325939FA100F32BAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6753B91225939FA100F32BAC /* Assets.xcassets */; };
+		6753B91625939FA100F32BAC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6753B91525939FA100F32BAC /* Preview Assets.xcassets */; };
 		679DCFAD257C367800E9310E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFAC257C367800E9310E /* Core */; };
 		679DCFD5257C4BFB00E9310E /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFD4257C4BFB00E9310E /* MixModel */; };
 		679DCFE3257C577100E9310E /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679DCFE2257C577100E9310E /* ExampleTests.swift */; };
@@ -41,6 +45,12 @@
 		57943FEE1A49DD9400744ABE /* GameBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBackgroundView.swift; sourceTree = "<group>"; };
 		57C207F91A489917002DAFB3 /* GamePieceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePieceView.swift; sourceTree = "<group>"; };
 		57D21AB21A0FF52E00D1ABBC /* MIXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXViewController.swift; sourceTree = "<group>"; };
+		6753B90C25939F9F00F32BAC /* mixtour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mixtour.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6753B90E25939F9F00F32BAC /* mixtourApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mixtourApp.swift; sourceTree = "<group>"; };
+		6753B91025939F9F00F32BAC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6753B91225939FA100F32BAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6753B91525939FA100F32BAC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6753B91725939FA100F32BAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		679DCF8B257C28FC00E9310E /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = "mixtour/local-packages/Core"; sourceTree = "<group>"; };
 		679DCFC7257C489A00E9310E /* MixModel */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MixModel; path = "mixtour/local-packages/MixModel"; sourceTree = "<group>"; };
 		679DCFE2257C577100E9310E /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
@@ -58,6 +68,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6753B90925939F9F00F32BAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA040630176F9DF40051363A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -82,6 +99,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6753B90D25939F9F00F32BAC /* mixtour */ = {
+			isa = PBXGroup;
+			children = (
+				6753B90E25939F9F00F32BAC /* mixtourApp.swift */,
+				6753B91025939F9F00F32BAC /* ContentView.swift */,
+				6753B91225939FA100F32BAC /* Assets.xcassets */,
+				6753B91725939FA100F32BAC /* Info.plist */,
+				6753B91425939FA100F32BAC /* Preview Content */,
+			);
+			path = mixtour;
+			sourceTree = "<group>";
+		};
+		6753B91425939FA100F32BAC /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				6753B91525939FA100F32BAC /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		AA04062A176F9DF40051363A = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +126,7 @@
 				679DCFC7257C489A00E9310E /* MixModel */,
 				AA04063C176F9DF40051363A /* mixtour-uikit */,
 				AA04065B176F9DF40051363A /* mixtourTests */,
+				6753B90D25939F9F00F32BAC /* mixtour */,
 				AA040635176F9DF40051363A /* Frameworks */,
 				AA040634176F9DF40051363A /* Products */,
 			);
@@ -99,6 +137,7 @@
 			children = (
 				AA040633176F9DF40051363A /* mixtour-uikit.app */,
 				AA040654176F9DF40051363A /* mixtourTests.xctest */,
+				6753B90C25939F9F00F32BAC /* mixtour.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -166,6 +205,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6753B90B25939F9F00F32BAC /* mixtour */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6753B91825939FA100F32BAC /* Build configuration list for PBXNativeTarget "mixtour" */;
+			buildPhases = (
+				6753B90825939F9F00F32BAC /* Sources */,
+				6753B90925939F9F00F32BAC /* Frameworks */,
+				6753B90A25939F9F00F32BAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = mixtour;
+			productName = mixtour;
+			productReference = 6753B90C25939F9F00F32BAC /* mixtour.app */;
+			productType = "com.apple.product-type.application";
+		};
 		AA040632176F9DF40051363A /* mixtour-uikit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA040665176F9DF40051363A /* Build configuration list for PBXNativeTarget "mixtour-uikit" */;
@@ -212,10 +268,13 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MIX;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 1210;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Carsten Wenderdel";
 				TargetAttributes = {
+					6753B90B25939F9F00F32BAC = {
+						CreatedOnToolsVersion = 12.1;
+					};
 					AA040632176F9DF40051363A = {
 						LastSwiftMigration = 1150;
 						ProvisioningStyle = Automatic;
@@ -239,6 +298,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				6753B90B25939F9F00F32BAC /* mixtour */,
 				AA040632176F9DF40051363A /* mixtour-uikit */,
 				AA040653176F9DF40051363A /* mixtourTests */,
 			);
@@ -246,6 +306,15 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6753B90A25939F9F00F32BAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6753B91625939FA100F32BAC /* Preview Assets.xcassets in Resources */,
+				6753B91325939FA100F32BAC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA040631176F9DF40051363A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -266,6 +335,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6753B90825939F9F00F32BAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6753B91125939F9F00F32BAC /* ContentView.swift in Sources */,
+				6753B90F25939F9F00F32BAC /* mixtourApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA04062F176F9DF40051363A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -324,6 +402,71 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6753B91925939FA100F32BAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"mixtour/Preview Content\"";
+				DEVELOPMENT_TEAM = RKX7FEU7U3;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = mixtour/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wenderdel.games.stein.mixtour;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6753B91A25939FA100F32BAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"mixtour/Preview Content\"";
+				DEVELOPMENT_TEAM = RKX7FEU7U3;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = mixtour/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wenderdel.games.stein.mixtour;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		AA040663176F9DF40051363A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -576,6 +719,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6753B91825939FA100F32BAC /* Build configuration list for PBXNativeTarget "mixtour" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6753B91925939FA100F32BAC /* Debug */,
+				6753B91A25939FA100F32BAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AA04062E176F9DF40051363A /* Build configuration list for PBXProject "mixtour" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
