@@ -38,7 +38,13 @@ class BoardViewModel: ObservableObject {
 
     // MARK: Retrieve information
 
-    func piecesAtSquare(_ square: ModelSquare) -> [ModelPlayer] {
-        return board.piecesAtSquare(square)
+    func piecesAtSquare(_ square: ModelSquare) -> [PieceViewModel] {
+        let height = board.heightOfSquare(square)
+        var pieces = [PieceViewModel]()
+        for position in 0..<height {
+            let color = board.colorOfSquare(square, atPosition: position)
+            pieces.append(PieceViewModel(color: color, id: "\(square.id)-\(position)"))
+        }
+        return pieces
     }
 }

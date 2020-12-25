@@ -2,7 +2,7 @@ import SwiftUI
 import MixModel
 
 struct PieceStackView: View {
-    let pieces: [ModelPlayer]
+    let pieces: [PieceViewModel]
 
     var body: some View {
         GeometryReader() { geometry in
@@ -14,7 +14,7 @@ struct PieceStackView: View {
                 VStack(spacing: 0) {
                     ForEach(pieces) { piece in
                         Rectangle()
-                            .foregroundColor(piece == ModelPlayer.black ? .red : .yellow)
+                            .foregroundColor(piece.color == .black ? .red : .yellow)
                             .frame(width: pieceWidth, height: pieceHeight, alignment: .bottom)
                             .border(Color.black, width: 1)
                             .transition(AnyTransition.scale(scale: 0.01).animation(.easeInOut(duration: 1)))
@@ -30,14 +30,16 @@ struct PieceStackView: View {
 
 struct PieceStackView_Previews: PreviewProvider {
     static var previews: some View {
+        let black = PieceViewModel(color: .black, id: "")
+        let white = PieceViewModel(color: .white, id: "")
         VStack {
-            PieceStackView(pieces: [.black, .white, .white])
+            PieceStackView(pieces: [black, white, white])
                 .background(Color.blue)
             PieceStackView(pieces: [])
                 .background(Color.purple)
-            PieceStackView(pieces: [.white, .black, .white, .black, .black, .black])
+            PieceStackView(pieces: [white, black, white, black, black, black])
                 .background(Color.blue)
-            PieceStackView(pieces: [.black])
+            PieceStackView(pieces: [black])
                 .background(Color.purple)
         }
     }

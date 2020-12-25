@@ -1,8 +1,10 @@
 import Foundation
 import Core
 
-public struct ModelSquare {
+public struct ModelSquare: Identifiable {
     public var column, line: Int
+
+    public var id: String { "\(line)-\(column)" }
 
     public init(column: Int, line: Int) {
         self.column = column
