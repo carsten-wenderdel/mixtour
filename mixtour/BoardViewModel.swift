@@ -16,30 +16,26 @@ class BoardViewModel: ObservableObject {
         self.init(board: ModelBoard())
     }
 
-    // Change state
+    // MARK: Change state
 
-    @discardableResult public func setPiece(_ square: ModelSquare) -> Bool {
+    func trySettingPieceTo(_ square: ModelSquare) {
         let move = ModelMove(setPieceTo: square)
-        return makeMoveIfLegal(move)
-    }
-
-    @discardableResult public func makeMoveIfLegal(_ move: ModelMove) -> Bool {
-        if board.isMoveLegal(move) {
-            objectWillChange.send()
+        guard board.isMoveLegal(move) else {
+            return
         }
-        return board.makeMoveIfLegal(move)
+
+        objectWillChange.send()
+        board.makeMoveIfLegal(move)
+
+        if let move = board.bestMove() {
+            objectWillChange.send()
+            board.makeMoveIfLegal(move)
+        }
     }
 
-
-    // Retrieve information
+    // MARK: Retrieve information
 
     func piecesAtSquare(_ square: ModelSquare) -> [ModelPlayer] {
         return board.piecesAtSquare(square)
-    }
-
-    // Computer player information
-
-    func bestMove() -> ModelMove? {
-        return board.bestMove()
     }
 }

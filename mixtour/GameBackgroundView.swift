@@ -22,15 +22,7 @@ struct GameBackgroundView: View {
                                 PieceStackView(pieces: board.piecesAtSquare(square))
                             }
                             .onTapGesture(count: 2) {
-                                withAnimation(Animation.easeInOut(duration: 1.0)) {
-                                    _ = board.setPiece(square)
-                                }
-                                let computerMove = board.bestMove()
-                                if let move = computerMove {
-                                    withAnimation(Animation.easeInOut(duration: 1.0).delay(1.0)) {
-                                        _ = board.makeMoveIfLegal(move)
-                                    }
-                                }
+                                board.trySettingPieceTo(square)
                             }
                         }
                     }
