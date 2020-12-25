@@ -1,10 +1,12 @@
 import Foundation
 import Combine
+import SwiftUI
 import MixModel
 
 class BoardViewModel: ObservableObject {
 
     private let board: ModelBoard
+    private var animatableMove: ModelMove?
 
     // MARK: Initializers
 
@@ -25,12 +27,14 @@ class BoardViewModel: ObservableObject {
         }
 
         objectWillChange.send()
+        animatableMove = nil
         board.makeMoveIfLegal(move)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             guard let self = self else { return }
             if let move = self.board.bestMove() {
                 self.objectWillChange.send()
+                self.animatableMove = move
                 self.board.makeMoveIfLegal(move)
             }
         }
@@ -43,7 +47,14 @@ class BoardViewModel: ObservableObject {
         var pieces = [PieceViewModel]()
         for position in 0..<height {
             let color = board.colorOfSquare(square, atPosition: position)
-            pieces.append(PieceViewModel(color: color, id: "\(square.id)-\(position)"))
+            let id: String
+            if let move = animatableMove, move.to == square, move.isMoveDrag(), position < move.numberOfPieces {
+                let remainingHeight = board.heightOfSquare(move.from)
+                id = "\(move.from.id)-\(remainingHeight+move.numberOfPieces-position)"
+            } else {
+                id = "\(square.id)-\(height-position)"
+            }
+            pieces.append(PieceViewModel(color: color, id: id))
         }
         return pieces
     }

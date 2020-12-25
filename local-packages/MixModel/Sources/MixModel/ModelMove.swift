@@ -9,8 +9,8 @@ import Core
 let kMoveSetIndicator = 6
 
 public struct ModelMove {
-    var from, to: ModelSquare
-    var numberOfPieces: Int
+    public let from, to: ModelSquare
+    public let numberOfPieces: Int
 
     public init(from: ModelSquare, to: ModelSquare, numberOfPieces: Int) {
         self.from = from
@@ -22,7 +22,7 @@ public struct ModelMove {
         return MIXCoreMove(from: from.coreSquare(), to: to.coreSquare(), numberOfPieces: UInt8(numberOfPieces))
     }
     
-    func isMoveDrag() -> Bool {
+    public func isMoveDrag() -> Bool {
         return from.column != kMoveSetIndicator;
     }
 }

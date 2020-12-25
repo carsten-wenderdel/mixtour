@@ -3,6 +3,7 @@ import MixModel
 
 struct GameBackgroundView: View {
     @ObservedObject var board: BoardViewModel
+    @Namespace private var namespace
 
     var body: some View {
         GeometryReader { proxy in
@@ -19,7 +20,7 @@ struct GameBackgroundView: View {
                             ZStack() {
                                 Rectangle()
                                     .foregroundColor(color)
-                                PieceStackView(pieces: board.piecesAtSquare(square))
+                                PieceStackView(namespace: namespace, pieces: board.piecesAtSquare(square))
                             }
                             .onTapGesture(count: 2) {
                                 board.trySettingPieceTo(square)

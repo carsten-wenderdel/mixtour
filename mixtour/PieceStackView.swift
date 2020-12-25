@@ -2,6 +2,7 @@ import SwiftUI
 import MixModel
 
 struct PieceStackView: View {
+    var namespace: Namespace.ID
     let pieces: [PieceViewModel]
 
     var body: some View {
@@ -17,7 +18,9 @@ struct PieceStackView: View {
                             .foregroundColor(piece.color == .black ? .red : .yellow)
                             .frame(width: pieceWidth, height: pieceHeight, alignment: .bottom)
                             .border(Color.black, width: 1)
-                            .transition(AnyTransition.scale(scale: 0.01).animation(.easeInOut(duration: 1)))
+                            .matchedGeometryEffect(id: piece.id, in: namespace, properties: .frame)
+                            .animation(.easeInOut(duration: 0.5))
+//                            .transition(AnyTransition.scale(scale: 0.01).animation(.easeInOut(duration: 1)))
                     }
                 }
                 .padding(.bottom, bottomPadding)
@@ -29,18 +32,26 @@ struct PieceStackView: View {
 }
 
 struct PieceStackView_Previews: PreviewProvider {
+    @Namespace static var namespace
+
     static var previews: some View {
-        let black = PieceViewModel(color: .black, id: "")
-        let white = PieceViewModel(color: .white, id: "")
         VStack {
-            PieceStackView(pieces: [black, white, white])
+            PieceStackView(namespace: namespace, pieces: [black(0), white(1), white(2)])
                 .background(Color.blue)
-            PieceStackView(pieces: [])
+            PieceStackView(namespace: namespace, pieces: [])
                 .background(Color.purple)
-            PieceStackView(pieces: [white, black, white, black, black, black])
+            PieceStackView(namespace: namespace, pieces: [white(0), black(1), white(2), black(3), black(4), black(5)])
                 .background(Color.blue)
-            PieceStackView(pieces: [black])
+            PieceStackView(namespace: namespace, pieces: [black(0)])
                 .background(Color.purple)
         }
+    }
+
+    static func black(_ id: Int) -> PieceViewModel {
+        return PieceViewModel(color: .black, id: "\(id)")
+    }
+
+    static func white(_ id: Int) -> PieceViewModel {
+        return PieceViewModel(color: .white, id: "\(id)")
     }
 }
