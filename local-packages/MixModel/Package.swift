@@ -5,6 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "MixModel",
+    platforms: [
+        .iOS(.v13),
+        .macOS(.v10_15),
+    ],
     products: [
         .library(
             name: "MixModel",

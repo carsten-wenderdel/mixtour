@@ -2,7 +2,7 @@ import SwiftUI
 import MixModel
 
 struct GameBackgroundView: View {
-    var board: ModelBoard
+    @ObservedObject var board: ModelBoard
 
     var body: some View {
         GeometryReader { proxy in
@@ -20,6 +20,9 @@ struct GameBackgroundView: View {
                                 Rectangle()
                                     .foregroundColor(color)
                                 PieceStackView(pieces: board.piecesAtSquare(square))
+                            }
+                            .onTapGesture(count: 2) {
+                                board.setPiece(square)
                             }
                         }
                     }

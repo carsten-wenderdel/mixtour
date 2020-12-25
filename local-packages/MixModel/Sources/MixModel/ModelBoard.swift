@@ -1,11 +1,12 @@
 import Foundation
+import Combine
 import Core
 
 // TODO: move it into some class or enum?
 public let numberOfSquares = 5
 
 
-public class ModelBoard {
+public class ModelBoard: ObservableObject {
     
     var coreBoard = MIXCoreBoard()
     
@@ -68,7 +69,7 @@ public class ModelBoard {
     If this is a legal move, it returns YES.
     If it's an illegal move, the move is not made and NO is returned. The model is still fine.
     */
-    @discardableResult func setPiece(_ square: ModelSquare) -> Bool {
+    @discardableResult public func setPiece(_ square: ModelSquare) -> Bool {
         let move = ModelMove(setPieceTo: square)
         return makeMoveIfLegal(move)
     }
@@ -82,6 +83,7 @@ public class ModelBoard {
     
     @discardableResult public func makeMoveIfLegal(_ move: ModelMove) -> Bool {
         if isMoveLegal(move) {
+            objectWillChange.send()
             Core.makeMove(&coreBoard, move.coreMove())
             return true
         } else {

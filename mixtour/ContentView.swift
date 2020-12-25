@@ -2,6 +2,8 @@ import SwiftUI
 import MixModel
 
 struct ContentView: View {
+    @StateObject private var board = ModelBoard.example
+
     var body: some View {
         GameBackgroundView(board: .example)
     }
