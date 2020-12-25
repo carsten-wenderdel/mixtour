@@ -1,12 +1,11 @@
 import Foundation
-import Combine
 import Core
 
 // TODO: move it into some class or enum?
 public let numberOfSquares = 5
 
 
-public class ModelBoard: ObservableObject {
+public class ModelBoard {
     
     var coreBoard = MIXCoreBoard()
     
@@ -83,7 +82,6 @@ public class ModelBoard: ObservableObject {
     
     @discardableResult public func makeMoveIfLegal(_ move: ModelMove) -> Bool {
         if isMoveLegal(move) {
-            objectWillChange.send()
             Core.makeMove(&coreBoard, move.coreMove())
             return true
         } else {
@@ -92,7 +90,7 @@ public class ModelBoard: ObservableObject {
     }
     
 
-    func isMoveLegal(_ move: ModelMove) -> Bool {
+    public func isMoveLegal(_ move: ModelMove) -> Bool {
         return Core.isMoveLegal(&coreBoard, move.coreMove())
     }
 

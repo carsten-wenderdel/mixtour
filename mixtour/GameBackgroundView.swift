@@ -2,7 +2,7 @@ import SwiftUI
 import MixModel
 
 struct GameBackgroundView: View {
-    @ObservedObject var board: ModelBoard
+    @ObservedObject var board: BoardViewModel
 
     var body: some View {
         GeometryReader { proxy in
@@ -43,6 +43,6 @@ struct GameBackgroundView: View {
 
 struct GameBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        GameBackgroundView(board: .example)
+        GameBackgroundView(board: BoardViewModel(board: .example))
     }
 }

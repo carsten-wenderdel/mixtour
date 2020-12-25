@@ -17,7 +17,7 @@ struct PieceStackView: View {
                             .foregroundColor(piece == ModelPlayer.black ? .red : .yellow)
                             .frame(width: pieceWidth, height: pieceHeight, alignment: .bottom)
                             .border(Color.black, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-                            .transition(.scale(scale: 0.0))
+                            .transition(.scale(scale: 0.01))
                     }
                 }
                 .padding(.bottom, bottomPadding)
