@@ -22,11 +22,13 @@ struct GameBackgroundView: View {
                                     .foregroundColor(color)
                                 PieceStackView(namespace: namespace, pieces: board.piecesAtSquare(square))
                             }
+                            .zIndex(board.zIndexForColumn(column))
                             .onTapGesture(count: 2) {
                                 board.trySettingPieceTo(square)
                             }
                         }
                     }
+                    .zIndex(board.zIndexForLine(line))
                 }
             }
         }

@@ -54,8 +54,28 @@ class BoardViewModel: ObservableObject {
             } else {
                 id = "\(square.id)-\(height-position)"
             }
-            pieces.append(PieceViewModel(color: color, id: id))
+            pieces.append(PieceViewModel(color: color, id: id, zIndex: Double(height-position)))
         }
         return pieces
+    }
+
+    func zIndexForLine(_ line: Int) -> Double {
+        if animatableMove?.to.line == line {
+            return 2
+        } else if animatableMove?.from.line == line {
+            return 1
+        } else {
+            return 0
+        }
+    }
+
+    func zIndexForColumn(_ column: Int) -> Double {
+        if animatableMove?.to.column == column {
+            return 2
+        } else if animatableMove?.from.column == column {
+            return 1
+        } else {
+            return 0
+        }
     }
 }

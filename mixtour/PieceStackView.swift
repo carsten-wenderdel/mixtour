@@ -18,6 +18,7 @@ struct PieceStackView: View {
                             .foregroundColor(piece.color == .black ? .red : .yellow)
                             .frame(width: pieceWidth, height: pieceHeight, alignment: .bottom)
                             .border(Color.black, width: 1)
+                            .zIndex(piece.zIndex)
                             .matchedGeometryEffect(id: piece.id, in: namespace, properties: .frame)
                             .animation(.easeInOut(duration: 0.5))
 //                            .transition(AnyTransition.scale(scale: 0.01).animation(.easeInOut(duration: 1)))
@@ -48,10 +49,10 @@ struct PieceStackView_Previews: PreviewProvider {
     }
 
     static func black(_ id: Int) -> PieceViewModel {
-        return PieceViewModel(color: .black, id: "\(id)")
+        return PieceViewModel(color: .black, id: "\(id)", zIndex: 0)
     }
 
     static func white(_ id: Int) -> PieceViewModel {
-        return PieceViewModel(color: .white, id: "\(id)")
+        return PieceViewModel(color: .white, id: "\(id)", zIndex: 0)
     }
 }
