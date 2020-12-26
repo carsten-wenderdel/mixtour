@@ -5,7 +5,7 @@ import MixModel
 
 class BoardViewModel: ObservableObject {
 
-    private let board: ModelBoard
+    var board: ModelBoard
     private var animatableMove: ModelMove?
 
     // MARK: Initializers
@@ -19,6 +19,12 @@ class BoardViewModel: ObservableObject {
     }
 
     // MARK: Change state
+
+    func reset(board: ModelBoard = ModelBoard()) {
+        objectWillChange.send()
+        self.animatableMove = nil
+        self.board = board
+    }
 
     func trySettingPieceTo(_ square: ModelSquare) {
         let move = ModelMove(setPieceTo: square)
