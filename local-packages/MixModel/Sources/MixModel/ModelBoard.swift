@@ -23,7 +23,7 @@ public class ModelBoard {
     }
     
     
-    func winner() -> ModelPlayer {
+    func winner() -> ModelPlayer? {
         let corePlayer = Core.winner(&coreBoard)
         return ModelPlayer(corePlayer: corePlayer)
     }
@@ -31,7 +31,7 @@ public class ModelBoard {
     
     func playerOnTurn() -> ModelPlayer {
         let corePlayer = Core.playerOnTurn(&coreBoard)
-        return ModelPlayer(corePlayer: corePlayer)
+        return ModelPlayer(corePlayer: corePlayer)!
     }
     
     
@@ -49,10 +49,10 @@ public class ModelBoard {
         return Int(Core.heightOfSquare(&coreBoard, square.coreSquare()))
     }
     
-    /// position 0 is the upper most piece
+    /// position 0 is the upper most piece. Undefined behavior for not existing pieces
     public func colorOfSquare(_ square: ModelSquare, atPosition position: Int) -> ModelPlayer{
         let corePlayer = colorOfSquareAtPosition(&coreBoard, square.coreSquare(), UInt8(position))
-        return ModelPlayer(corePlayer: corePlayer)
+        return ModelPlayer(corePlayer: corePlayer)!
     }
 
     /// position 0 is the upper most piece

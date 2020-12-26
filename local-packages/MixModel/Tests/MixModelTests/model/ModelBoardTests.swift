@@ -59,11 +59,11 @@ class ModelBoardTests : XCTestCase {
     
     func testWinner() {
         var board = ModelBoard()
-        XCTAssertEqual(board.winner(), ModelPlayer.undefined)
+        XCTAssertEqual(board.winner(), nil)
         
         board.setPiece(ModelSquare(column: 0, line: 0))
         for i in 1..<5 {
-            XCTAssertEqual(board.winner(), ModelPlayer.undefined)
+            XCTAssertEqual(board.winner(), nil)
             let oldSquare = ModelSquare(column: 0, line: i - 1)
             let newSquare = ModelSquare(column: 0, line: i)
             board.setPiece(newSquare)
@@ -141,7 +141,7 @@ class ModelBoardTests : XCTestCase {
         let square2 = ModelSquare(column: 2, line: 3)
         let square3 = ModelSquare(column: 3, line: 3)
         let square4 = ModelSquare(column: 4, line: 3)
-        
+
         board.setPiece(square0) // white
         board.setPiece(square1) // black
         board.setPiece(square2) // white
