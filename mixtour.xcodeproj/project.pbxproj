@@ -12,6 +12,7 @@
 		57943FEF1A49DD9400744ABE /* GameBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57943FEE1A49DD9400744ABE /* GameBackgroundView.swift */; };
 		57C207FA1A489917002DAFB3 /* GamePieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C207F91A489917002DAFB3 /* GamePieceView.swift */; };
 		57D21AB31A0FF52E00D1ABBC /* MIXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D21AB21A0FF52E00D1ABBC /* MIXViewController.swift */; };
+		671456BF2597E835008870D8 /* BoardBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671456BE2597E835008870D8 /* BoardBackgroundView.swift */; };
 		675384272593B4B5002F5BEC /* mixtourApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675384262593B4B5002F5BEC /* mixtourApp.swift */; };
 		675384292593B4B5002F5BEC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675384282593B4B5002F5BEC /* ContentView.swift */; };
 		6753842B2593B4B6002F5BEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6753842A2593B4B6002F5BEC /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		57943FEE1A49DD9400744ABE /* GameBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBackgroundView.swift; sourceTree = "<group>"; };
 		57C207F91A489917002DAFB3 /* GamePieceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePieceView.swift; sourceTree = "<group>"; };
 		57D21AB21A0FF52E00D1ABBC /* MIXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXViewController.swift; sourceTree = "<group>"; };
+		671456BE2597E835008870D8 /* BoardBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardBackgroundView.swift; sourceTree = "<group>"; };
 		675384242593B4B5002F5BEC /* mixtour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mixtour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		675384262593B4B5002F5BEC /* mixtourApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mixtourApp.swift; sourceTree = "<group>"; };
 		675384282593B4B5002F5BEC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				675384282593B4B5002F5BEC /* ContentView.swift */,
+				671456BE2597E835008870D8 /* BoardBackgroundView.swift */,
 				6753843C2593BED4002F5BEC /* GameBackgroundView.swift */,
 				67CBE7872593DD4B00D913A1 /* PieceStackView.swift */,
 			);
@@ -377,6 +380,7 @@
 			files = (
 				6753843D2593BED4002F5BEC /* GameBackgroundView.swift in Sources */,
 				675384292593B4B5002F5BEC /* ContentView.swift in Sources */,
+				671456BF2597E835008870D8 /* BoardBackgroundView.swift in Sources */,
 				67D666B2259631EF00E31102 /* BoardViewModel.swift in Sources */,
 				67CBE7882593DD4B00D913A1 /* PieceStackView.swift in Sources */,
 				675384272593B4B5002F5BEC /* mixtourApp.swift in Sources */,
