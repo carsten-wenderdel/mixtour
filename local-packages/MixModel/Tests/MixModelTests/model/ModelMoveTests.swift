@@ -73,10 +73,12 @@ class ModelMoveTests: XCTestCase {
     
     func testEqualityForSettingWithDifferentNonImportantInstanceVariables() {
         let setMove1a = ModelMove(setPieceTo: ModelSquare(column: 1, line: 1))
-        
-        var setMove1b = ModelMove(setPieceTo: ModelSquare(column: 1, line: 1))
-        setMove1b.from = ModelSquare(column: 3, line: 4)
-        setMove1b.numberOfPieces = 55
+
+        let setMove1b = ModelMove(
+            from: ModelSquare(column: 3, line: 4),
+            to: ModelSquare(column: 1, line: 1),
+            numberOfPieces: 55
+        )
         
         XCTAssertEqual(setMove1a, setMove1b)
     }
