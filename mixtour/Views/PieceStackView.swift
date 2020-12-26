@@ -4,6 +4,7 @@ import MixModel
 struct PieceStackView: View {
     var namespace: Namespace.ID
     let pieces: [PieceViewModel]
+    @State private var offset = CGSize.zero
 
     var body: some View {
         GeometryReader() { geometry in
@@ -28,6 +29,16 @@ struct PieceStackView: View {
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
         }
         .aspectRatio(1, contentMode: .fit)
+        .offset(offset)
+        .gesture(
+            DragGesture()
+                .onChanged { gesture in
+                    self.offset = gesture.translation
+                }
+                .onEnded { _ in
+                    self.offset = .zero
+                }
+        )
     }
 }
 
