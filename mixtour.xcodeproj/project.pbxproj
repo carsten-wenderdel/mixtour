@@ -111,18 +111,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		671456B62597D8A6008870D8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				675384282593B4B5002F5BEC /* ContentView.swift */,
+				6753843C2593BED4002F5BEC /* GameBackgroundView.swift */,
+				67CBE7872593DD4B00D913A1 /* PieceStackView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		671456B72597D8B2008870D8 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				67D666B1259631EF00E31102 /* BoardViewModel.swift */,
+				67D666C42596746200E31102 /* PieceViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		675384252593B4B5002F5BEC /* mixtour */ = {
 			isa = PBXGroup;
 			children = (
-				67CBE7872593DD4B00D913A1 /* PieceStackView.swift */,
-				6753843C2593BED4002F5BEC /* GameBackgroundView.swift */,
+				671456B72597D8B2008870D8 /* ViewModels */,
+				671456B62597D8A6008870D8 /* Views */,
 				675384262593B4B5002F5BEC /* mixtourApp.swift */,
-				675384282593B4B5002F5BEC /* ContentView.swift */,
 				6753842A2593B4B6002F5BEC /* Assets.xcassets */,
 				6753842F2593B4B6002F5BEC /* Info.plist */,
 				6753842C2593B4B6002F5BEC /* Preview Content */,
-				67D666B1259631EF00E31102 /* BoardViewModel.swift */,
-				67D666C42596746200E31102 /* PieceViewModel.swift */,
 			);
 			path = mixtour;
 			sourceTree = "<group>";
