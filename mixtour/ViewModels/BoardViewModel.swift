@@ -89,23 +89,20 @@ class BoardViewModel: ObservableObject {
     }
 
     func zIndexForLine(_ line: Int) -> Double {
-        if let picked = pickedPieces, picked.square.line == line {
-            return 3
-        } else if animatableMove?.to.line == line {
-            return 2
-        } else if animatableMove?.from.line == line {
-            return 1
-        } else {
-            return 0
-        }
+        return zIndexFor(\ModelSquare.line, value: line)
     }
 
     func zIndexForColumn(_ column: Int) -> Double {
-        if let picked = pickedPieces, picked.square.column == column {
+        return zIndexFor(\ModelSquare.column, value: column)
+    }
+
+    /// keyPath can be "column" or "line"
+    private func zIndexFor(_ keyPath: KeyPath<ModelSquare, Int>, value: Int) -> Double {
+        if let picked = pickedPieces, picked.square[keyPath: keyPath] == value {
             return 3
-        } else if animatableMove?.to.column == column {
+        } else if animatableMove?.to[keyPath: keyPath] == value {
             return 2
-        } else if animatableMove?.from.column == column {
+        } else if animatableMove?.from[keyPath: keyPath] == value {
             return 1
         } else {
             return 0
