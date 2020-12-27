@@ -1,12 +1,23 @@
 import Foundation
-import Combine
-import SwiftUI
 import MixModel
 
 class BoardViewModel: ObservableObject {
 
-    var board: ModelBoard
+    private var board: ModelBoard
     private var animatableMove: ModelMove?
+    
+    private var pickedPieces: PickedPieces? {
+        didSet {
+            if pickedPieces != nil {
+                animatableMove = nil
+            }
+        }
+    }
+
+    private struct PickedPieces {
+        var square: ModelSquare
+        var number: Int
+    }
 
     // MARK: Initializers
 
@@ -23,7 +34,15 @@ class BoardViewModel: ObservableObject {
     func reset(board: ModelBoard = ModelBoard()) {
         objectWillChange.send()
         self.animatableMove = nil
+        self.pickedPieces = nil
         self.board = board
+    }
+
+    func pickPieceFromSquare(_ square: ModelSquare) {
+        objectWillChange.send()
+        let oldNumber = numberOfPickedPiecesAt(square)
+        let number = (oldNumber + 1) % (board.heightOfSquare(square) + 1)
+        pickedPieces = PickedPieces(square: square, number: number)
     }
 
     func trySettingPieceTo(_ square: ModelSquare) {
@@ -34,6 +53,7 @@ class BoardViewModel: ObservableObject {
 
         objectWillChange.send()
         animatableMove = nil
+        pickedPieces = nil
         board.makeMoveIfLegal(move)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
@@ -48,7 +68,15 @@ class BoardViewModel: ObservableObject {
 
     // MARK: Retrieve information
 
-    func piecesAtSquare(_ square: ModelSquare) -> [PieceViewModel] {
+    private func numberOfPickedPiecesAt(_ square: ModelSquare) -> Int {
+        if let pieces = pickedPieces, square == pieces.square {
+            return pieces.number
+        } else {
+            return 0
+        }
+    }
+
+    func stackAtSquare(_ square: ModelSquare) -> PieceStackViewModel {
         let height = board.heightOfSquare(square)
         var pieces = [PieceViewModel]()
         for position in 0..<height {
@@ -62,7 +90,11 @@ class BoardViewModel: ObservableObject {
             }
             pieces.append(PieceViewModel(color: color, id: id, zIndex: Double(height-position)))
         }
-        return pieces
+        let numberOfPickedPieces = numberOfPickedPiecesAt(square)
+        return PieceStackViewModel(
+            defaultPieces: Array(pieces.suffix(height - numberOfPickedPieces)),
+            pickedPieces: Array(pieces.prefix(numberOfPickedPieces))
+        )
     }
 
     func zIndexForLine(_ line: Int) -> Double {

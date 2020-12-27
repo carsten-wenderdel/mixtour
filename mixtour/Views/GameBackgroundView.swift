@@ -13,12 +13,31 @@ struct GameBackgroundView: View {
                     HStack(spacing: 0) {
                         ForEach(0..<numberOfSquares) { column in
                             let square = ModelSquare(column: column, line: line)
-                            PieceStackView(namespace: namespace, pieces: board.piecesAtSquare(square))
-                                .zIndex(board.zIndexForColumn(column))
-                                .contentShape(Rectangle()) // to allow taps on empty views
-                                .onTapGesture(count: 2) {
+                            let stackVM = board.stackAtSquare(square)
+                            ZStack {
+                                PieceStackView(
+                                    namespace: namespace,
+                                    pieces: stackVM.defaultPieces,
+                                    paddingFactor: 0.5,
+                                    dragAnimation: stackVM.useDrag
+                                )
+                                PieceStackView(
+                                    namespace: namespace,
+                                    pieces: stackVM.pickedPieces,
+                                    paddingFactor: 1.1 + Double(stackVM.defaultPieces.count),
+                                    dragAnimation: stackVM.useDrag
+                                )
+                                .opacity(0.6)
+                            }
+                            .zIndex(board.zIndexForColumn(column))
+                            .contentShape(Rectangle()) // to allow taps on empty views
+                            .onTapGesture(count: stackVM.isEmpty ? 2 : 1) {
+                                if stackVM.isEmpty {
                                     board.trySettingPieceTo(square)
+                                } else {
+                                    board.pickPieceFromSquare(square)
                                 }
+                            }
                         }
                     }
                     .zIndex(board.zIndexForLine(line))
