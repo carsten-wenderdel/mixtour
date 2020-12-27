@@ -78,17 +78,8 @@ class BoardViewModel: ObservableObject {
 
     func stackAtSquare(_ square: ModelSquare) -> PieceStackViewModel {
         let height = board.heightOfSquare(square)
-        var pieces = [PieceViewModel]()
-        for position in 0..<height {
-            let color = board.colorOfSquare(square, atPosition: position)
-            let id: String
-            if let move = animatableMove, move.to == square, move.isMoveDrag(), position < move.numberOfPieces {
-                let remainingHeight = board.heightOfSquare(move.from)
-                id = "\(move.from.id)-\(remainingHeight+move.numberOfPieces-position)"
-            } else {
-                id = "\(square.id)-\(height-position)"
-            }
-            pieces.append(PieceViewModel(color: color, id: id, zIndex: Double(height-position)))
+        let pieces = board.piecesAtSquare(square).enumerated().map { (index, piece) in
+            PieceViewModel(color: piece.color, id: piece.id, zIndex: Double(height - index))
         }
         let numberOfPickedPieces = numberOfPickedPiecesAt(square)
         return PieceStackViewModel(
@@ -98,7 +89,9 @@ class BoardViewModel: ObservableObject {
     }
 
     func zIndexForLine(_ line: Int) -> Double {
-        if animatableMove?.to.line == line {
+        if let picked = pickedPieces, picked.square.line == line {
+            return 3
+        } else if animatableMove?.to.line == line {
             return 2
         } else if animatableMove?.from.line == line {
             return 1
@@ -108,7 +101,9 @@ class BoardViewModel: ObservableObject {
     }
 
     func zIndexForColumn(_ column: Int) -> Double {
-        if animatableMove?.to.column == column {
+        if let picked = pickedPieces, picked.square.column == column {
+            return 3
+        } else if animatableMove?.to.column == column {
             return 2
         } else if animatableMove?.from.column == column {
             return 1

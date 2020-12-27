@@ -96,10 +96,10 @@ struct PieceStackView_Previews: PreviewProvider {
     }
 
     static func black(_ id: Int) -> PieceViewModel {
-        return PieceViewModel(color: .black, id: "\(id)", zIndex: 0)
+        return PieceViewModel(color: .black, id: id, zIndex: 0)
     }
 
     static func white(_ id: Int) -> PieceViewModel {
-        return PieceViewModel(color: .white, id: "\(id)", zIndex: 0)
+        return PieceViewModel(color: .white, id: id, zIndex: 0)
     }
 }

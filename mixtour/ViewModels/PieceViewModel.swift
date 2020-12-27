@@ -3,6 +3,6 @@ import MixModel
 
 struct PieceViewModel: Identifiable {
     let color: ModelPlayer
-    let id: String
+    let id: Int
     let zIndex: Double
 }
