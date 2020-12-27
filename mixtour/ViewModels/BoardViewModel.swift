@@ -19,6 +19,10 @@ class BoardViewModel: ObservableObject {
         var number: Int
     }
 
+    // Public properties
+
+    private(set) var interactionDisabled = false
+
     // MARK: Initializers
 
     init(board: ModelBoard) {
@@ -33,8 +37,9 @@ class BoardViewModel: ObservableObject {
 
     func reset(board: ModelBoard = ModelBoard()) {
         objectWillChange.send()
-        self.animatableMove = nil
-        self.pickedPieces = nil
+        animatableMove = nil
+        pickedPieces = nil
+        interactionDisabled = false
         self.board = board
     }
 
@@ -52,14 +57,22 @@ class BoardViewModel: ObservableObject {
         }
 
         objectWillChange.send()
+        interactionDisabled = true
         animatableMove = nil
         pickedPieces = nil
         board.makeMoveIfLegal(move)
 
+        let capturedBoard = board
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             guard let self = self else { return }
+            guard self.board === capturedBoard else {
+                // Probably a new game was started, so discard this move
+                return
+            }
             if let move = self.board.bestMove() {
                 self.objectWillChange.send()
+                self.interactionDisabled = false
                 self.animatableMove = move
                 self.board.makeMoveIfLegal(move)
             }

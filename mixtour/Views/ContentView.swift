@@ -9,6 +9,7 @@ struct ContentView: View {
             board.reset(board: .example)
         }
         GameBackgroundView(board: board)
+            .disabled(board.interactionDisabled)
     }
 }
 
