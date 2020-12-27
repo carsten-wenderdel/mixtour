@@ -8,9 +8,11 @@ public let numberOfSquares = 5
 public class ModelBoard {
     
     var coreBoard = MIXCoreBoard()
-    
+    var pieces: [ModelSquare:[ModelPiece]] = [:]
+
     public init() {
         resetCoreBoard(&coreBoard)
+        pieces = [:]
     }
     
     public init(board: ModelBoard) {
@@ -29,13 +31,13 @@ public class ModelBoard {
     }
     
     
-    func playerOnTurn() -> ModelPlayer {
+    public func playerOnTurn() -> ModelPlayer {
         let corePlayer = Core.playerOnTurn(&coreBoard)
         return ModelPlayer(corePlayer: corePlayer)!
     }
     
     
-    func numberOfPiecesForPlayer(_ player: ModelPlayer) -> Int {
+    public func numberOfPiecesForPlayer(_ player: ModelPlayer) -> Int {
         return Int(Core.numberOfPiecesForPlayer(&coreBoard, player.corePlayer()))
     }
     
@@ -56,12 +58,8 @@ public class ModelBoard {
     }
 
     /// position 0 is the upper most piece
-    public func piecesAtSquare(_ square: ModelSquare) -> [ModelPlayer] {
-        var pieces = [ModelPlayer]()
-        for position in 0..<heightOfSquare(square) {
-            pieces.append(colorOfSquare(square, atPosition: position))
-        }
-        return pieces
+    public func piecesAtSquare(_ square: ModelSquare) -> [ModelPiece] {
+        return pieces[square] ?? []
     }
     
     /**
@@ -81,12 +79,25 @@ public class ModelBoard {
     
     
     @discardableResult public func makeMoveIfLegal(_ move: ModelMove) -> Bool {
-        if isMoveLegal(move) {
-            Core.makeMove(&coreBoard, move.coreMove())
-            return true
-        } else {
+        guard isMoveLegal(move) else {
             return false
         }
+
+        let id = numberOfPiecesForPlayer(.black) + numberOfPiecesForPlayer(.white)
+        if move.isMoveDrag() {
+            var fromArray = pieces[move.from]! // If there are bugs I want to know them - crash!
+            var toArray = pieces[move.to]!
+            toArray.insert(contentsOf: fromArray.suffix(move.numberOfPieces), at: 0)
+            fromArray.removeFirst(move.numberOfPieces)
+            pieces[move.from] = fromArray
+            pieces[move.to] = toArray
+        } else {
+            assert((pieces[move.to]?.count ?? 0) == 0)
+            pieces[move.to] = [ModelPiece(color: playerOnTurn(), id: id)]
+        }
+
+        Core.makeMove(&coreBoard, move.coreMove())
+        return true
     }
     
 

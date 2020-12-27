@@ -12,6 +12,14 @@ extension ModelBoard {
     }
     
     func setPiecesDirectlyToSquare(_ square: ModelSquare, _ args: ModelPlayer...) {
+        var id = numberOfPiecesForPlayer(.black) + numberOfPiecesForPlayer(.white)
+        var pieceArray = [ModelPiece]()
+        for modelPlayer in args {
+            pieceArray.insert(ModelPiece(color: modelPlayer, id: id), at: 0)
+            id -= 1
+        }
+        pieces[square] = pieceArray
+
         var corePlayers: [CVarArg] = [CVarArg]()
         for modelPlayer in args {
             corePlayers.append(modelPlayer.rawValue)

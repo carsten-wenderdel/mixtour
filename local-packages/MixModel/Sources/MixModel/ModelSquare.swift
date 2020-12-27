@@ -1,7 +1,7 @@
 import Foundation
 import Core
 
-public struct ModelSquare: Identifiable {
+public struct ModelSquare: Identifiable, Hashable {
     public var column, line: Int
 
     public var id: String { "\(line)-\(column)" }

@@ -166,6 +166,7 @@ class ModelBoardTests : XCTestCase {
         XCTAssertEqual(board.colorOfSquare(square2, atPosition:0), ModelPlayer.white, "here from the beginning")
     }
 
+    /// Also tests correct id for both setting and dragging
     func testPiecesAtSquare() {
         // Given
         let square0 = ModelSquare(column: 0, line: 3)
@@ -178,7 +179,7 @@ class ModelBoardTests : XCTestCase {
         var pieces = board.piecesAtSquare(square0)
 
         // Then
-        XCTAssertEqual(pieces, [.white])
+        XCTAssertEqual(pieces, [ModelPiece(color: .white, id: 40)])
 
         // And When
         board.setPiece(square1)
@@ -187,7 +188,7 @@ class ModelBoardTests : XCTestCase {
         let noPieces = board.piecesAtSquare(square0)
 
         // Then
-        XCTAssertEqual(pieces, [.white, .black])
+        XCTAssertEqual(pieces, [ModelPiece(color: .white, id: 40), ModelPiece(color: .black, id: 39)])
         XCTAssertEqual(noPieces, [])
     }
     
