@@ -6,7 +6,7 @@ struct PieceStackViewModel {
     let pickedPart: PieceStackPart
 
     var isEmpty: Bool {
-        defaultPart.pieces.isEmpty && defaultPart.pieces.isEmpty
+        defaultPart.pieces.isEmpty && pickedPart.pieces.isEmpty
     }
 
     init(pieces: [PieceViewModel], numberOfPickedPieces: Int, square: ModelSquare) {
