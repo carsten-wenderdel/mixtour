@@ -1,14 +1,25 @@
 import Foundation
+import MixModel
 
 struct PieceStackViewModel {
-    let defaultPieces: [PieceViewModel]
-    let pickedPieces: [PieceViewModel]
+    let defaultPart: PieceStackPart
+    let pickedPart: PieceStackPart
 
     var isEmpty: Bool {
-        defaultPieces.isEmpty && pickedPieces.isEmpty
+        defaultPart.pieces.isEmpty && defaultPart.pieces.isEmpty
     }
 
-    var useDrag: Bool {
-        defaultPieces.count + pickedPieces.count > 1 || pickedPieces.count > 0
+    init(pieces: [PieceViewModel], numberOfPickedPieces: Int, square: ModelSquare) {
+        let pickedPieces = Array(pieces.prefix(numberOfPickedPieces))
+        let defaultPieces = Array(pieces.suffix(pieces.count - numberOfPickedPieces))
+        let useDrag = defaultPieces.count + pickedPieces.count > 1 || pickedPieces.count > 0
+        defaultPart = PieceStackPart(pieces: defaultPieces, square: square, useDrag: useDrag)
+        pickedPart = PieceStackPart(pieces: pickedPieces, square: square, useDrag: useDrag)
     }
+}
+
+struct PieceStackPart {
+    let pieces: [PieceViewModel]
+    let square: ModelSquare
+    let useDrag: Bool
 }

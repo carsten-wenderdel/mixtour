@@ -17,17 +17,18 @@ struct GameBackgroundView: View {
                             ZStack {
                                 PieceStackView(
                                     namespace: namespace,
-                                    pieces: stackVM.defaultPieces,
-                                    paddingFactor: 0.5,
-                                    dragAnimation: stackVM.useDrag
+                                    stackPart: stackVM.defaultPart,
+                                    paddingFactor: 0.5
                                 )
-                                PieceStackView(
-                                    namespace: namespace,
-                                    pieces: stackVM.pickedPieces,
-                                    paddingFactor: 1.1 + Double(stackVM.defaultPieces.count),
-                                    dragAnimation: stackVM.useDrag
-                                )
-                                .opacity(0.6)
+                                if stackVM.pickedPart.pieces.count > 0 {
+                                    PieceStackView(
+                                        namespace: namespace,
+                                        stackPart: stackVM.pickedPart,
+                                        paddingFactor: 1.1 + Double(stackVM.defaultPart.pieces.count)
+                                    )
+                                    .border(Color.green, width: 3)
+                                    .opacity(0.6)
+                                }
                             }
                             .zIndex(board.zIndexForColumn(column))
                             .contentShape(Rectangle()) // to allow taps on empty views

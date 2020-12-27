@@ -96,8 +96,9 @@ class BoardViewModel: ObservableObject {
         }
         let numberOfPickedPieces = numberOfPickedPiecesAt(square)
         return PieceStackViewModel(
-            defaultPieces: Array(pieces.suffix(height - numberOfPickedPieces)),
-            pickedPieces: Array(pieces.prefix(numberOfPickedPieces))
+            pieces: pieces,
+            numberOfPickedPieces: numberOfPickedPieces,
+            square: square
         )
     }
 
