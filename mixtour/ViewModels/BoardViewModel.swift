@@ -6,6 +6,7 @@ class BoardViewModel: ObservableObject {
     private var board: ModelBoard
     private var previousBoard: ModelBoard?
     private var animatableMove: ModelMove?
+    private var computerPlayerIsThinking = false
     
     private var pickedPieces: PickedPieces? {
         didSet {
@@ -22,9 +23,11 @@ class BoardViewModel: ObservableObject {
 
     // Public properties
 
-    private(set) var interactionDisabled = false
     var undoPossible: Bool { previousBoard != nil }
     var gameOver: Bool { board.isGameOver() }
+
+    var interactionDisabled: Bool { computerPlayerIsThinking || board.isGameOver() }
+
     var gameOverText: String {
         switch board.winner() {
         case .white:
@@ -59,7 +62,7 @@ class BoardViewModel: ObservableObject {
         previousBoard = nil
         animatableMove = nil
         pickedPieces = nil
-        interactionDisabled = false
+        computerPlayerIsThinking = false
         self.board = board
     }
 
@@ -98,7 +101,7 @@ class BoardViewModel: ObservableObject {
     private func makeMove(_ move: ModelMove) {
         objectWillChange.send()
         previousBoard = ModelBoard(board: board)
-        interactionDisabled = true
+        computerPlayerIsThinking = true
         animatableMove = nil
         pickedPieces = nil
         board.makeMoveIfLegal(move)
@@ -113,7 +116,7 @@ class BoardViewModel: ObservableObject {
             }
             if let move = self.board.bestMove() {
                 self.objectWillChange.send()
-                self.interactionDisabled = false
+                self.computerPlayerIsThinking = false
                 self.animatableMove = move
                 self.board.makeMoveIfLegal(move)
             }

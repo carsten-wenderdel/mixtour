@@ -51,7 +51,7 @@ struct PickedPieceStackView: View {
         let line = stackPart.square.line + Int(round(translation.height / geometrySize.height))
         let column = stackPart.square.column + Int(round(translation.width / geometrySize.width))
         if (0...4).contains(line) && (0...4).contains(column) {
-            return ModelSquare( column: column, line: line)
+            return ModelSquare(column: column, line: line)
         } else {
             return nil
         }
