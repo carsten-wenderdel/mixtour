@@ -87,7 +87,7 @@ public class ModelBoard {
         if move.isMoveDrag() {
             var fromArray = pieces[move.from]! // If there are bugs I want to know them - crash!
             var toArray = pieces[move.to]!
-            toArray.insert(contentsOf: fromArray.suffix(move.numberOfPieces), at: 0)
+            toArray.insert(contentsOf: fromArray.prefix(move.numberOfPieces), at: 0)
             fromArray.removeFirst(move.numberOfPieces)
             pieces[move.from] = fromArray
             pieces[move.to] = toArray

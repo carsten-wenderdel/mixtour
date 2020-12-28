@@ -191,6 +191,31 @@ class ModelBoardTests : XCTestCase {
         XCTAssertEqual(pieces, [ModelPiece(color: .white, id: 40), ModelPiece(color: .black, id: 39)])
         XCTAssertEqual(noPieces, [])
     }
+
+    func testDragsTheRightIDWhenLargerStack() {
+        // Given
+        let square0 = ModelSquare(column: 0, line: 1)
+        let square1 = ModelSquare(column: 2, line: 1)
+        let board = ModelBoard()
+
+        board.setPiecesDirectlyToSquare(square0, .black, .white)
+        board.setPiecesDirectlyToSquare(square1, .black, .white)
+
+        let upperMostId0 = board.piecesAtSquare(square0).first!.id
+        let upperMostId1 = board.piecesAtSquare(square1).first!.id
+
+        // When
+        board.dragPiecesFrom(square0, to: square1, withNumber: 1)
+
+        // Then
+        let newId0 = board.piecesAtSquare(square0).first!.id
+        let newId1 = board.piecesAtSquare(square1).first!.id
+
+        XCTAssertEqual(upperMostId0, newId1)
+        XCTAssertNotEqual(upperMostId0, newId0)
+        XCTAssertNotEqual(upperMostId1, newId1)
+        XCTAssertNotEqual(upperMostId1, newId0)
+    }
     
     func boardForTestingMoves() -> ModelBoard {
         
