@@ -21,13 +21,12 @@ struct GameBackgroundView: View {
                                     paddingFactor: 0.5
                                 )
                                 if stackVM.pickedPart.pieces.count > 0 {
-                                    PieceStackView(
+                                    PickedPieceStackView(
                                         namespace: namespace,
                                         stackPart: stackVM.pickedPart,
-                                        paddingFactor: 1.1 + Double(stackVM.defaultPart.pieces.count)
+                                        paddingFactor: 1.1 + Double(stackVM.defaultPart.pieces.count),
+                                        board: board
                                     )
-                                    .border(Color.green, width: 3)
-                                    .opacity(0.6)
                                 }
                             }
                             .zIndex(board.zIndexForColumn(column))

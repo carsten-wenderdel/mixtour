@@ -5,7 +5,6 @@ struct PieceStackView: View {
     var namespace: Namespace.ID
     let stackPart: PieceStackPart
     let paddingFactor: Double
-    @State private var offset = CGSize.zero
 
     var body: some View {
         GeometryReader() { geometry in
@@ -30,16 +29,6 @@ struct PieceStackView: View {
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
         }
         .aspectRatio(1, contentMode: .fit)
-        .offset(offset)
-        .gesture(
-            DragGesture()
-                .onChanged { gesture in
-                    self.offset = gesture.translation
-                }
-                .onEnded { gesture in
-                    self.offset = .zero
-                }
-        )
     }
 }
 
@@ -98,13 +87,5 @@ struct PieceStackView_Previews: PreviewProvider {
             )
             .background(Color.purple)
         }
-    }
-
-    static func black(_ id: Int) -> PieceViewModel {
-        return PieceViewModel(color: .black, id: id, zIndex: 0)
-    }
-
-    static func white(_ id: Int) -> PieceViewModel {
-        return PieceViewModel(color: .white, id: id, zIndex: 0)
     }
 }

@@ -50,12 +50,25 @@ class BoardViewModel: ObservableObject {
         pickedPieces = PickedPieces(square: square, number: number)
     }
 
-    func trySettingPieceTo(_ square: ModelSquare) {
+    @discardableResult func tryDrag(_ numberOfPieces: Int, from: ModelSquare, to: ModelSquare ) -> Bool {
+        let move = ModelMove(from: from, to: to, numberOfPieces: numberOfPieces)
+        guard board.isMoveLegal(move) else {
+            return false
+        }
+        makeMove(move)
+        return true
+    }
+
+    @discardableResult func trySettingPieceTo(_ square: ModelSquare) -> Bool {
         let move = ModelMove(setPieceTo: square)
         guard board.isMoveLegal(move) else {
-            return
+            return false
         }
+        makeMove(move)
+        return true
+    }
 
+    private func makeMove(_ move: ModelMove) {
         objectWillChange.send()
         interactionDisabled = true
         animatableMove = nil
