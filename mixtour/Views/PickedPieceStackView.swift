@@ -7,7 +7,7 @@ struct PickedPieceStackView: View {
     let paddingFactor: Double
 
     @ObservedObject var board: BoardViewModel
-    @State private var offset = CGSize.zero
+    @GestureState private var offset = CGSize.zero
     @State private var opacity = 1.0
 
     var body: some View {
@@ -21,26 +21,23 @@ struct PickedPieceStackView: View {
             .offset(offset)
             .gesture(
                 DragGesture()
+                    .updating($offset) { (gesture, offset, transaction) in
+                        offset = gesture.translation
+                    }
                     .onChanged { gesture in
                         if opacity == 1.0 {
                             board.stopPickingOtherThan(stackPart.square)
                         }
-                        self.offset = gesture.translation
                         self.opacity = 0.6
                     }
                     .onEnded { gesture in
                         self.opacity = 1.0
                         if let target = squareOn(gesture.translation, in: geometry.size) {
-                            let success = board.tryDrag(
+                            board.tryDrag(
                                 stackPart.pieces.count,
                                 from: stackPart.square,
                                 to: target
                             )
-                            if (!success) {
-                                self.offset = .zero
-                            }
-                        } else {
-                            self.offset = .zero
                         }
                     }
             )
