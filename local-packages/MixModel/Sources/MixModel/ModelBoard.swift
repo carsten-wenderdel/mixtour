@@ -12,11 +12,11 @@ public class ModelBoard {
 
     public init() {
         resetCoreBoard(&coreBoard)
-        pieces = [:]
     }
     
     public init(board: ModelBoard) {
         coreBoard = board.coreBoard
+        pieces = board.pieces
     }
     
     

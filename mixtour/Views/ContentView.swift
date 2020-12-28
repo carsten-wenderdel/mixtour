@@ -8,6 +8,12 @@ struct ContentView: View {
         Button("New Game") {
             board.reset(board: .example)
         }
+
+        Button("Undo") {
+            board.undo()
+        }
+        .disabled(!board.undoPossible)
+        
         GameBackgroundView(board: board)
             .disabled(board.interactionDisabled)
     }

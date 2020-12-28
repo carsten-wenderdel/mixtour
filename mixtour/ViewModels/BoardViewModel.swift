@@ -4,6 +4,7 @@ import MixModel
 class BoardViewModel: ObservableObject {
 
     private var board: ModelBoard
+    private var previousBoard: ModelBoard?
     private var animatableMove: ModelMove?
     
     private var pickedPieces: PickedPieces? {
@@ -22,6 +23,7 @@ class BoardViewModel: ObservableObject {
     // Public properties
 
     private(set) var interactionDisabled = false
+    var undoPossible: Bool { previousBoard != nil }
 
     // MARK: Initializers
 
@@ -35,8 +37,15 @@ class BoardViewModel: ObservableObject {
 
     // MARK: Change state
 
+    func undo() {
+        if let previousBoard = previousBoard {
+            reset(board: previousBoard)
+        }
+    }
+
     func reset(board: ModelBoard = ModelBoard()) {
         objectWillChange.send()
+        previousBoard = nil
         animatableMove = nil
         pickedPieces = nil
         interactionDisabled = false
@@ -70,6 +79,7 @@ class BoardViewModel: ObservableObject {
 
     private func makeMove(_ move: ModelMove) {
         objectWillChange.send()
+        previousBoard = ModelBoard(board: board)
         interactionDisabled = true
         animatableMove = nil
         pickedPieces = nil
