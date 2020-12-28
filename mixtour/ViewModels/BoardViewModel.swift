@@ -24,6 +24,17 @@ class BoardViewModel: ObservableObject {
 
     private(set) var interactionDisabled = false
     var undoPossible: Bool { previousBoard != nil }
+    var gameOver: Bool { board.isGameOver() }
+    var gameOverText: String {
+        switch board.winner() {
+        case .white:
+            return "You have won!"
+        case .black:
+            return "You have lost"
+        case .none:
+            return " "
+        }
+    }
 
     // MARK: Initializers
 

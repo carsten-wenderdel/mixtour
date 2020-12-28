@@ -20,12 +20,12 @@ public class ModelBoard {
     }
     
     
-    func isGameOver() -> Bool {
+    public func isGameOver() -> Bool {
         return Core.isGameOver(&coreBoard)
     }
     
     
-    func winner() -> ModelPlayer? {
+    public func winner() -> ModelPlayer? {
         let corePlayer = Core.winner(&coreBoard)
         return ModelPlayer(corePlayer: corePlayer)
     }

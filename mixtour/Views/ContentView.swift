@@ -6,7 +6,7 @@ struct ContentView: View {
 
     var body: some View {
         Button("New Game") {
-            board.reset(board: .example)
+            board.reset()
         }
 
         Button("Undo") {
@@ -16,6 +16,8 @@ struct ContentView: View {
         
         GameBackgroundView(board: board)
             .disabled(board.interactionDisabled)
+
+        Text(board.gameOverText)
     }
 }
 
