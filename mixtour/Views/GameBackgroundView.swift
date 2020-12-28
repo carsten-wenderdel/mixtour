@@ -15,16 +15,23 @@ struct GameBackgroundView: View {
                             let square = ModelSquare(column: column, line: line)
                             let stackVM = board.stackAtSquare(square)
                             ZStack {
-                                PieceStackView(
-                                    namespace: namespace,
-                                    stackPart: stackVM.defaultPart,
-                                    paddingFactor: 0.5
-                                )
                                 if stackVM.pickedPart.pieces.count > 0 {
+                                    PieceStackView(
+                                        namespace: namespace,
+                                        stackPart: stackVM.defaultPart,
+                                        paddingFactor: 0.5
+                                    )
                                     PickedPieceStackView(
                                         namespace: namespace,
                                         stackPart: stackVM.pickedPart,
                                         paddingFactor: 1.1 + Double(stackVM.defaultPart.pieces.count),
+                                        board: board
+                                    )
+                                } else { // make normal stack draggable
+                                    PickedPieceStackView(
+                                        namespace: namespace,
+                                        stackPart: stackVM.defaultPart,
+                                        paddingFactor: 0.5,
                                         board: board
                                     )
                                 }

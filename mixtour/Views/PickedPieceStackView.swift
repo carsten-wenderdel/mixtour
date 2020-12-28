@@ -8,6 +8,7 @@ struct PickedPieceStackView: View {
 
     @ObservedObject var board: BoardViewModel
     @State private var offset = CGSize.zero
+    @State private var opacity = 1.0
 
     var body: some View {
         GeometryReader() { geometry in
@@ -16,14 +17,16 @@ struct PickedPieceStackView: View {
                 stackPart: stackPart,
                 paddingFactor: paddingFactor
             )
-            .opacity(0.6)
+            .opacity(opacity)
             .offset(offset)
             .gesture(
                 DragGesture()
                     .onChanged { gesture in
                         self.offset = gesture.translation
+                        self.opacity = 0.6
                     }
                     .onEnded { gesture in
+                        self.opacity = 1.0
                         if let target = squareOn(gesture.translation, in: geometry.size) {
                             let success = board.tryDrag(
                                 stackPart.pieces.count,
