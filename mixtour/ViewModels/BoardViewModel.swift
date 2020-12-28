@@ -70,6 +70,13 @@ class BoardViewModel: ObservableObject {
         pickedPieces = PickedPieces(square: square, number: number)
     }
 
+    func stopPickingOtherThan(_ square: ModelSquare) {
+        if square != pickedPieces?.square {
+            objectWillChange.send()
+            pickedPieces = nil
+        }
+    }
+
     @discardableResult func tryDrag(_ numberOfPieces: Int, from: ModelSquare, to: ModelSquare ) -> Bool {
         let move = ModelMove(from: from, to: to, numberOfPieces: numberOfPieces)
         guard board.isMoveLegal(move) else {

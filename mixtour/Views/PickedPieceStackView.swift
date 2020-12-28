@@ -22,6 +22,9 @@ struct PickedPieceStackView: View {
             .gesture(
                 DragGesture()
                     .onChanged { gesture in
+                        if opacity == 1.0 {
+                            board.stopPickingOtherThan(stackPart.square)
+                        }
                         self.offset = gesture.translation
                         self.opacity = 0.6
                     }
