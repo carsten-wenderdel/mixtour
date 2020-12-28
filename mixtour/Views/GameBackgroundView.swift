@@ -42,7 +42,9 @@ struct GameBackgroundView: View {
                                 if stackVM.isEmpty {
                                     board.trySettingPieceTo(square)
                                 } else {
-                                    board.pickPieceFromSquare(square)
+                                    if (stackVM.totalNumberOfPieces > 1) {
+                                        board.pickPieceFromSquare(square)
+                                    }
                                 }
                             }
                         }

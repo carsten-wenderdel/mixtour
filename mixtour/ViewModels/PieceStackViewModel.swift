@@ -8,6 +8,9 @@ struct PieceStackViewModel {
     var isEmpty: Bool {
         defaultPart.pieces.isEmpty && pickedPart.pieces.isEmpty
     }
+    var totalNumberOfPieces: Int {
+        return defaultPart.pieces.count + pickedPart.pieces.count
+    }
 
     init(pieces: [PieceViewModel], numberOfPickedPieces: Int, square: ModelSquare) {
         let pickedPieces = Array(pieces.prefix(numberOfPickedPieces))

@@ -17,6 +17,7 @@ struct PickedPieceStackView: View {
                 stackPart: stackPart,
                 paddingFactor: paddingFactor
             )
+            .contentShape(Rectangle()) // to allow dragging when starting a bit above the pieces
             .opacity(opacity)
             .offset(offset)
             .gesture(
