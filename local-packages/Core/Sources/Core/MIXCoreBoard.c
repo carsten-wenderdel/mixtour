@@ -165,6 +165,10 @@ bool isMoveLegal(MIXCoreBoardRef boardRef, MIXCoreMove move) {
         if (isMoveRevertOfMove(move, boardRef->lastMove)) {
             return false;
         }
+
+        if (move.numberOfPieces == 0) {
+            return false;
+        }
         
         MIXCoreSquare from = move.from;
         MIXCoreSquare to = move.to;

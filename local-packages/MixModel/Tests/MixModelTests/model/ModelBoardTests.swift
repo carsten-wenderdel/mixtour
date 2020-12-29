@@ -305,7 +305,19 @@ class ModelBoardTests : XCTestCase {
         // then
         XCTAssertFalse(board.isMoveLegal(ModelMove(from: square2, to: square1, numberOfPieces: 1)))
     }
-    
+
+    func testDragWithZeroPiecesIsIllegal() {
+        // Given
+        let board = ModelBoard()
+
+        let square1 = ModelSquare(column: 1, line: 1)
+        let square2 = ModelSquare(column: 2, line: 2)
+        board.setPiecesDirectlyToSquare(square1, .white)
+
+        // When / Then
+        XCTAssertFalse(board.isMoveLegal(ModelMove(from: square2, to: square1, numberOfPieces: 0)))
+    }
+
     func testIsDraggingLegalCross() {
         let board = ModelBoard()
         for i in 1..<5 {
