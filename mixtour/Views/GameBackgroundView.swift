@@ -14,20 +14,25 @@ struct GameBackgroundView: View {
                         ForEach(0..<numberOfSquares) { column in
                             let square = ModelSquare(column: column, line: line)
                             let stackVM = board.stackAtSquare(square)
+                            let defaultPiecesExist = stackVM.defaultPart.pieces.count > 0
+                            let pickedPiecesExist = stackVM.pickedPart.pieces.count > 0
                             ZStack {
-                                if stackVM.pickedPart.pieces.count > 0 {
+                                if defaultPiecesExist == pickedPiecesExist {
+                                    // In case of no pieces we need a random view to take some space
                                     PieceStackView(
                                         namespace: namespace,
                                         stackPart: stackVM.defaultPart,
                                         paddingFactor: 0.5
                                     )
+                                }
+                                if pickedPiecesExist {
                                     PickedPieceStackView(
                                         namespace: namespace,
                                         stackPart: stackVM.pickedPart,
                                         paddingFactor: 1.1 + Double(stackVM.defaultPart.pieces.count),
                                         board: board
                                     )
-                                } else { // make normal stack draggable
+                                } else if defaultPiecesExist { // make normal stack draggable
                                     PickedPieceStackView(
                                         namespace: namespace,
                                         stackPart: stackVM.defaultPart,
