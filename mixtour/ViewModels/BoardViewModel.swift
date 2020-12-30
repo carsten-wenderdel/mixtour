@@ -6,6 +6,7 @@ class BoardViewModel: ObservableObject {
     private var board: ModelBoard
     private var previousBoard: ModelBoard?
     private var animatableMove: ModelMove?
+    private var setSquare: ModelSquare?
     private var computerPlayerIsThinking = false
     
     private var pickedPieces: PickedPieces? {
@@ -62,6 +63,7 @@ class BoardViewModel: ObservableObject {
         previousBoard = nil
         animatableMove = nil
         pickedPieces = nil
+        setSquare = nil
         computerPlayerIsThinking = false
         self.board = board
     }
@@ -104,6 +106,7 @@ class BoardViewModel: ObservableObject {
         computerPlayerIsThinking = true
         animatableMove = nil
         pickedPieces = nil
+        setSquare = move.isMoveDrag() ? nil : move.to
         board.makeMoveIfLegal(move)
 
         let capturedBoard = board
@@ -116,6 +119,7 @@ class BoardViewModel: ObservableObject {
             }
             if let move = self.board.bestMove() {
                 self.objectWillChange.send()
+                self.setSquare = move.isMoveDrag() ? nil : move.to
                 self.computerPlayerIsThinking = false
                 self.animatableMove = move
                 self.board.makeMoveIfLegal(move)
@@ -142,7 +146,8 @@ class BoardViewModel: ObservableObject {
         return PieceStackViewModel(
             pieces: pieces,
             numberOfPickedPieces: numberOfPickedPieces,
-            square: square
+            square: square,
+            useDrag: setSquare != square
         )
     }
 
