@@ -59,15 +59,15 @@ struct GameBackgroundView: View {
             }
         }
         .aspectRatio(1, contentMode: .fit)
-        .rotation3DEffect(
-            Angle(degrees: 25),
-            axis: (x: 1, y: 0, z: 0),
-            anchor: UnitPoint(x: 0.5, y: 0),
-            anchorZ: 0,
-            perspective: 0.5
-        )
+//        .rotation3DEffect(
+//            Angle(degrees: 25),
+//            axis: (x: 1, y: 0, z: 0),
+//            anchor: UnitPoint(x: 0.5, y: 0),
+//            anchorZ: 0,
+//            perspective: 0.5
+//        )
 //        .transformEffect(.init(a: 1, b: 0, c: 0, d: 1.3, tx: 1, ty: 1))
-        .scaleEffect(0.9)
+//        .scaleEffect(0.9)
         .offset(.init(width: 0, height: -20))
     }
 }

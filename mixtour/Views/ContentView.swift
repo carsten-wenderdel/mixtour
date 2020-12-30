@@ -5,23 +5,35 @@ struct ContentView: View {
     @StateObject private var board = BoardViewModel(board: .example)
 
     var body: some View {
-        HStack {
+        ZStack {
+            Color(red: 0.9, green: 0.93, blue: 1.0)
+                .ignoresSafeArea()
+
             VStack {
-                Button("New Game") {
-                    board.reset()
+                HStack {
+                    Button("New Game") {
+                        board.reset()
+                    }
+
+                    Spacer()
+
+                    Button("Undo") {
+                        board.undo()
+                    }
+                    .disabled(!board.undoPossible)
+
+                    Spacer()
+
+                    Text(board.gameOverText)
                 }
 
-                Button("Undo") {
-                    board.undo()
-                }
-                .disabled(!board.undoPossible)
+                Spacer()
 
-                Text(board.gameOverText)
+                GameBackgroundView(board: board)
+                    .disabled(board.interactionDisabled)
+
+                Spacer()
             }
-            Spacer()
-            GameBackgroundView(board: board)
-                .disabled(board.interactionDisabled)
-            Spacer()
         }
     }
 }
