@@ -7,7 +7,7 @@ struct PickedPieceStackView: View {
     let paddingFactor: Double
 
     @ObservedObject var board: BoardViewModel
-    @GestureState private var offset = CGSize.zero
+    @GestureState private var translation = CGSize.zero
     @State private var opacity = 1.0
 
     var body: some View {
@@ -19,11 +19,11 @@ struct PickedPieceStackView: View {
             )
             .contentShape(Rectangle()) // to allow dragging when starting a bit above the pieces
             .opacity(opacity)
-            .offset(offset)
+            .offset(offsetIn(geometry))
             .gesture(
                 DragGesture()
-                    .updating($offset) { (gesture, offset, transaction) in
-                        offset = gesture.translation
+                    .updating($translation) { (gesture, translation, transaction) in
+                        translation = gesture.translation
                     }
                     .onChanged { gesture in
                         if opacity == 1.0 {
@@ -45,9 +45,26 @@ struct PickedPieceStackView: View {
         }
     }
 
+    func offsetIn(_ geometry: GeometryProxy) -> CGSize {
+        if translation == CGSize.zero {
+            return translation
+        } else {
+            // should appear a bit above finger tip
+            return CGSize(
+                width: translation.width,
+                height: translation.height - geometry.size.height * 0.3
+            )
+        }
+    }
+
     func squareOn(_ translation: CGSize, in geometrySize: CGSize) -> ModelSquare? {
-        let line = stackPart.square.line + Int(round(translation.height / geometrySize.height))
-        let column = stackPart.square.column + Int(round(translation.width / geometrySize.width))
+        // to reduce the effect of "offsetIn()" we adjust the height
+        let offset = CGSize(
+            width: translation.width,
+            height: translation.height + geometrySize.height * 0.15
+        )
+        let line = stackPart.square.line + Int(round(offset.height / geometrySize.height))
+        let column = stackPart.square.column + Int(round(offset.width / geometrySize.width))
         if (0...4).contains(line) && (0...4).contains(column) {
             return ModelSquare(column: column, line: line)
         } else {
