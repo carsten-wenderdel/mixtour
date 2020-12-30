@@ -18,8 +18,10 @@ struct PieceStackView: View {
                         PieceView(color: piece.color)
                             .frame(width: pieceWidth, height: pieceHeight, alignment: .bottom)
                             .zIndex(piece.zIndex)
-                            .matchedGeometryEffect(id: piece.id, in: namespace, properties: .frame)
+                            .matchedGeometryEffect(id: piece.id, in: namespace)
                             .dragOrSetAnimation(drag: stackPart.useDrag)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 1.0)))
+
                     }
                 }
                 .padding(.bottom, bottomPadding)

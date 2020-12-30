@@ -35,6 +35,8 @@ struct GameView: View {
                                     board: board
                                 )
                             }
+//                            .opacity(stackVM.isEmpty ? 0.1 : 1)
+
                             .zIndex(board.zIndexForColumn(column))
                             .contentShape(Rectangle()) // to allow taps on empty views
                             .onTapGesture(count: stackVM.isEmpty ? 2 : 1) {
