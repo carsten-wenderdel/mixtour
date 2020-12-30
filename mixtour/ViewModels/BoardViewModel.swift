@@ -71,7 +71,7 @@ class BoardViewModel: ObservableObject {
     func pickPieceFromSquare(_ square: ModelSquare) {
         objectWillChange.send()
         let oldNumber = numberOfPickedPiecesAt(square)
-        let number = (oldNumber + 1) % (board.heightOfSquare(square) + 1)
+        let number = (oldNumber + 1) % board.heightOfSquare(square)
         pickedPieces = PickedPieces(square: square, number: number)
     }
 
