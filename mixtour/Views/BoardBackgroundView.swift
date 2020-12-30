@@ -9,8 +9,8 @@ struct BoardBackgroundView: View {
                     HStack(spacing: 0) {
                         ForEach(0..<numberOfSquares) { column in
                             let color = (line + column) % 2 == 0
-                                ? Color(red: 0.9, green: 0.93, blue: 1.0)
-                                : Color(red: 0.8, green: 0.85, blue: 1.0)
+                                ? MixColors.fieldSecondary
+                                : MixColors.fieldPrimary
                             Rectangle()
                                 .foregroundColor(color)
                         }

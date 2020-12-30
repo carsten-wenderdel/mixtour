@@ -6,7 +6,7 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            Color(red: 0.9, green: 0.93, blue: 1.0)
+            MixColors.background
                 .ignoresSafeArea()
 
             VStack {
