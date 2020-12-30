@@ -15,10 +15,8 @@ struct PieceStackView: View {
             HStack() {
                 VStack(spacing: 0) {
                     ForEach(stackPart.pieces) { piece in
-                        Rectangle()
-                            .foregroundColor(piece.color == .black ? MixColors.pieceBlack : MixColors.pieceWhite)
+                        PieceView(color: piece.color)
                             .frame(width: pieceWidth, height: pieceHeight, alignment: .bottom)
-                            .border(Color.black, width: 1)
                             .zIndex(piece.zIndex)
                             .matchedGeometryEffect(id: piece.id, in: namespace, properties: .frame)
                             .dragOrSetAnimation(drag: stackPart.useDrag)

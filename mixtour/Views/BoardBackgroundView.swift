@@ -12,6 +12,7 @@ struct BoardBackgroundView: View {
                                 ? MixColors.fieldSecondary
                                 : MixColors.fieldPrimary
                             Rectangle()
+                                .cornerRadius(10)
                                 .foregroundColor(color)
                         }
                     }
