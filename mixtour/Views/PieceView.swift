@@ -9,9 +9,26 @@ struct PieceView: View {
             Ellipse()
                 .frame(width: geometry.size.width, height: geometry.size.height * 1.3, alignment: .center)
                 .foregroundColor(color == .black ? MixColors.pieceBlack : MixColors.pieceWhite)
-                .shadow(color: .blue, radius: 2)
-                .shadow(color: .blue, radius: 2)
+                .innerShadow(using: Ellipse(), width: 1.5, blur: 1.5)
+//                .shadow(color: .blue, radius: 1)
         }
+    }
+}
+
+extension View {
+    // Stolen from https://www.hackingwithswift.com/plus/swiftui-special-effects/shadows-and-glows
+    func innerShadow<S: Shape>(using shape: S, angle: Angle = .degrees(0), color: Color = .black, width: CGFloat = 6, blur: CGFloat = 6) -> some View {
+        let finalX = CGFloat(cos(angle.radians - .pi / 2))
+        let finalY = CGFloat(sin(angle.radians - .pi / 2))
+
+        return self
+            .overlay(
+                shape
+                    .stroke(color, lineWidth: width)
+                    .offset(x: finalX * width * 0.6, y: finalY * width * 0.6)
+                    .blur(radius: blur)
+                    .mask(shape)
+            )
     }
 }
 
