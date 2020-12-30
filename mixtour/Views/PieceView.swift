@@ -5,10 +5,13 @@ struct PieceView: View {
     let color: ModelPlayer
 
     var body: some View {
-        Rectangle()
-            .foregroundColor(color == .black ? MixColors.pieceBlack : MixColors.pieceWhite)
-            .border(Color.black, width: 1)
-
+        GeometryReader() { geometry in
+            Ellipse()
+                .frame(width: geometry.size.width, height: geometry.size.height * 1.3, alignment: .center)
+                .foregroundColor(color == .black ? MixColors.pieceBlack : MixColors.pieceWhite)
+                .shadow(color: .blue, radius: 2)
+                .shadow(color: .blue, radius: 2)
+        }
     }
 }
 

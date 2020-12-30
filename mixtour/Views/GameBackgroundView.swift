@@ -74,6 +74,19 @@ struct GameBackgroundView: View {
 
 struct GameBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
-        GameBackgroundView(board: BoardViewModel(board: .example))
+        Group {
+            ZStack() {
+                MixColors.background
+                GameBackgroundView(board: BoardViewModel(board: .example))
+            }
+            .environment(\.colorScheme, .light)
+
+
+            ZStack {
+                MixColors.background
+                GameBackgroundView(board: BoardViewModel(board: .example))
+            }
+            .environment(\.colorScheme, .dark)
+        }
     }
 }
