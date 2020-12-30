@@ -14,32 +14,26 @@ struct GameView: View {
                         ForEach(0..<numberOfSquares) { column in
                             let square = ModelSquare(column: column, line: line)
                             let stackVM = board.stackAtSquare(square)
-                            let defaultPiecesExist = stackVM.defaultPart.pieces.count > 0
-                            let pickedPiecesExist = stackVM.pickedPart.pieces.count > 0
+
+                            let emptyPart = PieceStackPart(pieces: [], square: square, useDrag: false)
+                            let bottomPart = stackVM.pickedPart.pieces.count > 0 ? stackVM.defaultPart : emptyPart
+                            let topPart = stackVM.pickedPart.pieces.count > 0 ? stackVM.pickedPart : stackVM.defaultPart
+                            let topPaddingFactor = stackVM.pickedPart.pieces.count > 0
+                                ? 1.1 + Double(stackVM.defaultPart.pieces.count)
+                                : 0.5
+
                             ZStack {
-                                if defaultPiecesExist == pickedPiecesExist {
-                                    // In case of no pieces we need a random view to take some space
-                                    PieceStackView(
-                                        namespace: namespace,
-                                        stackPart: stackVM.defaultPart,
-                                        paddingFactor: 0.5
-                                    )
-                                }
-                                if pickedPiecesExist {
-                                    PickedPieceStackView(
-                                        namespace: namespace,
-                                        stackPart: stackVM.pickedPart,
-                                        paddingFactor: 1.1 + Double(stackVM.defaultPart.pieces.count),
-                                        board: board
-                                    )
-                                } else if defaultPiecesExist { // make normal stack draggable
-                                    PickedPieceStackView(
-                                        namespace: namespace,
-                                        stackPart: stackVM.defaultPart,
-                                        paddingFactor: 0.5,
-                                        board: board
-                                    )
-                                }
+                                PieceStackView(
+                                    namespace: namespace,
+                                    stackPart: bottomPart,
+                                    paddingFactor: 0.5
+                                )
+                                PickedPieceStackView(
+                                    namespace: namespace,
+                                    stackPart: topPart,
+                                    paddingFactor: topPaddingFactor,
+                                    board: board
+                                )
                             }
                             .zIndex(board.zIndexForColumn(column))
                             .contentShape(Rectangle()) // to allow taps on empty views
