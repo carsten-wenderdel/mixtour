@@ -54,6 +54,7 @@ class ModelBoardTests : XCTestCase {
             board.dragPiecesFrom(oldSquare, to: newSquare, withNumber: i)
         }
         XCTAssertTrue(board.isGameOver(), "")
+        XCTAssertFalse(board.isMoveLegal(ModelMove(setPieceTo: .init(column: 3, line: 0))))
     }
     
     

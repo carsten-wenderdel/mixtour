@@ -159,6 +159,10 @@ bool isAPieceBetween(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare
 
 
 bool isMoveLegal(MIXCoreBoardRef boardRef, MIXCoreMove move) {
+    
+    if (isGameOver(boardRef)) {
+        return false;
+    }
 
     if (isMoveDrag(move)) {
 
