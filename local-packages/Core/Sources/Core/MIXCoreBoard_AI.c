@@ -26,10 +26,13 @@ MIXCoreMove firstMove(MIXCoreBoardRef boardRef) {
 }
 
 
-MIXCorePlayer winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
+MIXCorePlayResult winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
     for (int m = 0; m < maximumNumberOfMoves; m++) {
         if (isGameOver(boardRef)) {
-            return winner(boardRef);
+            MIXCorePlayResult result;
+            result.winner = winner(boardRef);
+            result.numberOfMoves = m;
+            return result;
         }
         
         MIXCorePlayer returnPlayer = MIXCorePlayerUndefined;   // in case nothing is found
@@ -62,10 +65,16 @@ MIXCorePlayer winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
         }
         destroyMoveArray(moves);
         if (winnerFound) {
-            return returnPlayer;
+            MIXCorePlayResult result;
+            result.winner = returnPlayer;
+            result.numberOfMoves = m + 1;
+            return result;
         }
     }
-    return MIXCorePlayerUndefined;
+    MIXCorePlayResult result;
+    result.winner = MIXCorePlayerUndefined;
+    result.numberOfMoves = maximumNumberOfMoves + 1;
+    return result;
 }
 
 
@@ -77,7 +86,9 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
     MIXMoveArray moves = arrayOfLegalMoves(boardRef);
     unsigned long arraySize = kv_size(moves);
     if (arraySize > 0) {
-        int *winsOfBlack = calloc(arraySize, sizeof(MIXCorePlayer));
+        // both arrays - increased for a win of black, decreased for a win of white
+        int *winsOfBlack = calloc(arraySize, sizeof(int));
+        int *lenghtsOfGames = calloc(arraySize, sizeof(int));
         
         // run "numberOfTrials" times through all possible moves
         MIXCorePlayer aIPlayer = playerOnTurn(boardRef);
@@ -94,12 +105,14 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
             } else {
                 for (int trial = 0; trial < numberOfTrials; trial++) {
                     struct MIXCoreBoard randomPlayBoard = boardForTrials;
-                    MIXCorePlayer winnerOfTrial = winnerAfterRandomPlay(&randomPlayBoard);
-                    switch (winnerOfTrial) {
+                    MIXCorePlayResult result = winnerAfterRandomPlay(&randomPlayBoard);
+                    switch (result.winner) {
                         case MIXCorePlayerBlack:
+                            lenghtsOfGames[i] += result.numberOfMoves;
                             winsOfBlack[i] += 1;
                             break;
                         case MIXCorePlayerWhite:
+                            lenghtsOfGames[i] -= result.numberOfMoves;
                             winsOfBlack[i] -= 1;
                         default:
                             // Unknown player - don't increment
@@ -111,6 +124,7 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
         
         if (!bestMoveFound) {
             // find the move with the most wins for black
+            // If for example there are only wins for the opponent, we want to pick the move where the number of following moves is biggest.
             int indexOfBestMove = 0;
             
             if (playerOnTurn(boardRef) == MIXCorePlayerWhite) {
@@ -118,12 +132,16 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
                 for (int i = 1; i < (int)arraySize; i++) {
                     if (winsOfBlack[i] < winsOfBlack[indexOfBestMove]) {
                         indexOfBestMove = i;
+                    } else if (winsOfBlack[i] == winsOfBlack[indexOfBestMove && lenghtsOfGames[i] > lenghtsOfGames[indexOfBestMove]]) {
+                        indexOfBestMove = i; // different line for debugging purposes. Compiler will optimize anyway.
                     }
                 }
             } else {
                 // find max
                 for (int i = 1; i < (int)arraySize; i++) {
                     if (winsOfBlack[i] > winsOfBlack[indexOfBestMove]) {
+                        indexOfBestMove = i;
+                    } else if (winsOfBlack[i] == winsOfBlack[indexOfBestMove] && lenghtsOfGames[i] < lenghtsOfGames[indexOfBestMove]) {
                         indexOfBestMove = i;
                     }
                 }

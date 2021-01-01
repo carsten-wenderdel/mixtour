@@ -13,6 +13,10 @@
 
 #include "MIXCoreBoard.h"
 
+typedef struct {
+    int numberOfMoves;
+    MIXCorePlayer winner;
+} MIXCorePlayResult;
 
 MIXCoreMove bestMove(MIXCoreBoardRef boardRef);
 
