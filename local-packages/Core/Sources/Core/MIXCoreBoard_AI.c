@@ -77,7 +77,7 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
     MIXMoveArray moves = arrayOfLegalMoves(boardRef);
     unsigned long arraySize = kv_size(moves);
     if (arraySize > 0) {
-        int *winsOfBlack = calloc(arraySize, sizeof(int));
+        int *winsOfBlack = calloc(arraySize, sizeof(MIXCorePlayer));
         
         // run "numberOfTrials" times through all possible moves
         MIXCorePlayer aIPlayer = playerOnTurn(boardRef);
@@ -95,7 +95,16 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
                 for (int trial = 0; trial < numberOfTrials; trial++) {
                     struct MIXCoreBoard randomPlayBoard = boardForTrials;
                     MIXCorePlayer winnerOfTrial = winnerAfterRandomPlay(&randomPlayBoard);
-                    winsOfBlack[i] += winnerOfTrial;
+                    switch (winnerOfTrial) {
+                        case MIXCorePlayerBlack:
+                            winsOfBlack[i] += 1;
+                            break;
+                        case MIXCorePlayerWhite:
+                            winsOfBlack[i] -= 1;
+                        default:
+                            // Unknown player - don't increment
+                        break;
+                    }
                 }
             }
         }
