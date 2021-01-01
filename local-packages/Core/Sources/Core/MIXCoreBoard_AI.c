@@ -87,7 +87,7 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
     unsigned long arraySize = kv_size(moves);
     if (arraySize > 0) {
         // both arrays - increased for a win of black, decreased for a win of white
-        int *winsOfBlack = calloc(arraySize, sizeof(int));
+        int *numberOfWins = calloc(arraySize, sizeof(int));
         int *lenghtsOfGames = calloc(arraySize, sizeof(int));
         
         // run "numberOfTrials" times through all possible moves
@@ -109,11 +109,11 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
                     switch (result.winner) {
                         case MIXCorePlayerBlack:
                             lenghtsOfGames[i] += result.numberOfMoves;
-                            winsOfBlack[i] += 1;
+                            numberOfWins[i] += 1;
                             break;
                         case MIXCorePlayerWhite:
                             lenghtsOfGames[i] -= result.numberOfMoves;
-                            winsOfBlack[i] -= 1;
+                            numberOfWins[i] -= 1;
                         default:
                             // Unknown player - don't increment
                         break;
@@ -130,18 +130,18 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
             if (playerOnTurn(boardRef) == MIXCorePlayerWhite) {
                 // find min
                 for (int i = 1; i < (int)arraySize; i++) {
-                    if (winsOfBlack[i] < winsOfBlack[indexOfBestMove]) {
+                    if (numberOfWins[i] < numberOfWins[indexOfBestMove]) {
                         indexOfBestMove = i;
-                    } else if (winsOfBlack[i] == winsOfBlack[indexOfBestMove && lenghtsOfGames[i] > lenghtsOfGames[indexOfBestMove]]) {
+                    } else if (numberOfWins[i] == numberOfWins[indexOfBestMove && lenghtsOfGames[i] > lenghtsOfGames[indexOfBestMove]]) {
                         indexOfBestMove = i; // different line for debugging purposes. Compiler will optimize anyway.
                     }
                 }
             } else {
                 // find max
                 for (int i = 1; i < (int)arraySize; i++) {
-                    if (winsOfBlack[i] > winsOfBlack[indexOfBestMove]) {
+                    if (numberOfWins[i] > numberOfWins[indexOfBestMove]) {
                         indexOfBestMove = i;
-                    } else if (winsOfBlack[i] == winsOfBlack[indexOfBestMove] && lenghtsOfGames[i] < lenghtsOfGames[indexOfBestMove]) {
+                    } else if (numberOfWins[i] == numberOfWins[indexOfBestMove] && lenghtsOfGames[i] < lenghtsOfGames[indexOfBestMove]) {
                         indexOfBestMove = i;
                     }
                 }
@@ -149,7 +149,7 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
             move = kv_A(moves, indexOfBestMove);
         }
         
-        free(winsOfBlack);
+        free(numberOfWins);
     }
     destroyMoveArray(moves);
     return move;
