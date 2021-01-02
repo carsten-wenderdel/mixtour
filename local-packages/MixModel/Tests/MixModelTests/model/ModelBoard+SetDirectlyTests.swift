@@ -15,9 +15,16 @@ class ModelBoard_SetDirectlyTests: XCTestCase {
 
         // Then
         XCTAssertEqual(pieces, [
-            ModelPiece(color: .black, id: 38),
-            ModelPiece(color: .white, id: 39),
-            ModelPiece(color: .white, id: 40)
+            ModelPiece(color: .black, id: 119),
+            ModelPiece(color: .white, id: 18),
+            ModelPiece(color: .white, id: 19)
         ])
+
+        // Ids also set correctly
+        XCTAssert(board.unusedPieces[.black]!.filter{ $0.id == 119 }.isEmpty)
+        XCTAssert(board.unusedPieces[.white]!.filter{ $0.id == 18 }.isEmpty)
+        XCTAssert(board.unusedPieces[.white]!.filter{ $0.id == 19 }.isEmpty)
+        XCTAssertFalse(board.unusedPieces[.black]!.filter{ $0.id == 118 }.isEmpty)
+        XCTAssertFalse(board.unusedPieces[.white]!.filter{ $0.id == 17 }.isEmpty)
     }
 }

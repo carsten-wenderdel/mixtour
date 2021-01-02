@@ -7,45 +7,54 @@ public let numberOfSquares = 5
 
 public class ModelBoard {
     
-    var coreBoard = MIXCoreBoard()
-    var pieces: [ModelSquare:[ModelPiece]] = [:]
+    var coreBoard: MIXCoreBoard
+    var setPieces: [ModelSquare:[ModelPiece]]
+    var unusedPieces: [ModelPlayer:[ModelPiece]]
 
     public init() {
+        coreBoard = MIXCoreBoard()
         resetCoreBoard(&coreBoard)
+        setPieces = [:]
+        unusedPieces = [.white:[], .black:[]]
+        for player: ModelPlayer in [.white, .black] {
+            for i in 0..<numberOfPiecesForPlayer(player) {
+                // black and white pieces need different ids, so let them be 100 apart, but could be any number bigger than 20
+                let piece = ModelPiece(
+                    color: player,
+                    id: 100 * player.rawValue + i
+                )
+                unusedPieces[player]!.append(piece)
+            }
+        }
     }
     
     public init(board: ModelBoard) {
         coreBoard = board.coreBoard
-        pieces = board.pieces
+        setPieces = board.setPieces
+        unusedPieces = board.unusedPieces
     }
-    
-    
+
     public func isGameOver() -> Bool {
         return Core.isGameOver(&coreBoard)
     }
-    
-    
+
     public func winner() -> ModelPlayer? {
         let corePlayer = Core.winner(&coreBoard)
         return ModelPlayer(corePlayer: corePlayer)
     }
-    
     
     public func playerOnTurn() -> ModelPlayer {
         let corePlayer = Core.playerOnTurn(&coreBoard)
         return ModelPlayer(corePlayer: corePlayer)!
     }
     
-    
     public func numberOfPiecesForPlayer(_ player: ModelPlayer) -> Int {
         return Int(Core.numberOfPiecesForPlayer(&coreBoard, player.corePlayer()))
     }
     
-    
     func isSquareEmpty(_ square: ModelSquare) -> Bool {
         return Core.isSquareEmpty(&coreBoard, square.coreSquare())
     }
-    
     
     public func heightOfSquare(_ square: ModelSquare) -> Int {
         return Int(Core.heightOfSquare(&coreBoard, square.coreSquare()))
@@ -59,7 +68,11 @@ public class ModelBoard {
 
     /// position 0 is the upper most piece
     public func piecesAtSquare(_ square: ModelSquare) -> [ModelPiece] {
-        return pieces[square] ?? []
+        return setPieces[square] ?? []
+    }
+
+    public func unusedPiecesForPlayer(_ player: ModelPlayer) -> [ModelPiece] {
+        return unusedPieces[player]!
     }
     
     /**
@@ -76,50 +89,43 @@ public class ModelBoard {
         let modelMove = ModelMove(from: from, to: to, numberOfPieces: numberODraggedPieces)
         return makeMoveIfLegal(modelMove)
     }
-    
-    
+
     @discardableResult public func makeMoveIfLegal(_ move: ModelMove) -> Bool {
         guard isMoveLegal(move) else {
             return false
         }
 
-        let id = numberOfPiecesForPlayer(.black) + numberOfPiecesForPlayer(.white)
         if move.isMoveDrag() {
-            var fromArray = pieces[move.from]! // If there are bugs I want to know them - crash!
-            var toArray = pieces[move.to]!
+            var fromArray = setPieces[move.from]! // If there are bugs I want to know them - crash!
+            var toArray = setPieces[move.to]!
             toArray.insert(contentsOf: fromArray.prefix(move.numberOfPieces), at: 0)
             fromArray.removeFirst(move.numberOfPieces)
-            pieces[move.from] = fromArray
-            pieces[move.to] = toArray
+            setPieces[move.from] = fromArray
+            setPieces[move.to] = toArray
         } else {
-            assert((pieces[move.to]?.count ?? 0) == 0)
-            pieces[move.to] = [ModelPiece(color: playerOnTurn(), id: id)]
+            // again - if something is nil, "isMoveLegal" should have found it.
+            setPieces[move.to] = [unusedPieces[playerOnTurn()]!.removeLast()]
         }
 
         Core.makeMove(&coreBoard, move.coreMove())
         return true
     }
-    
 
     public func isMoveLegal(_ move: ModelMove) -> Bool {
         return Core.isMoveLegal(&coreBoard, move.coreMove())
     }
 
-    
     func isSettingPossible() -> Bool {
         return Core.isSettingPossible(&coreBoard)
     }
-    
-    
+
     func isDraggingPossible() -> Bool {
         return Core.isDraggingPossible(&coreBoard)
     }
-    
-    
+
     func isSettingOrDraggingPossbile() -> Bool {
         return true
     }
-    
 
     func allLegalMoves() -> [ModelMove] {
         var swiftMoves = [ModelMove]()

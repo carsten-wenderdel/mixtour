@@ -10,20 +10,17 @@ extension ModelBoard {
 //        board.setPiecesDirectlyToSquare(ModelSquare(column: 4, line: 4), .black)
         return board
     }
-    
-    func setPiecesDirectlyToSquare(_ square: ModelSquare, _ args: ModelPlayer...) {
-        var id = numberOfPiecesForPlayer(.black) + numberOfPiecesForPlayer(.white)
-        var pieceArray = [ModelPiece]()
-        for modelPlayer in args {
-            pieceArray.insert(ModelPiece(color: modelPlayer, id: id), at: 0)
-            id -= 1
-        }
-        pieces[square] = pieceArray
 
+    /// First player argument is at the bottom, last at the top of the stack.
+    func setPiecesDirectlyToSquare(_ square: ModelSquare, _ args: ModelPlayer...) {
         var corePlayers: [CVarArg] = [CVarArg]()
+        var pieceStack = [ModelPiece]()
         for modelPlayer in args {
             corePlayers.append(modelPlayer.rawValue)
+            pieceStack.insert(unusedPieces[modelPlayer]!.removeLast(), at: 0)
         }
+
+        setPieces[square] = pieceStack
         Core.setPiecesDirectlyWithList(&coreBoard, square.coreSquare(), Int32(corePlayers.count), getVaList(corePlayers))
     }
     

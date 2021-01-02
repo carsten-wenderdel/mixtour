@@ -180,7 +180,7 @@ class ModelBoardTests : XCTestCase {
         var pieces = board.piecesAtSquare(square0)
 
         // Then
-        XCTAssertEqual(pieces, [ModelPiece(color: .white, id: 40)])
+        XCTAssertEqual(pieces, [ModelPiece(color: .white, id: 19)])
 
         // And When
         board.setPiece(square1)
@@ -189,8 +189,12 @@ class ModelBoardTests : XCTestCase {
         let noPieces = board.piecesAtSquare(square0)
 
         // Then
-        XCTAssertEqual(pieces, [ModelPiece(color: .white, id: 40), ModelPiece(color: .black, id: 39)])
+        XCTAssertEqual(pieces, [ModelPiece(color: .white, id: 19), ModelPiece(color: .black, id: 119)])
         XCTAssertEqual(noPieces, [])
+        XCTAssert(board.unusedPiecesForPlayer(.black).filter{ $0.id == 119}.isEmpty)
+        XCTAssert(board.unusedPiecesForPlayer(.white).filter{ $0.id == 19}.isEmpty)
+        XCTAssert(board.unusedPiecesForPlayer(.white).count == 19)
+        XCTAssert(board.unusedPiecesForPlayer(.black).count == 19)
     }
 
     func testDragsTheRightIDWhenLargerStack() {
