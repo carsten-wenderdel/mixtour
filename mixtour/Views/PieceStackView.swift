@@ -19,8 +19,7 @@ struct PieceStackView: View {
                             .frame(width: pieceWidth, height: pieceHeight, alignment: .bottom)
                             .zIndex(piece.zIndex)
                             .matchedGeometryEffect(id: piece.id, in: namespace)
-                            .dragOrSetAnimation(drag: stackPart.useDrag)
-//                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 1.0)))
+                            .animation(Animation.default.speed(0.5))
                     }
                 }
                 .padding(.bottom, bottomPadding)
@@ -28,17 +27,6 @@ struct PieceStackView: View {
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
         }
         .aspectRatio(1, contentMode: .fit)
-    }
-}
-
-private extension View {
-    func dragOrSetAnimation(drag: Bool) -> some View {
-        if drag {
-            return AnyView(self.animation(Animation.default.speed(0.5)))
-        } else {
-            let insertion = AnyTransition.scale(scale: 0.001).animation(.easeInOut(duration: 0.8))
-            return AnyView(self.transition(.asymmetric(insertion: insertion, removal: .identity)))
-        }
     }
 }
 
