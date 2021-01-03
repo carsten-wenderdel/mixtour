@@ -133,11 +133,11 @@ class BoardViewModel: ObservableObject {
     // MARK: Retrieve information
 
     func unusedPiecesPartFor(_ player: ModelPlayer) -> PieceStackPart {
-        let pieces = board.unusedPiecesForPlayer(player).map {
-            PieceViewModel(color: $0.color, id: $0.id, zIndex: 5)
+        let pieces = board.unusedPiecesForPlayer(player).enumerated().map { (index, piece) in
+            PieceViewModel(color: piece.color, id: piece.id, zIndex: Double(index))
         }
         return PieceStackPart(
-            pieces: pieces,
+            pieces: pieces.reversed(),
             square: ModelSquare(column: 6, line: 6),
             useDrag: true
         )
