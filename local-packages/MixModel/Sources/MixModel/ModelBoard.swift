@@ -104,7 +104,7 @@ public class ModelBoard {
             setPieces[move.to] = toArray
         } else {
             // again - if something is nil, "isMoveLegal" should have found it.
-            setPieces[move.to] = [unusedPieces[playerOnTurn()]!.removeLast()]
+            setPieces[move.to] = [unusedPieces[playerOnTurn()]!.removeFirst()]
         }
 
         Core.makeMove(&coreBoard, move.coreMove())
