@@ -1,7 +1,7 @@
 import SwiftUI
 import MixModel
 
-struct GameView: View {
+struct BoardView: View {
     @ObservedObject var board: BoardViewModel
     @Namespace private var namespace
 
@@ -68,19 +68,19 @@ struct GameView: View {
     }
 }
 
-struct GameView_Previews: PreviewProvider {
+struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ZStack() {
                 MixColors.background
-                GameView(board: BoardViewModel(board: .example))
+                BoardView(board: BoardViewModel(board: .example))
             }
             .environment(\.colorScheme, .light)
 
 
             ZStack {
                 MixColors.background
-                GameView(board: BoardViewModel(board: .example))
+                BoardView(board: BoardViewModel(board: .example))
             }
             .environment(\.colorScheme, .dark)
         }
