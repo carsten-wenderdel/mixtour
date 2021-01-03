@@ -132,6 +132,17 @@ class BoardViewModel: ObservableObject {
 
     // MARK: Retrieve information
 
+    func unusedPiecesPartFor(_ player: ModelPlayer) -> PieceStackPart {
+        let pieces = board.unusedPiecesForPlayer(player).map {
+            PieceViewModel(color: $0.color, id: $0.id, zIndex: 5)
+        }
+        return PieceStackPart(
+            pieces: pieces,
+            square: ModelSquare(column: 6, line: 6),
+            useDrag: true
+        )
+    }
+
     private func numberOfPickedPiecesAt(_ square: ModelSquare) -> Int {
         if let pieces = pickedPieces, square == pieces.square {
             return pieces.number

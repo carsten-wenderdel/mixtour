@@ -6,10 +6,31 @@ struct GameView: View {
     @Namespace var namespace
     
     var body: some View {
-        ZStack() {
-            BoardBackgroundView()
-            BoardView(board: board, namespace: namespace)
+        GeometryReader() { geometry in
+            HStack(alignment: .bottom, spacing: 0) {
+                PieceStackView(
+                    namespace: namespace,
+                    stackPart: board.unusedPiecesPartFor(.white),
+                    paddingFactor: 0
+                )
+                .frame(width: geometry.size.width / 7)
+                .padding(.bottom, geometry.size.height / 30)
+
+                ZStack() {
+                    BoardBackgroundView()
+                    BoardView(board: board, namespace: namespace)
+                }
+                .frame(width: 5 * geometry.size.width / 7)
+
+                PieceStackView(namespace: namespace,
+                               stackPart: board.unusedPiecesPartFor(.black),
+                               paddingFactor: 0
+                )
+                .frame(width: geometry.size.width / 7)
+                .padding(.bottom, geometry.size.height / 30)
+            }
         }
+        .aspectRatio(1.4, contentMode: .fit)
     }
 }
 

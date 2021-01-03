@@ -9,8 +9,8 @@ struct ContentView: View {
             MixColors.background
                 .ignoresSafeArea()
 
-            VStack {
-                HStack {
+            HStack {
+                VStack {
                     Button("New Game") {
                         board.reset()
                     }
