@@ -6,10 +6,11 @@ struct PieceView: View {
 
     var body: some View {
         GeometryReader() { geometry in
+            let shadowWidth = 12 * geometry.size.height / 100
             Ellipse()
                 .frame(width: geometry.size.width, height: geometry.size.height * 1.3, alignment: .center)
                 .foregroundColor(color == .black ? MixColors.pieceBlack : MixColors.pieceWhite)
-                .innerShadow(using: Ellipse(), width: 1.5, blur: 1.5)
+                .innerShadow(using: Ellipse(), width: shadowWidth, blur: shadowWidth)
 //                .shadow(color: .blue, radius: 1)
         }
     }
