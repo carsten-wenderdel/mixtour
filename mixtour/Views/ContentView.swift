@@ -29,7 +29,7 @@ struct ContentView: View {
 
                 Spacer()
 
-                BoardView(board: board)
+                GameView(board: board)
                     .disabled(board.interactionDisabled)
 
                 Spacer()
