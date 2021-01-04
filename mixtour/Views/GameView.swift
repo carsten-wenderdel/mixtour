@@ -4,33 +4,38 @@ import MixModel
 struct GameView: View {
     @ObservedObject var board: BoardViewModel
     @Namespace var namespace
+
+    private let ratio: CGFloat = 0.7
     
     var body: some View {
         GeometryReader() { geometry in
-            HStack(alignment: .bottom, spacing: 0) {
-                PieceStackView(
+            VStack(alignment: .leading, spacing: 0) {
+                PieceStoreView(
                     namespace: namespace,
                     stackPart: board.unusedPiecesPartFor(.white),
                     paddingFactor: 0
                 )
-                .frame(width: geometry.size.width / 7)
+                .frame(height: geometry.size.width / 5 * 0.18)
                 .padding(.bottom, geometry.size.height / 30)
+                .zIndex(80)
 
                 ZStack() {
                     BoardBackgroundView()
                     BoardView(board: board, namespace: namespace)
                 }
-                .frame(width: 5 * geometry.size.width / 7)
+                .frame(width: geometry.size.width)
+                .zIndex(90)
 
-                PieceStackView(namespace: namespace,
+                PieceStoreView(namespace: namespace,
                                stackPart: board.unusedPiecesPartFor(.black),
                                paddingFactor: 0
                 )
-                .frame(width: geometry.size.width / 7)
-                .padding(.bottom, geometry.size.height / 30)
+                .frame(height: geometry.size.width / 5 * 0.18)
+                .padding(.top, geometry.size.height / 30)
+                .zIndex(80)
             }
         }
-        .aspectRatio(1.4, contentMode: .fit)
+        .aspectRatio(ratio, contentMode: .fit)
     }
 }
 
