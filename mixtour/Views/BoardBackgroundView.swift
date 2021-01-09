@@ -23,8 +23,10 @@ struct BoardBackgroundView: View {
     }
 }
 
+#if DEBUG
 struct BoardBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
         BoardBackgroundView()
     }
 }
+#endif

@@ -42,6 +42,7 @@ struct GameView: View {
     }
 }
 
+#if DEBUG
 struct GameView_Previews: PreviewProvider {
     @Namespace static var namespace
 
@@ -49,3 +50,4 @@ struct GameView_Previews: PreviewProvider {
         GameView(board: BoardViewModel(board: .example))
     }
 }
+#endif

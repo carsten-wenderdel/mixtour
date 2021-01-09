@@ -25,6 +25,7 @@ struct PieceStoreView: View {
     }
 }
 
+#if DEBUG
 struct PieceStoreView_Previews: PreviewProvider {
     @Namespace static var namespace
 
@@ -64,3 +65,4 @@ struct PieceStoreView_Previews: PreviewProvider {
         .frame(height: 200)
     }
 }
+#endif

@@ -33,6 +33,7 @@ extension View {
     }
 }
 
+#if DEBUG
 struct PieceView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack() {
@@ -42,3 +43,4 @@ struct PieceView_Previews: PreviewProvider {
         }
     }
 }
+#endif

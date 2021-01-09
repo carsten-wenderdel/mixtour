@@ -55,6 +55,7 @@ struct BoardView: View {
     }
 }
 
+#if DEBUG
 struct BoardView_Previews: PreviewProvider {
     @Namespace static var namespace
 
@@ -75,3 +76,4 @@ struct BoardView_Previews: PreviewProvider {
         }
     }
 }
+#endif

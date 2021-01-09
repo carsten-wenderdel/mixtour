@@ -30,6 +30,7 @@ struct PieceStackView: View {
     }
 }
 
+#if DEBUG
 struct PieceStackView_Previews: PreviewProvider {
     @Namespace static var namespace
 
@@ -76,3 +77,4 @@ struct PieceStackView_Previews: PreviewProvider {
         }
     }
 }
+#endif
