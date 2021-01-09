@@ -17,14 +17,17 @@ struct GameView: View {
                 )
                 .frame(height: geometry.size.width / 5 * 0.18)
                 .padding(.bottom, geometry.size.height / 30)
-                .zIndex(80)
+                .zIndex(8)
 
                 ZStack() {
                     BoardBackgroundView()
                     BoardView(board: board, namespace: namespace)
                 }
                 .frame(width: geometry.size.width)
-                .zIndex(90)
+                // When the "New Game" or "Undo" button is hit, the pieces move
+                // back to the unused stack. To make them visible while moving,
+                // the board then needs to have a lower zIndex than those stacks.
+                .zIndex(board.undoPossible ? 9 : 7)
 
                 PieceStoreView(namespace: namespace,
                                stackPart: board.unusedPiecesPartFor(.black),
@@ -32,7 +35,7 @@ struct GameView: View {
                 )
                 .frame(height: geometry.size.width / 5 * 0.18)
                 .padding(.top, geometry.size.height / 30)
-                .zIndex(80)
+                .zIndex(8)
             }
         }
         .aspectRatio(ratio, contentMode: .fit)
