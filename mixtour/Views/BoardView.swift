@@ -4,6 +4,7 @@ import MixModel
 struct BoardView: View {
     @ObservedObject var board: BoardViewModel
     var namespace: Namespace.ID
+    @State private var draggedSquare: ModelSquare?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -30,10 +31,11 @@ struct BoardView: View {
                                 namespace: namespace,
                                 stackPart: topPart,
                                 paddingFactor: topPaddingFactor,
+                                draggedSquare: $draggedSquare,
                                 board: board
                             )
                         }
-                        .zIndex(board.zIndexForColumn(column))
+                        .zIndex(square == draggedSquare ? 10 : board.zIndexForColumn(column))
                         .contentShape(Rectangle()) // to allow taps on empty views
                         .onTapGesture(count: stackVM.isEmpty ? 2 : 1) {
                             if stackVM.isEmpty {
@@ -46,7 +48,7 @@ struct BoardView: View {
                         }
                     }
                 }
-                .zIndex(board.zIndexForLine(line))
+                .zIndex(line == draggedSquare?.line ? 10 :board.zIndexForLine(line))
             }
         }
         .aspectRatio(1, contentMode: .fit)

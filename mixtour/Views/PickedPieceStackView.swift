@@ -5,6 +5,7 @@ struct PickedPieceStackView: View {
     var namespace: Namespace.ID
     let stackPart: PieceStackPart
     let paddingFactor: Double
+    @Binding var draggedSquare: ModelSquare?
 
     @ObservedObject var board: BoardViewModel
     @GestureState private var translation = CGSize.zero
@@ -27,6 +28,8 @@ struct PickedPieceStackView: View {
                     }
                     .onChanged { gesture in
                         if opacity == 1.0 {
+                            // Dragging starts
+                            draggedSquare = stackPart.square
                             board.stopPickingOtherThan(stackPart.square)
                         }
                         self.opacity = 0.6
