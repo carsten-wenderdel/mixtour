@@ -19,7 +19,7 @@ struct ContentView: View {
                     }) {
                         Image(systemName: "plus")
                             .font(Constants.buttonImageFont)
-                        Text("New Game")
+                        Text("Neues Spiel")
                             .font(Constants.buttonTextFont)
                     }
 
@@ -29,7 +29,7 @@ struct ContentView: View {
                     }) {
                         Image(systemName: "arrow.uturn.backward")
                             .font(Constants.buttonImageFont)
-                        Text("Undo")
+                        Text("Rückgängig")
                             .font(Constants.buttonTextFont)
                     }
                     .disabled(!board.undoPossible)
