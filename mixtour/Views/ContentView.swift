@@ -13,10 +13,26 @@ struct ContentView: View {
                 Spacer()
 
                 HStack {
-                    Spacer()
-                    Button(action: {
-                        board.reset()
-                    }) {
+                    Menu {
+                        Section { Text("Deine Farbe") }
+                        Section {
+                            Menu(LocalizedStringKey("Weiß")) {
+                                Section { Text("Spielstärke Computer") }
+                                Section {
+                                    Button(LocalizedStringKey("Anfänger")) { board.reset() }
+                                    Button(LocalizedStringKey("Fortgeschritten")) { board.reset() }
+                                }
+                            }
+                            Menu(LocalizedStringKey("Red")) {
+                                Section { Text("Strength of Computer Player") }
+                                Section {
+                                    Button(LocalizedStringKey("Beginner")) { board.reset() }
+                                    Button(LocalizedStringKey("Advanced")) { board.reset() }
+                                }
+                            }
+                        }
+                    }
+                    label: {
                         Image(systemName: "plus")
                             .font(Constants.buttonImageFont)
                         Text("Neues Spiel")
@@ -33,9 +49,8 @@ struct ContentView: View {
                             .font(Constants.buttonTextFont)
                     }
                     .disabled(!board.undoPossible)
-
-                    Spacer()
                 }
+                
                 Spacer()
                 Text(board.gameOverText)
 
