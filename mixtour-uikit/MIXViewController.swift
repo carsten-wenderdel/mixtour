@@ -88,7 +88,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
     
     func gameView(_ gameView : GameView, tryToMakeMove move: Move) -> Bool {
         
-        let oldBoard = Board(board: board)
+        let oldBoard = Board(board)
         let movePossible = board.makeMoveIfLegal(move)
         
         // display new state. If move not possible, this also moves the dragged piece to the old correct position

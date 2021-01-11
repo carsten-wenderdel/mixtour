@@ -121,7 +121,7 @@ class BoardViewModel: ObservableObject {
             return
         }
         objectWillChange.send()
-        previousBoard = Board(board: board)
+        previousBoard = Board(board)
         computerPlayerIsThinking = true
         animatableMove = nil
         pickedPieces = nil

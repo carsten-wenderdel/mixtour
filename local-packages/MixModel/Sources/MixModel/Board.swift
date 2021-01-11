@@ -28,7 +28,7 @@ public class Board {
         }
     }
     
-    public init(board: Board) {
+    public init(_ board: Board) {
         coreBoard = board.coreBoard
         setPieces = board.setPieces
         unusedPieces = board.unusedPieces
