@@ -1,7 +1,7 @@
 import XCTest
 @testable import MixModel
 
-class ModelBoardAITests: XCTestCase {
+class ComputerPlayerTests: XCTestCase {
     
     func testAIPlayerDoesNotMakeOpponentWin() {
         // given
@@ -9,9 +9,10 @@ class ModelBoardAITests: XCTestCase {
         board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 0), .white, .white, .white, .white)
         board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 1), .black)
         board.setTurnDirectly(.black)
+        let computerPlayer = ComputerPlayer.beginner
         
         // when
-        let blackMove = board.bestMove()
+        let blackMove = computerPlayer.bestMove(board)
         
         // assert
         XCTAssert(blackMove!.numberOfPieces != 4)
@@ -26,9 +27,10 @@ class ModelBoardAITests: XCTestCase {
         board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 2), .black, .black, .white)
         board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 3), .black, .white)
         board.setTurnDirectly(.black)
-        
+        let computerPlayer = ComputerPlayer.beginner
+
         // when
-        let blackMove = board.bestMove()
+        let blackMove = computerPlayer.bestMove(board)
         board.makeMoveIfLegal(blackMove!)
         
         // assert
@@ -46,9 +48,10 @@ class ModelBoardAITests: XCTestCase {
         board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 2), .white, .white)
         board.setPiecesDirectlyToSquare(ModelSquare(column: 4, line: 1), .white, .black, .black, .white)
         board.setTurnDirectly(.black)
+        let computerPlayer = ComputerPlayer.beginner
 
-        // When
-        let blackMove = board.bestMove()
+        // when
+        let blackMove = computerPlayer.bestMove(board)
         board.makeMoveIfLegal(blackMove!)
 
         // Then
@@ -65,9 +68,10 @@ class ModelBoardAITests: XCTestCase {
         board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 0), .white, .white)
         board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 2), .white, .black, .black, .white)
         board.setTurnDirectly(.black)
-        
+        let computerPlayer = ComputerPlayer.beginner
+
         // when
-        let blackMove = board.bestMove()
+        let blackMove = computerPlayer.bestMove(board)
         
         // then
         
@@ -86,13 +90,28 @@ class ModelBoardAITests: XCTestCase {
         board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 0), .white, .white, .white, .white)
         board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 1), .black)
         board.setTurnDirectly(.white)
-        
+        let computerPlayer = ComputerPlayer.beginner
+
         // when
         self.measure {
-            let whiteMove = board.bestMove()    // easy win - should be super fast
+            let whiteMove = computerPlayer.bestMove(board) // easy win - should be super fast
             XCTAssert(whiteMove!.numberOfPieces == 4)
         }
     }
-    
+
+    func testBestMoveIsNilForIfNoMoveIsPossible() {
+        let board = ModelBoard()
+
+        // given all 20 white pieces are set:
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 0), .white, .white, .white, .white)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 1), .white, .white, .white, .white)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 2), .white, .white, .white, .white)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 3), .white, .white, .white, .white)
+        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 4), .white, .white, .white, .white)
+        let computerPlayer = ComputerPlayer.beginner
+
+        let bestMove = computerPlayer.bestMove(board)
+        XCTAssertNil(bestMove)
+    }
 }
 

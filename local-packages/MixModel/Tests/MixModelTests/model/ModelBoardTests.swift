@@ -546,19 +546,5 @@ class ModelBoardTests : XCTestCase {
         let someDragMove = ModelMove(from: ModelSquare(column: 4, line: 4), to: ModelSquare(column: 0, line: 0), numberOfPieces: 2)
         XCTAssertTrue(allMoves.contains(someDragMove))
     }
-    
-    func testBestMoveIsNilForIfNoMoveIsPossible() {
-        let board = ModelBoard()
-        
-        // given all 20 white pieces are set:
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 0), .white, .white, .white, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 1), .white, .white, .white, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 2), .white, .white, .white, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 3), .white, .white, .white, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 4), .white, .white, .white, .white)
-        
-        let bestMove = board.bestMove()
-        XCTAssertNil(bestMove)
-    }
 }
 

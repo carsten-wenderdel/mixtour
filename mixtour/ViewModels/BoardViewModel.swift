@@ -6,6 +6,7 @@ class BoardViewModel: ObservableObject {
     // MARK variables set from outside
     private var board: ModelBoard
     private var humanColor: ModelPlayer
+    private var computerPlayer: ComputerPlayer
 
     // MARK internal state
     private var previousBoard: ModelBoard?
@@ -48,9 +49,14 @@ class BoardViewModel: ObservableObject {
 
     // MARK: Initializers
 
-    init(board: ModelBoard = ModelBoard(), color: ModelPlayer = .white) {
+    init(
+        board: ModelBoard = ModelBoard(),
+        color: ModelPlayer = .white,
+        computer: ComputerPlayer = .beginner
+    ) {
         self.board = board
         self.humanColor = color
+        self.computerPlayer = computer
     }
 
     // MARK: Change state
@@ -138,7 +144,7 @@ class BoardViewModel: ObservableObject {
     }
 
     private func letComputermakeNextMove() {
-        if let move = self.board.bestMove() {
+        if let move = self.computerPlayer.bestMove(self.board) {
             self.objectWillChange.send()
             self.setSquare = move.isMoveDrag() ? nil : move.to
             self.computerPlayerIsThinking = false

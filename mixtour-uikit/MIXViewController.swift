@@ -51,9 +51,11 @@ class MIXViewController: UIViewController, GameViewDelegate {
     private func calculateNextMoveForGameView(_ gameView: GameView) {
         
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async(execute: { [weak self] in
-            let move = self?.board.bestMove()
-            
-            if let bestMove = move {
+            guard let board = self?.board else {
+                return
+            }
+
+            if let bestMove = ComputerPlayer.beginner.bestMove(board) {
                 DispatchQueue.main.async(execute: {
                     // TODO: self.board could be changed by user during AI calculation - freeze parts of the UI or make a deep copy of the board
                     // Also the ownership of gameView and board is not thought through

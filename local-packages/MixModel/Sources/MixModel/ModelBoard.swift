@@ -138,16 +138,6 @@ public class ModelBoard {
         return swiftMoves
     }
     
-    
-    public func bestMove() -> ModelMove? {
-        let move = Core.bestMove(&coreBoard)
-        if Core.isMoveANoMove(move) {
-            return nil
-        } else {
-            return ModelMove(coreMove: move)
-        }
-    }
-    
     func printDescription() -> Void {
         printBoardDescription(&coreBoard);
     }
