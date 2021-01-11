@@ -113,5 +113,13 @@ class ComputerPlayerTests: XCTestCase {
         let bestMove = computerPlayer.bestMove(board)
         XCTAssertNil(bestMove)
     }
+
+    func testIsNumberOfTrialsSmallEnough() {
+        var computerPlayer: ComputerPlayer = .advanced
+        XCTAssert(computerPlayer.isNumberOfTrialsSmallEnough())
+
+        computerPlayer = ComputerPlayer(numberOfTrials: 10_000_000)
+        XCTAssertFalse(computerPlayer.isNumberOfTrialsSmallEnough())
+    }
 }
 

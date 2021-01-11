@@ -9,8 +9,6 @@
 #ifndef mixtour_MIXCoreHelper_h
 #define mixtour_MIXCoreHelper_h
 
-#include <stdint.h>
-
 /**
  returns "1" for i>0, "-1" for i<0, "0" for x==0;
  */

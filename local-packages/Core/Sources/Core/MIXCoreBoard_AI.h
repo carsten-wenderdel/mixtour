@@ -18,7 +18,10 @@ typedef struct {
     MIXCorePlayer winner;
 } MIXCorePlayResult;
 
-MIXCoreMove bestMove(MIXCoreBoardRef boardRef);
+MIXCoreMove bestMove(MIXCoreBoardRef boardRef, int numberOfTrials);
+
+/** Make sure that no integer overflow happens */
+bool isNumberOfTrialsSmallEnough(int numberOfTrials);
 
 #endif /* MIXCoreBoard_AI_h */
 

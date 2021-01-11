@@ -9,9 +9,6 @@
 #include "MIXCoreBoard_AI.h"
 
 static const int maximumNumberOfMoves = 400;
-static const int numberOfTrials = 100;
-
-
 
 MIXCoreMove firstMove(MIXCoreBoardRef boardRef) {
     MIXMoveArray moves = arrayOfLegalMoves(boardRef);
@@ -78,7 +75,7 @@ MIXCorePlayResult winnerAfterRandomPlay(MIXCoreBoardRef boardRef) {
 }
 
 
-MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
+MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef, int numberOfTrials) {
     srand(1);
 
     MIXCoreMove move = MIXCoreMoveNoMove;   // in case nothing is found
@@ -155,9 +152,18 @@ MIXCoreMove bestMoveAfterRandomPlay(MIXCoreBoardRef boardRef) {
     return move;
 }
 
-MIXCoreMove bestMove(MIXCoreBoardRef boardRef) {
-    return bestMoveAfterRandomPlay(boardRef);
+MIXCoreMove bestMove(MIXCoreBoardRef boardRef, int numberOfTrials) {
+    return bestMoveAfterRandomPlay(boardRef, numberOfTrials);
 }
 
-
+bool isNumberOfTrialsSmallEnough(int numberOfTrials) {
+    int sum = 0;
+    for (int i = 0; i < numberOfTrials; i++) {
+        sum += maximumNumberOfMoves;
+        if (sum < 0) {
+            return false;
+        }
+    }
+    return true;
+}
 
