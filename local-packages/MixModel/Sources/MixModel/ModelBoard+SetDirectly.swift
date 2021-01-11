@@ -14,7 +14,7 @@ extension ModelBoard {
     /// First player argument is at the bottom, last at the top of the stack.
     func setPiecesDirectlyToSquare(_ square: Square, _ args: ModelPlayer...) {
         var corePlayers: [CVarArg] = [CVarArg]()
-        var pieceStack = [ModelPiece]()
+        var pieceStack = [Piece]()
         for modelPlayer in args {
             corePlayers.append(modelPlayer.rawValue)
             pieceStack.insert(unusedPieces[modelPlayer]!.removeLast(), at: 0)

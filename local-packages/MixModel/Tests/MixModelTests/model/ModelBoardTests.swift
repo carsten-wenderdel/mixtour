@@ -180,7 +180,7 @@ class ModelBoardTests : XCTestCase {
         var pieces = board.piecesAtSquare(square0)
 
         // Then
-        XCTAssertEqual(pieces, [ModelPiece(color: .white, id: 19)])
+        XCTAssertEqual(pieces, [Piece(color: .white, id: 19)])
 
         // And When
         board.setPiece(square1)
@@ -189,7 +189,7 @@ class ModelBoardTests : XCTestCase {
         let noPieces = board.piecesAtSquare(square0)
 
         // Then
-        XCTAssertEqual(pieces, [ModelPiece(color: .white, id: 19), ModelPiece(color: .black, id: 119)])
+        XCTAssertEqual(pieces, [Piece(color: .white, id: 19), Piece(color: .black, id: 119)])
         XCTAssertEqual(noPieces, [])
         XCTAssert(board.unusedPiecesForPlayer(.black).filter{ $0.id == 119}.isEmpty)
         XCTAssert(board.unusedPiecesForPlayer(.white).filter{ $0.id == 19}.isEmpty)

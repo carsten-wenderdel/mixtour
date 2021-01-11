@@ -3,7 +3,7 @@ import XCTest
 import Core
 @testable import MixModel
 
-class ModelSquareTests : XCTestCase {
+class SquareTests : XCTestCase {
     
     func testCoreSquare() {
         let modelSquare = Square(column: 5, line: 3)

@@ -2,7 +2,7 @@ import XCTest
 import Core
 @testable import MixModel
 
-class ModelMoveTests: XCTestCase {
+class MoveTests: XCTestCase {
 
     func testDragMoveModelToCore() {
         let fromSquare = Square(column: 3, line: 2)

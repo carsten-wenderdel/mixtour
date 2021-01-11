@@ -15,9 +15,9 @@ class ModelBoard_SetDirectlyTests: XCTestCase {
 
         // Then
         XCTAssertEqual(pieces, [
-            ModelPiece(color: .black, id: 119),
-            ModelPiece(color: .white, id: 18),
-            ModelPiece(color: .white, id: 19)
+            Piece(color: .black, id: 119),
+            Piece(color: .white, id: 18),
+            Piece(color: .white, id: 19)
         ])
 
         // Ids also set correctly

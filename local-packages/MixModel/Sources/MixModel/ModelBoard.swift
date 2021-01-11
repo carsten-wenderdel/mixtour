@@ -8,8 +8,8 @@ public let numberOfSquares = 5
 public class ModelBoard {
     
     var coreBoard: MIXCoreBoard
-    var setPieces: [Square:[ModelPiece]]
-    var unusedPieces: [ModelPlayer:[ModelPiece]]
+    var setPieces: [Square:[Piece]]
+    var unusedPieces: [ModelPlayer:[Piece]]
 
     public init() {
         coreBoard = MIXCoreBoard()
@@ -19,7 +19,7 @@ public class ModelBoard {
         for player: ModelPlayer in [.white, .black] {
             for i in 0..<numberOfPiecesForPlayer(player) {
                 // black and white pieces need different ids, so let them be 100 apart, but could be any number bigger than 20
-                let piece = ModelPiece(
+                let piece = Piece(
                     color: player,
                     id: 100 * player.rawValue + i
                 )
@@ -67,11 +67,11 @@ public class ModelBoard {
     }
 
     /// position 0 is the upper most piece
-    public func piecesAtSquare(_ square: Square) -> [ModelPiece] {
+    public func piecesAtSquare(_ square: Square) -> [Piece] {
         return setPieces[square] ?? []
     }
 
-    public func unusedPiecesForPlayer(_ player: ModelPlayer) -> [ModelPiece] {
+    public func unusedPiecesForPlayer(_ player: ModelPlayer) -> [Piece] {
         return unusedPieces[player]!
     }
     
