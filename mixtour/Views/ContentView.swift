@@ -19,15 +19,15 @@ struct ContentView: View {
                             Menu(LocalizedStringKey("Weiß")) {
                                 Section { Text("Spielstärke Computer") }
                                 Section {
-                                    Button(LocalizedStringKey("Anfänger")) { board.reset() }
-                                    Button(LocalizedStringKey("Fortgeschritten")) { board.reset() }
+                                    Button(LocalizedStringKey("Anfänger")) { board.reset(color: .white) }
+                                    Button(LocalizedStringKey("Fortgeschritten")) { board.reset(color: .white) }
                                 }
                             }
                             Menu(LocalizedStringKey("Red")) {
                                 Section { Text("Strength of Computer Player") }
                                 Section {
-                                    Button(LocalizedStringKey("Beginner")) { board.reset() }
-                                    Button(LocalizedStringKey("Advanced")) { board.reset() }
+                                    Button(LocalizedStringKey("Beginner")) { board.reset(color: .black) }
+                                    Button(LocalizedStringKey("Advanced")) { board.reset(color: .black) }
                                 }
                             }
                         }

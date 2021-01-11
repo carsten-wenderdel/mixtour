@@ -3,7 +3,11 @@ import MixModel
 
 class BoardViewModel: ObservableObject {
 
+    // MARK variables set from outside
     private var board: ModelBoard
+    private var humanColor: ModelPlayer
+
+    // MARK internal state
     private var previousBoard: ModelBoard?
     private var animatableMove: ModelMove?
     private var setSquare: ModelSquare?
@@ -22,6 +26,8 @@ class BoardViewModel: ObservableObject {
         var number: Int
     }
 
+    private var computerColor: ModelPlayer { humanColor == .white ? .black : .white }
+
     // Public properties
 
     var undoPossible: Bool { previousBoard != nil }
@@ -30,24 +36,21 @@ class BoardViewModel: ObservableObject {
     var interactionDisabled: Bool { computerPlayerIsThinking || board.isGameOver() }
 
     var gameOverText: String {
-        switch board.winner() {
-        case .white:
-            return "You have won!"
-        case .black:
-            return "You have lost"
-        case .none:
+        guard let winner = board.winner() else {
             return " "
+        }
+        if winner == humanColor {
+            return "You have won!"
+        } else {
+            return "You have lost"
         }
     }
 
     // MARK: Initializers
 
-    init(board: ModelBoard) {
+    init(board: ModelBoard = ModelBoard(), color: ModelPlayer = .white) {
         self.board = board
-    }
-
-    convenience init() {
-        self.init(board: ModelBoard())
+        self.humanColor = color
     }
 
     // MARK: Change state
@@ -58,14 +61,20 @@ class BoardViewModel: ObservableObject {
         }
     }
 
-    func reset(board: ModelBoard = ModelBoard()) {
+    func reset(board: ModelBoard = ModelBoard(), color: ModelPlayer = .white) {
         objectWillChange.send()
         previousBoard = nil
         animatableMove = nil
         pickedPieces = nil
         setSquare = nil
-        computerPlayerIsThinking = false
         self.board = board
+        self.humanColor = color
+        if (color == .white) {
+            computerPlayerIsThinking = false
+        } else {
+            computerPlayerIsThinking = true
+            letComputermakeNextMove()
+        }
     }
 
     func pickPieceFromSquare(_ square: ModelSquare) {
@@ -101,6 +110,10 @@ class BoardViewModel: ObservableObject {
     }
 
     private func makeMove(_ move: ModelMove) {
+        if (board.playerOnTurn() != humanColor) {
+            assertionFailure("Human should only play their own pieces")
+            return
+        }
         objectWillChange.send()
         previousBoard = ModelBoard(board: board)
         computerPlayerIsThinking = true
@@ -120,19 +133,31 @@ class BoardViewModel: ObservableObject {
                 // Probably a new game was started, so discard this move
                 return
             }
-            if let move = self.board.bestMove() {
-                self.objectWillChange.send()
-                self.setSquare = move.isMoveDrag() ? nil : move.to
-                self.computerPlayerIsThinking = false
-                self.animatableMove = move
-                self.board.makeMoveIfLegal(move)
-            }
+            self.letComputermakeNextMove()
+        }
+    }
+
+    private func letComputermakeNextMove() {
+        if let move = self.board.bestMove() {
+            self.objectWillChange.send()
+            self.setSquare = move.isMoveDrag() ? nil : move.to
+            self.computerPlayerIsThinking = false
+            self.animatableMove = move
+            self.board.makeMoveIfLegal(move)
         }
     }
 
     // MARK: Retrieve information
 
-    func unusedPiecesPartFor(_ player: ModelPlayer) -> PieceStackPart {
+    func unusedPiecesHuman() -> PieceStackPart {
+        return unusedPiecesPartFor(humanColor)
+    }
+
+    func unusedPiecesComputer() -> PieceStackPart {
+        return unusedPiecesPartFor(computerColor)
+    }
+
+    private func unusedPiecesPartFor(_ player: ModelPlayer) -> PieceStackPart {
         let pieces = board.unusedPiecesForPlayer(player).enumerated().map { (index, piece) in
             PieceViewModel(color: piece.color, id: piece.id, zIndex: Double(index))
         }
