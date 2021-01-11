@@ -12,7 +12,7 @@ extension ModelBoard {
     }
 
     /// First player argument is at the bottom, last at the top of the stack.
-    func setPiecesDirectlyToSquare(_ square: Square, _ args: ModelPlayer...) {
+    func setPiecesDirectlyToSquare(_ square: Square, _ args: PlayerColor...) {
         var corePlayers: [CVarArg] = [CVarArg]()
         var pieceStack = [Piece]()
         for modelPlayer in args {
@@ -24,7 +24,7 @@ extension ModelBoard {
         Core.setPiecesDirectlyWithList(&coreBoard, square.coreSquare(), Int32(corePlayers.count), getVaList(corePlayers))
     }
     
-    func setTurnDirectly(_ player: ModelPlayer) {
+    func setTurnDirectly(_ player: PlayerColor) {
         Core.setTurnDirectly(&coreBoard, player.corePlayer())
     }
 }

@@ -2,7 +2,7 @@ import Foundation
 import MixModel
 
 struct PieceViewModel: Identifiable {
-    let color: ModelPlayer
+    let color: PlayerColor
     let id: Int
     let zIndex: Double
 }

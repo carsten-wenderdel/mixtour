@@ -9,14 +9,14 @@ public class ModelBoard {
     
     var coreBoard: MIXCoreBoard
     var setPieces: [Square:[Piece]]
-    var unusedPieces: [ModelPlayer:[Piece]]
+    var unusedPieces: [PlayerColor:[Piece]]
 
     public init() {
         coreBoard = MIXCoreBoard()
         resetCoreBoard(&coreBoard)
         setPieces = [:]
         unusedPieces = [.white:[], .black:[]]
-        for player: ModelPlayer in [.white, .black] {
+        for player: PlayerColor in [.white, .black] {
             for i in 0..<numberOfPiecesForPlayer(player) {
                 // black and white pieces need different ids, so let them be 100 apart, but could be any number bigger than 20
                 let piece = Piece(
@@ -38,17 +38,17 @@ public class ModelBoard {
         return Core.isGameOver(&coreBoard)
     }
 
-    public func winner() -> ModelPlayer? {
+    public func winner() -> PlayerColor? {
         let corePlayer = Core.winner(&coreBoard)
-        return ModelPlayer(corePlayer: corePlayer)
+        return PlayerColor(corePlayer: corePlayer)
     }
     
-    public func playerOnTurn() -> ModelPlayer {
+    public func playerOnTurn() -> PlayerColor {
         let corePlayer = Core.playerOnTurn(&coreBoard)
-        return ModelPlayer(corePlayer: corePlayer)!
+        return PlayerColor(corePlayer: corePlayer)!
     }
     
-    public func numberOfPiecesForPlayer(_ player: ModelPlayer) -> Int {
+    public func numberOfPiecesForPlayer(_ player: PlayerColor) -> Int {
         return Int(Core.numberOfPiecesForPlayer(&coreBoard, player.corePlayer()))
     }
     
@@ -61,9 +61,9 @@ public class ModelBoard {
     }
     
     /// position 0 is the upper most piece. Undefined behavior for not existing pieces
-    public func colorOfSquare(_ square: Square, atPosition position: Int) -> ModelPlayer{
+    public func colorOfSquare(_ square: Square, atPosition position: Int) -> PlayerColor{
         let corePlayer = colorOfSquareAtPosition(&coreBoard, square.coreSquare(), UInt8(position))
-        return ModelPlayer(corePlayer: corePlayer)!
+        return PlayerColor(corePlayer: corePlayer)!
     }
 
     /// position 0 is the upper most piece
@@ -71,7 +71,7 @@ public class ModelBoard {
         return setPieces[square] ?? []
     }
 
-    public func unusedPiecesForPlayer(_ player: ModelPlayer) -> [Piece] {
+    public func unusedPiecesForPlayer(_ player: PlayerColor) -> [Piece] {
         return unusedPieces[player]!
     }
     

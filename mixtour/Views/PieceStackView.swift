@@ -34,7 +34,7 @@ struct PieceStackView: View {
 struct PieceStackView_Previews: PreviewProvider {
     @Namespace static var namespace
 
-    static func dummyPartForPieces(_ pieceColors: [ModelPlayer]) -> PieceStackPart {
+    static func dummyPartForPieces(_ pieceColors: [PlayerColor]) -> PieceStackPart {
         let pieces = pieceColors.enumerated().map { (index, color) in
             PieceViewModel(color: color, id: index, zIndex: 1.0)
         }

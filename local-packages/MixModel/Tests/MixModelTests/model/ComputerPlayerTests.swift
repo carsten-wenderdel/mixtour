@@ -35,7 +35,7 @@ class ComputerPlayerTests: XCTestCase {
         
         // assert
         XCTAssert(board.isGameOver())
-        XCTAssertEqual(board.winner(), ModelPlayer.black)
+        XCTAssertEqual(board.winner(), PlayerColor.black)
     }
 
     func testAIPlayerDoesNotMakeOpponentWinDirectlyButOneMoveLater() {

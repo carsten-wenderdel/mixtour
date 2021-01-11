@@ -2,7 +2,7 @@ import SwiftUI
 import MixModel
 
 struct PieceView: View {
-    let color: ModelPlayer
+    let color: PlayerColor
 
     var body: some View {
         GeometryReader() { geometry in

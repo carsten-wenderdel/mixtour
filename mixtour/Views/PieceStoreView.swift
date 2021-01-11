@@ -29,7 +29,7 @@ struct PieceStoreView: View {
 struct PieceStoreView_Previews: PreviewProvider {
     @Namespace static var namespace
 
-    static func dummyPartForPieces(_ pieceColors: [ModelPlayer]) -> PieceStackPart {
+    static func dummyPartForPieces(_ pieceColors: [PlayerColor]) -> PieceStackPart {
         let pieces = pieceColors.enumerated().map { (index, color) in
             PieceViewModel(color: color, id: index, zIndex: Double(index))
         }
@@ -45,7 +45,7 @@ struct PieceStoreView_Previews: PreviewProvider {
             Spacer()
             PieceStoreView(
                 namespace: namespace,
-                stackPart: dummyPartForPieces([ModelPlayer].init(repeating: .white, count: 20)),
+                stackPart: dummyPartForPieces([PlayerColor].init(repeating: .white, count: 20)),
                 paddingFactor: 0.5
             )
             .background(Color.black)
@@ -54,7 +54,7 @@ struct PieceStoreView_Previews: PreviewProvider {
             Spacer()
             PieceStoreView(
                 namespace: namespace,
-                stackPart: dummyPartForPieces([ModelPlayer].init(repeating: .black, count: 20)),
+                stackPart: dummyPartForPieces([PlayerColor].init(repeating: .black, count: 20)),
                 paddingFactor: 0.5
             )
             .background(Color.black)

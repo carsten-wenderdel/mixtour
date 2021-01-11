@@ -6,9 +6,9 @@ class ModelBoardTests : XCTestCase {
     func testInit() {
         let modelBoard = ModelBoard()
         
-        XCTAssertEqual(modelBoard.playerOnTurn(), ModelPlayer.white, "White should start game")
-        XCTAssertEqual(modelBoard.numberOfPiecesForPlayer(ModelPlayer.white), 20, "20 pieces at the start")
-        XCTAssertEqual(modelBoard.numberOfPiecesForPlayer(ModelPlayer.black), 20, "20 pieces at the start")
+        XCTAssertEqual(modelBoard.playerOnTurn(), PlayerColor.white, "White should start game")
+        XCTAssertEqual(modelBoard.numberOfPiecesForPlayer(PlayerColor.white), 20, "20 pieces at the start")
+        XCTAssertEqual(modelBoard.numberOfPiecesForPlayer(PlayerColor.black), 20, "20 pieces at the start")
         
         for i in 0..<5 {
             for j in 0..<5 {
@@ -71,7 +71,7 @@ class ModelBoardTests : XCTestCase {
             board.dragPiecesFrom(oldSquare, to:newSquare, withNumber:i)
         }
         
-        XCTAssertEqual(board.winner(), ModelPlayer.white)
+        XCTAssertEqual(board.winner(), PlayerColor.white)
         
         // and now the same, but place one additional piece at the beginning somewhere else.
         board = ModelBoard()
@@ -84,31 +84,31 @@ class ModelBoardTests : XCTestCase {
             board.dragPiecesFrom(oldSquare, to:newSquare, withNumber:i)
         }
         
-        XCTAssertEqual(board.winner(), ModelPlayer.black)
+        XCTAssertEqual(board.winner(), PlayerColor.black)
     }
     
     
     func testPlayerOnTurn() {
         let board = ModelBoard()
-        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.white)
+        XCTAssertEqual(board.playerOnTurn(), PlayerColor.white)
         
         board.setPiece(Square(column: 1, line: 1))
-        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.black)
+        XCTAssertEqual(board.playerOnTurn(), PlayerColor.black)
         
         board.setPiece(Square(column: 1, line: 2))
-        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.white)
+        XCTAssertEqual(board.playerOnTurn(), PlayerColor.white)
         
         board.setPiece(Square(column: 2, line: 2))
-        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.black)
+        XCTAssertEqual(board.playerOnTurn(), PlayerColor.black)
         
         board.dragPiecesFrom(Square(column: 1, line: 1), to:Square(column: 1, line: 2), withNumber:1)
-        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.white)
+        XCTAssertEqual(board.playerOnTurn(), PlayerColor.white)
         
         board.dragPiecesFrom(Square(column: 2, line: 2), to:Square(column: 1, line: 2), withNumber:1)
-        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.white, "illegal move, turn stays")
+        XCTAssertEqual(board.playerOnTurn(), PlayerColor.white, "illegal move, turn stays")
         
         board.dragPiecesFrom(Square(column: 1, line: 2), to:Square(column: 2, line: 2), withNumber:1)
-        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.black)
+        XCTAssertEqual(board.playerOnTurn(), PlayerColor.black)
     }
     
     func testSetPiece() {
@@ -123,8 +123,8 @@ class ModelBoardTests : XCTestCase {
         XCTAssertFalse(board.setPiece(square1), "There should already be a piece")
         XCTAssertTrue(board.setPiece(square3), "this should be empty and therefore legal")
         
-        XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.white), 18, "two pieces set")
-        XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.black), 19,
+        XCTAssertEqual(board.numberOfPiecesForPlayer(PlayerColor.white), 18, "two pieces set")
+        XCTAssertEqual(board.numberOfPiecesForPlayer(PlayerColor.black), 19,
             "only one piece set, one move attempt was illegal")
         
         XCTAssertEqual(board.heightOfSquare(square2), 1, "one piece set -> height 1")
@@ -149,22 +149,22 @@ class ModelBoardTests : XCTestCase {
         board.setPiece(square3) // black
         board.setPiece(square4) // white
         
-        XCTAssertEqual(board.colorOfSquare(square0, atPosition:0), ModelPlayer.white)
-        XCTAssertEqual(board.colorOfSquare(square1, atPosition:0), ModelPlayer.black)
-        XCTAssertEqual(board.colorOfSquare(square2, atPosition:0), ModelPlayer.white)
-        XCTAssertEqual(board.colorOfSquare(square3, atPosition:0), ModelPlayer.black)
-        XCTAssertEqual(board.colorOfSquare(square4, atPosition:0), ModelPlayer.white)
+        XCTAssertEqual(board.colorOfSquare(square0, atPosition:0), PlayerColor.white)
+        XCTAssertEqual(board.colorOfSquare(square1, atPosition:0), PlayerColor.black)
+        XCTAssertEqual(board.colorOfSquare(square2, atPosition:0), PlayerColor.white)
+        XCTAssertEqual(board.colorOfSquare(square3, atPosition:0), PlayerColor.black)
+        XCTAssertEqual(board.colorOfSquare(square4, atPosition:0), PlayerColor.white)
         
         board.dragPiecesFrom(square1, to:square0, withNumber:1)
         board.dragPiecesFrom(square4, to:square3, withNumber:1)
         board.dragPiecesFrom(square3, to:square2, withNumber:2)
         board.dragPiecesFrom(square2, to:square0, withNumber:2) // not all!
         
-        XCTAssertEqual(board.colorOfSquare(square0, atPosition:3), ModelPlayer.white, "here from the beginning")
-        XCTAssertEqual(board.colorOfSquare(square0, atPosition:2), ModelPlayer.black, "originally at square1")
-        XCTAssertEqual(board.colorOfSquare(square0, atPosition:1), ModelPlayer.black, "originally at square3")
-        XCTAssertEqual(board.colorOfSquare(square0, atPosition:0), ModelPlayer.white, "originally at square4")
-        XCTAssertEqual(board.colorOfSquare(square2, atPosition:0), ModelPlayer.white, "here from the beginning")
+        XCTAssertEqual(board.colorOfSquare(square0, atPosition:3), PlayerColor.white, "here from the beginning")
+        XCTAssertEqual(board.colorOfSquare(square0, atPosition:2), PlayerColor.black, "originally at square1")
+        XCTAssertEqual(board.colorOfSquare(square0, atPosition:1), PlayerColor.black, "originally at square3")
+        XCTAssertEqual(board.colorOfSquare(square0, atPosition:0), PlayerColor.white, "originally at square4")
+        XCTAssertEqual(board.colorOfSquare(square2, atPosition:0), PlayerColor.white, "here from the beginning")
     }
 
     /// Also tests correct id for both setting and dragging
@@ -359,9 +359,9 @@ class ModelBoardTests : XCTestCase {
             }
         }
         
-        XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.white), 7, "")
-        XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.black), 8, "")
-        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.white)
+        XCTAssertEqual(board.numberOfPiecesForPlayer(PlayerColor.white), 7, "")
+        XCTAssertEqual(board.numberOfPiecesForPlayer(PlayerColor.black), 8, "")
+        XCTAssertEqual(board.playerOnTurn(), PlayerColor.white)
         
         // setting 14 pieces on cleared squares
         for i in 0..<5 {
@@ -375,24 +375,24 @@ class ModelBoardTests : XCTestCase {
             }
         }
         
-        XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.white), 0, "")
-        XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.black), 1, "")
-        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.white)
+        XCTAssertEqual(board.numberOfPiecesForPlayer(PlayerColor.white), 0, "")
+        XCTAssertEqual(board.numberOfPiecesForPlayer(PlayerColor.black), 1, "")
+        XCTAssertEqual(board.playerOnTurn(), PlayerColor.white)
         
         let emptySquare = Square(column: 4, line: 3)
         XCTAssertTrue(board.isSquareEmpty(emptySquare))
         XCTAssertFalse(board.isSettingPossible(), "no pieces left for white")
         
         board.dragPiecesFrom(Square(column: 1, line: 4), to:Square(column: 1, line: 3), withNumber:3)
-        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.black)
+        XCTAssertEqual(board.playerOnTurn(), PlayerColor.black)
         XCTAssertTrue(board.isSettingPossible(), "")
         board.setPiece(emptySquare)
         
-        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.white)
+        XCTAssertEqual(board.playerOnTurn(), PlayerColor.white)
         XCTAssertFalse(board.isSettingPossible(), "")
         board.dragPiecesFrom(Square(column: 1, line: 3), to:Square(column: 1, line: 4), withNumber:3)
         
-        XCTAssertEqual(board.playerOnTurn(), ModelPlayer.black)
+        XCTAssertEqual(board.playerOnTurn(), PlayerColor.black)
         XCTAssertFalse(board.isSettingPossible(), "no pieces left for black")
     }
     

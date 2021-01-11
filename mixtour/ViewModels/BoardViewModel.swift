@@ -5,7 +5,7 @@ class BoardViewModel: ObservableObject {
 
     // MARK variables set from outside
     private var board: ModelBoard
-    private var humanColor: ModelPlayer
+    private var humanColor: PlayerColor
     private var computerPlayer: ComputerPlayer
 
     // MARK internal state
@@ -27,7 +27,7 @@ class BoardViewModel: ObservableObject {
         var number: Int
     }
 
-    private var computerColor: ModelPlayer { humanColor == .white ? .black : .white }
+    private var computerColor: PlayerColor { humanColor == .white ? .black : .white }
 
     // Public properties
 
@@ -51,7 +51,7 @@ class BoardViewModel: ObservableObject {
 
     init(
         board: ModelBoard = ModelBoard(),
-        color: ModelPlayer = .white,
+        color: PlayerColor = .white,
         computer: ComputerPlayer = .beginner
     ) {
         self.board = board
@@ -67,7 +67,7 @@ class BoardViewModel: ObservableObject {
         }
     }
 
-    func reset(board: ModelBoard = ModelBoard(), color: ModelPlayer = .white) {
+    func reset(board: ModelBoard = ModelBoard(), color: PlayerColor = .white) {
         objectWillChange.send()
         previousBoard = nil
         animatableMove = nil
@@ -163,7 +163,7 @@ class BoardViewModel: ObservableObject {
         return unusedPiecesPartFor(computerColor)
     }
 
-    private func unusedPiecesPartFor(_ player: ModelPlayer) -> PieceStackPart {
+    private func unusedPiecesPartFor(_ player: PlayerColor) -> PieceStackPart {
         let pieces = board.unusedPiecesForPlayer(player).enumerated().map { (index, piece) in
             PieceViewModel(color: piece.color, id: piece.id, zIndex: Double(index))
         }

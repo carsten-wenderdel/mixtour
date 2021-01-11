@@ -1,6 +1,6 @@
 import Core
 
-public enum ModelPlayer: Int {
+public enum PlayerColor: Int {
     case white = 0
     case black = 1
     
