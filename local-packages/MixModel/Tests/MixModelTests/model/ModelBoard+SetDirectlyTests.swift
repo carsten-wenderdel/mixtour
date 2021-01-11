@@ -7,7 +7,7 @@ class ModelBoard_SetDirectlyTests: XCTestCase {
     func testPiecesAtSquare() {
         // Given
         let board = ModelBoard()
-        let square = ModelSquare(column: 3, line: 2)
+        let square = Square(column: 3, line: 2)
 
         // When
         board.setPiecesDirectlyToSquare(square, .white, .white, .black)

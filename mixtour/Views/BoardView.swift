@@ -4,14 +4,14 @@ import MixModel
 struct BoardView: View {
     @ObservedObject var board: BoardViewModel
     var namespace: Namespace.ID
-    @State private var draggedSquare: ModelSquare?
+    @State private var draggedSquare: Square?
 
     var body: some View {
         VStack(spacing: 0) {
             ForEach(0..<numberOfSquares) { line in
                 HStack(spacing: 0) {
                     ForEach(0..<numberOfSquares) { column in
-                        let square = ModelSquare(column: column, line: line)
+                        let square = Square(column: column, line: line)
                         let stackVM = board.stackAtSquare(square)
 
                         let emptyPart = PieceStackPart(pieces: [], square: square, useDrag: false)

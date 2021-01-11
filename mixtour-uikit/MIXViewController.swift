@@ -70,7 +70,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
 
     // MARK: GameViewDelegate
 
-    func gameView(_ gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: ModelSquare, to: ModelSquare) -> Bool {
+    func gameView(_ gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: Square, to: Square) -> Bool {
         
         print("Try to drag \(numberOfDraggedPieces) pieces from \(from.column)/\(from.line) to \(to.column)/\(to.line)")
         
@@ -78,7 +78,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
         return self.gameView(gameView, tryToMakeMove: move)
     }
     
-    func gameView(_ gameView : GameView, tryToSetPieceTo to: ModelSquare) -> Bool {
+    func gameView(_ gameView : GameView, tryToSetPieceTo to: Square) -> Bool {
         
         print("Try to set piece to \(to.column)/\(to.line)")
         

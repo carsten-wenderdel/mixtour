@@ -12,7 +12,7 @@ class ModelBoardTests : XCTestCase {
         
         for i in 0..<5 {
             for j in 0..<5 {
-                let square = ModelSquare(column: i, line: j)
+                let square = Square(column: i, line: j)
                 XCTAssertTrue(modelBoard.isSquareEmpty(square), "at the the start everything is empty")
                 XCTAssertEqual(modelBoard.heightOfSquare(square), 0, "at the start everything should be empty")
             }
@@ -23,7 +23,7 @@ class ModelBoardTests : XCTestCase {
     func testInitWithBoard() {
         // given
         let modelBoard = ModelBoard();
-        let modelSquare = ModelSquare(column: 1, line: 1)
+        let modelSquare = Square(column: 1, line: 1)
         modelBoard.makeMoveIfLegal(ModelMove(setPieceTo: modelSquare))
         
         // when
@@ -33,7 +33,7 @@ class ModelBoardTests : XCTestCase {
         XCTAssertEqual(copyBoard.heightOfSquare(modelSquare), 1)
         
         // when
-        let modelSquare2 = ModelSquare(column: 2, line: 2)
+        let modelSquare2 = Square(column: 2, line: 2)
         copyBoard.makeMoveIfLegal(ModelMove(setPieceTo: modelSquare2))
 
         // assert
@@ -45,11 +45,11 @@ class ModelBoardTests : XCTestCase {
         let board = ModelBoard()
         XCTAssertFalse(board.isGameOver(), "")
         
-        board.setPiece(ModelSquare(column: 0, line: 0))
+        board.setPiece(Square(column: 0, line: 0))
         for i in 1..<5 {
             XCTAssertFalse(board.isGameOver(), "")
-            let oldSquare = ModelSquare(column: 0, line: i - 1)
-            let newSquare = ModelSquare(column: 0, line: i)
+            let oldSquare = Square(column: 0, line: i - 1)
+            let newSquare = Square(column: 0, line: i)
             board.setPiece(newSquare)
             board.dragPiecesFrom(oldSquare, to: newSquare, withNumber: i)
         }
@@ -62,11 +62,11 @@ class ModelBoardTests : XCTestCase {
         var board = ModelBoard()
         XCTAssertEqual(board.winner(), nil)
         
-        board.setPiece(ModelSquare(column: 0, line: 0))
+        board.setPiece(Square(column: 0, line: 0))
         for i in 1..<5 {
             XCTAssertEqual(board.winner(), nil)
-            let oldSquare = ModelSquare(column: 0, line: i - 1)
-            let newSquare = ModelSquare(column: 0, line: i)
+            let oldSquare = Square(column: 0, line: i - 1)
+            let newSquare = Square(column: 0, line: i)
             board.setPiece(newSquare)
             board.dragPiecesFrom(oldSquare, to:newSquare, withNumber:i)
         }
@@ -75,11 +75,11 @@ class ModelBoardTests : XCTestCase {
         
         // and now the same, but place one additional piece at the beginning somewhere else.
         board = ModelBoard()
-        board.setPiece(ModelSquare(column: 3, line: 3))
-        board.setPiece(ModelSquare(column: 0, line: 0))
+        board.setPiece(Square(column: 3, line: 3))
+        board.setPiece(Square(column: 0, line: 0))
         for i in 1..<5 {
-            let oldSquare = ModelSquare(column: 0, line: i - 1)
-            let newSquare = ModelSquare(column: 0, line: i)
+            let oldSquare = Square(column: 0, line: i - 1)
+            let newSquare = Square(column: 0, line: i)
             board.setPiece(newSquare)
             board.dragPiecesFrom(oldSquare, to:newSquare, withNumber:i)
         }
@@ -92,31 +92,31 @@ class ModelBoardTests : XCTestCase {
         let board = ModelBoard()
         XCTAssertEqual(board.playerOnTurn(), ModelPlayer.white)
         
-        board.setPiece(ModelSquare(column: 1, line: 1))
+        board.setPiece(Square(column: 1, line: 1))
         XCTAssertEqual(board.playerOnTurn(), ModelPlayer.black)
         
-        board.setPiece(ModelSquare(column: 1, line: 2))
+        board.setPiece(Square(column: 1, line: 2))
         XCTAssertEqual(board.playerOnTurn(), ModelPlayer.white)
         
-        board.setPiece(ModelSquare(column: 2, line: 2))
+        board.setPiece(Square(column: 2, line: 2))
         XCTAssertEqual(board.playerOnTurn(), ModelPlayer.black)
         
-        board.dragPiecesFrom(ModelSquare(column: 1, line: 1), to:ModelSquare(column: 1, line: 2), withNumber:1)
+        board.dragPiecesFrom(Square(column: 1, line: 1), to:Square(column: 1, line: 2), withNumber:1)
         XCTAssertEqual(board.playerOnTurn(), ModelPlayer.white)
         
-        board.dragPiecesFrom(ModelSquare(column: 2, line: 2), to:ModelSquare(column: 1, line: 2), withNumber:1)
+        board.dragPiecesFrom(Square(column: 2, line: 2), to:Square(column: 1, line: 2), withNumber:1)
         XCTAssertEqual(board.playerOnTurn(), ModelPlayer.white, "illegal move, turn stays")
         
-        board.dragPiecesFrom(ModelSquare(column: 1, line: 2), to:ModelSquare(column: 2, line: 2), withNumber:1)
+        board.dragPiecesFrom(Square(column: 1, line: 2), to:Square(column: 2, line: 2), withNumber:1)
         XCTAssertEqual(board.playerOnTurn(), ModelPlayer.black)
     }
     
     func testSetPiece() {
         let board = ModelBoard()
         
-        let square1 = ModelSquare(column: 1, line: 3)
-        let square2 = ModelSquare(column: 2, line: 3)
-        let square3 = ModelSquare(column: 3, line: 3)
+        let square1 = Square(column: 1, line: 3)
+        let square2 = Square(column: 2, line: 3)
+        let square3 = Square(column: 3, line: 3)
         
         XCTAssertTrue(board.setPiece(square1), "this should be empty and therefore legal")
         XCTAssertTrue(board.setPiece(square2), "this should be empty and therefore legal")
@@ -129,7 +129,7 @@ class ModelBoardTests : XCTestCase {
         
         XCTAssertEqual(board.heightOfSquare(square2), 1, "one piece set -> height 1")
         XCTAssertEqual(board.heightOfSquare(square1), 1, "you can only set once -> height 1")
-        XCTAssertEqual(board.heightOfSquare(ModelSquare(column: 0, line: 0)), 0, "nothing set here")
+        XCTAssertEqual(board.heightOfSquare(Square(column: 0, line: 0)), 0, "nothing set here")
     }
     
     
@@ -137,11 +137,11 @@ class ModelBoardTests : XCTestCase {
         
         let board = ModelBoard()
         
-        let square0 = ModelSquare(column: 0, line: 3)
-        let square1 = ModelSquare(column: 1, line: 3)
-        let square2 = ModelSquare(column: 2, line: 3)
-        let square3 = ModelSquare(column: 3, line: 3)
-        let square4 = ModelSquare(column: 4, line: 3)
+        let square0 = Square(column: 0, line: 3)
+        let square1 = Square(column: 1, line: 3)
+        let square2 = Square(column: 2, line: 3)
+        let square3 = Square(column: 3, line: 3)
+        let square4 = Square(column: 4, line: 3)
 
         board.setPiece(square0) // white
         board.setPiece(square1) // black
@@ -170,8 +170,8 @@ class ModelBoardTests : XCTestCase {
     /// Also tests correct id for both setting and dragging
     func testPiecesAtSquare() {
         // Given
-        let square0 = ModelSquare(column: 0, line: 3)
-        let square1 = ModelSquare(column: 1, line: 3)
+        let square0 = Square(column: 0, line: 3)
+        let square1 = Square(column: 1, line: 3)
 
         let board = ModelBoard()
 
@@ -199,8 +199,8 @@ class ModelBoardTests : XCTestCase {
 
     func testDragsTheRightIDWhenLargerStack() {
         // Given
-        let square0 = ModelSquare(column: 0, line: 1)
-        let square1 = ModelSquare(column: 2, line: 1)
+        let square0 = Square(column: 0, line: 1)
+        let square1 = Square(column: 2, line: 1)
         let board = ModelBoard()
 
         board.setPiecesDirectlyToSquare(square0, .black, .white)
@@ -227,29 +227,29 @@ class ModelBoardTests : XCTestCase {
         let board = ModelBoard()
         
         // from top to bottom: black, white, white on 1/1
-        board.setPiece(ModelSquare(column: 1, line: 1))
-        board.setPiece(ModelSquare(column: 0, line: 1))
-        board.setPiece(ModelSquare(column: 0, line: 0))
-        board.dragPiecesFrom(ModelSquare(column: 0, line: 1), to:ModelSquare(column: 0, line: 0), withNumber:1)
-        board.dragPiecesFrom(ModelSquare(column: 0, line: 0), to:ModelSquare(column: 1, line: 1), withNumber:2)
+        board.setPiece(Square(column: 1, line: 1))
+        board.setPiece(Square(column: 0, line: 1))
+        board.setPiece(Square(column: 0, line: 0))
+        board.dragPiecesFrom(Square(column: 0, line: 1), to:Square(column: 0, line: 0), withNumber:1)
+        board.dragPiecesFrom(Square(column: 0, line: 0), to:Square(column: 1, line: 1), withNumber:2)
         
         // from top to bottom: white, black, black on 4/4
-        board.setPiece(ModelSquare(column: 4, line: 4))
-        board.setPiece(ModelSquare(column: 2, line: 4))
-        board.setPiece(ModelSquare(column: 3, line: 4))
-        board.dragPiecesFrom(ModelSquare(column: 2, line: 4), to:ModelSquare(column: 3, line: 4), withNumber:1)
-        board.dragPiecesFrom(ModelSquare(column: 3, line: 4), to:ModelSquare(column: 4, line: 4), withNumber:2)
+        board.setPiece(Square(column: 4, line: 4))
+        board.setPiece(Square(column: 2, line: 4))
+        board.setPiece(Square(column: 3, line: 4))
+        board.dragPiecesFrom(Square(column: 2, line: 4), to:Square(column: 3, line: 4), withNumber:1)
+        board.dragPiecesFrom(Square(column: 3, line: 4), to:Square(column: 4, line: 4), withNumber:2)
         
         // from top to bottom: black, white on 1/4
-        board.setPiece(ModelSquare(column: 1, line: 4))
-        board.setPiece(ModelSquare(column: 2, line: 4))
-        board.dragPiecesFrom(ModelSquare(column: 2, line: 4), to:ModelSquare(column: 1, line: 4), withNumber:1)
+        board.setPiece(Square(column: 1, line: 4))
+        board.setPiece(Square(column: 2, line: 4))
+        board.dragPiecesFrom(Square(column: 2, line: 4), to:Square(column: 1, line: 4), withNumber:1)
         
         // white on 0/0
-        board.setPiece(ModelSquare(column: 0, line: 0))
+        board.setPiece(Square(column: 0, line: 0))
         
         // black on 0/1
-        board.setPiece(ModelSquare(column: 0, line: 1))
+        board.setPiece(Square(column: 0, line: 1))
         
         return board;
     }
@@ -259,11 +259,11 @@ class ModelBoardTests : XCTestCase {
         
         let board = boardForTestingMoves()
         
-        XCTAssertEqual(board.heightOfSquare(ModelSquare(column: 1, line: 1)), 3)
-        XCTAssertEqual(board.heightOfSquare(ModelSquare(column: 4, line: 4)), 3)
-        XCTAssertEqual(board.heightOfSquare(ModelSquare(column: 1, line: 4)), 2)
-        XCTAssertEqual(board.heightOfSquare(ModelSquare(column: 0, line: 0)), 1)
-        XCTAssertEqual(board.heightOfSquare(ModelSquare(column: 3, line: 3)), 0, "nothing set here")
+        XCTAssertEqual(board.heightOfSquare(Square(column: 1, line: 1)), 3)
+        XCTAssertEqual(board.heightOfSquare(Square(column: 4, line: 4)), 3)
+        XCTAssertEqual(board.heightOfSquare(Square(column: 1, line: 4)), 2)
+        XCTAssertEqual(board.heightOfSquare(Square(column: 0, line: 0)), 1)
+        XCTAssertEqual(board.heightOfSquare(Square(column: 3, line: 3)), 0, "nothing set here")
     }
     
     
@@ -272,35 +272,35 @@ class ModelBoardTests : XCTestCase {
         let board = boardForTestingMoves()
         
         // legal drags:
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 1), numberOfPieces: 1)))
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 4, line: 4), numberOfPieces: 1)))
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 1), numberOfPieces: 1)))
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 4, line: 4), numberOfPieces: 1)))
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 0, line: 1), numberOfPieces: 1)))
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 0, line: 0), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: Square(column: 4, line: 4), to:Square(column: 1, line: 1), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: Square(column: 1, line: 1), to:Square(column: 4, line: 4), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: Square(column: 1, line: 4), to:Square(column: 1, line: 1), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: Square(column: 1, line: 4), to:Square(column: 4, line: 4), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: Square(column: 1, line: 1), to:Square(column: 0, line: 1), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: Square(column: 1, line: 1), to:Square(column: 0, line: 0), numberOfPieces: 1)))
         
         // illegal drags because of wrong height:
-        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 1, line: 4), numberOfPieces: 1)))
-        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 4), numberOfPieces: 1)))
-        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 0, line: 0), to:ModelSquare(column: 1, line: 1), numberOfPieces: 1)))
+        XCTAssertFalse(board.isMoveLegal(ModelMove(from: Square(column: 1, line: 1), to:Square(column: 1, line: 4), numberOfPieces: 1)))
+        XCTAssertFalse(board.isMoveLegal(ModelMove(from: Square(column: 4, line: 4), to:Square(column: 1, line: 4), numberOfPieces: 1)))
+        XCTAssertFalse(board.isMoveLegal(ModelMove(from: Square(column: 0, line: 0), to:Square(column: 1, line: 1), numberOfPieces: 1)))
         
         // put some pieces between -> legal becomes illegal
-        board.setPiece(ModelSquare(column: 2, line: 2))
-        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 4, line: 4), to:ModelSquare(column: 1, line: 1), numberOfPieces: 1)))
-        XCTAssertFalse(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 1), to:ModelSquare(column: 4, line: 4), numberOfPieces: 1)))
+        board.setPiece(Square(column: 2, line: 2))
+        XCTAssertFalse(board.isMoveLegal(ModelMove(from: Square(column: 4, line: 4), to:Square(column: 1, line: 1), numberOfPieces: 1)))
+        XCTAssertFalse(board.isMoveLegal(ModelMove(from: Square(column: 1, line: 1), to:Square(column: 4, line: 4), numberOfPieces: 1)))
         
-        board.setPiece(ModelSquare(column: 1, line: 3))
-        board.setPiece(ModelSquare(column: 3, line: 4))
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 1), numberOfPieces: 1)))
-        XCTAssert(board.isMoveLegal(ModelMove(from: ModelSquare(column: 1, line: 4), to:ModelSquare(column: 4, line: 4), numberOfPieces: 1)))
+        board.setPiece(Square(column: 1, line: 3))
+        board.setPiece(Square(column: 3, line: 4))
+        XCTAssert(board.isMoveLegal(ModelMove(from: Square(column: 1, line: 4), to:Square(column: 1, line: 1), numberOfPieces: 1)))
+        XCTAssert(board.isMoveLegal(ModelMove(from: Square(column: 1, line: 4), to:Square(column: 4, line: 4), numberOfPieces: 1)))
     }
     
     func testMoveIsIllegalIfRevert() {
         let board = ModelBoard()
         
         // given
-        let square1 = ModelSquare(column: 1, line: 1)
-        let square2 = ModelSquare(column: 2, line: 2)
+        let square1 = Square(column: 1, line: 1)
+        let square2 = Square(column: 2, line: 2)
         board.setPiecesDirectlyToSquare(square1, .black, .white)
         board.setPiecesDirectlyToSquare(square2, .black)
 
@@ -315,8 +315,8 @@ class ModelBoardTests : XCTestCase {
         // Given
         let board = ModelBoard()
 
-        let square1 = ModelSquare(column: 1, line: 1)
-        let square2 = ModelSquare(column: 2, line: 2)
+        let square1 = Square(column: 1, line: 1)
+        let square2 = Square(column: 2, line: 2)
         board.setPiecesDirectlyToSquare(square1, .white)
 
         // When / Then
@@ -327,13 +327,13 @@ class ModelBoardTests : XCTestCase {
         let board = ModelBoard()
         for i in 1..<5 {
             for j in 1..<5 {
-                board.setPiece(ModelSquare(column: i, line: j))
+                board.setPiece(Square(column: i, line: j))
             }
         }
-        let squareWithTwoPieces = ModelSquare(column: 4, line: 1)
-        board.dragPiecesFrom(ModelSquare(column: 3, line: 2), to:squareWithTwoPieces, withNumber:1)
+        let squareWithTwoPieces = Square(column: 4, line: 1)
+        board.dragPiecesFrom(Square(column: 3, line: 2), to:squareWithTwoPieces, withNumber:1)
         
-        XCTAssertTrue(board.isMoveLegal(ModelMove(from: ModelSquare(column: 2, line: 3), to: squareWithTwoPieces, numberOfPieces: 1)))
+        XCTAssertTrue(board.isMoveLegal(ModelMove(from: Square(column: 2, line: 3), to: squareWithTwoPieces, numberOfPieces: 1)))
     }
     
     func testIsSettingPossible() {
@@ -344,7 +344,7 @@ class ModelBoardTests : XCTestCase {
         for i in 0..<5 {
             for j in 0..<5 {
                 XCTAssertTrue(board.isSettingPossible(), "still something free")
-                board.setPiece(ModelSquare(column: i, line: j))
+                board.setPiece(Square(column: i, line: j))
             }
         }
         XCTAssertFalse(board.isSettingPossible(), "all 25 squares covered")
@@ -352,8 +352,8 @@ class ModelBoardTests : XCTestCase {
         // clearing (15) squares as much as possible with the exception of j==0
         for i in 0..<5 {
             for j in 1..<4 {
-                let from = ModelSquare(column: i, line: j)
-                let to = ModelSquare(column: i, line: j+1)
+                let from = Square(column: i, line: j)
+                let to = Square(column: i, line: j+1)
                 board.dragPiecesFrom(from, to:to, withNumber:j)
                 XCTAssertTrue(board.isSettingPossible(), "")
             }
@@ -368,7 +368,7 @@ class ModelBoardTests : XCTestCase {
             for j in 1..<4 {
                 if (i != 4 || j != 3) {
                     XCTAssertTrue(board.isSettingPossible(), "")
-                    let square = ModelSquare(column: i, line: j)
+                    let square = Square(column: i, line: j)
                     XCTAssertTrue(board.isSquareEmpty(square))
                     board.setPiece(square)
                 }
@@ -379,18 +379,18 @@ class ModelBoardTests : XCTestCase {
         XCTAssertEqual(board.numberOfPiecesForPlayer(ModelPlayer.black), 1, "")
         XCTAssertEqual(board.playerOnTurn(), ModelPlayer.white)
         
-        let emptySquare = ModelSquare(column: 4, line: 3)
+        let emptySquare = Square(column: 4, line: 3)
         XCTAssertTrue(board.isSquareEmpty(emptySquare))
         XCTAssertFalse(board.isSettingPossible(), "no pieces left for white")
         
-        board.dragPiecesFrom(ModelSquare(column: 1, line: 4), to:ModelSquare(column: 1, line: 3), withNumber:3)
+        board.dragPiecesFrom(Square(column: 1, line: 4), to:Square(column: 1, line: 3), withNumber:3)
         XCTAssertEqual(board.playerOnTurn(), ModelPlayer.black)
         XCTAssertTrue(board.isSettingPossible(), "")
         board.setPiece(emptySquare)
         
         XCTAssertEqual(board.playerOnTurn(), ModelPlayer.white)
         XCTAssertFalse(board.isSettingPossible(), "")
-        board.dragPiecesFrom(ModelSquare(column: 1, line: 3), to:ModelSquare(column: 1, line: 4), withNumber:3)
+        board.dragPiecesFrom(Square(column: 1, line: 3), to:Square(column: 1, line: 4), withNumber:3)
         
         XCTAssertEqual(board.playerOnTurn(), ModelPlayer.black)
         XCTAssertFalse(board.isSettingPossible(), "no pieces left for black")
@@ -403,79 +403,79 @@ class ModelBoardTests : XCTestCase {
     
     func testDraggingPossibleLeft() {
         let board = ModelBoard()
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 2, line: 0), .black, .white, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 0), .black, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 2, line: 0), .black, .white, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .black, .white)
         XCTAssertTrue(board.isDraggingPossible())
         
         // In between:
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 0), .white, .black)
+        board.setPiecesDirectlyToSquare(Square(column: 1, line: 0), .white, .black)
         XCTAssertFalse(board.isDraggingPossible())
     }
     
     func testDraggingPossibleRight() {
         let board = ModelBoard()
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 0), .black, .black)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 0), .black, .white, .black)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .black, .black)
+        board.setPiecesDirectlyToSquare(Square(column: 3, line: 0), .black, .white, .black)
         XCTAssertTrue(board.isDraggingPossible())
         
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 0), .white, .white, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 1, line: 0), .white, .white, .white)
         XCTAssertFalse(board.isDraggingPossible())
     }
     
     func testDraggingPossibleUp() {
         let board = ModelBoard()
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 1), .black, .white, .black)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 0), .black)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 1), .black, .white, .black)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .black)
         XCTAssertTrue(board.isDraggingPossible())
     }
     
     func testDraggingPossibleDown() {
         let board = ModelBoard()
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 0), .black, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 4), .black, .white, .black, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .black, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 4), .black, .white, .black, .white)
         XCTAssertTrue(board.isDraggingPossible())
         
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 3), .white, .black)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 3), .white, .black)
         XCTAssertFalse(board.isDraggingPossible())
     }
     
     func testDraggingPossibleLeftUp() {
         let board = ModelBoard()
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 2, line: 4), .black, .white, .black, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 2), .black, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 2, line: 4), .black, .white, .black, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 2), .black, .white)
         XCTAssertTrue(board.isDraggingPossible())
         
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 3), .white, .black)
+        board.setPiecesDirectlyToSquare(Square(column: 1, line: 3), .white, .black)
         XCTAssertFalse(board.isDraggingPossible())
     }
     
     func testDraggingPossibleLeftDown() {
         let board = ModelBoard()
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 2, line: 0), .black, .white, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 2), .black, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 2, line: 0), .black, .white, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 2), .black, .white)
         XCTAssertTrue(board.isDraggingPossible())
         
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 1), .white, .black)
+        board.setPiecesDirectlyToSquare(Square(column: 1, line: 1), .white, .black)
         XCTAssertFalse(board.isDraggingPossible())
     }
     
     func testDraggingPossibleRightUp() {
         let board = ModelBoard()
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 4), .black)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 3, line: 1), .black, .white, .black)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 4), .black)
+        board.setPiecesDirectlyToSquare(Square(column: 3, line: 1), .black, .white, .black)
         XCTAssertTrue(board.isDraggingPossible())
         
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 2, line: 2), .white, .white, .black)
+        board.setPiecesDirectlyToSquare(Square(column: 2, line: 2), .white, .white, .black)
         XCTAssertFalse(board.isDraggingPossible())
     }
     
     func testDraggingPossibleRightDown() {
         let board = ModelBoard()
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 1, line: 0), .black, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 4, line: 3), .black, .white, .black)
+        board.setPiecesDirectlyToSquare(Square(column: 1, line: 0), .black, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 4, line: 3), .black, .white, .black)
         XCTAssertTrue(board.isDraggingPossible())
         
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 2, line: 1), .white, .black, .black)
+        board.setPiecesDirectlyToSquare(Square(column: 2, line: 1), .white, .black, .black)
         XCTAssertFalse(board.isDraggingPossible())
     }
     
@@ -488,8 +488,8 @@ class ModelBoardTests : XCTestCase {
     func testLegalMovesDoesNotContainRevertMove() {
         let board = ModelBoard()
         
-        let square1 = ModelSquare(column: 1, line: 0)
-        let square2 = ModelSquare(column: 1, line: 1)
+        let square1 = Square(column: 1, line: 0)
+        let square2 = Square(column: 1, line: 1)
         
         board.setPiecesDirectlyToSquare(square1, .black, .white, .white)
         board.setPiecesDirectlyToSquare(square2, .black)
@@ -513,11 +513,11 @@ class ModelBoardTests : XCTestCase {
         let board = ModelBoard()
     
         // given all 20 white pieces are set:
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 0), .white, .white, .white, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 1), .white, .white, .white, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 2), .white, .white, .white, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 3), .white, .white, .white, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 4), .white, .white, .white, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .white, .white, .white, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 1), .white, .white, .white, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 2), .white, .white, .white, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 3), .white, .white, .white, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 4), .white, .white, .white, .white)
 
         let allMovesForWhite = board.allLegalMoves()
         XCTAssertEqual(allMovesForWhite.count, 0)
@@ -535,15 +535,15 @@ class ModelBoardTests : XCTestCase {
     func testNumberOfMovesForComplicatedPosition() {
         let board = ModelBoard()
         
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 0, line: 0), .white, .black, .white, .white)
-        board.setPiecesDirectlyToSquare(ModelSquare(column: 4, line: 4), .white, .black)
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .white, .black, .white, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 4, line: 4), .white, .black)
         
         let allMoves = board.allLegalMoves()
         // 23 sets and 1 drag
         XCTAssertEqual(allMoves.count, 25)
-        XCTAssertTrue(allMoves.contains(ModelMove(setPieceTo: ModelSquare(column: 2, line: 2))))
+        XCTAssertTrue(allMoves.contains(ModelMove(setPieceTo: Square(column: 2, line: 2))))
         
-        let someDragMove = ModelMove(from: ModelSquare(column: 4, line: 4), to: ModelSquare(column: 0, line: 0), numberOfPieces: 2)
+        let someDragMove = ModelMove(from: Square(column: 4, line: 4), to: Square(column: 0, line: 0), numberOfPieces: 2)
         XCTAssertTrue(allMoves.contains(someDragMove))
     }
 }

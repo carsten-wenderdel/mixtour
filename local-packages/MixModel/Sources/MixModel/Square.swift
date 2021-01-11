@@ -1,7 +1,7 @@
 import Foundation
 import Core
 
-public struct ModelSquare: Identifiable, Hashable {
+public struct Square: Identifiable, Hashable {
     public var column, line: Int
 
     public var id: String { "\(line)-\(column)" }
@@ -18,7 +18,7 @@ public struct ModelSquare: Identifiable, Hashable {
 
 // It's done in an extension to keep the default initializer.
 // See "Initializer Delegation for Value Types" in "The Swift Programming Language"
-extension ModelSquare {
+extension Square {
     init(coreSquare: MIXCoreSquare) {
         column = Int(coreSquare.column)
         line = Int(coreSquare.line)
@@ -26,8 +26,8 @@ extension ModelSquare {
 }
 
 
-extension ModelSquare: Equatable {}
+extension Square: Equatable {}
 
-public func ==(lhs: ModelSquare, rhs: ModelSquare) -> Bool {
+public func ==(lhs: Square, rhs: Square) -> Bool {
     return MIXCoreSquareIsEqualToSquare(lhs.coreSquare(), rhs.coreSquare())
 }

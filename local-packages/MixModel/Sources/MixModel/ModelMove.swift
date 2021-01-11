@@ -9,10 +9,10 @@ import Core
 let kMoveSetIndicator = 6
 
 public struct ModelMove {
-    public let from, to: ModelSquare
+    public let from, to: Square
     public let numberOfPieces: Int
 
-    public init(from: ModelSquare, to: ModelSquare, numberOfPieces: Int) {
+    public init(from: Square, to: Square, numberOfPieces: Int) {
         self.from = from
         self.to = to
         self.numberOfPieces = numberOfPieces
@@ -31,15 +31,15 @@ public struct ModelMove {
 // See "Initializer Delegation for Value Types" in "The Swift Programming Language"
 extension ModelMove {
 
-    public init(setPieceTo: ModelSquare) {
-        from = ModelSquare(column:kMoveSetIndicator, line:0) // 0 is not important, just any number is fine
+    public init(setPieceTo: Square) {
+        from = Square(column:kMoveSetIndicator, line:0) // 0 is not important, just any number is fine
         to = setPieceTo
         numberOfPieces = 0
     }
 
     init(coreMove: MIXCoreMove) {
-        from = ModelSquare(coreSquare: coreMove.from)
-        to = ModelSquare(coreSquare: coreMove.to)
+        from = Square(coreSquare: coreMove.from)
+        to = Square(coreSquare: coreMove.to)
         numberOfPieces = Int(coreMove.numberOfPieces)
     }
 }

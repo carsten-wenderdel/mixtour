@@ -2,8 +2,8 @@ import UIKit
 import MixModel
 
 protocol GameViewDelegate: class {
-    @discardableResult func gameView(_ gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: ModelSquare, to: ModelSquare) -> Bool
-    @discardableResult func gameView(_ gameView : GameView, tryToSetPieceTo to: ModelSquare) -> Bool
+    @discardableResult func gameView(_ gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: Square, to: Square) -> Bool
+    @discardableResult func gameView(_ gameView : GameView, tryToSetPieceTo to: Square) -> Bool
     @discardableResult func gameView(_ gameView : GameView, tryToMakeMove move: ModelMove) -> Bool
 }
 
@@ -11,11 +11,11 @@ protocol GameViewDelegate: class {
 class GameView: UIView, UIGestureRecognizerDelegate {
 
     let usePieceDivider = false
-    var dividerStartSquare: ModelSquare?
+    var dividerStartSquare: Square?
     
     weak var delegate: GameViewDelegate?
 
-    var pressedSquare: ModelSquare?
+    var pressedSquare: Square?
     var pannedViews = [GamePieceView]()
     
     let upperLeftPoint: CGPoint
@@ -137,7 +137,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
 
         for column in 0..<numberOfSquares {
             for line in 0..<numberOfSquares {
-                let square = ModelSquare(column: column, line: line)
+                let square = Square(column: column, line: line)
                 let height = board.heightOfSquare(square)
                 for position in (0..<Int(height)).reversed() {
                     let player = board.colorOfSquare(square, atPosition: position)
@@ -154,7 +154,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     }
     
     
-    private func setPieceWithColor(_ color: UIColor, onSquare square: ModelSquare, atUIPosition uiPosition: Int) {
+    private func setPieceWithColor(_ color: UIColor, onSquare square: Square, atUIPosition uiPosition: Int) {
         let pieceFrame = frameOnSquare(square, atUIPosition: uiPosition)
         let pieceView = GamePieceView(frame: pieceFrame, baseColor: color)
 
@@ -165,7 +165,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         fieldArray[square.column][square.line].append(pieceView)
     }
     
-    private func frameOnSquare(_ square: ModelSquare, atUIPosition uiPosition: Int) -> CGRect {
+    private func frameOnSquare(_ square: Square, atUIPosition uiPosition: Int) -> CGRect {
         let startX = upperLeftPoint.x
             + (squareLength * CGFloat(square.column))
             + ((squareLength - pieceWidth) / 2.0)
@@ -182,10 +182,10 @@ class GameView: UIView, UIGestureRecognizerDelegate {
         return Int(uiPosition)
     }
     
-    private func squareForPosition(_ position: CGPoint) -> ModelSquare {
+    private func squareForPosition(_ position: CGPoint) -> Square {
         let line = (position.y - upperLeftPoint.y) / squareLength
         let column = (position.x - upperLeftPoint.x) / squareLength
-        let square = ModelSquare(column: Int(column), line: Int(line))
+        let square = Square(column: Int(column), line: Int(line))
         return square
     }
     
@@ -276,7 +276,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
             }
 
         case .ended:
-            delegate?.gameView(self, tryToSetPieceTo: ModelSquare(column: 10, line: 10))
+            delegate?.gameView(self, tryToSetPieceTo: Square(column: 10, line: 10))
         default: ()
         }
     }

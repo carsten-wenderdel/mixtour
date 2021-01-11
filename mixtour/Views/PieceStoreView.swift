@@ -35,7 +35,7 @@ struct PieceStoreView_Previews: PreviewProvider {
         }
         return PieceStackPart(
             pieces: pieces,
-            square: ModelSquare(column: 0, line: 0),
+            square: Square(column: 0, line: 0),
             useDrag: false
         )
     }

@@ -8,7 +8,7 @@ public let numberOfSquares = 5
 public class ModelBoard {
     
     var coreBoard: MIXCoreBoard
-    var setPieces: [ModelSquare:[ModelPiece]]
+    var setPieces: [Square:[ModelPiece]]
     var unusedPieces: [ModelPlayer:[ModelPiece]]
 
     public init() {
@@ -52,22 +52,22 @@ public class ModelBoard {
         return Int(Core.numberOfPiecesForPlayer(&coreBoard, player.corePlayer()))
     }
     
-    func isSquareEmpty(_ square: ModelSquare) -> Bool {
+    func isSquareEmpty(_ square: Square) -> Bool {
         return Core.isSquareEmpty(&coreBoard, square.coreSquare())
     }
     
-    public func heightOfSquare(_ square: ModelSquare) -> Int {
+    public func heightOfSquare(_ square: Square) -> Int {
         return Int(Core.heightOfSquare(&coreBoard, square.coreSquare()))
     }
     
     /// position 0 is the upper most piece. Undefined behavior for not existing pieces
-    public func colorOfSquare(_ square: ModelSquare, atPosition position: Int) -> ModelPlayer{
+    public func colorOfSquare(_ square: Square, atPosition position: Int) -> ModelPlayer{
         let corePlayer = colorOfSquareAtPosition(&coreBoard, square.coreSquare(), UInt8(position))
         return ModelPlayer(corePlayer: corePlayer)!
     }
 
     /// position 0 is the upper most piece
-    public func piecesAtSquare(_ square: ModelSquare) -> [ModelPiece] {
+    public func piecesAtSquare(_ square: Square) -> [ModelPiece] {
         return setPieces[square] ?? []
     }
 
@@ -79,13 +79,13 @@ public class ModelBoard {
     If this is a legal move, it returns YES.
     If it's an illegal move, the move is not made and NO is returned. The model is still fine.
     */
-    @discardableResult public func setPiece(_ square: ModelSquare) -> Bool {
+    @discardableResult public func setPiece(_ square: Square) -> Bool {
         let move = ModelMove(setPieceTo: square)
         return makeMoveIfLegal(move)
     }
     
 
-    @discardableResult func dragPiecesFrom(_ from: ModelSquare, to: ModelSquare, withNumber numberODraggedPieces: Int) -> Bool {
+    @discardableResult func dragPiecesFrom(_ from: Square, to: Square, withNumber numberODraggedPieces: Int) -> Bool {
         let modelMove = ModelMove(from: from, to: to, numberOfPieces: numberODraggedPieces)
         return makeMoveIfLegal(modelMove)
     }

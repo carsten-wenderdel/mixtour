@@ -5,8 +5,8 @@ import Core
 class ModelMoveTests: XCTestCase {
 
     func testDragMoveModelToCore() {
-        let fromSquare = ModelSquare(column: 3, line: 2)
-        let toSquare = ModelSquare(column: 4, line: 1)
+        let fromSquare = Square(column: 3, line: 2)
+        let toSquare = Square(column: 4, line: 1)
         let move = ModelMove(from: fromSquare, to: toSquare, numberOfPieces: 1)
         
         XCTAssert(move.isMoveDrag())
@@ -21,7 +21,7 @@ class ModelMoveTests: XCTestCase {
     }
     
     func testSetMoveModelToCore() {
-        let toSquare = ModelSquare(column: 1, line: 4)
+        let toSquare = Square(column: 1, line: 4)
         let move = ModelMove(setPieceTo: toSquare)
 
         XCTAssertFalse(move.isMoveDrag())
@@ -63,20 +63,20 @@ class ModelMoveTests: XCTestCase {
     }
     
     func testEqualityForSetting() {
-        let setMove1a = ModelMove(setPieceTo: ModelSquare(column: 1, line: 1))
-        let setMove1b = ModelMove(setPieceTo: ModelSquare(column: 1, line: 1))
-        let setMove2 = ModelMove(setPieceTo: ModelSquare(column: 1, line: 2))
+        let setMove1a = ModelMove(setPieceTo: Square(column: 1, line: 1))
+        let setMove1b = ModelMove(setPieceTo: Square(column: 1, line: 1))
+        let setMove2 = ModelMove(setPieceTo: Square(column: 1, line: 2))
         
         XCTAssertEqual(setMove1a, setMove1b)
         XCTAssertNotEqual(setMove1a, setMove2)
     }
     
     func testEqualityForSettingWithDifferentNonImportantInstanceVariables() {
-        let setMove1a = ModelMove(setPieceTo: ModelSquare(column: 1, line: 1))
+        let setMove1a = ModelMove(setPieceTo: Square(column: 1, line: 1))
 
         let setMove1b = ModelMove(
-            from: ModelSquare(column: 3, line: 4),
-            to: ModelSquare(column: 1, line: 1),
+            from: Square(column: 3, line: 4),
+            to: Square(column: 1, line: 1),
             numberOfPieces: 55
         )
         
@@ -84,8 +84,8 @@ class ModelMoveTests: XCTestCase {
     }
     
     func testEqualityForDragging() {
-        let square1 = ModelSquare(column: 1, line: 1)
-        let square2 = ModelSquare(column: 2, line: 2)
+        let square1 = Square(column: 1, line: 1)
+        let square2 = Square(column: 2, line: 2)
         
         let dragMove1a = ModelMove(from: square1, to: square2, numberOfPieces: 1)
         let dragMove1b = ModelMove(from: square1, to: square2, numberOfPieces: 1)

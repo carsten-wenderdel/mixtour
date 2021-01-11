@@ -13,7 +13,7 @@ struct PieceStackViewModel {
         return defaultPart.pieces.count + pickedPart.pieces.count
     }
 
-    init(pieces: [PieceViewModel], numberOfPickedPieces: Int, square: ModelSquare, useDrag: Bool) {
+    init(pieces: [PieceViewModel], numberOfPickedPieces: Int, square: Square, useDrag: Bool) {
         let pickedPieces = Array(pieces.prefix(numberOfPickedPieces))
         let defaultPieces = Array(pieces.suffix(pieces.count - numberOfPickedPieces))
         self.useDrag = useDrag
@@ -24,6 +24,6 @@ struct PieceStackViewModel {
 
 struct PieceStackPart {
     let pieces: [PieceViewModel]
-    let square: ModelSquare
+    let square: Square
     let useDrag: Bool
 }

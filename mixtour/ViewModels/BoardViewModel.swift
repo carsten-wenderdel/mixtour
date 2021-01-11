@@ -11,7 +11,7 @@ class BoardViewModel: ObservableObject {
     // MARK internal state
     private var previousBoard: ModelBoard?
     private var animatableMove: ModelMove?
-    private var setSquare: ModelSquare?
+    private var setSquare: Square?
     private var computerPlayerIsThinking = false
     
     private var pickedPieces: PickedPieces? {
@@ -23,7 +23,7 @@ class BoardViewModel: ObservableObject {
     }
 
     private struct PickedPieces {
-        var square: ModelSquare
+        var square: Square
         var number: Int
     }
 
@@ -83,21 +83,21 @@ class BoardViewModel: ObservableObject {
         }
     }
 
-    func pickPieceFromSquare(_ square: ModelSquare) {
+    func pickPieceFromSquare(_ square: Square) {
         objectWillChange.send()
         let oldNumber = numberOfPickedPiecesAt(square)
         let number = (oldNumber + 1) % board.heightOfSquare(square)
         pickedPieces = PickedPieces(square: square, number: number)
     }
 
-    func stopPickingOtherThan(_ square: ModelSquare) {
+    func stopPickingOtherThan(_ square: Square) {
         if square != pickedPieces?.square {
             objectWillChange.send()
             pickedPieces = nil
         }
     }
 
-    @discardableResult func tryDrag(_ numberOfPieces: Int, from: ModelSquare, to: ModelSquare ) -> Bool {
+    @discardableResult func tryDrag(_ numberOfPieces: Int, from: Square, to: Square ) -> Bool {
         let move = ModelMove(from: from, to: to, numberOfPieces: numberOfPieces)
         guard board.isMoveLegal(move) else {
             return false
@@ -106,7 +106,7 @@ class BoardViewModel: ObservableObject {
         return true
     }
 
-    @discardableResult func trySettingPieceTo(_ square: ModelSquare) -> Bool {
+    @discardableResult func trySettingPieceTo(_ square: Square) -> Bool {
         let move = ModelMove(setPieceTo: square)
         guard board.isMoveLegal(move) else {
             return false
@@ -169,12 +169,12 @@ class BoardViewModel: ObservableObject {
         }
         return PieceStackPart(
             pieces: pieces.reversed(),
-            square: ModelSquare(column: 6, line: 6),
+            square: Square(column: 6, line: 6),
             useDrag: true
         )
     }
 
-    private func numberOfPickedPiecesAt(_ square: ModelSquare) -> Int {
+    private func numberOfPickedPiecesAt(_ square: Square) -> Int {
         if let pieces = pickedPieces, square == pieces.square {
             return pieces.number
         } else {
@@ -182,7 +182,7 @@ class BoardViewModel: ObservableObject {
         }
     }
 
-    func stackAtSquare(_ square: ModelSquare) -> PieceStackViewModel {
+    func stackAtSquare(_ square: Square) -> PieceStackViewModel {
         let height = board.heightOfSquare(square)
         let pieces = board.piecesAtSquare(square).enumerated().map { (index, piece) in
             PieceViewModel(color: piece.color, id: piece.id, zIndex: Double(height - index))
@@ -197,15 +197,15 @@ class BoardViewModel: ObservableObject {
     }
 
     func zIndexForLine(_ line: Int) -> Double {
-        return zIndexFor(\ModelSquare.line, value: line)
+        return zIndexFor(\Square.line, value: line)
     }
 
     func zIndexForColumn(_ column: Int) -> Double {
-        return zIndexFor(\ModelSquare.column, value: column)
+        return zIndexFor(\Square.column, value: column)
     }
 
     /// keyPath can be "column" or "line"
-    private func zIndexFor(_ keyPath: KeyPath<ModelSquare, Int>, value: Int) -> Double {
+    private func zIndexFor(_ keyPath: KeyPath<Square, Int>, value: Int) -> Double {
         if let picked = pickedPieces, picked.square[keyPath: keyPath] == value {
             return 3
         } else if animatableMove?.to[keyPath: keyPath] == value {

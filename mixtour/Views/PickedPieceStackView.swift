@@ -5,7 +5,7 @@ struct PickedPieceStackView: View {
     var namespace: Namespace.ID
     let stackPart: PieceStackPart
     let paddingFactor: Double
-    @Binding var draggedSquare: ModelSquare?
+    @Binding var draggedSquare: Square?
 
     @ObservedObject var board: BoardViewModel
     @GestureState private var translation = CGSize.zero
@@ -60,7 +60,7 @@ struct PickedPieceStackView: View {
         }
     }
 
-    func squareOn(_ translation: CGSize, in geometrySize: CGSize) -> ModelSquare? {
+    func squareOn(_ translation: CGSize, in geometrySize: CGSize) -> Square? {
         // to reduce the effect of "offsetIn()" we adjust the height
         let offset = CGSize(
             width: translation.width,
@@ -69,7 +69,7 @@ struct PickedPieceStackView: View {
         let line = stackPart.square.line + Int(round(offset.height / geometrySize.height))
         let column = stackPart.square.column + Int(round(offset.width / geometrySize.width))
         if (0...4).contains(line) && (0...4).contains(column) {
-            return ModelSquare(column: column, line: line)
+            return Square(column: column, line: line)
         } else {
             return nil
         }
