@@ -30,6 +30,7 @@ struct ContentView: View {
                                     Button(LocalizedStringKey("Advanced")) { board.reset(color: .black) }
                                 }
                             }
+                            Button(LocalizedStringKey("Computer vs Computer")) { board.startComputerPlay() }
                         }
                     }
                     label: {

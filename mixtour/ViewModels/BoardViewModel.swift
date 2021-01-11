@@ -217,3 +217,35 @@ class BoardViewModel: ObservableObject {
         }
     }
 }
+
+// MARK: Let computer play against each other
+extension BoardViewModel {
+    func startComputerPlay() {
+        objectWillChange.send()
+        reset()
+        makeComputerMove()
+    }
+
+    private func makeComputerMove() {
+        guard board.isGameOver() == false else {
+            return
+        }
+
+        DispatchQueue.global(qos: .default).async { [self] in
+            let computer: ComputerPlayer = board.playerOnTurn()
+                == .white
+                ? .beginner
+                : .advanced
+            guard let move = computer.bestMove(board) else {
+                return
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
+                objectWillChange.send()
+                board.makeMoveIfLegal(move)
+                self.makeComputerMove()
+                self.board.printDescription()
+            }
+        }
+    }
+}

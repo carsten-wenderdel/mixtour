@@ -138,7 +138,7 @@ public class Board {
         return swiftMoves
     }
     
-    func printDescription() -> Void {
+    public func printDescription() -> Void {
         printBoardDescription(&coreBoard);
     }
 }
