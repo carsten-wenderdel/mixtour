@@ -27,7 +27,7 @@ class BoardTests : XCTestCase {
         board.makeMoveIfLegal(Move(setPieceTo: modelSquare))
         
         // when
-        let copyBoard = Board(board: board)
+        let copyBoard = Board(board)
         
         // assert
         XCTAssertEqual(copyBoard.heightOfSquare(modelSquare), 1)
