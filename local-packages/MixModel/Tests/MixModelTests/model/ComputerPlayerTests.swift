@@ -5,7 +5,7 @@ class ComputerPlayerTests: XCTestCase {
     
     func testAIPlayerDoesNotMakeOpponentWin() {
         // given
-        let board = ModelBoard()
+        let board = Board()
         board.setPiecesDirectlyToSquare(Square(column: 1, line: 0), .white, .white, .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 1, line: 1), .black)
         board.setTurnDirectly(.black)
@@ -20,7 +20,7 @@ class ComputerPlayerTests: XCTestCase {
     
     func testAIPlayerDoesNotMakeOpponentWin2() {
         // given
-        let board = ModelBoard()
+        let board = Board()
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .white, .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 2), .white, .black)
         board.setPiecesDirectlyToSquare(Square(column: 2, line: 0), .white)
@@ -40,7 +40,7 @@ class ComputerPlayerTests: XCTestCase {
 
     func testAIPlayerDoesNotMakeOpponentWinDirectlyButOneMoveLater() {
         // Given
-        let board = ModelBoard()
+        let board = Board()
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 1), .white)
         board.setPiecesDirectlyToSquare(Square(column: 2, line: 0), .black)
         board.setPiecesDirectlyToSquare(Square(column: 2, line: 2), .white, .white, .white, .white)
@@ -61,7 +61,7 @@ class ComputerPlayerTests: XCTestCase {
 
     func testAIPlayerDoesNotLetOpponentWinInNextMove() {
         // given
-        let board = ModelBoard()
+        let board = Board()
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 2), .black)
         board.setPiecesDirectlyToSquare(Square(column: 1, line: 3), .black, .black, .black)
         board.setPiecesDirectlyToSquare(Square(column: 2, line: 0), .white, .white, .white)
@@ -86,7 +86,7 @@ class ComputerPlayerTests: XCTestCase {
 
     func testPerformanceExample() {
         // given
-        let board = ModelBoard()
+        let board = Board()
         board.setPiecesDirectlyToSquare(Square(column: 1, line: 0), .white, .white, .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 1, line: 1), .black)
         board.setTurnDirectly(.white)
@@ -100,7 +100,7 @@ class ComputerPlayerTests: XCTestCase {
     }
 
     func testBestMoveIsNilForIfNoMoveIsPossible() {
-        let board = ModelBoard()
+        let board = Board()
 
         // given all 20 white pieces are set:
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .white, .white, .white, .white)

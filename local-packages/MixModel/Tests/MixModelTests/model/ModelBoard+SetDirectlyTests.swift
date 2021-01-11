@@ -1,12 +1,12 @@
 import XCTest
 @testable import MixModel
 
-class ModelBoard_SetDirectlyTests: XCTestCase {
+class Board_SetDirectlyTests: XCTestCase {
 
     /// Also tests correct id for both setting and dragging
     func testPiecesAtSquare() {
         // Given
-        let board = ModelBoard()
+        let board = Board()
         let square = Square(column: 3, line: 2)
 
         // When

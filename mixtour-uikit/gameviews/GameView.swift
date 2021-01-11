@@ -132,7 +132,7 @@ class GameView: UIView, UIGestureRecognizerDelegate {
     }
     
     
-    func setPiecesForBoard(_ board: ModelBoard) {
+    func setPiecesForBoard(_ board: Board) {
         clearBoard()
 
         for column in 0..<numberOfSquares {

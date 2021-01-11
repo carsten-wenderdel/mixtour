@@ -4,12 +4,12 @@ import MixModel
 class BoardViewModel: ObservableObject {
 
     // MARK variables set from outside
-    private var board: ModelBoard
+    private var board: Board
     private var humanColor: PlayerColor
     private var computerPlayer: ComputerPlayer
 
     // MARK internal state
-    private var previousBoard: ModelBoard?
+    private var previousBoard: Board?
     private var animatableMove: Move?
     private var setSquare: Square?
     private var computerPlayerIsThinking = false
@@ -50,7 +50,7 @@ class BoardViewModel: ObservableObject {
     // MARK: Initializers
 
     init(
-        board: ModelBoard = ModelBoard(),
+        board: Board = Board(),
         color: PlayerColor = .white,
         computer: ComputerPlayer = .beginner
     ) {
@@ -67,7 +67,7 @@ class BoardViewModel: ObservableObject {
         }
     }
 
-    func reset(board: ModelBoard = ModelBoard(), color: PlayerColor = .white) {
+    func reset(board: Board = Board(), color: PlayerColor = .white) {
         objectWillChange.send()
         previousBoard = nil
         animatableMove = nil
@@ -121,7 +121,7 @@ class BoardViewModel: ObservableObject {
             return
         }
         objectWillChange.send()
-        previousBoard = ModelBoard(board: board)
+        previousBoard = Board(board: board)
         computerPlayerIsThinking = true
         animatableMove = nil
         pickedPieces = nil

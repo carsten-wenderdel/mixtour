@@ -1,20 +1,20 @@
 import XCTest
 @testable import MixModel
 
-class ModelBoardTests : XCTestCase {
+class BoardTests : XCTestCase {
     
     func testInit() {
-        let modelBoard = ModelBoard()
+        let board = Board()
         
-        XCTAssertEqual(modelBoard.playerOnTurn(), PlayerColor.white, "White should start game")
-        XCTAssertEqual(modelBoard.numberOfPiecesForPlayer(PlayerColor.white), 20, "20 pieces at the start")
-        XCTAssertEqual(modelBoard.numberOfPiecesForPlayer(PlayerColor.black), 20, "20 pieces at the start")
+        XCTAssertEqual(board.playerOnTurn(), PlayerColor.white, "White should start game")
+        XCTAssertEqual(board.numberOfPiecesForPlayer(PlayerColor.white), 20, "20 pieces at the start")
+        XCTAssertEqual(board.numberOfPiecesForPlayer(PlayerColor.black), 20, "20 pieces at the start")
         
         for i in 0..<5 {
             for j in 0..<5 {
                 let square = Square(column: i, line: j)
-                XCTAssertTrue(modelBoard.isSquareEmpty(square), "at the the start everything is empty")
-                XCTAssertEqual(modelBoard.heightOfSquare(square), 0, "at the start everything should be empty")
+                XCTAssertTrue(board.isSquareEmpty(square), "at the the start everything is empty")
+                XCTAssertEqual(board.heightOfSquare(square), 0, "at the start everything should be empty")
             }
         }
     }
@@ -22,12 +22,12 @@ class ModelBoardTests : XCTestCase {
     
     func testInitWithBoard() {
         // given
-        let modelBoard = ModelBoard();
+        let board = Board();
         let modelSquare = Square(column: 1, line: 1)
-        modelBoard.makeMoveIfLegal(Move(setPieceTo: modelSquare))
+        board.makeMoveIfLegal(Move(setPieceTo: modelSquare))
         
         // when
-        let copyBoard = ModelBoard(board: modelBoard)
+        let copyBoard = Board(board: board)
         
         // assert
         XCTAssertEqual(copyBoard.heightOfSquare(modelSquare), 1)
@@ -38,11 +38,11 @@ class ModelBoardTests : XCTestCase {
 
         // assert
         XCTAssertEqual(copyBoard.heightOfSquare(modelSquare2), 1)
-        XCTAssertEqual(modelBoard.heightOfSquare(modelSquare2), 0)
+        XCTAssertEqual(board.heightOfSquare(modelSquare2), 0)
     }
     
     func testGameOver() {
-        let board = ModelBoard()
+        let board = Board()
         XCTAssertFalse(board.isGameOver(), "")
         
         board.setPiece(Square(column: 0, line: 0))
@@ -59,7 +59,7 @@ class ModelBoardTests : XCTestCase {
     
     
     func testWinner() {
-        var board = ModelBoard()
+        var board = Board()
         XCTAssertEqual(board.winner(), nil)
         
         board.setPiece(Square(column: 0, line: 0))
@@ -74,7 +74,7 @@ class ModelBoardTests : XCTestCase {
         XCTAssertEqual(board.winner(), PlayerColor.white)
         
         // and now the same, but place one additional piece at the beginning somewhere else.
-        board = ModelBoard()
+        board = Board()
         board.setPiece(Square(column: 3, line: 3))
         board.setPiece(Square(column: 0, line: 0))
         for i in 1..<5 {
@@ -89,7 +89,7 @@ class ModelBoardTests : XCTestCase {
     
     
     func testPlayerOnTurn() {
-        let board = ModelBoard()
+        let board = Board()
         XCTAssertEqual(board.playerOnTurn(), PlayerColor.white)
         
         board.setPiece(Square(column: 1, line: 1))
@@ -112,7 +112,7 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testSetPiece() {
-        let board = ModelBoard()
+        let board = Board()
         
         let square1 = Square(column: 1, line: 3)
         let square2 = Square(column: 2, line: 3)
@@ -135,7 +135,7 @@ class ModelBoardTests : XCTestCase {
     
     func testColorOfSquare() {
         
-        let board = ModelBoard()
+        let board = Board()
         
         let square0 = Square(column: 0, line: 3)
         let square1 = Square(column: 1, line: 3)
@@ -173,7 +173,7 @@ class ModelBoardTests : XCTestCase {
         let square0 = Square(column: 0, line: 3)
         let square1 = Square(column: 1, line: 3)
 
-        let board = ModelBoard()
+        let board = Board()
 
         // When
         board.setPiece(square0)
@@ -201,7 +201,7 @@ class ModelBoardTests : XCTestCase {
         // Given
         let square0 = Square(column: 0, line: 1)
         let square1 = Square(column: 2, line: 1)
-        let board = ModelBoard()
+        let board = Board()
 
         board.setPiecesDirectlyToSquare(square0, .black, .white)
         board.setPiecesDirectlyToSquare(square1, .black, .white)
@@ -222,9 +222,9 @@ class ModelBoardTests : XCTestCase {
         XCTAssertNotEqual(upperMostId1, newId0)
     }
     
-    func boardForTestingMoves() -> ModelBoard {
+    func boardForTestingMoves() -> Board {
         
-        let board = ModelBoard()
+        let board = Board()
         
         // from top to bottom: black, white, white on 1/1
         board.setPiece(Square(column: 1, line: 1))
@@ -296,7 +296,7 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testMoveIsIllegalIfRevert() {
-        let board = ModelBoard()
+        let board = Board()
         
         // given
         let square1 = Square(column: 1, line: 1)
@@ -313,7 +313,7 @@ class ModelBoardTests : XCTestCase {
 
     func testDragWithZeroPiecesIsIllegal() {
         // Given
-        let board = ModelBoard()
+        let board = Board()
 
         let square1 = Square(column: 1, line: 1)
         let square2 = Square(column: 2, line: 2)
@@ -324,7 +324,7 @@ class ModelBoardTests : XCTestCase {
     }
 
     func testIsDraggingLegalCross() {
-        let board = ModelBoard()
+        let board = Board()
         for i in 1..<5 {
             for j in 1..<5 {
                 board.setPiece(Square(column: i, line: j))
@@ -338,7 +338,7 @@ class ModelBoardTests : XCTestCase {
     
     func testIsSettingPossible() {
         
-        let board = ModelBoard()
+        let board = Board()
         
         // setting pieces everywhere
         for i in 0..<5 {
@@ -397,12 +397,12 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testDraggingNotPossibleForEmptyBoard() {
-        let board = ModelBoard()
+        let board = Board()
         XCTAssertFalse(board.isDraggingPossible())
     }
     
     func testDraggingPossibleLeft() {
-        let board = ModelBoard()
+        let board = Board()
         board.setPiecesDirectlyToSquare(Square(column: 2, line: 0), .black, .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .black, .white)
         XCTAssertTrue(board.isDraggingPossible())
@@ -413,7 +413,7 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testDraggingPossibleRight() {
-        let board = ModelBoard()
+        let board = Board()
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .black, .black)
         board.setPiecesDirectlyToSquare(Square(column: 3, line: 0), .black, .white, .black)
         XCTAssertTrue(board.isDraggingPossible())
@@ -423,14 +423,14 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testDraggingPossibleUp() {
-        let board = ModelBoard()
+        let board = Board()
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 1), .black, .white, .black)
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .black)
         XCTAssertTrue(board.isDraggingPossible())
     }
     
     func testDraggingPossibleDown() {
-        let board = ModelBoard()
+        let board = Board()
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .black, .white)
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 4), .black, .white, .black, .white)
         XCTAssertTrue(board.isDraggingPossible())
@@ -440,7 +440,7 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testDraggingPossibleLeftUp() {
-        let board = ModelBoard()
+        let board = Board()
         board.setPiecesDirectlyToSquare(Square(column: 2, line: 4), .black, .white, .black, .white)
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 2), .black, .white)
         XCTAssertTrue(board.isDraggingPossible())
@@ -450,7 +450,7 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testDraggingPossibleLeftDown() {
-        let board = ModelBoard()
+        let board = Board()
         board.setPiecesDirectlyToSquare(Square(column: 2, line: 0), .black, .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 2), .black, .white)
         XCTAssertTrue(board.isDraggingPossible())
@@ -460,7 +460,7 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testDraggingPossibleRightUp() {
-        let board = ModelBoard()
+        let board = Board()
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 4), .black)
         board.setPiecesDirectlyToSquare(Square(column: 3, line: 1), .black, .white, .black)
         XCTAssertTrue(board.isDraggingPossible())
@@ -470,7 +470,7 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testDraggingPossibleRightDown() {
-        let board = ModelBoard()
+        let board = Board()
         board.setPiecesDirectlyToSquare(Square(column: 1, line: 0), .black, .white)
         board.setPiecesDirectlyToSquare(Square(column: 4, line: 3), .black, .white, .black)
         XCTAssertTrue(board.isDraggingPossible())
@@ -480,13 +480,13 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testNumberOfMovesIs25ForEmptyBoard() {
-        let board = ModelBoard()
+        let board = Board()
         let allMoves = board.allLegalMoves()
         XCTAssertEqual(allMoves.count, 25)
     }
     
     func testLegalMovesDoesNotContainRevertMove() {
-        let board = ModelBoard()
+        let board = Board()
         
         let square1 = Square(column: 1, line: 0)
         let square2 = Square(column: 1, line: 1)
@@ -510,7 +510,7 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testNumberOfMovesIsZeroIfNoPiecesAvailable() {
-        let board = ModelBoard()
+        let board = Board()
     
         // given all 20 white pieces are set:
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .white, .white, .white, .white)
@@ -533,7 +533,7 @@ class ModelBoardTests : XCTestCase {
     }
     
     func testNumberOfMovesForComplicatedPosition() {
-        let board = ModelBoard()
+        let board = Board()
         
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .white, .black, .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 4, line: 4), .white, .black)

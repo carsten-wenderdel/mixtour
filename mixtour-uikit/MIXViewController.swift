@@ -4,9 +4,9 @@ import MixModel
 
 class MIXViewController: UIViewController, GameViewDelegate {
 
-    lazy var board: ModelBoard = ModelBoard()
+    lazy var board: Board = Board()
     var gameView: GameView!
-    var boardBeforeMove: ModelBoard?
+    var boardBeforeMove: Board?
     var undoButton: UIButton?
 
     
@@ -43,7 +43,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
     }
     
     @objc func restartGame() {
-        self.board = ModelBoard()
+        self.board = Board()
         self.gameView .setPiecesForBoard(self.board)
         self.undoButton?.isEnabled = false
     }
@@ -88,7 +88,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
     
     func gameView(_ gameView : GameView, tryToMakeMove move: Move) -> Bool {
         
-        let oldBoard = ModelBoard(board: board)
+        let oldBoard = Board(board: board)
         let movePossible = board.makeMoveIfLegal(move)
         
         // display new state. If move not possible, this also moves the dragged piece to the old correct position

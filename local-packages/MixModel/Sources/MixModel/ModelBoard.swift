@@ -5,7 +5,7 @@ import Core
 public let numberOfSquares = 5
 
 
-public class ModelBoard {
+public class Board {
     
     var coreBoard: MIXCoreBoard
     var setPieces: [Square:[Piece]]
@@ -28,7 +28,7 @@ public class ModelBoard {
         }
     }
     
-    public init(board: ModelBoard) {
+    public init(board: Board) {
         coreBoard = board.coreBoard
         setPieces = board.setPieces
         unusedPieces = board.unusedPieces
