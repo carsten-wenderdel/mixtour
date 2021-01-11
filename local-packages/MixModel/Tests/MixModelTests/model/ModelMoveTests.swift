@@ -7,7 +7,7 @@ class ModelMoveTests: XCTestCase {
     func testDragMoveModelToCore() {
         let fromSquare = Square(column: 3, line: 2)
         let toSquare = Square(column: 4, line: 1)
-        let move = ModelMove(from: fromSquare, to: toSquare, numberOfPieces: 1)
+        let move = Move(from: fromSquare, to: toSquare, numberOfPieces: 1)
         
         XCTAssert(move.isMoveDrag())
 
@@ -22,7 +22,7 @@ class ModelMoveTests: XCTestCase {
     
     func testSetMoveModelToCore() {
         let toSquare = Square(column: 1, line: 4)
-        let move = ModelMove(setPieceTo: toSquare)
+        let move = Move(setPieceTo: toSquare)
 
         XCTAssertFalse(move.isMoveDrag())
 
@@ -40,7 +40,7 @@ class ModelMoveTests: XCTestCase {
         
         XCTAssert(isMoveDrag(coreMove))
     
-        let move = ModelMove(coreMove: coreMove)
+        let move = Move(coreMove: coreMove)
         XCTAssert(move.isMoveDrag())
         
         XCTAssertEqual(move.from.column, 3)
@@ -55,7 +55,7 @@ class ModelMoveTests: XCTestCase {
         
         XCTAssertFalse(isMoveDrag(coreMove))
         
-        let move = ModelMove(coreMove: coreMove)
+        let move = Move(coreMove: coreMove)
         XCTAssertFalse(move.isMoveDrag())
         
         XCTAssertEqual(move.to.column, 2)
@@ -63,18 +63,18 @@ class ModelMoveTests: XCTestCase {
     }
     
     func testEqualityForSetting() {
-        let setMove1a = ModelMove(setPieceTo: Square(column: 1, line: 1))
-        let setMove1b = ModelMove(setPieceTo: Square(column: 1, line: 1))
-        let setMove2 = ModelMove(setPieceTo: Square(column: 1, line: 2))
+        let setMove1a = Move(setPieceTo: Square(column: 1, line: 1))
+        let setMove1b = Move(setPieceTo: Square(column: 1, line: 1))
+        let setMove2 = Move(setPieceTo: Square(column: 1, line: 2))
         
         XCTAssertEqual(setMove1a, setMove1b)
         XCTAssertNotEqual(setMove1a, setMove2)
     }
     
     func testEqualityForSettingWithDifferentNonImportantInstanceVariables() {
-        let setMove1a = ModelMove(setPieceTo: Square(column: 1, line: 1))
+        let setMove1a = Move(setPieceTo: Square(column: 1, line: 1))
 
-        let setMove1b = ModelMove(
+        let setMove1b = Move(
             from: Square(column: 3, line: 4),
             to: Square(column: 1, line: 1),
             numberOfPieces: 55
@@ -87,10 +87,10 @@ class ModelMoveTests: XCTestCase {
         let square1 = Square(column: 1, line: 1)
         let square2 = Square(column: 2, line: 2)
         
-        let dragMove1a = ModelMove(from: square1, to: square2, numberOfPieces: 1)
-        let dragMove1b = ModelMove(from: square1, to: square2, numberOfPieces: 1)
-        let dragMove2 = ModelMove(from: square1, to: square2, numberOfPieces: 2)
-        let dragMove3 = ModelMove(from: square2, to: square1, numberOfPieces: 1)
+        let dragMove1a = Move(from: square1, to: square2, numberOfPieces: 1)
+        let dragMove1b = Move(from: square1, to: square2, numberOfPieces: 1)
+        let dragMove2 = Move(from: square1, to: square2, numberOfPieces: 2)
+        let dragMove3 = Move(from: square2, to: square1, numberOfPieces: 1)
         
         XCTAssertEqual(dragMove1a, dragMove1b)
         XCTAssertNotEqual(dragMove1a, dragMove2)

@@ -4,7 +4,7 @@ import MixModel
 protocol GameViewDelegate: class {
     @discardableResult func gameView(_ gameView : GameView, tryToDragPieces numberOfDraggedPieces: Int, from: Square, to: Square) -> Bool
     @discardableResult func gameView(_ gameView : GameView, tryToSetPieceTo to: Square) -> Bool
-    @discardableResult func gameView(_ gameView : GameView, tryToMakeMove move: ModelMove) -> Bool
+    @discardableResult func gameView(_ gameView : GameView, tryToMakeMove move: Move) -> Bool
 }
 
 

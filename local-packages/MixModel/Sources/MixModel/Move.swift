@@ -8,7 +8,7 @@ import Core
 
 let kMoveSetIndicator = 6
 
-public struct ModelMove {
+public struct Move {
     public let from, to: Square
     public let numberOfPieces: Int
 
@@ -29,7 +29,7 @@ public struct ModelMove {
 
 // Second initializer in an extension to keep the default initializer.
 // See "Initializer Delegation for Value Types" in "The Swift Programming Language"
-extension ModelMove {
+extension Move {
 
     public init(setPieceTo: Square) {
         from = Square(column:kMoveSetIndicator, line:0) // 0 is not important, just any number is fine
@@ -45,8 +45,8 @@ extension ModelMove {
 }
 
 
-extension ModelMove: Equatable {}
+extension Move: Equatable {}
 
-public func ==(lhs: ModelMove, rhs: ModelMove) -> Bool {
+public func ==(lhs: Move, rhs: Move) -> Bool {
     return MIXCoreMoveEqualToMove(lhs.coreMove(), rhs.coreMove())
 }

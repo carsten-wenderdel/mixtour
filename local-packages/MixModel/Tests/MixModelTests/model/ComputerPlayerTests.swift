@@ -76,10 +76,10 @@ class ComputerPlayerTests: XCTestCase {
         // then
         
         // Opponent could win by dragging with distance 2 in next move. This move would set something in between - also horrible, would mean immediate loss too.
-        XCTAssertNotEqual(blackMove, ModelMove(setPieceTo: Square(column: 3, line: 1)))
+        XCTAssertNotEqual(blackMove, Move(setPieceTo: Square(column: 3, line: 1)))
         
         // that move looks good, maybe another number of pieces is even better
-        XCTAssertEqual(blackMove, ModelMove(from: Square(column: 3, line: 2),
+        XCTAssertEqual(blackMove, Move(from: Square(column: 3, line: 2),
                                             to: Square(column: 3, line:1),
                                             numberOfPieces: 1))
     }

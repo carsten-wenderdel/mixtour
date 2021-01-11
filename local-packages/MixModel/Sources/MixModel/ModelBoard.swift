@@ -80,17 +80,17 @@ public class ModelBoard {
     If it's an illegal move, the move is not made and NO is returned. The model is still fine.
     */
     @discardableResult public func setPiece(_ square: Square) -> Bool {
-        let move = ModelMove(setPieceTo: square)
+        let move = Move(setPieceTo: square)
         return makeMoveIfLegal(move)
     }
     
 
     @discardableResult func dragPiecesFrom(_ from: Square, to: Square, withNumber numberODraggedPieces: Int) -> Bool {
-        let modelMove = ModelMove(from: from, to: to, numberOfPieces: numberODraggedPieces)
+        let modelMove = Move(from: from, to: to, numberOfPieces: numberODraggedPieces)
         return makeMoveIfLegal(modelMove)
     }
 
-    @discardableResult public func makeMoveIfLegal(_ move: ModelMove) -> Bool {
+    @discardableResult public func makeMoveIfLegal(_ move: Move) -> Bool {
         guard isMoveLegal(move) else {
             return false
         }
@@ -111,7 +111,7 @@ public class ModelBoard {
         return true
     }
 
-    public func isMoveLegal(_ move: ModelMove) -> Bool {
+    public func isMoveLegal(_ move: Move) -> Bool {
         return Core.isMoveLegal(&coreBoard, move.coreMove())
     }
 
@@ -127,12 +127,12 @@ public class ModelBoard {
         return true
     }
 
-    func allLegalMoves() -> [ModelMove] {
-        var swiftMoves = [ModelMove]()
+    func allLegalMoves() -> [Move] {
+        var swiftMoves = [Move]()
         let cMoves = Core.arrayOfLegalMoves(&coreBoard)
         for i in 0..<cMoves.n {
             let coreMove = cMoves.a[i]
-            swiftMoves.append(ModelMove(coreMove: coreMove))
+            swiftMoves.append(Move(coreMove: coreMove))
         }
         Core.destroyMoveArray(cMoves)
         return swiftMoves

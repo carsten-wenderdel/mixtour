@@ -10,7 +10,7 @@ class BoardViewModel: ObservableObject {
 
     // MARK internal state
     private var previousBoard: ModelBoard?
-    private var animatableMove: ModelMove?
+    private var animatableMove: Move?
     private var setSquare: Square?
     private var computerPlayerIsThinking = false
     
@@ -98,7 +98,7 @@ class BoardViewModel: ObservableObject {
     }
 
     @discardableResult func tryDrag(_ numberOfPieces: Int, from: Square, to: Square ) -> Bool {
-        let move = ModelMove(from: from, to: to, numberOfPieces: numberOfPieces)
+        let move = Move(from: from, to: to, numberOfPieces: numberOfPieces)
         guard board.isMoveLegal(move) else {
             return false
         }
@@ -107,7 +107,7 @@ class BoardViewModel: ObservableObject {
     }
 
     @discardableResult func trySettingPieceTo(_ square: Square) -> Bool {
-        let move = ModelMove(setPieceTo: square)
+        let move = Move(setPieceTo: square)
         guard board.isMoveLegal(move) else {
             return false
         }
@@ -115,7 +115,7 @@ class BoardViewModel: ObservableObject {
         return true
     }
 
-    private func makeMove(_ move: ModelMove) {
+    private func makeMove(_ move: Move) {
         if (board.playerOnTurn() != humanColor) {
             assertionFailure("Human should only play their own pieces")
             return

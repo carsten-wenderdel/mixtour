@@ -12,12 +12,12 @@ public class ComputerPlayer {
         self.numberOfTrials = numberOfTrials
     }
 
-    public func bestMove(_ board: ModelBoard) -> ModelMove? {
+    public func bestMove(_ board: ModelBoard) -> Move? {
         let move = Core.bestMove(&board.coreBoard)
         if Core.isMoveANoMove(move) {
             return nil
         } else {
-            return ModelMove(coreMove: move)
+            return Move(coreMove: move)
         }
     }
 }
