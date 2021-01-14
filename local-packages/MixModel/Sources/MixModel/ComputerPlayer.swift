@@ -17,7 +17,7 @@ public class ComputerPlayer {
         if Core.isMoveANoMove(move) {
             return nil
         } else {
-            return Move(coreMove: move)
+            return Move(move)
         }
     }
 }

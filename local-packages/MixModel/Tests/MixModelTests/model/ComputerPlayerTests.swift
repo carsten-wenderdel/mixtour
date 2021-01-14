@@ -15,7 +15,11 @@ class ComputerPlayerTests: XCTestCase {
         let blackMove = computerPlayer.bestMove(board)
         
         // assert
-        XCTAssert(blackMove!.numberOfPieces != 4)
+        guard case let .drag(_, _, numberOfPieces) = blackMove else {
+            XCTFail()
+            return
+        }
+        XCTAssert(numberOfPieces != 4)
     }
     
     func testAIPlayerDoesNotMakeOpponentWin2() {
@@ -76,12 +80,12 @@ class ComputerPlayerTests: XCTestCase {
         // then
         
         // Opponent could win by dragging with distance 2 in next move. This move would set something in between - also horrible, would mean immediate loss too.
-        XCTAssertNotEqual(blackMove, Move(setPieceTo: Square(column: 3, line: 1)))
-        
+        if case let .set(to) = blackMove {
+            XCTAssertNotEqual(to, Square(column: 3, line: 1))
+        }
+
         // that move looks good, maybe another number of pieces is even better
-        XCTAssertEqual(blackMove, Move(from: Square(column: 3, line: 2),
-                                            to: Square(column: 3, line:1),
-                                            numberOfPieces: 1))
+        XCTAssertEqual(blackMove, .drag(from: Square(column: 3, line: 2), to: Square(column: 3, line:1), numberOfPieces: 1))
     }
 
     func testPerformanceExample() {
@@ -95,7 +99,11 @@ class ComputerPlayerTests: XCTestCase {
         // when
         self.measure {
             let whiteMove = computerPlayer.bestMove(board) // easy win - should be super fast
-            XCTAssert(whiteMove!.numberOfPieces == 4)
+            guard case let .drag(_, _, numberOfPieces) = whiteMove else {
+                XCTFail()
+                return
+            }
+            XCTAssert(numberOfPieces == 4)
         }
     }
 

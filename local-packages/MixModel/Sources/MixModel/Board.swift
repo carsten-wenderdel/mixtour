@@ -80,13 +80,13 @@ public class Board {
     If it's an illegal move, the move is not made and NO is returned. The model is still fine.
     */
     @discardableResult public func setPiece(_ square: Square) -> Bool {
-        let move = Move(setPieceTo: square)
+        let move = Move.set(to: square)
         return makeMoveIfLegal(move)
     }
     
 
     @discardableResult func dragPiecesFrom(_ from: Square, to: Square, withNumber numberODraggedPieces: Int) -> Bool {
-        let modelMove = Move(from: from, to: to, numberOfPieces: numberODraggedPieces)
+        let modelMove = Move.drag(from: from, to: to, numberOfPieces: numberODraggedPieces)
         return makeMoveIfLegal(modelMove)
     }
 
@@ -95,16 +95,16 @@ public class Board {
             return false
         }
 
-        if move.isMoveDrag() {
-            var fromArray = setPieces[move.from]! // If there are bugs I want to know them - crash!
-            var toArray = setPieces[move.to]!
-            toArray.insert(contentsOf: fromArray.prefix(move.numberOfPieces), at: 0)
-            fromArray.removeFirst(move.numberOfPieces)
-            setPieces[move.from] = fromArray
-            setPieces[move.to] = toArray
-        } else {
-            // again - if something is nil, "isMoveLegal" should have found it.
-            setPieces[move.to] = [unusedPieces[playerOnTurn()]!.removeLast()]
+        switch move {
+        case .drag(let from, let to, let numberOfPieces):
+            var fromArray = setPieces[from]! // If there are bugs I want to know them - crash!
+            var toArray = setPieces[to]!
+            toArray.insert(contentsOf: fromArray.prefix(numberOfPieces), at: 0)
+            fromArray.removeFirst(numberOfPieces)
+            setPieces[from] = fromArray
+            setPieces[to] = toArray
+        case .set(let to):
+            setPieces[to] = [unusedPieces[playerOnTurn()]!.removeLast()]
         }
 
         Core.makeMove(&coreBoard, move.coreMove())
@@ -132,7 +132,7 @@ public class Board {
         let cMoves = Core.arrayOfLegalMoves(&coreBoard)
         for i in 0..<cMoves.n {
             let coreMove = cMoves.a[i]
-            swiftMoves.append(Move(coreMove: coreMove))
+            swiftMoves.append(Move(coreMove))
         }
         Core.destroyMoveArray(cMoves)
         return swiftMoves

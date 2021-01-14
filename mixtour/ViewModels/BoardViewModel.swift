@@ -98,7 +98,7 @@ class BoardViewModel: ObservableObject {
     }
 
     @discardableResult func tryDrag(_ numberOfPieces: Int, from: Square, to: Square ) -> Bool {
-        let move = Move(from: from, to: to, numberOfPieces: numberOfPieces)
+        let move = Move.drag(from: from, to: to, numberOfPieces: numberOfPieces)
         guard board.isMoveLegal(move) else {
             return false
         }
@@ -107,7 +107,7 @@ class BoardViewModel: ObservableObject {
     }
 
     @discardableResult func trySettingPieceTo(_ square: Square) -> Bool {
-        let move = Move(setPieceTo: square)
+        let move = Move.set(to: square)
         guard board.isMoveLegal(move) else {
             return false
         }
@@ -125,7 +125,11 @@ class BoardViewModel: ObservableObject {
         computerPlayerIsThinking = true
         animatableMove = nil
         pickedPieces = nil
-        setSquare = move.isMoveDrag() ? nil : move.to
+        if case let .set(to) = move {
+            setSquare = to
+        } else {
+            setSquare = nil
+        }
         board.makeMoveIfLegal(move)
 
         let capturedBoard = board
@@ -146,7 +150,11 @@ class BoardViewModel: ObservableObject {
     private func letComputermakeNextMove() {
         if let move = self.computerPlayer.bestMove(self.board) {
             self.objectWillChange.send()
-            self.setSquare = move.isMoveDrag() ? nil : move.to
+            if case let .set(to) = move {
+                setSquare = to
+            } else {
+                setSquare = nil
+            }
             self.computerPlayerIsThinking = false
             self.animatableMove = move
             self.board.makeMoveIfLegal(move)
@@ -208,13 +216,14 @@ class BoardViewModel: ObservableObject {
     private func zIndexFor(_ keyPath: KeyPath<Square, Int>, value: Int) -> Double {
         if let picked = pickedPieces, picked.square[keyPath: keyPath] == value {
             return 3
-        } else if animatableMove?.to[keyPath: keyPath] == value {
-            return 2
-        } else if animatableMove?.from[keyPath: keyPath] == value {
-            return 1
-        } else {
-            return 0
+        } else if case let .drag(from, to, _) = animatableMove {
+            if to[keyPath: keyPath] == value {
+                return 2
+            } else if from[keyPath: keyPath] == value {
+                return 1
+            }
         }
+        return 0
     }
 }
 

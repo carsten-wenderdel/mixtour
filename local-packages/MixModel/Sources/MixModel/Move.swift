@@ -6,41 +6,29 @@
 import Foundation
 import Core
 
-let kMoveSetIndicator = 6
-
-public struct Move {
-    public let from, to: Square
-    public let numberOfPieces: Int
-
-    public init(from: Square, to: Square, numberOfPieces: Int) {
-        self.from = from
-        self.to = to
-        self.numberOfPieces = numberOfPieces
-    }
+public enum Move {
+    case set(to: Square)
+    case drag(from: Square, to: Square, numberOfPieces: Int)
 
     func coreMove() -> MIXCoreMove {
-        return MIXCoreMove(from: from.coreSquare(), to: to.coreSquare(), numberOfPieces: UInt8(numberOfPieces))
-    }
-    
-    public func isMoveDrag() -> Bool {
-        return from.column != kMoveSetIndicator;
+        switch self {
+        case .set(let to):
+            return Core.MIXCoreMoveMakeSet(to.coreSquare())
+        case .drag(let from, let to, let numberOfPieces):
+            return Core.MIXCoreMoveMakeDrag(from.coreSquare(), to.coreSquare(), UInt8(numberOfPieces))
+        }
     }
 }
 
 // Second initializer in an extension to keep the default initializer.
 // See "Initializer Delegation for Value Types" in "The Swift Programming Language"
 extension Move {
-
-    public init(setPieceTo: Square) {
-        from = Square(column:kMoveSetIndicator, line:0) // 0 is not important, just any number is fine
-        to = setPieceTo
-        numberOfPieces = 0
-    }
-
-    init(coreMove: MIXCoreMove) {
-        from = Square(coreMove.from)
-        to = Square(coreMove.to)
-        numberOfPieces = Int(coreMove.numberOfPieces)
+    init(_ coreMove: MIXCoreMove) {
+        if Core.isMoveDrag(coreMove) {
+            self = .drag(from: Square(coreMove.from), to: Square(coreMove.to), numberOfPieces: Int(coreMove.numberOfPieces))
+        } else {
+            self = .set(to: Square(coreMove.to))
+        }
     }
 }
 
