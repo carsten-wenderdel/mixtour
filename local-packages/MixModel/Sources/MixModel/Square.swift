@@ -19,7 +19,7 @@ public struct Square: Identifiable, Hashable {
 // It's done in an extension to keep the default initializer.
 // See "Initializer Delegation for Value Types" in "The Swift Programming Language"
 extension Square {
-    init(coreSquare: MIXCoreSquare) {
+    init(_ coreSquare: MIXCoreSquare) {
         column = Int(coreSquare.column)
         line = Int(coreSquare.line)
     }

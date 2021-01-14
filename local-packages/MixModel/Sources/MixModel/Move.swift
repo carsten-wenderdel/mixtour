@@ -38,8 +38,8 @@ extension Move {
     }
 
     init(coreMove: MIXCoreMove) {
-        from = Square(coreSquare: coreMove.from)
-        to = Square(coreSquare: coreMove.to)
+        from = Square(coreMove.from)
+        to = Square(coreMove.to)
         numberOfPieces = Int(coreMove.numberOfPieces)
     }
 }

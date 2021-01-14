@@ -14,7 +14,7 @@ class SquareTests : XCTestCase {
     
     func testInitWithCoreSquare() {
         let coreSquare = MIXCoreSquare(column: 7, line: 11)
-        let modelSquare = Square(coreSquare: coreSquare)
+        let modelSquare = Square(coreSquare)
         XCTAssertEqual(modelSquare.line, Int(coreSquare.line))
         XCTAssertEqual(modelSquare.column, Int(coreSquare.column))
     }
