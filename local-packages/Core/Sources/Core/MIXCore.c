@@ -33,7 +33,11 @@ MIXCoreMove MIXCoreMoveMakeSet(MIXCoreSquare to) {
 }
 
 bool isMoveDrag(MIXCoreMove move) {
-    return move.from.column != kMoveSetIndicator;
+    return !isMoveSet(move) && !isMoveANoMove(move);
+}
+
+bool isMoveSet(MIXCoreMove move) {
+    return move.from.column == kMoveSetIndicator;
 }
 
 bool isMoveANoMove(MIXCoreMove move)  {
@@ -41,12 +45,16 @@ bool isMoveANoMove(MIXCoreMove move)  {
 }
 
 bool MIXCoreMoveEqualToMove(MIXCoreMove move1, MIXCoreMove move2) {
-    if (isMoveDrag(move1)) {
-        return MIXCoreSquareIsEqualToSquare(move1.from, move2.from) &&
-                MIXCoreSquareIsEqualToSquare(move2.to, move2.to) &&
-                move1.numberOfPieces == move2.numberOfPieces;
+
+    if (isMoveANoMove(move1)) {
+        return isMoveANoMove(move2);
+    } else if (isMoveSet(move1)){
+        return isMoveSet(move2)
+            && MIXCoreSquareIsEqualToSquare(move1.to, move2.to);
     } else {
-        return MIXCoreSquareIsEqualToSquare(move1.to, move2.to);
+        return MIXCoreSquareIsEqualToSquare(move1.from, move2.from)
+            && MIXCoreSquareIsEqualToSquare(move2.to, move2.to)
+            && move1.numberOfPieces == move2.numberOfPieces;
     }
 }
 

@@ -73,7 +73,7 @@ class MoveTests: XCTestCase {
         XCTAssertNotEqual(setMove1a, setMove2)
     }
     
-    func testEqualityForSettingWithDifferentNonImportantInstanceVariables() {
+    func testSetIsNotDragAlthoughToColumnIsTheSame() {
         let setMove1a = Move.set(to: Square(column: 1, line: 1))
 
         let setMove1b = Move.drag(
@@ -82,7 +82,7 @@ class MoveTests: XCTestCase {
             numberOfPieces: 55
         )
         
-        XCTAssertEqual(setMove1a, setMove1b)
+        XCTAssertNotEqual(setMove1a, setMove1b)
     }
     
     func testEqualityForDragging() {

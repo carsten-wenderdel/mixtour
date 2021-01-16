@@ -105,6 +105,8 @@ public class Board {
             setPieces[to] = toArray
         case .set(let to):
             setPieces[to] = [unusedPieces[playerOnTurn()]!.removeLast()]
+        case .pass:
+            break
         }
 
         Core.makeMove(&coreBoard, move.coreMove())
