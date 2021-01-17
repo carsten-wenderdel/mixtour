@@ -11,21 +11,6 @@
 #include <stdarg.h>
 
 
-void removeAllPieces(MIXCoreBoardRef boardRef, MIXCoreSquare square) {
-    
-    for (int i = heightOfSquare(boardRef, square) - 1; i >= 0; i--) {
-        if (MIXCorePlayerBlack == colorOfSquareAtPosition(boardRef, square, (uint8_t)i)) {
-            boardRef->blackPieces++;
-        } else {
-            boardRef->whitePieces++;
-        }
-    }
-    
-    boardRef->height[square.column][square.line] = 0;
-    boardRef->colors[square.column][square.line] = 0;
-}
-
-
 void setPiecesDirectlyWithList(MIXCoreBoardRef boardRef, MIXCoreSquare square, int numberOfArguments, va_list ap) {
     boardRef->height[square.column][square.line] += numberOfArguments;
     
