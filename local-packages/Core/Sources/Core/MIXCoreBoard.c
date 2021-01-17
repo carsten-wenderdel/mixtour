@@ -323,15 +323,21 @@ bool isSomethingBetweenSquares(MIXCoreBoardRef boardRef, MIXCoreSquare square1, 
 }
 
 
-MIXMoveArray arrayOfLegalDragMoves(MIXCoreBoardRef boardRef) {
+MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
     MIXCorePlayer player = playerOnTurn(boardRef);
+    bool playerHasPiecesLeft = numberOfPiecesForPlayer(boardRef, player) > 0;
     MIXMoveArray moveArray;
     kv_init(moveArray);
     for (uint8_t i = 0; i < LENGTH_OF_BOARD; i++) {
         for (uint8_t j = 0; j < LENGTH_OF_BOARD; j++) {
             MIXCoreSquare square = {i, j};
             uint8_t height = heightOfSquare(boardRef, square);
-            if (height > 0) {
+            if (height == 0) {
+                if (playerHasPiecesLeft) {
+                    MIXCoreMove move = MIXCoreMoveMakeSet(square);
+                    kv_push(MIXCoreMove, moveArray, move);
+                }
+            } else { // try dragging
                 for (int8_t columnSignum = -1; columnSignum <= 1; columnSignum++) {
                     for (int8_t lineSignum = -1; lineSignum <= 1; lineSignum++) {
                         if (columnSignum != 0 || lineSignum != 0) { // don't look at orignal square
@@ -371,33 +377,6 @@ MIXMoveArray arrayOfLegalDragMoves(MIXCoreBoardRef boardRef) {
     return moveArray;
 }
 
-MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
-    // dragMoves:
-    MIXMoveArray moveArray = arrayOfLegalDragMoves(boardRef);
-
-    if (kv_size(moveArray) == 1) {
-        MIXCoreMove move = kv_A(moveArray, 0);
-        if (potentialWinner(boardRef, move) == playerOnTurn(boardRef)) {
-            // No need to look at setMoves, we have our winnner
-            return moveArray;
-        }
-    }
-
-    // add SetMoves:
-    if (numberOfPiecesForPlayer(boardRef, boardRef->turn) > 0) {
-        for (uint8_t i = 0; i < LENGTH_OF_BOARD; i++) {
-            for (uint8_t j = 0; j < LENGTH_OF_BOARD; j++) {
-                MIXCoreSquare square = {i, j};
-                if (isSquareEmpty(boardRef, square)) {
-                    MIXCoreMove move = MIXCoreMoveMakeSet(square);
-                    kv_push(MIXCoreMove, moveArray, move);
-                }
-            }
-        }
-    }
-    return moveArray;
-}
-
 
 void destroyMoveArray(MIXMoveArray moveArray) {
     kv_destroy(moveArray);
@@ -405,10 +384,14 @@ void destroyMoveArray(MIXMoveArray moveArray) {
 
 
 bool isDraggingPossible(MIXCoreBoardRef boardRef) {
-    MIXMoveArray dragMoves = arrayOfLegalDragMoves(boardRef);
-    size_t numberOfMoves = kv_size(dragMoves);
-    destroyMoveArray(dragMoves);
-    return numberOfMoves > 0;
+    MIXMoveArray moves = arrayOfLegalMoves(boardRef);
+    bool dragFound = false;
+    while (!dragFound && (kv_size(moves) > 0)) {
+        MIXCoreMove move = kv_pop(moves);
+        dragFound = isMoveDrag(move);
+    }
+    destroyMoveArray(moves);
+    return dragFound;
 }
 
 

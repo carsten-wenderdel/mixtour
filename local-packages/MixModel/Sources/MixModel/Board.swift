@@ -129,10 +129,6 @@ public class Board {
         return Core.isDraggingPossible(&coreBoard)
     }
 
-    func isSettingOrDraggingPossbile() -> Bool {
-        return true
-    }
-
     func allLegalMoves() -> [Move] {
         var swiftMoves = [Move]()
         let cMoves = Core.arrayOfLegalMoves(&coreBoard)
