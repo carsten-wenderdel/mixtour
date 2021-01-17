@@ -85,6 +85,7 @@ class BoardTests : XCTestCase {
         }
         
         XCTAssertEqual(board.winner(), PlayerColor.black)
+        XCTAssertFalse(board.isGameDraw())
     }
     
     
@@ -547,6 +548,71 @@ class BoardTests : XCTestCase {
         
         let someDragMove = Move.drag(from: Square(column: 4, line: 4), to: Square(column: 0, line: 0), numberOfPieces: 2)
         XCTAssertTrue(allMoves.contains(someDragMove))
+    }
+
+    // MARK: Pass Move
+
+    func testPassChangesTurnFromWhiteToBlack() {
+        // Given
+        let board = Board.noMovePossible
+        board.setTurnDirectly(.white)
+
+        // When
+        board.makeMoveIfLegal(.pass)
+
+        // Then
+        XCTAssertEqual(board.playerOnTurn(), .black)
+    }
+
+    func testPassChangesTurnFromBlackToWhite() {
+        // Given
+        let board = Board.noMovePossible
+        board.setTurnDirectly(.black)
+
+        // When
+        board.makeMoveIfLegal(.pass)
+
+        // Then
+        XCTAssertEqual(board.playerOnTurn(), .white)
+    }
+
+    func testTwoPassesLeadToDraw() {
+        // Given
+        let board = Board.noMovePossible
+
+        // When
+        board.makeMoveIfLegal(.pass)
+
+        // Then
+        XCTAssertFalse(board.isGameOver())
+
+        // And When
+        board.makeMoveIfLegal(.pass)
+
+        // Then
+        XCTAssert(board.isGameOver())
+        XCTAssert(board.isGameDraw())
+    }
+
+    func testTwoPassesWithOtherMoveInBetweenIsNotDraw() {
+        // Given
+        let board = Board.whiteCanMoveBlackCant
+        board.setTurnDirectly(.black)
+        XCTAssertEqual(board.playerOnTurn(), .black)
+
+        // When
+        board.makeMoveIfLegal(.pass)
+        XCTAssertEqual(board.playerOnTurn(), .white)
+
+        board.makeMoveIfLegal(.set(to: Square(column: 4, line: 0)))
+        XCTAssertEqual(board.playerOnTurn(), .black)
+
+        board.makeMoveIfLegal(.pass)
+        XCTAssertEqual(board.playerOnTurn(), .white)
+
+        // Then
+        XCTAssertFalse(board.isGameOver())
+        XCTAssertFalse(board.isGameDraw())
     }
 }
 

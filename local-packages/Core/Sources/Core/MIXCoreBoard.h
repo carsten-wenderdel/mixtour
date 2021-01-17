@@ -50,6 +50,7 @@ void resetCoreBoard(MIXCoreBoardRef boardRef);
 MIXCorePlayer playerOnTurn(MIXCoreBoardRef boardRef);
 
 bool isGameOver(MIXCoreBoardRef boardRef);
+bool isGameDraw(MIXCoreBoardRef boardRef);
 
 /**
  returns MIXCorePlayerUndefined when game is not over yet.

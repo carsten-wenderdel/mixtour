@@ -18,10 +18,12 @@
 #define MIX_CORE_NUMBER_OF_PIECES_TO_WIN 5
 
 
+/// Various bits containing information about the game state.
 enum MIXCoreGameBits {
-    MIXCoreGameBitsWinner = 1,
-    MIXCoreGameBitsGameOver = 1 << 1
-    
+    MIXCoreGameBitsWinner = 1,  // Only defined if game is over. 0 means White has won, 1 means Black has won
+    MIXCoreGameBitsGameOver = 1 << 1,   // 1 if game over, 0 if game is running
+    MIXCoreGameBitsGameDraw = 1 << 2,   // Only defined if game is over. 1 means draw, 0 means there is a winner.
+    MIXCoreGameBitsMovePass = 1 << 3    // 1 if last move was a pass, 0 at game start and when last move was set or draw.
 };
 typedef enum MIXCoreGameBits MIXCoreGameBits;
 
@@ -45,16 +47,22 @@ MIXCorePlayer playerOnTurn(MIXCoreBoardRef boardRef) {
 }
 
 
-bool isGameOver(MIXCoreBoardRef boardRef)
-{
+bool isGameOver(MIXCoreBoardRef boardRef) {
     return (boardRef->gameBits & MIXCoreGameBitsGameOver) != 0;
 }
 
+bool isGameDraw(MIXCoreBoardRef boardRef) {
+    return isGameOver(boardRef) && (boardRef->gameBits & MIXCoreGameBitsGameDraw) != 0;
+}
 
-MIXCorePlayer winner(MIXCoreBoardRef boardRef)
-{
+
+MIXCorePlayer winner(MIXCoreBoardRef boardRef) {
     if (isGameOver(boardRef)) {
-        return boardRef->gameBits & MIXCoreGameBitsWinner;
+        if ((boardRef->gameBits & MIXCoreGameBitsGameDraw) != 0) {
+            return MIXCorePlayerUndefined;
+        } else {
+            return boardRef->gameBits & MIXCoreGameBitsWinner;
+        }
     } else {
         return MIXCorePlayerUndefined;
     }
@@ -97,7 +105,7 @@ MIXCorePlayer colorOfSquareAtPosition(MIXCoreBoardRef boardRef, MIXCoreSquare sq
 
 
 /**
- Does not check whether setting is legal.
+ Does not check whether setting is legal. Don't call directly, lastMove not saved.
  */
 void setPiece(MIXCoreBoardRef boardRef, MIXCoreSquare square) {
     
@@ -113,6 +121,19 @@ void setPiece(MIXCoreBoardRef boardRef, MIXCoreSquare square) {
     }
 }
 
+/**
+ Does not check whether setting is legal. Don't call directly, lastMove not saved.
+ */
+void makePass(MIXCoreBoardRef boardRef) {
+    boardRef->gameBits |= MIXCoreGameBitsMovePass;
+    boardRef->turn ^= MIXCorePlayerBlack;
+    if (isMoveANoMove(boardRef->lastMove)) {
+        // 2 passes in a row -> game over!
+        boardRef->gameBits |= MIXCoreGameBitsGameOver;
+        // It's a draw
+        boardRef->gameBits |= MIXCoreGameBitsGameDraw;
+    }
+}
 
 bool isDistanceRight(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to) {
     
@@ -164,7 +185,17 @@ bool isMoveLegal(MIXCoreBoardRef boardRef, MIXCoreMove move) {
         return false;
     }
 
-    if (isMoveDrag(move)) {
+    if (isMoveANoMove(move)) {
+        // player can't pass if other move is possible
+        return !(isSettingPossible(boardRef) || isDraggingPossible(boardRef));
+    } else if (isMoveSet(move)) {
+        if (! isSquareEmpty(boardRef, move.to)) {
+            return false;
+        }
+
+        MIXCorePlayer player = playerOnTurn(boardRef);
+        return numberOfPiecesForPlayer(boardRef, player) > 0;
+    } else { // Move is drag
 
         if (isMoveRevertOfMove(move, boardRef->lastMove)) {
             return false;
@@ -196,21 +227,6 @@ bool isMoveLegal(MIXCoreBoardRef boardRef, MIXCoreMove move) {
         }
         
         return true; // nothing found, looks good
-        
-    } else {
-        
-        MIXCoreSquare square = move.to;
-        
-        if (! isSquareEmpty(boardRef, square)) {
-            return false;
-        }
-        
-        MIXCorePlayer player = playerOnTurn(boardRef);
-        if (numberOfPiecesForPlayer(boardRef, player) <= 0) {
-            return false;
-        }
-        
-        return true; // nothing found, looks good
     }
 }
 
@@ -226,17 +242,19 @@ MIXCorePlayer potentialWinner(MIXCoreBoardRef boardRef, MIXCoreMove move) {
 }
 
 void makeMove(MIXCoreBoardRef boardRef, MIXCoreMove move) {
-    if (isMoveDrag(move)) {
-        dragPieces(boardRef, move.from, move.to, move.numberOfPieces);
-    } else {
+    if (isMoveSet(move)) {
         setPiece(boardRef, move.to);
+    } else if (isMoveANoMove(move)) {
+        makePass(boardRef);
+    } else { // Drag
+        dragPieces(boardRef, move.from, move.to, move.numberOfPieces);
     }
     boardRef->lastMove = move;
 }
 
 
 /**
- Does not check whether move is legal.
+ Does not check whether move is legal. Don't call directly, lastMove not saved.
  */
 void dragPieces(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfDraggedPieces) {
 

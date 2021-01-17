@@ -38,6 +38,10 @@ public class Board {
         return Core.isGameOver(&coreBoard)
     }
 
+    public func isGameDraw() -> Bool {
+        return Core.isGameDraw(&coreBoard)
+    }
+
     public func winner() -> PlayerColor? {
         let corePlayer = Core.winner(&coreBoard)
         return PlayerColor(corePlayer: corePlayer)
