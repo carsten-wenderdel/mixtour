@@ -1,7 +1,7 @@
 import Foundation
 import Core
 
-public class ComputerPlayer {
+public final class ComputerPlayer {
 
     let numberOfTrials: Int
 

@@ -1,7 +1,7 @@
 import Foundation
 import MixModel
 
-class BoardViewModel: ObservableObject {
+final class BoardViewModel: ObservableObject {
 
     // MARK variables set from outside
     private var board: Board

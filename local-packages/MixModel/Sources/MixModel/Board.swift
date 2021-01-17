@@ -5,7 +5,7 @@ import Core
 public let numberOfSquares = 5
 
 
-public class Board {
+public final class Board {
     
     var coreBoard: MIXCoreBoard
     var setPieces: [Square:[Piece]]
