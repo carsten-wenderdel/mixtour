@@ -534,18 +534,42 @@ class BoardTests : XCTestCase {
             }
         }
     }
-    
-    func testNumberOfMovesForComplicatedPosition() {
+
+    // See test below, only "turn" has changed
+    func testAllMovesContainsOnlySetsIfDragWouldMeanLoss() {
+        // Given
         let board = Board()
-        
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .white, .black, .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 4, line: 4), .white, .black)
-        
+        board.setTurnDirectly(.white)
+
+        // When
         let allMoves = board.allLegalMoves()
-        // 23 sets and 1 drag
-        XCTAssertEqual(allMoves.count, 25)
-        XCTAssertTrue(allMoves.contains(Move.set(to: Square(column: 2, line: 2))))
-        
+
+        // Then
+        XCTAssertEqual(allMoves.count, 23)
+        for move in allMoves {
+            guard case .set(_) = move else {
+                XCTFail()
+                return
+            }
+        }
+    }
+
+    // See test above, only "turn" has changed
+    func testAllMovesContainsOnlyOneDragIfThisIsAWinnerMove() {
+        // Given
+        let board = Board()
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 0), .white, .black, .white, .white)
+        board.setPiecesDirectlyToSquare(Square(column: 4, line: 4), .white, .black)
+        board.setTurnDirectly(.black)
+
+        // When
+        let allMoves = board.allLegalMoves()
+
+        // Then
+        XCTAssertEqual(allMoves.count, 1)
+
         let someDragMove = Move.drag(from: Square(column: 4, line: 4), to: Square(column: 0, line: 0), numberOfPieces: 2)
         XCTAssertTrue(allMoves.contains(someDragMove))
     }
