@@ -343,7 +343,7 @@ MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
                         if (columnSignum != 0 || lineSignum != 0) { // don't look at orignal square
                             MIXCoreSquare sourceSquare = {(uint8_t)(i + height*columnSignum), (uint8_t)(j + height*lineSignum)};
                             // When the result is normally negative, we have a overflow, -1 becomes 255
-                            // So we don't have to ask for negative numbers, both 6 and 255 is beyond the board
+                            // So we don't have to ask for negative numbers, both 5 and 255 is beyond the board
                             if (sourceSquare.column < LENGTH_OF_BOARD && sourceSquare.line < LENGTH_OF_BOARD) {
                                 if (!isSquareEmpty(boardRef, sourceSquare)) {
                                     // So we can drag as long nothing is between. Check that:
