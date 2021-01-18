@@ -328,6 +328,8 @@ MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
     bool playerHasPiecesLeft = numberOfPiecesForPlayer(boardRef, player) > 0;
     MIXMoveArray moveArray;
     kv_init(moveArray);
+    MIXMoveArray loserMoves;
+    kv_init(loserMoves);
     for (uint8_t i = 0; i < LENGTH_OF_BOARD; i++) {
         for (uint8_t j = 0; j < LENGTH_OF_BOARD; j++) {
             MIXCoreSquare square = {i, j};
@@ -356,14 +358,19 @@ MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
                                                 if (! isMoveRevertOfMove(move, boardRef->lastMove)) {
                                                     kv_push(MIXCoreMove, moveArray, move);
                                                 }
-                                            } else if (color == player) {
-                                                // Player on turn wins; all other moves are not interesting anymore.
+                                            } else { // someone would win
                                                 MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
-                                                kv_size(moveArray) = 0;
-                                                kv_push(MIXCoreMove, moveArray, move);
-                                                return moveArray;
+                                                if (color == player) {
+                                                    // Player on turn wins; all other moves are not interesting anymore.
+                                                    kv_size(moveArray) = 0;
+                                                    kv_push(MIXCoreMove, moveArray, move);
+                                                    kv_destroy(loserMoves);
+                                                    return moveArray;
+                                                } else {
+                                                    MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
+                                                    kv_push(MIXCoreMove, loserMoves, move);
+                                                }
                                             }
-                                            // If the other player would win, we ignore this move.
                                         }
                                     }
                                 }
@@ -374,7 +381,20 @@ MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
             }
         }
     }
-    return moveArray;
+    if kv_size(moveArray) {
+        kv_destroy(loserMoves);
+        return moveArray;
+    } else { // no moves that would not end the game by losing
+        kv_destroy(moveArray);
+        if (kv_size(loserMoves) == 0) {
+            // No move possible, return a pass move
+            kv_push(MIXCoreMove, loserMoves, MIXCoreMoveNoMove);
+        } else {
+            // Only losing moves available, no need to return more than one.
+            kv_size(loserMoves) = 1;
+        }
+        return loserMoves;
+    }
 }
 
 
@@ -386,7 +406,7 @@ void destroyMoveArray(MIXMoveArray moveArray) {
 bool isDraggingPossible(MIXCoreBoardRef boardRef) {
     MIXMoveArray moves = arrayOfLegalMoves(boardRef);
     bool dragFound = false;
-    while (!dragFound && (kv_size(moves) > 0)) {
+    while (!dragFound && kv_size(moves)) {
         MIXCoreMove move = kv_pop(moves);
         dragFound = isMoveDrag(move);
     }

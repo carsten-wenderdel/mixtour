@@ -510,7 +510,7 @@ class BoardTests : XCTestCase {
         }
     }
     
-    func testNumberOfMovesIsZeroIfNoPiecesAvailable() {
+    func testOnlyMoveIsPassIfNoPiecesAvailable() {
         let board = Board()
     
         // given all 20 white pieces are set:
@@ -521,7 +521,7 @@ class BoardTests : XCTestCase {
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 4), .white, .white, .white, .white)
 
         let allMovesForWhite = board.allLegalMoves()
-        XCTAssertEqual(allMovesForWhite.count, 0)
+        XCTAssertEqual(allMovesForWhite, [.pass])
         
         // given no white piece is set and 20 tiles are free
         board.setTurnDirectly(.black)
@@ -533,6 +533,30 @@ class BoardTests : XCTestCase {
                 XCTFail()
             }
         }
+    }
+
+    func testExactlyOneLoserMoveIsReturnedIfNoBetterMovesAreAvailable() {
+        // Given
+        let board = Board()
+        board.setPiecesDirectlyToSquare(Square(column: 4, line: 0), .black, .black, .black, .black)
+        for column in 0..<4 {
+            board.setPiecesDirectlyToSquare(Square(column: column, line: 0), .white, .white, .white, .white)
+            board.setPiecesDirectlyToSquare(Square(column: column+1, line: 1), .black, .black, .black, .black)
+        }
+        board.setPiecesDirectlyToSquare(Square(column: 0, line: 4), .white, .white, .white, .white)
+        board.setTurnDirectly(.black)
+
+        // When
+        let allMovesForBlack = board.allLegalMoves()
+
+        // Then
+        XCTAssertEqual(allMovesForBlack.count, 1)
+        guard case let .drag(from, to, _) = allMovesForBlack.first else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(from, Square(column: 0, line: 4))
+        XCTAssertEqual(to, Square(column: 0, line: 0))
     }
 
     // See test below, only "turn" has changed
