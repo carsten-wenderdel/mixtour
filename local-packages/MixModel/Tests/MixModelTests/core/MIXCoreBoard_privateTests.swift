@@ -5,8 +5,7 @@ class MIXCoreBoard_privateTests : XCTestCase {
     
     func testSetPiecesDirectly() {
         
-        var coreBoard = MIXCoreBoard()
-        resetCoreBoard(&coreBoard)
+        var coreBoard = .new()
         
         XCTAssertEqual(Core.numberOfPiecesForPlayer(&coreBoard, MIXCorePlayerWhite), UInt8(20))
         XCTAssertEqual(Core.numberOfPiecesForPlayer(&coreBoard, MIXCorePlayerBlack), UInt8(20))
@@ -68,8 +67,7 @@ class MIXCoreBoard_privateTests : XCTestCase {
     
     func testSetTurnDirectly() {
         
-        var coreBoard = MIXCoreBoard()
-        resetCoreBoard(&coreBoard)
+        var coreBoard = .new()
         
         XCTAssertEqual(Core.numberOfPiecesForPlayer(&coreBoard, MIXCorePlayerWhite), UInt8(20))
         XCTAssertEqual(Core.numberOfPiecesForPlayer(&coreBoard, MIXCorePlayerBlack), UInt8(20))

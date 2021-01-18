@@ -4,6 +4,14 @@ import Core
 // TODO: move it into some class or enum?
 public let numberOfSquares = 5
 
+extension MIXCoreBoard {
+    static func new() -> MIXCoreBoard {
+        var coreBoard = MIXCoreBoard()
+        resetCoreBoard(&coreBoard)
+        return coreBoard
+    }
+}
+
 
 public final class Board {
     
@@ -12,8 +20,7 @@ public final class Board {
     var unusedPieces: [PlayerColor:[Piece]]
 
     public init() {
-        coreBoard = MIXCoreBoard()
-        resetCoreBoard(&coreBoard)
+        coreBoard = .new()
         setPieces = [:]
         unusedPieces = [.white:[], .black:[]]
         for player: PlayerColor in [.white, .black] {

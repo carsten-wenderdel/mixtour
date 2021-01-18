@@ -1,5 +1,6 @@
 import XCTest
 import Core
+@testable import MixModel
 
 class MIXCoreBoardTests : XCTestCase {
     
@@ -13,8 +14,7 @@ class MIXCoreBoardTests : XCTestCase {
     
     func testPotentialWinner() {
         // given
-        var coreBoard = MIXCoreBoard()
-        resetCoreBoard(&coreBoard)
+        var coreBoard = MIXCoreBoard.new()
         
         let square1 = MIXCoreSquare(column:1, line:1)
         setPiecesDirectlyWithList(&coreBoard, square1, 1, getVaList([MIXCorePlayerBlack.rawValue]))
