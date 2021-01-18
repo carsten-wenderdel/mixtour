@@ -137,14 +137,18 @@ public final class Board {
     }
 
     func allLegalMoves() -> [Move] {
-        var swiftMoves = [Move]()
+        return Self.allLegalMoves(&coreBoard).map { Move($0) }
+    }
+
+    static func allLegalMoves( _ coreBoard: inout MIXCoreBoard) -> [MIXCoreMove] {
+        var moveArray = [MIXCoreMove]()
         let cMoves = Core.arrayOfLegalMoves(&coreBoard)
         for i in 0..<cMoves.n {
             let coreMove = cMoves.a[i]
-            swiftMoves.append(Move(coreMove))
+            moveArray.append(coreMove)
         }
         Core.destroyMoveArray(cMoves)
-        return swiftMoves
+        return moveArray
     }
     
     public func printDescription() -> Void {
