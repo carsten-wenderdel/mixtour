@@ -5,7 +5,7 @@ final class Node {
 
     var state: MIXCoreBoard // Could also be a let, but this way we need less memory copies of state
     let move: MIXCoreMove?
-    let parent: Node?
+    weak var parent: Node?
     var nonSimulatedMoves: [MIXCoreMove]
 
     var childNodes = [Node]()
@@ -16,7 +16,7 @@ final class Node {
         self.state = state
         self.move = nil
         self.parent = nil
-        self.nonSimulatedMoves = Board.allLegalMoves(&self.state)
+        self.nonSimulatedMoves = Board.allLegalMoves(&self.state).shuffled()
     }
 
     /// Used for expansion
@@ -25,7 +25,7 @@ final class Node {
         Core.makeMove(&state, move) // This will change the state
         self.move = move
         self.parent = parent
-        nonSimulatedMoves = Board.allLegalMoves(&state)
+        nonSimulatedMoves = Board.allLegalMoves(&state).shuffled()
     }
 
     func selectedNodeForNextVisit(_ explorationConstant: Double) -> Node {

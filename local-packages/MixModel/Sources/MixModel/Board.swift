@@ -141,8 +141,9 @@ public final class Board {
     }
 
     static func allLegalMoves( _ coreBoard: inout MIXCoreBoard) -> [MIXCoreMove] {
-        var moveArray = [MIXCoreMove]()
         let cMoves = Core.arrayOfLegalMoves(&coreBoard)
+        var moveArray = [MIXCoreMove]()
+        moveArray.reserveCapacity(cMoves.n)
         for i in 0..<cMoves.n {
             let coreMove = cMoves.a[i]
             moveArray.append(coreMove)
