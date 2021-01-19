@@ -129,6 +129,7 @@ class NodeTests : XCTestCase {
         let parent = Self.testNode
         let grandChild = parent.selectedNodeForNextVisit(0.25)
         let child = grandChild.parent!
+        XCTAssert(child.parent === parent)
 
         let parentSimulations = parent.numberOfSimulations
         let childSimulations = child.numberOfSimulations
@@ -146,9 +147,9 @@ class NodeTests : XCTestCase {
         XCTAssertEqual(child.numberOfSimulations, childSimulations + 1)
         XCTAssertEqual(grandChild.numberOfSimulations, grandChildSimulations + 1)
 
-        XCTAssertEqual(parent.numberOfWins, parentWins + 1)
-        XCTAssertEqual(child.numberOfWins, childWins)
-        XCTAssertEqual(grandChild.numberOfWins, grandChildWins + 1)
+        XCTAssertEqual(parent.numberOfWins, parentWins)
+        XCTAssertEqual(child.numberOfWins, childWins + 1)
+        XCTAssertEqual(grandChild.numberOfWins, grandChildWins)
     }
 
     func testBackPropagationForLoss() {
@@ -156,6 +157,7 @@ class NodeTests : XCTestCase {
         let parent = Self.testNode
         let grandChild = parent.selectedNodeForNextVisit(0.25)
         let child = grandChild.parent!
+        XCTAssert(child.parent === parent)
 
         let parentSimulations = parent.numberOfSimulations
         let childSimulations = child.numberOfSimulations
@@ -173,9 +175,9 @@ class NodeTests : XCTestCase {
         XCTAssertEqual(child.numberOfSimulations, childSimulations + 1)
         XCTAssertEqual(grandChild.numberOfSimulations, grandChildSimulations + 1)
 
-        XCTAssertEqual(parent.numberOfWins, parentWins)
-        XCTAssertEqual(child.numberOfWins, childWins + 1)
-        XCTAssertEqual(grandChild.numberOfWins, grandChildWins)
+        XCTAssertEqual(parent.numberOfWins, parentWins + 1)
+        XCTAssertEqual(child.numberOfWins, childWins)
+        XCTAssertEqual(grandChild.numberOfWins, grandChildWins + 1)
     }
 
     func testBackPropagationForDraw() {
@@ -183,6 +185,7 @@ class NodeTests : XCTestCase {
         let parent = Self.testNode
         let grandChild = parent.selectedNodeForNextVisit(0.25)
         let child = grandChild.parent!
+        XCTAssert(child.parent === parent)
 
         let parentSimulations = parent.numberOfSimulations
         let childSimulations = child.numberOfSimulations

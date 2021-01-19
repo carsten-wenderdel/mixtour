@@ -4,7 +4,7 @@ import Core
 final class Node {
 
     var state: MIXCoreBoard // Could also be a let, but this way we need less memory copies of state
-    let move: MIXCoreMove?
+    let move: MIXCoreMove? // The move that has lead to the state above
     weak var parent: Node?
     var nonSimulatedMoves: [MIXCoreMove]
 
@@ -72,10 +72,10 @@ final class Node {
         let draw = (winner == MIXCorePlayerUndefined)
         var node = self
         while true {
-            if Core.playerOnTurn(&node.state) == winner {
-                node.numberOfWins += 1
-            } else if draw {
+            if draw {
                 node.numberOfWins += 0.5
+            } else if Core.playerOnTurn(&node.state) != winner {
+                node.numberOfWins += 1
             }
             node.numberOfSimulations += 1
 
