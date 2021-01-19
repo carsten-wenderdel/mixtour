@@ -67,4 +67,24 @@ final class Node {
         }
         return Core.winner(&board)
     }
+
+    func backpropagate(_ winner: MIXCorePlayer) {
+        let draw = (winner == MIXCorePlayerUndefined)
+        var node = self
+        while true {
+            if Core.playerOnTurn(&node.state) == winner {
+                node.numberOfWins += 1
+            } else if draw {
+                node.numberOfWins += 0.5
+            }
+            node.numberOfSimulations += 1
+
+            if let theParent = node.parent {
+                node = theParent
+            } else {
+                break
+            }
+        }
+    }
 }
+

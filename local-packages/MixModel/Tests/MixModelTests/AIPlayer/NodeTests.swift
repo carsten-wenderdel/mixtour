@@ -28,6 +28,7 @@ class NodeTests : XCTestCase {
         let bestWinChild1 = dummyNode(simulations: 10, wins: 2)
         let bestWinChild2 = dummyNode(simulations: 10, wins: 9)
         bestWinRate.childNodes = [bestWinChild1, bestWinChild2]
+        bestWinRate.childNodes.forEach { $0.parent = bestWinRate }
 
         let parent = dummyNode()
         parent.childNodes = [leastSimulations, ignored, bestWinRate]
@@ -37,6 +38,10 @@ class NodeTests : XCTestCase {
         parent.numberOfWins = parent.childNodes.reduce(0.0, { sum, node in
             sum + node.numberOfWins
         })
+        parent.childNodes.forEach { child in
+            child.parent = parent
+            Core.setTurnDirectly(&child.state, MIXCorePlayerBlack)
+        }
         return parent
     }
 
@@ -115,5 +120,88 @@ class NodeTests : XCTestCase {
             let winner = node.simulate()
             XCTAssertTrue(winner == MIXCorePlayerBlack || winner == MIXCorePlayerWhite || winner == MIXCorePlayerUndefined)
         }
+    }
+
+    // MARK: Test Backpropagation
+
+    func testBackPropagationForWin() {
+        // Given
+        let parent = Self.testNode
+        let grandChild = parent.selectedNodeForNextVisit(0.25)
+        let child = grandChild.parent!
+
+        let parentSimulations = parent.numberOfSimulations
+        let childSimulations = child.numberOfSimulations
+        let grandChildSimulations = grandChild.numberOfSimulations
+
+        let parentWins = parent.numberOfWins
+        let childWins = child.numberOfWins
+        let grandChildWins = grandChild.numberOfWins
+
+        // When
+        grandChild.backpropagate(MIXCorePlayerWhite) // That's the difference to the other tests
+
+        // Then
+        XCTAssertEqual(parent.numberOfSimulations, parentSimulations + 1)
+        XCTAssertEqual(child.numberOfSimulations, childSimulations + 1)
+        XCTAssertEqual(grandChild.numberOfSimulations, grandChildSimulations + 1)
+
+        XCTAssertEqual(parent.numberOfWins, parentWins + 1)
+        XCTAssertEqual(child.numberOfWins, childWins)
+        XCTAssertEqual(grandChild.numberOfWins, grandChildWins + 1)
+    }
+
+    func testBackPropagationForLoss() {
+        // Given
+        let parent = Self.testNode
+        let grandChild = parent.selectedNodeForNextVisit(0.25)
+        let child = grandChild.parent!
+
+        let parentSimulations = parent.numberOfSimulations
+        let childSimulations = child.numberOfSimulations
+        let grandChildSimulations = grandChild.numberOfSimulations
+
+        let parentWins = parent.numberOfWins
+        let childWins = child.numberOfWins
+        let grandChildWins = grandChild.numberOfWins
+
+        // When
+        grandChild.backpropagate(MIXCorePlayerBlack) // That's the difference to the other tests
+
+        // Then
+        XCTAssertEqual(parent.numberOfSimulations, parentSimulations + 1)
+        XCTAssertEqual(child.numberOfSimulations, childSimulations + 1)
+        XCTAssertEqual(grandChild.numberOfSimulations, grandChildSimulations + 1)
+
+        XCTAssertEqual(parent.numberOfWins, parentWins)
+        XCTAssertEqual(child.numberOfWins, childWins + 1)
+        XCTAssertEqual(grandChild.numberOfWins, grandChildWins)
+    }
+
+    func testBackPropagationForDraw() {
+        // Given
+        let parent = Self.testNode
+        let grandChild = parent.selectedNodeForNextVisit(0.25)
+        let child = grandChild.parent!
+
+        let parentSimulations = parent.numberOfSimulations
+        let childSimulations = child.numberOfSimulations
+        let grandChildSimulations = grandChild.numberOfSimulations
+
+        let parentWins = parent.numberOfWins
+        let childWins = child.numberOfWins
+        let grandChildWins = grandChild.numberOfWins
+
+        // When
+        grandChild.backpropagate(MIXCorePlayerUndefined) // That's the difference to the other tests
+
+        // Then
+        XCTAssertEqual(parent.numberOfSimulations, parentSimulations + 1)
+        XCTAssertEqual(child.numberOfSimulations, childSimulations + 1)
+        XCTAssertEqual(grandChild.numberOfSimulations, grandChildSimulations + 1)
+
+        XCTAssertEqual(parent.numberOfWins, parentWins + 0.5)
+        XCTAssertEqual(child.numberOfWins, childWins + 0.5)
+        XCTAssertEqual(grandChild.numberOfWins, grandChildWins + 0.5)
     }
 }
