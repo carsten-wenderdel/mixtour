@@ -54,4 +54,16 @@ final class Node {
         childNodes.append(newChild)
         return newChild
     }
+
+    func simulate() -> MIXCorePlayer {
+        var board = state
+        while (!Core.isGameOver(&board)) {
+            guard let move = Board.allLegalMoves(&board).randomElement() else {
+                assertionFailure("If game is not over, there must be a legal move")
+                return MIXCorePlayerUndefined
+            }
+            Core.makeMove(&board, move)
+        }
+        return Core.winner(&board)
+    }
 }

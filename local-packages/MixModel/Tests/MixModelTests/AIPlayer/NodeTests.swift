@@ -101,4 +101,15 @@ class NodeTests : XCTestCase {
         XCTAssertEqual(node.childNodes.count, 1)
         XCTAssert(node.childNodes.first === newChild)
     }
+
+    // MARK: Test Simulation
+
+    func testSimulation() {
+        // Just try out some random simulations. We are happy if they terminate.
+        let node = Node(state: MIXCoreBoard.new())
+        for _ in 0..<2000 {
+            let winner = node.simulate()
+            XCTAssertTrue(winner == MIXCorePlayerBlack || winner == MIXCorePlayerWhite || winner == MIXCorePlayerUndefined)
+        }
+    }
 }
