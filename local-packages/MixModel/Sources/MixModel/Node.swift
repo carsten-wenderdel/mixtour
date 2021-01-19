@@ -29,14 +29,15 @@ final class Node {
     }
 
     func selectedNodeForNextVisit(_ explorationConstant: Double) -> Node {
-        if !nonSimulatedMoves.isEmpty || childNodes.isEmpty {
-            return self
+        var selected = self
+        while selected.nonSimulatedMoves.isEmpty && !selected.childNodes.isEmpty {
+            selected = selected.childNodes.max { (node1, node2) -> Bool in
+                let uct1 = node1.uct(explorationConstant, totalNumberOfSimulations: selected.numberOfSimulations)
+                let uct2 = node2.uct(explorationConstant, totalNumberOfSimulations: selected.numberOfSimulations)
+                return uct1 < uct2
+            }!
         }
-        let selected = childNodes.max { (node1, node2) -> Bool in
-            node1.uct(explorationConstant, totalNumberOfSimulations: numberOfSimulations)
-                < node2.uct(explorationConstant, totalNumberOfSimulations: numberOfSimulations)
-        }
-        return selected! // We checked earlier that childNodes is not empty, so forced unwrap is safe.
+        return selected
     }
 
     // Upper Confidence Bound applied to trees

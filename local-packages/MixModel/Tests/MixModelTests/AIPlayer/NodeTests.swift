@@ -6,26 +6,28 @@ class NodeTests : XCTestCase {
 
     // MARK: fake nodes to help testing
 
-    private static func dummyNode() -> Node {
+    private static func dummyNode(simulations: Double, wins: Double) -> Node {
         var board = MIXCoreBoard()
         Core.resetCoreBoard(&board)
         let node = Node(state: board)
         node.nonSimulatedMoves = []
+        node.numberOfSimulations = simulations
+        node.numberOfWins = wins
         return node
     }
 
+    private static func dummyNode() -> Node {
+        return dummyNode(simulations: 0, wins: 0)
+    }
+
     private static var testNode: Node {
-        let leastSimulations = dummyNode()
-        leastSimulations.numberOfSimulations = 10
-        leastSimulations.numberOfWins = 5
+        let leastSimulations = dummyNode(simulations: 10, wins: 5)
+        let ignored = dummyNode(simulations: 20, wins: 10)
+        let bestWinRate = dummyNode(simulations: 20, wins: 11)
 
-        let ignored = dummyNode()
-        ignored.numberOfSimulations = 20
-        ignored.numberOfWins = 10
-
-        let bestWinRate = dummyNode()
-        bestWinRate.numberOfSimulations = 20
-        bestWinRate.numberOfWins = 11
+        let bestWinChild1 = dummyNode(simulations: 10, wins: 2)
+        let bestWinChild2 = dummyNode(simulations: 10, wins: 9)
+        bestWinRate.childNodes = [bestWinChild1, bestWinChild2]
 
         let parent = dummyNode()
         parent.childNodes = [leastSimulations, ignored, bestWinRate]
@@ -40,7 +42,7 @@ class NodeTests : XCTestCase {
 
     // MARK: Test Selection
 
-    func testSelectNodePicksBestWinRateForSmallConstants() {
+    func testSelectNodePicksBestWinRateForSmallConstantsAndGoesTwoLevelsDeep() {
         // Given
         let parent = Self.testNode
 
@@ -48,7 +50,8 @@ class NodeTests : XCTestCase {
         let selected = parent.selectedNodeForNextVisit(0.25)
 
         // Then
-        XCTAssertEqual(selected.numberOfWins, 11)
+        XCTAssertEqual(selected.numberOfSimulations, 10)
+        XCTAssertEqual(selected.numberOfWins, 9)
     }
 
     func testSelectNodePicksLeastSimulationsForBigConstants() {
@@ -60,6 +63,7 @@ class NodeTests : XCTestCase {
 
         // Then
         XCTAssertEqual(selected.numberOfSimulations, 10)
+        XCTAssertEqual(selected.numberOfWins, 5)
     }
 
     func testSelectNodeReturnsSelfIfSomeUntriedMoveExists() {
@@ -107,7 +111,7 @@ class NodeTests : XCTestCase {
     func testSimulation() {
         // Just try out some random simulations. We are happy if they terminate.
         let node = Node(state: MIXCoreBoard.new())
-        for _ in 0..<2000 {
+        for _ in 0..<100 {
             let winner = node.simulate()
             XCTAssertTrue(winner == MIXCorePlayerBlack || winner == MIXCorePlayerWhite || winner == MIXCorePlayerUndefined)
         }
