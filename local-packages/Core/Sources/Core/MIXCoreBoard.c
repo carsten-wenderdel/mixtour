@@ -328,6 +328,7 @@ MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
     bool playerHasPiecesLeft = numberOfPiecesForPlayer(boardRef, player) > 0;
     MIXMoveArray moveArray;
     kv_init(moveArray);
+    kv_resize(MIXCoreMove, moveArray, 60);
     MIXCoreMove lastResortMove = MIXCoreMoveNoMove; // If no other move is found, this will be returned
     for (uint8_t i = 0; i < LENGTH_OF_BOARD; i++) {
         for (uint8_t j = 0; j < LENGTH_OF_BOARD; j++) {
