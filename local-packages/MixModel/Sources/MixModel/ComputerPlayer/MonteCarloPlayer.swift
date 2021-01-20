@@ -10,7 +10,7 @@ public final class MonteCarloPlayer {
         MonteCarloPlayer(numberOfIterations: 1_000, explorationConstant: 2)
     }
     public static var advanced: MonteCarloPlayer {
-        MonteCarloPlayer(numberOfIterations: 10_000, explorationConstant: 2)
+        MonteCarloPlayer(numberOfIterations: 100_000, explorationConstant: 2)
     }
 
     public init(numberOfIterations: Int, explorationConstant: Double) {

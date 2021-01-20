@@ -67,7 +67,10 @@ final class BoardViewModel: ObservableObject {
         }
     }
 
-    func reset(board: Board = Board(), color: PlayerColor = .white) {
+    func reset(board: Board = Board(),
+               color: PlayerColor = .white,
+               computer: MonteCarloPlayer = .beginner
+    ) {
         objectWillChange.send()
         previousBoard = nil
         animatableMove = nil
@@ -75,6 +78,7 @@ final class BoardViewModel: ObservableObject {
         setSquare = nil
         self.board = board
         self.humanColor = color
+        self.computerPlayer = computer
         if (color == .white) {
             computerPlayerIsThinking = false
         } else {
