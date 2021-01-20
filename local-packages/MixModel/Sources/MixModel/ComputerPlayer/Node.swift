@@ -20,12 +20,12 @@ final class Node {
     }
 
     /// Used for expansion
-    init(parent: Node, move: MIXCoreMove) {
+    init<T>(parent: Node, move: MIXCoreMove, rng: inout T) where T: RandomNumberGenerator {
         state = parent.state
         Core.makeMove(&state, move) // This will change the state
         self.move = move
         self.parent = parent
-        nonSimulatedMoves = Board.allLegalMoves(&state).shuffled()
+        nonSimulatedMoves = Board.allLegalMoves(&state).shuffled(using: &rng)
     }
 
     func selectedNodeForNextVisit(_ explorationConstant: Double) -> Node {
@@ -46,7 +46,7 @@ final class Node {
             + explorationConstant * sqrt(log(totalNumberOfSimulations) / numberOfSimulations)
     }
 
-    func expand() -> Node {
+    func expand<T>(_ rng: inout T) -> Node where T: RandomNumberGenerator {
         if Core.isGameOver(&state) {
             return self
         }
@@ -55,16 +55,16 @@ final class Node {
             assertionFailure("If moves array is empty, select should have gone deeper in tree")
             return self
         }
-        let newChild = Node(parent: self, move: move)
+        let newChild = Node(parent: self, move: move, rng: &rng)
         childNodes.append(newChild)
         return newChild
     }
 
-    func simulate() -> MIXCorePlayer {
+    func simulate<T>(_ rng: inout T) -> MIXCorePlayer where T: RandomNumberGenerator {
         var board = state
         while (!Core.isGameOver(&board)) {
             let moves = Core.arrayOfLegalMoves(&board)
-            let randomIndex = Int.random(in: 0..<moves.n)
+            let randomIndex = Int.random(in: 0..<moves.n, using: &rng)
             let randomMove = moves.a[randomIndex]
             Core.destroyMoveArray(moves)
             Core.makeMove(&board, randomMove)

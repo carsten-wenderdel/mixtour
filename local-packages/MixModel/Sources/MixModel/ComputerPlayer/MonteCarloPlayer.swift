@@ -3,6 +3,7 @@ import Core
 
 public final class MonteCarloPlayer {
     
+    private var rng: XorShiftRNG
     private let explorationConstant: Double
     private let numberOfIterations: Int
 
@@ -13,10 +14,23 @@ public final class MonteCarloPlayer {
         MonteCarloPlayer(numberOfIterations: 100_000, explorationConstant: 2)
     }
 
-    public init(numberOfIterations: Int, explorationConstant: Double) {
+    public convenience init(numberOfIterations: Int, explorationConstant: Double) {
+        self.init(
+            numberOfIterations: numberOfIterations,
+            explorationConstant: explorationConstant,
+            rng: XorShiftRNG(UInt64.random(in: UInt64.min...UInt64.max))
+        )
+    }
+
+    init(
+        numberOfIterations: Int,
+        explorationConstant: Double,
+        rng: XorShiftRNG
+    ) {
         assert(numberOfIterations > 0)
         self.numberOfIterations = numberOfIterations
         self.explorationConstant = explorationConstant
+        self.rng = rng
     }
 
     /// Returns nil if game is over
@@ -30,8 +44,8 @@ public final class MonteCarloPlayer {
 
         for _ in 0..<numberOfIterations {
             let selected = root.selectedNodeForNextVisit(explorationConstant)
-            let expanded = selected.expand()
-            let winner = expanded.simulate()
+            let expanded = selected.expand(&rng)
+            let winner = expanded.simulate(&rng)
             expanded.backpropagate(winner)
         }
 
