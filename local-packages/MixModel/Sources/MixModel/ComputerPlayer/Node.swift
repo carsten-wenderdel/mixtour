@@ -46,10 +46,14 @@ final class Node {
             + explorationConstant * sqrt(log(totalNumberOfSimulations) / numberOfSimulations)
     }
 
-    func expand() -> Node? {
+    func expand() -> Node {
+        if Core.isGameOver(&state) {
+            return self
+        }
         // No need to select a random move, the array is already shuffled
         guard let move = nonSimulatedMoves.popLast() else {
-            return nil
+            assertionFailure("If moves array is empty, select should have gone deeper in tree")
+            return self
         }
         let newChild = Node(parent: self, move: move)
         childNodes.append(newChild)
@@ -78,6 +82,12 @@ final class Node {
                 node.numberOfWins += 1
             }
             node.numberOfSimulations += 1
+
+//            node.childNodes.sort( by: { (node1, node2) -> Bool in
+//                let winRate1 = node1.numberOfWins / node1.numberOfSimulations
+//                let winRate2 = node2.numberOfWins / node2.numberOfSimulations
+//                return winRate1 < winRate2
+//            })
 
             if let theParent = node.parent {
                 node = theParent

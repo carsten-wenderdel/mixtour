@@ -111,6 +111,25 @@ class NodeTests : XCTestCase {
         XCTAssert(node.childNodes.first === newChild)
     }
 
+    func testExpansionDoesNotCreateNewNodeWhenGameOver() {
+        // Given
+        let board = Board()
+        let square1 = Square(column: 0, line: 0)
+        let square2 = Square(column: 0, line: 0)
+        board.setPiecesDirectlyToSquare(square1, .white, .black, .white)
+        board.setPiecesDirectlyToSquare(square2, .white, .black, .white)
+        board.dragPiecesFrom(square1, to: square2, withNumber: 3)
+        XCTAssert(board.isGameOver())
+        let node = Node(state: board.coreBoard)
+
+        // When
+        let potentialChild = node.expand()
+
+        // Then
+        XCTAssertEqual(node.childNodes.count, 0)
+        XCTAssert(potentialChild === node)
+    }
+
     // MARK: Test Simulation
 
     func testSimulation() {
