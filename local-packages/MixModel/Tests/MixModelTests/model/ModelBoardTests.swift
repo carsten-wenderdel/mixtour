@@ -555,8 +555,8 @@ class BoardTests : XCTestCase {
             XCTFail()
             return
         }
-        XCTAssertEqual(from, Square(column: 0, line: 4))
-        XCTAssertEqual(to, Square(column: 0, line: 0))
+        XCTAssertEqual(from, Square(column: 0, line: 0))
+        XCTAssertEqual(to, Square(column: 0, line: 4))
     }
 
     // See test below, only "turn" has changed

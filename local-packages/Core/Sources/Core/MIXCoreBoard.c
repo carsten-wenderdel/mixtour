@@ -328,8 +328,7 @@ MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
     bool playerHasPiecesLeft = numberOfPiecesForPlayer(boardRef, player) > 0;
     MIXMoveArray moveArray;
     kv_init(moveArray);
-    MIXMoveArray loserMoves;
-    kv_init(loserMoves);
+    MIXCoreMove lastResortMove = MIXCoreMoveNoMove; // If no other move is found, this will be returned
     for (uint8_t i = 0; i < LENGTH_OF_BOARD; i++) {
         for (uint8_t j = 0; j < LENGTH_OF_BOARD; j++) {
             MIXCoreSquare square = {i, j};
@@ -364,11 +363,10 @@ MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
                                                     // Player on turn wins; all other moves are not interesting anymore.
                                                     kv_size(moveArray) = 0;
                                                     kv_push(MIXCoreMove, moveArray, move);
-                                                    kv_destroy(loserMoves);
                                                     return moveArray;
                                                 } else {
-                                                    MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
-                                                    kv_push(MIXCoreMove, loserMoves, move);
+                                                    // Losing move. Will be returned if no better move is found
+                                                    lastResortMove = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
                                                 }
                                             }
                                         }
@@ -381,20 +379,11 @@ MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
             }
         }
     }
-    if kv_size(moveArray) {
-        kv_destroy(loserMoves);
-        return moveArray;
-    } else { // no moves that would not end the game by losing
-        kv_destroy(moveArray);
-        if (kv_size(loserMoves) == 0) {
-            // No move possible, return a pass move
-            kv_push(MIXCoreMove, loserMoves, MIXCoreMoveNoMove);
-        } else {
-            // Only losing moves available, no need to return more than one.
-            kv_size(loserMoves) = 1;
-        }
-        return loserMoves;
+    if (!kv_size(moveArray)) {
+        // no good moves found
+        kv_push(MIXCoreMove, moveArray, lastResortMove);
     }
+    return moveArray;
 }
 
 
