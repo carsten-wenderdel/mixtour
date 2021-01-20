@@ -97,5 +97,17 @@ final class Node {
             }
         }
     }
+
+    func winnerMove() -> MIXCoreMove? {
+        // Literature for Monte Carlo Tree Search says we should pick the
+        // node with the most visits. Some implementations take the node
+        // with the best win rate (numberOfWins / numberOfSimulations).
+        // In both cases the number of wins should be the biggest, even
+        // more so.
+        let winnerNode = childNodes.max { (node1, node2) -> Bool in
+            return node1.numberOfWins < node2.numberOfWins
+        }
+        return winnerNode?.move
+    }
 }
 

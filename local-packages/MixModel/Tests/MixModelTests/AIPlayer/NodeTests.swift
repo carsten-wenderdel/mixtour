@@ -6,10 +6,15 @@ class NodeTests : XCTestCase {
 
     // MARK: fake nodes to help testing
 
-    private static func dummyNode(simulations: Double, wins: Double) -> Node {
+    private static func dummyNode(simulations: Double, wins: Double, move: Move? = nil) -> Node {
         var board = MIXCoreBoard()
         Core.resetCoreBoard(&board)
-        let node = Node(state: board)
+        let node: Node
+        if let move = move {
+            node = Node(parent: Node(state: board), move: move.coreMove())
+        } else {
+            node = Node(state: board)
+        }
         node.nonSimulatedMoves = []
         node.numberOfSimulations = simulations
         node.numberOfWins = wins
@@ -23,7 +28,7 @@ class NodeTests : XCTestCase {
     private static var testNode: Node {
         let leastSimulations = dummyNode(simulations: 10, wins: 5)
         let ignored = dummyNode(simulations: 20, wins: 10)
-        let bestWinRate = dummyNode(simulations: 20, wins: 11)
+        let bestWinRate = dummyNode(simulations: 20, wins: 11, move: .set(to: Square(column: 2, line: 1)))
 
         let bestWinChild1 = dummyNode(simulations: 10, wins: 2)
         let bestWinChild2 = dummyNode(simulations: 10, wins: 9)
@@ -225,5 +230,20 @@ class NodeTests : XCTestCase {
         XCTAssertEqual(parent.numberOfWins, parentWins + 0.5)
         XCTAssertEqual(child.numberOfWins, childWins + 0.5)
         XCTAssertEqual(grandChild.numberOfWins, grandChildWins + 0.5)
+    }
+
+    // MARK: Test Winner Move
+
+    func testWinnerMoveTakesNodeWithMostWins() {
+        // Given
+        let node = Self.testNode
+
+        // When
+        let winner = node.winnerMove()
+
+        // Then
+        // As specified in testNode
+        XCTAssertEqual(winner?.to.column, 2)
+        XCTAssertEqual(winner?.to.line, 1)
     }
 }
