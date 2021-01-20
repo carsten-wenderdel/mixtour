@@ -83,6 +83,7 @@ final class Node {
             }
             node.numberOfSimulations += 1
 
+            // Helps with debugging, not needed for functionality:
 //            node.childNodes.sort( by: { (node1, node2) -> Bool in
 //                let winRate1 = node1.numberOfWins / node1.numberOfSimulations
 //                let winRate2 = node2.numberOfWins / node2.numberOfSimulations
