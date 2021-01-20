@@ -55,7 +55,7 @@ class MIXViewController: UIViewController, GameViewDelegate {
                 return
             }
 
-            if let bestMove = ComputerPlayer.beginner.bestMove(board) {
+            if let bestMove = MonteCarloPlayer.beginner.bestMove(board) {
                 DispatchQueue.main.async(execute: {
                     // TODO: self.board could be changed by user during AI calculation - freeze parts of the UI or make a deep copy of the board
                     // Also the ownership of gameView and board is not thought through

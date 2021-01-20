@@ -1,7 +1,7 @@
 import XCTest
 @testable import MixModel
 
-class ComputerPlayerTests: XCTestCase {
+class MonteCarloPlayerTests: XCTestCase {
     
     func testAIPlayerDoesNotMakeOpponentWin() {
         // given
@@ -9,7 +9,7 @@ class ComputerPlayerTests: XCTestCase {
         board.setPiecesDirectlyToSquare(Square(column: 1, line: 0), .white, .white, .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 1, line: 1), .black)
         board.setTurnDirectly(.black)
-        let computerPlayer = ComputerPlayer.beginner
+        let computerPlayer = MonteCarloPlayer.beginner
         
         // when
         let blackMove = computerPlayer.bestMove(board)
@@ -31,7 +31,7 @@ class ComputerPlayerTests: XCTestCase {
         board.setPiecesDirectlyToSquare(Square(column: 3, line: 2), .black, .black, .white)
         board.setPiecesDirectlyToSquare(Square(column: 3, line: 3), .black, .white)
         board.setTurnDirectly(.black)
-        let computerPlayer = ComputerPlayer.beginner
+        let computerPlayer = MonteCarloPlayer.beginner
 
         // when
         let blackMove = computerPlayer.bestMove(board)
@@ -52,7 +52,7 @@ class ComputerPlayerTests: XCTestCase {
         board.setPiecesDirectlyToSquare(Square(column: 3, line: 2), .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 4, line: 1), .white, .black, .black, .white)
         board.setTurnDirectly(.black)
-        let computerPlayer = ComputerPlayer.beginner
+        let computerPlayer = MonteCarloPlayer.beginner
 
         // when
         let blackMove = computerPlayer.bestMove(board)
@@ -72,7 +72,7 @@ class ComputerPlayerTests: XCTestCase {
         board.setPiecesDirectlyToSquare(Square(column: 3, line: 0), .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 3, line: 2), .white, .black, .black, .white)
         board.setTurnDirectly(.black)
-        let computerPlayer = ComputerPlayer.beginner
+        let computerPlayer = MonteCarloPlayer.beginner
 
         // when
         let blackMove = computerPlayer.bestMove(board)
@@ -94,7 +94,7 @@ class ComputerPlayerTests: XCTestCase {
         board.setPiecesDirectlyToSquare(Square(column: 1, line: 0), .white, .white, .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 1, line: 1), .black)
         board.setTurnDirectly(.white)
-        let computerPlayer = ComputerPlayer.beginner
+        let computerPlayer = MonteCarloPlayer.beginner
 
         // when
         self.measure {
@@ -107,7 +107,7 @@ class ComputerPlayerTests: XCTestCase {
         }
     }
 
-    func testBestMoveIsNilForIfNoMoveIsPossible() {
+    func testBestMoveIsPassForIfNoMoveIsPossible() {
         let board = Board()
 
         // given all 20 white pieces are set:
@@ -116,18 +116,10 @@ class ComputerPlayerTests: XCTestCase {
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 2), .white, .white, .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 3), .white, .white, .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 4), .white, .white, .white, .white)
-        let computerPlayer = ComputerPlayer.beginner
+        let computerPlayer = MonteCarloPlayer.beginner
 
         let bestMove = computerPlayer.bestMove(board)
-        XCTAssertNil(bestMove)
-    }
-
-    func testIsNumberOfTrialsSmallEnough() {
-        var computerPlayer: ComputerPlayer = .advanced
-        XCTAssert(computerPlayer.isNumberOfTrialsSmallEnough())
-
-        computerPlayer = ComputerPlayer(numberOfTrials: 10_000_000)
-        XCTAssertFalse(computerPlayer.isNumberOfTrialsSmallEnough())
+        XCTAssertEqual(bestMove, .pass)
     }
 }
 

@@ -6,7 +6,7 @@ final class BoardViewModel: ObservableObject {
     // MARK variables set from outside
     private var board: Board
     private var humanColor: PlayerColor
-    private var computerPlayer: ComputerPlayer
+    private var computerPlayer: MonteCarloPlayer
 
     // MARK internal state
     private var previousBoard: Board?
@@ -52,7 +52,7 @@ final class BoardViewModel: ObservableObject {
     init(
         board: Board = Board(),
         color: PlayerColor = .white,
-        computer: ComputerPlayer = .beginner
+        computer: MonteCarloPlayer = .beginner
     ) {
         self.board = board
         self.humanColor = color
@@ -241,7 +241,7 @@ extension BoardViewModel {
         }
 
         DispatchQueue.global(qos: .default).async { [self] in
-            let computer: ComputerPlayer = board.playerOnTurn()
+            let computer: MonteCarloPlayer = board.playerOnTurn()
                 == .white
                 ? .beginner
                 : .advanced
