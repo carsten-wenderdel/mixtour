@@ -6,12 +6,15 @@ class NodeTests : XCTestCase {
 
     // MARK: fake nodes to help testing
 
+    private var rng = XorShiftRNG.reproducable
+
     private static func dummyNode(simulations: Double, wins: Double, move: Move? = nil) -> Node {
+        var rng = XorShiftRNG.reproducable
         var board = MIXCoreBoard()
         Core.resetCoreBoard(&board)
         let node: Node
         if let move = move {
-            node = Node(parent: Node(state: board), move: move.coreMove())
+            node = Node(parent: Node(state: board), move: move.coreMove(), rng: &rng)
         } else {
             node = Node(state: board)
         }
@@ -103,12 +106,13 @@ class NodeTests : XCTestCase {
 
     func testExpansionReducesMovesAndAddsNode() {
         // Given
+        var rng = XorShiftRNG.reproducable
         let node = Node(state: MIXCoreBoard.new())
         XCTAssertEqual(node.nonSimulatedMoves.count, 25)
         XCTAssertEqual(node.childNodes.count, 0)
 
         // When
-        let newChild = node.expand()
+        let newChild = node.expand(&rng)
 
         // Then
         XCTAssertEqual(node.nonSimulatedMoves.count, 24)
@@ -118,6 +122,7 @@ class NodeTests : XCTestCase {
 
     func testExpansionDoesNotCreateNewNodeWhenGameOver() {
         // Given
+        var rng = XorShiftRNG.reproducable
         let board = Board()
         let square1 = Square(column: 0, line: 0)
         let square2 = Square(column: 0, line: 3)
@@ -128,7 +133,7 @@ class NodeTests : XCTestCase {
         let node = Node(state: board.coreBoard)
 
         // When
-        let potentialChild = node.expand()
+        let potentialChild = node.expand(&rng)
 
         // Then
         XCTAssertEqual(node.childNodes.count, 0)
@@ -139,9 +144,10 @@ class NodeTests : XCTestCase {
 
     func testSimulation() {
         // Just try out some random simulations. We are happy if they terminate.
+        var rng = XorShiftRNG.reproducable
         let node = Node(state: MIXCoreBoard.new())
         for _ in 0..<100 {
-            let winner = node.simulate()
+            let winner = node.simulate(&rng)
             XCTAssertTrue(winner == MIXCorePlayerBlack || winner == MIXCorePlayerWhite || winner == MIXCorePlayerUndefined)
         }
     }

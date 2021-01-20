@@ -3,7 +3,7 @@ import Foundation
 /// Using SystemRandomNumberGenerator would make the MonteCarloPlayer at least 12% slower.
 /// So use a very fast custom solution. Not thread safe and bad statistical features. But good enough for picking the next move.
 /// C implementation found here: https://en.wikipedia.org/wiki/Xorshift
-class XorShiftRNG: RandomNumberGenerator {
+final class XorShiftRNG: RandomNumberGenerator {
 
     private var state: UInt64
 
