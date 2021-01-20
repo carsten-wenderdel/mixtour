@@ -63,11 +63,11 @@ final class Node {
     func simulate() -> MIXCorePlayer {
         var board = state
         while (!Core.isGameOver(&board)) {
-            guard let move = Board.allLegalMoves(&board).randomElement() else {
-                assertionFailure("If game is not over, there must be a legal move")
-                return MIXCorePlayerUndefined
-            }
-            Core.makeMove(&board, move)
+            let moves = Core.arrayOfLegalMoves(&board)
+            let randomIndex = Int.random(in: 0..<moves.n)
+            let randomMove = moves.a[randomIndex]
+            Core.destroyMoveArray(moves)
+            Core.makeMove(&board, randomMove)
         }
         return Core.winner(&board)
     }

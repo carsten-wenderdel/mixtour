@@ -26,16 +26,16 @@ public final class MonteCarloPlayer {
             return nil
         }
 
-        let node = Node(state: board.coreBoard)
+        let root = Node(state: board.coreBoard)
 
         for _ in 0..<numberOfIterations {
-            let selected = node.selectedNodeForNextVisit(explorationConstant)
+            let selected = root.selectedNodeForNextVisit(explorationConstant)
             let expanded = selected.expand()
             let winner = expanded.simulate()
             expanded.backpropagate(winner)
         }
 
-        guard let coreMove = node.winnerMove() else {
+        guard let coreMove = root.winnerMove() else {
             assertionFailure("Game not ended, so there should be a move")
             return nil
         }
