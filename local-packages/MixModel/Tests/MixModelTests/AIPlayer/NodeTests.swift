@@ -7,8 +7,13 @@ class NodeTests : XCTestCase {
     // MARK: fake nodes to help testing
 
     private var rng = XorShiftRNG.reproducable
+    private var moveBuffer = Core.newMoveArray()
 
-    private static func dummyNode(simulations: Double, wins: Double, move: Move? = nil) -> Node {
+    override func tearDown() {
+        Core.destroyMoveArray(moveBuffer)
+    }
+
+    private static func dummyNode(simulations: Float, wins: Float, move: Move? = nil) -> Node {
         var rng = XorShiftRNG.reproducable
         var board = MIXCoreBoard()
         Core.resetCoreBoard(&board)
@@ -147,7 +152,7 @@ class NodeTests : XCTestCase {
         var rng = XorShiftRNG.reproducable
         let node = Node(state: MIXCoreBoard.new())
         for _ in 0..<100 {
-            let winner = node.simulate(&rng)
+            let winner = node.simulate(moveBuffer: &moveBuffer, rng: &rng)
             XCTAssertTrue(winner == MIXCorePlayerBlack || winner == MIXCorePlayerWhite || winner == MIXCorePlayerUndefined)
         }
     }

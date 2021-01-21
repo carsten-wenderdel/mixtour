@@ -323,12 +323,10 @@ bool isSomethingBetweenSquares(MIXCoreBoardRef boardRef, MIXCoreSquare square1, 
 }
 
 
-MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
+void arrayOfLegalMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
+    kv_size(*moveArray) = 0;
     MIXCorePlayer player = playerOnTurn(boardRef);
     bool playerHasPiecesLeft = numberOfPiecesForPlayer(boardRef, player) > 0;
-    MIXMoveArray moveArray;
-    kv_init(moveArray);
-    kv_resize(MIXCoreMove, moveArray, 60);
     MIXCoreMove lastResortMove = MIXCoreMoveNoMove; // If no other move is found, this will be returned
     for (uint8_t i = 0; i < LENGTH_OF_BOARD; i++) {
         for (uint8_t j = 0; j < LENGTH_OF_BOARD; j++) {
@@ -337,7 +335,7 @@ MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
             if (height == 0) {
                 if (playerHasPiecesLeft) {
                     MIXCoreMove move = MIXCoreMoveMakeSet(square);
-                    kv_push(MIXCoreMove, moveArray, move);
+                    kv_push(MIXCoreMove, *moveArray, move);
                 }
             } else { // try dragging
                 for (int8_t columnSignum = -1; columnSignum <= 1; columnSignum++) {
@@ -356,15 +354,15 @@ MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
                                                 // No one would win, add move to array
                                                 MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
                                                 if (! isMoveRevertOfMove(move, boardRef->lastMove)) {
-                                                    kv_push(MIXCoreMove, moveArray, move);
+                                                    kv_push(MIXCoreMove, *moveArray, move);
                                                 }
                                             } else { // someone would win
                                                 MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
                                                 if (color == player) {
                                                     // Player on turn wins; all other moves are not interesting anymore.
-                                                    kv_size(moveArray) = 0;
-                                                    kv_push(MIXCoreMove, moveArray, move);
-                                                    return moveArray;
+                                                    kv_size(*moveArray) = 0;
+                                                    kv_push(MIXCoreMove, *moveArray, move);
+                                                    return;
                                                 } else {
                                                     // Losing move. Will be returned if no better move is found
                                                     lastResortMove = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
@@ -380,13 +378,19 @@ MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef) {
             }
         }
     }
-    if (!kv_size(moveArray)) {
+    if (!kv_size(*moveArray)) {
         // no good moves found
-        kv_push(MIXCoreMove, moveArray, lastResortMove);
+        kv_push(MIXCoreMove, *moveArray, lastResortMove);
     }
-    return moveArray;
 }
 
+MIXMoveArray newMoveArray() {
+    MIXMoveArray moveArray;
+    kv_init(moveArray);
+    // Allow 100 moves. If move, capacity is automatically doubled with realloc.
+    kv_resize(MIXCoreMove, moveArray, 100);
+    return moveArray;
+}
 
 void destroyMoveArray(MIXMoveArray moveArray) {
     kv_destroy(moveArray);
@@ -394,7 +398,8 @@ void destroyMoveArray(MIXMoveArray moveArray) {
 
 
 bool isDraggingPossible(MIXCoreBoardRef boardRef) {
-    MIXMoveArray moves = arrayOfLegalMoves(boardRef);
+    MIXMoveArray moves = newMoveArray();
+    arrayOfLegalMoves(boardRef, &moves);
     bool dragFound = false;
     while (!dragFound && kv_size(moves)) {
         MIXCoreMove move = kv_pop(moves);

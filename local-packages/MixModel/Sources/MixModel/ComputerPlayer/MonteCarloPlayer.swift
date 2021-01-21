@@ -6,6 +6,7 @@ public final class MonteCarloPlayer {
     private var rng: XorShiftRNG
     private let explorationConstant: Float
     private let numberOfIterations: Int
+    private var moveBuffer = Core.newMoveArray()
 
     public static var beginner: MonteCarloPlayer {
         MonteCarloPlayer(numberOfIterations: 1_000, explorationConstant: 2)
@@ -48,7 +49,7 @@ public final class MonteCarloPlayer {
         for _ in 0..<numberOfIterations {
             let selected = root.selectedNodeForNextVisit(explorationConstant)
             let expanded = selected.expand(&rng)
-            let winner = expanded.simulate(&rng)
+            let winner = expanded.simulate(moveBuffer: &moveBuffer, rng: &rng)
             expanded.backpropagate(winner)
         }
 
@@ -57,5 +58,9 @@ public final class MonteCarloPlayer {
             return nil
         }
         return Move(coreMove)
+    }
+
+    deinit {
+        Core.destroyMoveArray(moveBuffer)
     }
 }

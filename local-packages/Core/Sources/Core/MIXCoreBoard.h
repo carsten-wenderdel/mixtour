@@ -99,8 +99,9 @@ bool isDraggingPossible(MIXCoreBoardRef boardRef);
 /**
  Caller is responsible for releasing memory by calling destroyMoveArray later
  */
-MIXMoveArray arrayOfLegalMoves(MIXCoreBoardRef boardRef);
+void arrayOfLegalMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray);
 
+MIXMoveArray newMoveArray();
 void destroyMoveArray(MIXMoveArray moveArray);
 
 #pragma mark debug prints

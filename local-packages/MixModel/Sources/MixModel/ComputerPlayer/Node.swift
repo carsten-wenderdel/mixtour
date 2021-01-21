@@ -60,13 +60,12 @@ final class Node {
         return newChild
     }
 
-    func simulate<T>(_ rng: inout T) -> MIXCorePlayer where T: RandomNumberGenerator {
+    func simulate<T>(moveBuffer: inout MIXMoveArray, rng: inout T) -> MIXCorePlayer where T: RandomNumberGenerator {
         var board = state
         while (!Core.isGameOver(&board)) {
-            let moves = Core.arrayOfLegalMoves(&board)
-            let randomIndex = Int.random(in: 0..<moves.n, using: &rng)
-            let randomMove = moves.a[randomIndex]
-            Core.destroyMoveArray(moves)
+            Core.arrayOfLegalMoves(&board, &moveBuffer)
+            let randomIndex = Int.random(in: 0..<moveBuffer.n, using: &rng)
+            let randomMove = moveBuffer.a[randomIndex]
             Core.makeMove(&board, randomMove)
         }
         return Core.winner(&board)
