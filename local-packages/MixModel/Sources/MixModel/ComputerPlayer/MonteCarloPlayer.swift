@@ -4,7 +4,7 @@ import Core
 public final class MonteCarloPlayer {
     
     private var rng: XorShiftRNG
-    private let explorationConstant: Double
+    private let explorationConstant: Float
     private let numberOfIterations: Int
 
     public static var beginner: MonteCarloPlayer {
@@ -14,7 +14,7 @@ public final class MonteCarloPlayer {
         MonteCarloPlayer(numberOfIterations: 100_000, explorationConstant: 2)
     }
 
-    public convenience init(numberOfIterations: Int, explorationConstant: Double) {
+    public convenience init(numberOfIterations: Int, explorationConstant: Float) {
         self.init(
             numberOfIterations: numberOfIterations,
             explorationConstant: explorationConstant,
@@ -24,7 +24,7 @@ public final class MonteCarloPlayer {
 
     init(
         numberOfIterations: Int,
-        explorationConstant: Double,
+        explorationConstant: Float,
         rng: XorShiftRNG
     ) {
         assert(numberOfIterations > 0)

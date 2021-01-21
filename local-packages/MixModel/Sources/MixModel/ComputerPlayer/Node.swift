@@ -9,8 +9,8 @@ final class Node {
     var nonSimulatedMoves: [MIXCoreMove]
 
     var childNodes = [Node]()
-    var numberOfSimulations = 0.0
-    var numberOfWins = 0.0
+    var numberOfSimulations: Float = 0.0
+    var numberOfWins: Float = 0.0
 
     init(state: MIXCoreBoard) {
         self.state = state
@@ -28,7 +28,7 @@ final class Node {
         nonSimulatedMoves = Board.allLegalMoves(&state).shuffled(using: &rng)
     }
 
-    func selectedNodeForNextVisit(_ explorationConstant: Double) -> Node {
+    func selectedNodeForNextVisit(_ explorationConstant: Float) -> Node {
         var selected = self
         while selected.nonSimulatedMoves.isEmpty && !selected.childNodes.isEmpty {
             selected = selected.childNodes.max { (node1, node2) -> Bool in
@@ -41,7 +41,7 @@ final class Node {
     }
 
     // Upper Confidence Bound applied to trees
-    private func uct(_ explorationConstant: Double, totalNumberOfSimulations: Double) -> Double {
+    private func uct(_ explorationConstant: Float, totalNumberOfSimulations: Float) -> Float {
         return (numberOfWins / numberOfSimulations)
             + explorationConstant * sqrt(log(totalNumberOfSimulations) / numberOfSimulations)
     }
