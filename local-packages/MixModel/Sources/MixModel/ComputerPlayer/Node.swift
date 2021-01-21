@@ -5,7 +5,7 @@ final class Node {
 
     var state: MIXCoreBoard // Could also be a let, but this way we need less memory copies of state
     let move: MIXCoreMove? // The move that has lead to the state above
-    weak var parent: Node?
+    unowned var parent: Node? // This was weak before - and made the whole algorithm taking 70% more time!
     var nonSimulatedMoves: [MIXCoreMove]
 
     var childNodes = [Node]()
