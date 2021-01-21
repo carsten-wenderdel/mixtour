@@ -10,6 +10,9 @@ final class BestMoveVM: ObservableObject {
     var average: String {
         "Average after \(iterations): \(timeSum/Double(iterations))"
     }
+    var fastest: String {
+        "Fastest: \(seconds.min() ?? 0)"
+    }
 
     func startMeasuring() {
         DispatchQueue.global(qos: .userInitiated).async { [self] in

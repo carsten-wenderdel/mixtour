@@ -12,6 +12,7 @@ struct ContentView: View {
         }
 
         Text(bestMove.average)
+        Text(bestMove.fastest)
 
         List {
             ForEach(bestMove.seconds, id: \.self) { second in
