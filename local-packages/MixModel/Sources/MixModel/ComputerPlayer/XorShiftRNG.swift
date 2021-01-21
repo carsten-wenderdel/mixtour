@@ -8,7 +8,7 @@ final class XorShiftRNG: RandomNumberGenerator {
     private var state: UInt64
 
     init(_ seed: UInt64) {
-        state = seed
+        state = seed == 0 ? 1 : seed
     }
 
     func next() -> UInt64 {
