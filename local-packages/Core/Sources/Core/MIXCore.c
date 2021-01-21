@@ -58,9 +58,9 @@ bool MIXCoreMoveEqualToMove(MIXCoreMove move1, MIXCoreMove move2) {
     }
 }
 
-bool isMoveRevertOfMove(MIXCoreMove move1, MIXCoreMove move2) {
-    return MIXCoreSquareIsEqualToSquare(move1.from, move2.to) &&
-            MIXCoreSquareIsEqualToSquare(move1.to, move2.from) &&
-            move1.numberOfPieces == move2.numberOfPieces;
+bool isMoveRevertOfMove(MIXCoreMove newMove, MIXCoreMove oldMove) {
+    return MIXCoreSquareIsEqualToSquare(oldMove.from, newMove.to)
+        && MIXCoreSquareIsEqualToSquare(oldMove.to, newMove.from)
+        && oldMove.numberOfPieces == newMove.numberOfPieces;
 }
 
