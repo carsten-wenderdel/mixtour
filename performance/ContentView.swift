@@ -1,9 +1,23 @@
 import SwiftUI
+import MixModel
 
 struct ContentView: View {
+    @StateObject private var bestMove = BestMoveVM()
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Button(action: {
+            bestMove.startMeasuring()
+        }) {
+            Text("Start")
+        }
+
+        Text(bestMove.average)
+
+        List {
+            ForEach(bestMove.seconds, id: \.self) { second in
+                Text("\(second)")
+            }
+        }
     }
 }
 

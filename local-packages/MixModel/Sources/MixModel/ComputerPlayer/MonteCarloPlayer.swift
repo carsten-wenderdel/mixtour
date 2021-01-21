@@ -13,6 +13,9 @@ public final class MonteCarloPlayer {
     public static var advanced: MonteCarloPlayer {
         MonteCarloPlayer(numberOfIterations: 100_000, explorationConstant: 2)
     }
+    public static var measuring: MonteCarloPlayer {
+        MonteCarloPlayer(numberOfIterations: 100_000, explorationConstant: 2, rng: XorShiftRNG(1))
+    }
 
     public convenience init(numberOfIterations: Int, explorationConstant: Float) {
         self.init(
