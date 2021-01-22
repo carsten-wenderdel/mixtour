@@ -14,11 +14,9 @@ class NodeTests : XCTestCase {
     }
 
     private static func dummyNode(simulations: Float, wins: Float, parent: Node? = nil, move: Move? = nil) -> Node {
-        var rng = XorShiftRNG.reproducable
         let node = Node(
             parent: parent ?? Node(state: MIXCoreBoard.new()),
-            move: (move ?? Move.pass).coreMove(),
-            rng: &rng
+            move: (move ?? Move.pass).coreMove()
         )
         node.nonSimulatedMoves = []
         node.numberOfSimulations = simulations
@@ -110,16 +108,17 @@ class NodeTests : XCTestCase {
         // Given
         var rng = XorShiftRNG.reproducable
         let node = Node(state: MIXCoreBoard.new())
-        XCTAssertEqual(node.nonSimulatedMoves.count, 25)
-        XCTAssertEqual(node.childNodes.count, 0)
+        _ = node.expand(&rng)
+        XCTAssertEqual(node.nonSimulatedMoves!.count, 24)
+        XCTAssertEqual(node.childNodes.count, 1)
 
         // When
         let newChild = node.expand(&rng)
 
         // Then
-        XCTAssertEqual(node.nonSimulatedMoves.count, 24)
-        XCTAssertEqual(node.childNodes.count, 1)
-        XCTAssert(node.childNodes.first === newChild)
+        XCTAssertEqual(node.nonSimulatedMoves!.count, 23)
+        XCTAssertEqual(node.childNodes.count, 2)
+        XCTAssert(node.childNodes.last === newChild)
     }
 
     func testExpansionDoesNotCreateNewNodeWhenGameOver() {

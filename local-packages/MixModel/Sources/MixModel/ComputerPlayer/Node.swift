@@ -6,7 +6,7 @@ final class Node {
     var state: MIXCoreBoard // Could also be a let, but this way we need less memory copies of state
     let move: MIXCoreMove? // The move that has lead to the state above
     unowned let parent: Node? // This was weak before - and made the whole algorithm taking 70% more time!
-    var nonSimulatedMoves: [MIXCoreMove]
+    var nonSimulatedMoves: [MIXCoreMove]?
 
     var childNodes = [Node]()
     var numberOfSimulations: Float = 0.0
@@ -16,21 +16,19 @@ final class Node {
         self.state = state
         self.move = nil
         self.parent = nil
-        self.nonSimulatedMoves = Board.allLegalMoves(&self.state).shuffled()
     }
 
     /// Used for expansion
-    init<T>(parent: Node, move: MIXCoreMove, rng: inout T) where T: RandomNumberGenerator {
+    init(parent: Node, move: MIXCoreMove) {
         state = parent.state
         Core.makeMove(&state, move) // This will change the state
         self.move = move
         self.parent = parent
-        nonSimulatedMoves = Board.allLegalMoves(&state).shuffled(using: &rng)
     }
 
     func selectedNodeForNextVisit(_ explorationConstant: Float) -> Node {
         var selected = self
-        while selected.nonSimulatedMoves.isEmpty && !selected.childNodes.isEmpty {
+        while (selected.nonSimulatedMoves != nil) && selected.nonSimulatedMoves!.isEmpty && !selected.childNodes.isEmpty {
             selected = selected.childNodes.max { (node1, node2) -> Bool in
                 let uct1 = node1.uct(explorationConstant, totalNumberOfSimulations: selected.numberOfSimulations)
                 let uct2 = node2.uct(explorationConstant, totalNumberOfSimulations: selected.numberOfSimulations)
@@ -50,12 +48,16 @@ final class Node {
         if Core.isGameOver(&state) {
             return self
         }
+
+        if nonSimulatedMoves == nil {
+            nonSimulatedMoves = Board.allLegalMoves(&self.state).shuffled(using: &rng)
+        }
         // No need to select a random move, the array is already shuffled
-        guard let move = nonSimulatedMoves.popLast() else {
+        guard let move = nonSimulatedMoves!.popLast() else {
             assertionFailure("If moves array is empty, select should have gone deeper in tree")
             return self
         }
-        let newChild = Node(parent: self, move: move, rng: &rng)
+        let newChild = Node(parent: self, move: move)
         childNodes.append(newChild)
         return newChild
     }
