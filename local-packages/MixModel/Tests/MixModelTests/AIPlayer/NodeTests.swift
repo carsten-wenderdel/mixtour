@@ -13,16 +13,13 @@ class NodeTests : XCTestCase {
         Core.destroyMoveArray(moveBuffer)
     }
 
-    private static func dummyNode(simulations: Float, wins: Float, move: Move? = nil) -> Node {
+    private static func dummyNode(simulations: Float, wins: Float, parent: Node? = nil, move: Move? = nil) -> Node {
         var rng = XorShiftRNG.reproducable
-        var board = MIXCoreBoard()
-        Core.resetCoreBoard(&board)
-        let node: Node
-        if let move = move {
-            node = Node(parent: Node(state: board), move: move.coreMove(), rng: &rng)
-        } else {
-            node = Node(state: board)
-        }
+        let node = Node(
+            parent: parent ?? Node(state: MIXCoreBoard.new()),
+            move: (move ?? Move.pass).coreMove(),
+            rng: &rng
+        )
         node.nonSimulatedMoves = []
         node.numberOfSimulations = simulations
         node.numberOfWins = wins
@@ -34,27 +31,27 @@ class NodeTests : XCTestCase {
     }
 
     private static var testNode: Node {
-        let leastSimulations = dummyNode(simulations: 10, wins: 5)
-        let ignored = dummyNode(simulations: 20, wins: 10)
-        let bestWinRate = dummyNode(simulations: 20, wins: 11, move: .set(to: Square(column: 2, line: 1)))
+        let parent = Node(state: MIXCoreBoard.new())
+        parent.nonSimulatedMoves = []
+        let leastSimulations = dummyNode(simulations: 10, wins: 5, parent: parent)
+        let ignored = dummyNode(simulations: 20, wins: 10, parent: parent)
+        let bestWinRate = dummyNode(simulations: 20, wins: 11, parent: parent, move: .set(to: Square(column: 2, line: 1)))
 
-        let bestWinChild1 = dummyNode(simulations: 10, wins: 2)
-        let bestWinChild2 = dummyNode(simulations: 10, wins: 9)
+        let bestWinChild1 = dummyNode(simulations: 10, wins: 2, parent: bestWinRate)
+        let bestWinChild2 = dummyNode(simulations: 10, wins: 9, parent: bestWinRate)
         bestWinRate.childNodes = [bestWinChild1, bestWinChild2]
-        bestWinRate.childNodes.forEach { $0.parent = bestWinRate }
 
-        let parent = dummyNode()
         parent.childNodes = [leastSimulations, ignored, bestWinRate]
+        parent.childNodes.forEach { child in
+            Core.setTurnDirectly(&child.state, MIXCorePlayerBlack)
+        }
         parent.numberOfSimulations = parent.childNodes.reduce(0.0, { sum, node in
             sum + node.numberOfSimulations
         })
         parent.numberOfWins = parent.childNodes.reduce(0.0, { sum, node in
             sum + node.numberOfWins
         })
-        parent.childNodes.forEach { child in
-            child.parent = parent
-            Core.setTurnDirectly(&child.state, MIXCorePlayerBlack)
-        }
+
         return parent
     }
 
