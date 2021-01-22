@@ -58,6 +58,8 @@ final class Node {
             return self
         }
         let newChild = Node(parent: self, move: move)
+        // We could probably save 1% performance of the whole algorithm by not appending
+        // but reusing nonSimulatedMoves array. One slot just got free.
         childNodes.append(newChild)
         return newChild
     }
@@ -76,12 +78,16 @@ final class Node {
     func backpropagate(_ winner: MIXCorePlayer) {
         let draw = (winner == MIXCorePlayerUndefined)
         var node = self
+        var winValue: Float
+        if draw {
+            winValue = 0.5
+        } else if Core.playerOnTurn(&node.state) == winner {
+            winValue = 0
+        } else {
+            winValue = 1
+        }
         while true {
-            if draw {
-                node.numberOfWins += 0.5
-            } else if Core.playerOnTurn(&node.state) != winner {
-                node.numberOfWins += 1
-            }
+            node.numberOfWins += winValue
             node.numberOfSimulations += 1
 
             // Helps with debugging, not needed for functionality:
@@ -93,6 +99,7 @@ final class Node {
 
             if let theParent = node.parent {
                 node = theParent
+                winValue = 1 - winValue
             } else {
                 break
             }
