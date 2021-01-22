@@ -27,6 +27,7 @@
 		675384442593C6DD002F5BEC /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 675384432593C6DD002F5BEC /* MixModel */; };
 		675A877D25AA449D0052F7FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A877C25AA449D0052F7FA /* Constants.swift */; };
 		67811B1525BB63ED00F7FC72 /* SwiftGenetics in Frameworks */ = {isa = PBXBuildFile; productRef = 67811B1425BB63ED00F7FC72 /* SwiftGenetics */; };
+		67811B2F25BB686A00F7FC72 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67811B2E25BB686A00F7FC72 /* main.swift */; };
 		679DCFAD257C367800E9310E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFAC257C367800E9310E /* Core */; };
 		679DCFD5257C4BFB00E9310E /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFD4257C4BFB00E9310E /* MixModel */; };
 		679DCFE3257C577100E9310E /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679DCFE2257C577100E9310E /* ExampleTests.swift */; };
@@ -61,6 +62,18 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		67811B2A25BB686A00F7FC72 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		5744E51F1A374B1D00F2812B /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		574588071A174F3700BBADCE /* MIXAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXAppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +92,8 @@
 		6753842F2593B4B6002F5BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6753843C2593BED4002F5BEC /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		675A877C25AA449D0052F7FA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		67811B2C25BB686A00F7FC72 /* MixtourConsole */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MixtourConsole; sourceTree = BUILT_PRODUCTS_DIR; };
+		67811B2E25BB686A00F7FC72 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		679DCF8B257C28FC00E9310E /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = "local-packages/Core"; sourceTree = "<group>"; };
 		679DCFC7257C489A00E9310E /* MixModel */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MixModel; path = "local-packages/MixModel"; sourceTree = "<group>"; };
 		679DCFE2257C577100E9310E /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
@@ -115,6 +130,13 @@
 			files = (
 				675384422593C6D9002F5BEC /* Core in Frameworks */,
 				675384442593C6DD002F5BEC /* MixModel in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67811B2925BB686A00F7FC72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +222,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		67811B2D25BB686A00F7FC72 /* MixtourConsole */ = {
+			isa = PBXGroup;
+			children = (
+				67811B2E25BB686A00F7FC72 /* main.swift */,
+			);
+			path = MixtourConsole;
+			sourceTree = "<group>";
+		};
 		67FD17B425B9DB9F00A91931 /* performance */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +260,7 @@
 				AA04063C176F9DF40051363A /* mixtour-uikit */,
 				AA04065B176F9DF40051363A /* mixtourTests */,
 				67FD17B425B9DB9F00A91931 /* performance */,
+				67811B2D25BB686A00F7FC72 /* MixtourConsole */,
 				AA040635176F9DF40051363A /* Frameworks */,
 				AA040634176F9DF40051363A /* Products */,
 			);
@@ -242,6 +273,7 @@
 				AA040654176F9DF40051363A /* mixtourTests.xctest */,
 				675384242593B4B5002F5BEC /* mixtour.app */,
 				67FD17B325B9DB9F00A91931 /* performance.app */,
+				67811B2C25BB686A00F7FC72 /* MixtourConsole */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -330,6 +362,23 @@
 			productReference = 675384242593B4B5002F5BEC /* mixtour.app */;
 			productType = "com.apple.product-type.application";
 		};
+		67811B2B25BB686A00F7FC72 /* MixtourConsole */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67811B3025BB686A00F7FC72 /* Build configuration list for PBXNativeTarget "MixtourConsole" */;
+			buildPhases = (
+				67811B2825BB686A00F7FC72 /* Sources */,
+				67811B2925BB686A00F7FC72 /* Frameworks */,
+				67811B2A25BB686A00F7FC72 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MixtourConsole;
+			productName = MixtourConsole;
+			productReference = 67811B2C25BB686A00F7FC72 /* MixtourConsole */;
+			productType = "com.apple.product-type.tool";
+		};
 		67FD17B225B9DB9F00A91931 /* performance */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 67FD17C125B9DBA200A91931 /* Build configuration list for PBXNativeTarget "performance" */;
@@ -405,6 +454,9 @@
 					675384232593B4B5002F5BEC = {
 						CreatedOnToolsVersion = 12.1;
 					};
+					67811B2B25BB686A00F7FC72 = {
+						CreatedOnToolsVersion = 12.1;
+					};
 					67FD17B225B9DB9F00A91931 = {
 						CreatedOnToolsVersion = 12.1;
 					};
@@ -438,6 +490,7 @@
 				AA040632176F9DF40051363A /* mixtour-uikit */,
 				AA040653176F9DF40051363A /* mixtourTests */,
 				67FD17B225B9DB9F00A91931 /* performance */,
+				67811B2B25BB686A00F7FC72 /* MixtourConsole */,
 			);
 		};
 /* End PBXProject section */
@@ -499,6 +552,14 @@
 				675A877D25AA449D0052F7FA /* Constants.swift in Sources */,
 				67F2E76B25A238AC00530BFC /* GameView.swift in Sources */,
 				67D666C52596746200E31102 /* PieceViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67811B2825BB686A00F7FC72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67811B2F25BB686A00F7FC72 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +693,53 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		67811B3125BB686A00F7FC72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RKX7FEU7U3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		67811B3225BB686A00F7FC72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = RKX7FEU7U3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -957,6 +1065,15 @@
 			buildConfigurations = (
 				675384312593B4B6002F5BEC /* Debug */,
 				675384322593B4B6002F5BEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67811B3025BB686A00F7FC72 /* Build configuration list for PBXNativeTarget "MixtourConsole" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67811B3125BB686A00F7FC72 /* Debug */,
+				67811B3225BB686A00F7FC72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
