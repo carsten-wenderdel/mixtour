@@ -26,6 +26,7 @@
 		675384422593C6D9002F5BEC /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 675384412593C6D9002F5BEC /* Core */; };
 		675384442593C6DD002F5BEC /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 675384432593C6DD002F5BEC /* MixModel */; };
 		675A877D25AA449D0052F7FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A877C25AA449D0052F7FA /* Constants.swift */; };
+		67811B1525BB63ED00F7FC72 /* SwiftGenetics in Frameworks */ = {isa = PBXBuildFile; productRef = 67811B1425BB63ED00F7FC72 /* SwiftGenetics */; };
 		679DCFAD257C367800E9310E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFAC257C367800E9310E /* Core */; };
 		679DCFD5257C4BFB00E9310E /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFD4257C4BFB00E9310E /* MixModel */; };
 		679DCFE3257C577100E9310E /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679DCFE2257C577100E9310E /* ExampleTests.swift */; };
@@ -122,6 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				672582E425B9E0680026D993 /* MixModel in Frameworks */,
+				67811B1525BB63ED00F7FC72 /* SwiftGenetics in Frameworks */,
 				672582E625B9E06C0026D993 /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +346,7 @@
 			packageProductDependencies = (
 				672582E325B9E0680026D993 /* MixModel */,
 				672582E525B9E06C0026D993 /* Core */,
+				67811B1425BB63ED00F7FC72 /* SwiftGenetics */,
 			);
 			productName = performance;
 			productReference = 67FD17B325B9DB9F00A91931 /* performance.app */;
@@ -424,6 +427,9 @@
 				Base,
 			);
 			mainGroup = AA04062A176F9DF40051363A;
+			packageReferences = (
+				67811B1325BB63ED00F7FC72 /* XCRemoteSwiftPackageReference "SwiftGenetics" */,
+			);
 			productRefGroup = AA040634176F9DF40051363A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -993,6 +999,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		67811B1325BB63ED00F7FC72 /* XCRemoteSwiftPackageReference "SwiftGenetics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sgonzalez/SwiftGenetics";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		672582E325B9E0680026D993 /* MixModel */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1009,6 +1026,11 @@
 		675384432593C6DD002F5BEC /* MixModel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MixModel;
+		};
+		67811B1425BB63ED00F7FC72 /* SwiftGenetics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 67811B1325BB63ED00F7FC72 /* XCRemoteSwiftPackageReference "SwiftGenetics" */;
+			productName = SwiftGenetics;
 		};
 		679DCFAC257C367800E9310E /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
