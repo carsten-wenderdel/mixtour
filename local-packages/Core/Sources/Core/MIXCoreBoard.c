@@ -376,7 +376,6 @@ void arrayOfLegalMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                             if (!isSquareEmpty(boardRef, sourceSquare)) {
                                 // So we can drag as long nothing is between. Check that:
                                 if (!isSomethingBetweenSquares(boardRef, square, sourceSquare, columnSignum, lineSignum)) {
-                                    MIXCorePlayer color = colorOfSquareAtPosition(boardRef, sourceSquare, 0);
                                     for (uint8_t pieces = heightOfSquare(boardRef, sourceSquare); pieces >= 1; pieces--) {
                                         if (pieces + height < MIX_CORE_NUMBER_OF_PIECES_TO_WIN) {
                                             // No one would win, add move to array
@@ -386,7 +385,7 @@ void arrayOfLegalMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                                             }
                                         } else { // someone would win
                                             MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
-                                            if (color == player) {
+                                            if (player == colorOfSquareAtPosition(boardRef, sourceSquare, 0)) {
                                                 // Player on turn wins; all other moves are not interesting anymore.
                                                 kv_size(*moveArray) = 0;
                                                 kv_push(MIXCoreMove, *moveArray, move);
