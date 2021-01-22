@@ -392,7 +392,7 @@ void arrayOfLegalMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                                                 return;
                                             } else {
                                                 // Losing move. Will be returned if no better move is found
-                                                lastResortMove = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
+                                                lastResortMove = move;
                                             }
                                         }
                                     }
