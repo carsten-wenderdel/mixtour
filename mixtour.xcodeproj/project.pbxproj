@@ -29,8 +29,6 @@
 		67811B2F25BB686A00F7FC72 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67811B2E25BB686A00F7FC72 /* main.swift */; };
 		67811B3E25BB68C300F7FC72 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 67811B3D25BB68C300F7FC72 /* Core */; };
 		67811B4025BB68C600F7FC72 /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 67811B3F25BB68C600F7FC72 /* MixModel */; };
-		67811B4225BB68C900F7FC72 /* SwiftGenetics in Frameworks */ = {isa = PBXBuildFile; productRef = 67811B4125BB68C900F7FC72 /* SwiftGenetics */; };
-		67811B4925BB6EBE00F7FC72 /* GeneticRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67811B4825BB6EBE00F7FC72 /* GeneticRoot.swift */; };
 		67811B6425BB8DFE00F7FC72 /* PlayerEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67811B6325BB8DFE00F7FC72 /* PlayerEvaluation.swift */; };
 		679DCFAD257C367800E9310E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFAC257C367800E9310E /* Core */; };
 		679DCFD5257C4BFB00E9310E /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFD4257C4BFB00E9310E /* MixModel */; };
@@ -98,7 +96,6 @@
 		675A877C25AA449D0052F7FA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		67811B2C25BB686A00F7FC72 /* MixtourConsole */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MixtourConsole; sourceTree = BUILT_PRODUCTS_DIR; };
 		67811B2E25BB686A00F7FC72 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		67811B4825BB6EBE00F7FC72 /* GeneticRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticRoot.swift; sourceTree = "<group>"; };
 		67811B6325BB8DFE00F7FC72 /* PlayerEvaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEvaluation.swift; sourceTree = "<group>"; };
 		679DCF8B257C28FC00E9310E /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = "local-packages/Core"; sourceTree = "<group>"; };
 		679DCFC7257C489A00E9310E /* MixModel */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MixModel; path = "local-packages/MixModel"; sourceTree = "<group>"; };
@@ -144,7 +141,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				67811B3E25BB68C300F7FC72 /* Core in Frameworks */,
-				67811B4225BB68C900F7FC72 /* SwiftGenetics in Frameworks */,
 				67811B4025BB68C600F7FC72 /* MixModel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,7 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				67811B2E25BB686A00F7FC72 /* main.swift */,
-				67811B4825BB6EBE00F7FC72 /* GeneticRoot.swift */,
 				67811B6325BB8DFE00F7FC72 /* PlayerEvaluation.swift */,
 			);
 			path = MixtourConsole;
@@ -388,7 +383,6 @@
 			packageProductDependencies = (
 				67811B3D25BB68C300F7FC72 /* Core */,
 				67811B3F25BB68C600F7FC72 /* MixModel */,
-				67811B4125BB68C900F7FC72 /* SwiftGenetics */,
 			);
 			productName = MixtourConsole;
 			productReference = 67811B2C25BB686A00F7FC72 /* MixtourConsole */;
@@ -494,7 +488,6 @@
 			);
 			mainGroup = AA04062A176F9DF40051363A;
 			packageReferences = (
-				67811B1325BB63ED00F7FC72 /* XCRemoteSwiftPackageReference "SwiftGenetics" */,
 			);
 			productRefGroup = AA040634176F9DF40051363A /* Products */;
 			projectDirPath = "";
@@ -573,7 +566,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67811B4925BB6EBE00F7FC72 /* GeneticRoot.swift in Sources */,
 				67811B2F25BB686A00F7FC72 /* main.swift in Sources */,
 				67811B6425BB8DFE00F7FC72 /* PlayerEvaluation.swift in Sources */,
 			);
@@ -1132,17 +1124,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		67811B1325BB63ED00F7FC72 /* XCRemoteSwiftPackageReference "SwiftGenetics" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sgonzalez/SwiftGenetics";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
 		672582E325B9E0680026D993 /* MixModel */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1167,11 +1148,6 @@
 		67811B3F25BB68C600F7FC72 /* MixModel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MixModel;
-		};
-		67811B4125BB68C900F7FC72 /* SwiftGenetics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 67811B1325BB63ED00F7FC72 /* XCRemoteSwiftPackageReference "SwiftGenetics" */;
-			productName = SwiftGenetics;
 		};
 		679DCFAC257C367800E9310E /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
