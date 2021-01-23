@@ -2,6 +2,8 @@ import Foundation
 import Core
 
 public final class MonteCarloPlayer {
+
+    private static let perfectExploration: Float = 0.59
     
     private var rng: XorShiftRNG
     private let explorationConstant: Float
@@ -9,13 +11,13 @@ public final class MonteCarloPlayer {
     private var moveBuffer = Core.newMoveArray()
 
     public static var beginner: MonteCarloPlayer {
-        MonteCarloPlayer(numberOfIterations: 1_000, explorationConstant: 2)
+        MonteCarloPlayer(numberOfIterations: 1_000, explorationConstant: perfectExploration)
     }
     public static var advanced: MonteCarloPlayer {
-        MonteCarloPlayer(numberOfIterations: 100_000, explorationConstant: 2)
+        MonteCarloPlayer(numberOfIterations: 100_000, explorationConstant: perfectExploration)
     }
     public static var measuring: MonteCarloPlayer {
-        MonteCarloPlayer(numberOfIterations: 100_000, explorationConstant: 2, rng: XorShiftRNG(1))
+        MonteCarloPlayer(numberOfIterations: 100_000, explorationConstant: perfectExploration, rng: XorShiftRNG(1))
     }
 
     public convenience init(numberOfIterations: Int, explorationConstant: Float) {

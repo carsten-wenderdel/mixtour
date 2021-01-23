@@ -4,13 +4,14 @@ import MixModel
 class PlayerEvaluation {
 
     func run() {
-        var exploration = 0.57
+        var exploration = 0.61
         while true {
-            let factor = 1.1
+            let factor = 1.02
             let value = evaluate(c1: exploration * factor, c2: exploration / factor)
-            let change = 1.02
+            let change = 1.005
             if value == 0 {
-                exploration = Double.random(in: exploration/change...exploration*change)
+                let randomChange = (change + 1.0) / 2.0
+                exploration = Double.random(in: exploration/randomChange...exploration*randomChange)
             } else {
                 if value > 0 {
                     exploration *= change
