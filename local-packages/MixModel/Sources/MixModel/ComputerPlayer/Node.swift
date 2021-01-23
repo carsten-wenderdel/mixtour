@@ -66,13 +66,15 @@ final class Node {
 
     func simulate<T>(moveBuffer: inout MIXMoveArray, rng: inout T) -> MIXCorePlayer where T: RandomNumberGenerator {
         var board = state
-        while (!Core.isGameOver(&board)) {
+        var iterations = 100 // to prevent infinite loops we stop after 100 moves
+        while (!Core.isGameOver(&board) && iterations != 0) {
+            iterations -= 1
             Core.arrayOfLegalMoves(&board, &moveBuffer)
             let randomIndex = Int.random(in: 0..<moveBuffer.n, using: &rng)
             let randomMove = moveBuffer.a[randomIndex]
             Core.makeMove(&board, randomMove)
         }
-        return Core.winner(&board)
+        return Core.winner(&board) // will return a draw if game is not finished.
     }
 
     func backpropagate(_ winner: MIXCorePlayer) {
