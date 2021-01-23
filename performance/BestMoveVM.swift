@@ -7,14 +7,28 @@ final class BestMoveVM: ObservableObject {
     var timeSum = 0.0
     var seconds = [Double]()
 
+    private var isMeasuring = false
+
     var average: String {
-        "Average after \(iterations): \(timeSum/Double(iterations))"
+        "Average after \(iterations): \(1000.0 * timeSum / Double(iterations))"
     }
     var fastest: String {
-        "Fastest: \(seconds.min() ?? 0)"
+        "Fastest: \(1000.0 * (seconds.min() ?? 0))"
     }
 
     func startMeasuring() {
+        if (isMeasuring) {
+            return
+        } else {
+            iterations = 0
+            timeSum = 0
+            seconds = [Double]()
+            isMeasuring = true
+            measure()
+        }
+    }
+
+    func measure() {
         DispatchQueue.global(qos: .userInitiated).async { [self] in
             let computer = MonteCarloPlayer.measuring
             let board = Board()
@@ -30,7 +44,9 @@ final class BestMoveVM: ObservableObject {
             DispatchQueue.main.async { [self] in
                 objectWillChange.send()
                 if iterations < 20 {
-                    startMeasuring()
+                    measure()
+                } else {
+                    isMeasuring = false
                 }
             }
         }
