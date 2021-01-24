@@ -100,6 +100,8 @@ bool isDraggingPossible(MIXCoreBoardRef boardRef);
  Caller is responsible for releasing memory by calling destroyMoveArray later
  */
 void arrayOfLegalMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray);
+/// Will return return all moves excluding some moves that would lead to a loss very soon.
+void optimizedMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray);
 
 MIXMoveArray newMoveArray();
 void destroyMoveArray(MIXMoveArray moveArray);
