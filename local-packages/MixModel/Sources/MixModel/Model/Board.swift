@@ -10,6 +10,11 @@ extension MIXCoreBoard {
         resetCoreBoard(&coreBoard)
         return coreBoard
     }
+
+    func printDescription() {
+        var state = self
+        Core.printBoardDescription(&state)
+    }
 }
 
 
