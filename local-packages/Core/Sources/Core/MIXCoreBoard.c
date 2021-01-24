@@ -324,7 +324,135 @@ bool isSomethingBetweenSquares(MIXCoreBoardRef boardRef, MIXCoreSquare square1, 
 }
 
 
+
 void optimizedMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
+    kv_size(*moveArray) = 0;
+    MIXCorePlayer player = playerOnTurn(boardRef);
+    bool playerHasPiecesLeft = numberOfPiecesForPlayer(boardRef, player) > 0;
+    MIXCoreMove lastResortMove = MIXCoreMoveNoMove; // If no other move is found, this will be returned
+    for (int8_t i = 0; i < LENGTH_OF_BOARD; i++) {  // index for column to look at
+        for (int8_t j = 0; j < LENGTH_OF_BOARD; j++) { // index for line to look at
+            MIXCoreSquare square = {i, j};
+            uint8_t height = heightOfSquare(boardRef, square);
+            if (height == 0) {
+                if (playerHasPiecesLeft) {
+                    int8_t minLeft, maxRight, minTop, maxBottom;
+                    if (square.column == 0) {
+                        minLeft = 0;
+                        maxRight = 2;
+                    } else {
+                        minLeft = square.column - 1;
+                        if (square.column == 4) {
+                            maxRight = 4;
+                        } else {
+                            maxRight = square.column + 1;
+                        }
+                    }
+                    if (square.line == 0) {
+                        minTop = 0;
+                        maxBottom = 2;
+                    } else {
+                        minTop = square.line - 1;
+                        if (square.line == 4) {
+                            maxBottom = 4;
+                        } else {
+                            maxBottom = square.line + 1;
+                        }
+                    }
+                    bool nothingFound = true;
+                    for (int8_t column = minLeft; nothingFound && column <= maxRight; column++) {
+                        for (int8_t line = minTop; nothingFound && line <= maxBottom; line++) {
+                            MIXCoreSquare borderSquare = {column, line};
+                            if (heightOfSquare(boardRef, borderSquare) == 4) {
+                                if (player != colorOfSquareAtPosition(boardRef, borderSquare, 0)) {
+                                    nothingFound = false;
+                                }
+                            }
+                        }
+                    }
+                    if (nothingFound) {
+                        MIXCoreMove move = MIXCoreMoveMakeSet(square);
+                        kv_push(MIXCoreMove, *moveArray, move);
+                    }
+                }
+            } else { // try dragging
+                // We know calculate the position of squares that have the right distance
+                // to the target square. Distance needs to be height of target square.
+                // There are up to eight directions to look at (up, down, left, right
+                // and four diagonals).
+                // Some directions we don't want to look at because it's out of the
+                // bounds of the board. So let's calculate that.
+                int8_t leftSignum;
+                int8_t leftColumn;
+                if (i - height >= 0) {
+                    // Left to the to-Square is enough board space to look for from-squares.
+                    leftSignum = -1;
+                    leftColumn = i - height;
+                } else {
+                    leftSignum = 0;
+                    leftColumn = i;
+                }
+                int8_t rightSignum = (i+height <= MIX_BIGGEST_BOARD_INDEX) ? 1 : 0;
+                int8_t topSignum;
+                int8_t topLine;
+                if (j - height >= 0) {
+                    // Above the to-Square is enough board space to look for from-squares.
+                    topSignum = -1;
+                    topLine = j - height;
+                } else {
+                    topSignum = 0;
+                    topLine = j;
+                }
+                int8_t bottomSignum = (j+height <= MIX_BIGGEST_BOARD_INDEX) ? 1 : 0;
+                int8_t column = leftColumn;
+                for (int8_t columnSignum = leftSignum; columnSignum <= rightSignum; columnSignum++, column += height) {
+                    int8_t line = topLine;
+                    for (int8_t lineSignum = topSignum; lineSignum <= bottomSignum; lineSignum++, line += height) {
+                        if (columnSignum != 0 || lineSignum != 0) { // don't look at orignal square
+                            MIXCoreSquare sourceSquare = {column, line};
+                            if (!isSquareEmpty(boardRef, sourceSquare)) {
+                                // So we can drag as long nothing is between. Check that:
+                                if (!isSomethingBetweenSquares(boardRef, square, sourceSquare, columnSignum, lineSignum)) {
+                                    uint8_t sourceHeight = heightOfSquare(boardRef, sourceSquare);
+                                    for (uint8_t pieces = sourceHeight; pieces >= 1; pieces--) {
+                                        if (pieces + height < MIX_CORE_NUMBER_OF_PIECES_TO_WIN) {
+                                            // No one would win, add move to array
+                                            if (sourceHeight + height < MIX_CORE_NUMBER_OF_PIECES_TO_WIN || sourceHeight - pieces != height) {
+                                                // Otherwise the opponent could move directly back and win.
+                                                // On top is a piece of the opponent, otherwise the player could finish it now anyway.
+                                                MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
+                                                if (! isMoveRevertOfMove(move, boardRef->lastMove)) {
+                                                    kv_push(MIXCoreMove, *moveArray, move);
+                                                }
+                                            }
+                                        } else { // someone would win
+                                            MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
+                                            if (player == colorOfSquareAtPosition(boardRef, sourceSquare, 0)) {
+                                                // Player on turn wins; all other moves are not interesting anymore.
+                                                kv_size(*moveArray) = 0;
+                                                kv_push(MIXCoreMove, *moveArray, move);
+                                                return;
+                                            } else {
+                                                // Losing move. Will be returned if no better move is found
+                                                lastResortMove = move;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (!kv_size(*moveArray)) {
+        // no good moves found
+        kv_push(MIXCoreMove, *moveArray, lastResortMove);
+    }
+}
+
+void arrayOfLegalMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
     kv_size(*moveArray) = 0;
     MIXCorePlayer player = playerOnTurn(boardRef);
     bool playerHasPiecesLeft = numberOfPiecesForPlayer(boardRef, player) > 0;
@@ -415,7 +543,7 @@ void optimizedMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
     }
 }
 
-void arrayOfLegalMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
+void arrayOfLegalMoves2(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
     kv_size(*moveArray) = 0;
     MIXCorePlayer player = playerOnTurn(boardRef);
     bool playerHasPiecesLeft = numberOfPiecesForPlayer(boardRef, player) > 0;
