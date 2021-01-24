@@ -53,7 +53,7 @@ bool MIXCoreMoveEqualToMove(MIXCoreMove move1, MIXCoreMove move2) {
             && MIXCoreSquareIsEqualToSquare(move1.to, move2.to);
     } else {
         return MIXCoreSquareIsEqualToSquare(move1.from, move2.from)
-            && MIXCoreSquareIsEqualToSquare(move2.to, move2.to)
+            && MIXCoreSquareIsEqualToSquare(move1.to, move2.to)
             && move1.numberOfPieces == move2.numberOfPieces;
     }
 }

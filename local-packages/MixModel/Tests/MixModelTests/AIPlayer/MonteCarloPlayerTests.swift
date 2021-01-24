@@ -85,7 +85,7 @@ class MonteCarloPlayerTests: XCTestCase {
         }
 
         // that move looks good, maybe another number of pieces is even better
-        XCTAssertEqual(blackMove, .drag(from: Square(column: 3, line: 2), to: Square(column: 3, line:1), numberOfPieces: 1))
+        XCTAssertEqual(blackMove, .drag(from: Square(column: 3, line: 2), to: Square(column: 3, line: 0), numberOfPieces: 1))
     }
 
     func testPerformanceExample() {
