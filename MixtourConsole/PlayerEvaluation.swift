@@ -38,7 +38,12 @@ class PlayerEvaluation {
     // 1 if white wins, 0 for draw, -1 for black
     func winner(white: MonteCarloPlayer, black: MonteCarloPlayer) -> Int {
         let board = Board()
+        var iteration = 0
         while (!board.isGameOver()) {
+            if iteration > 500 {
+                return 0
+            }
+            iteration += 1
             let player = (board.playerOnTurn() == PlayerColor.white) ? white : black
             let move = player.bestMove(board)!
             board.makeMoveIfLegal(move)
