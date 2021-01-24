@@ -3,7 +3,7 @@ import Core
 
 public final class MonteCarloPlayer {
 
-    private static let perfectExploration: Float = 0.59
+    public static let perfectExploration: Float = 0.59
     
     private var rng: XorShiftRNG
     private let explorationConstant: Float
@@ -20,7 +20,7 @@ public final class MonteCarloPlayer {
         MonteCarloPlayer(numberOfIterations: 100_000, explorationConstant: perfectExploration, rng: XorShiftRNG(1))
     }
 
-    public convenience init(numberOfIterations: Int, explorationConstant: Float) {
+    public convenience init(numberOfIterations: Int, explorationConstant: Float = perfectExploration) {
         self.init(
             numberOfIterations: numberOfIterations,
             explorationConstant: explorationConstant,

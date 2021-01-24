@@ -53,4 +53,23 @@ class PlayerEvaluation {
         }
     }
 
+    func compete() {
+        let player1 = MonteCarloPlayer(numberOfIterations: 4_000)
+        let player2 = MonteCarloPlayer(numberOfIterations: 1_000)
+
+        var iterations = 0.0
+        var whiteWins = 0.0
+        var blackWins = 0.0
+
+        while true {
+            iterations += 1
+            whiteWins += 0.5 * Double((1 + winner(white: player1, black: player2)))
+            blackWins += 1 - 0.5 * Double((1 + winner(white: player2, black: player1)))
+
+            print("\(iterations) iterations")
+            print("white wins: \(100 * whiteWins / iterations)")
+            print("black wins: \(100 * blackWins / iterations)")
+        }
+    }
+
 }
