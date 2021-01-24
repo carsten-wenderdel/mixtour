@@ -8,6 +8,7 @@ public final class MonteCarloPlayer {
     private var rng: XorShiftRNG
     private let explorationConstant: Float
     private let numberOfIterations: Int
+    private let timeToThink: TimeInterval?
     private var moveBuffer = Core.newMoveArray()
 
     public static var beginner: MonteCarloPlayer {
@@ -28,15 +29,26 @@ public final class MonteCarloPlayer {
         )
     }
 
+    public convenience init(timeToThink: TimeInterval) {
+        self.init(
+            numberOfIterations: 0,
+            explorationConstant: Self.perfectExploration,
+            rng: XorShiftRNG(UInt64.random(in: UInt64.min...UInt64.max)),
+            timeToThink: timeToThink
+        )
+    }
+
     init(
         numberOfIterations: Int,
         explorationConstant: Float,
-        rng: XorShiftRNG
+        rng: XorShiftRNG,
+        timeToThink: TimeInterval? = nil
     ) {
-        assert(numberOfIterations > 0)
+        assert(numberOfIterations > 0 || timeToThink != nil)
         self.numberOfIterations = numberOfIterations
         self.explorationConstant = explorationConstant
         self.rng = rng
+        self.timeToThink = timeToThink
     }
 
     /// Returns nil if game is over
@@ -48,11 +60,15 @@ public final class MonteCarloPlayer {
 
         let root = Node(state: board.coreBoard)
 
-        for _ in 0..<numberOfIterations {
-            let selected = root.selectedNodeForNextVisit(explorationConstant)
-            let expanded = selected.expand(&rng)
-            let winner = expanded.simulate(moveBuffer: &moveBuffer, rng: &rng)
-            expanded.backpropagate(winner)
+        if let timeToThink = timeToThink {
+            let targetDate = Date(timeIntervalSinceNow: timeToThink).timeIntervalSinceReferenceDate
+            repeat {
+                iterate(root)
+            } while Date.timeIntervalSinceReferenceDate < targetDate
+        } else {
+            for _ in 0..<numberOfIterations {
+                iterate(root)
+            }
         }
 
         guard let coreMove = root.winnerMove() else {
@@ -60,6 +76,13 @@ public final class MonteCarloPlayer {
             return nil
         }
         return Move(coreMove)
+    }
+
+    private func iterate(_ root: Node) {
+        let selected = root.selectedNodeForNextVisit(explorationConstant)
+        let expanded = selected.expand(&rng)
+        let winner = expanded.simulate(moveBuffer: &moveBuffer, rng: &rng)
+        expanded.backpropagate(winner)
     }
 
     deinit {
