@@ -54,14 +54,8 @@ class PlayerEvaluation {
     }
 
     func compete() {
-        let player1 = MonteCarloPlayer(numberOfIterations: 1_000)
-//        let player1 = MonteCarloPlayer(timeToThink: 0.03)
-        player1.optimize = true
-        let player2 = MonteCarloPlayer(numberOfIterations: 1_000)
-//        let player2 = MonteCarloPlayer(timeToThink: 0.03)
-
-
-//        let player2 = MonteCarloPlayer(timeToThink: 0.03)
+        let player1 = MonteCarloPlayer(timeToThink: 0.04)
+        let player2 = MonteCarloPlayer(timeToThink: 0.01)
 
         var iterations = 0.0
         var whiteWins = 0.0

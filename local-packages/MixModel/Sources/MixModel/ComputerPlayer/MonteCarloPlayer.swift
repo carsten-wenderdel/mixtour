@@ -9,7 +9,6 @@ public final class MonteCarloPlayer {
     private let explorationConstant: Float
     private let numberOfIterations: Int
     private let timeToThink: TimeInterval?
-    public var optimize = false
     private var moveBuffer = Core.newMoveArray()
 
     public static var beginner: MonteCarloPlayer {
@@ -82,12 +81,7 @@ public final class MonteCarloPlayer {
     private func iterate(_ root: Node) {
         let selected = root.selectedNodeForNextVisit(explorationConstant)
         let expanded = selected.expand(&rng)
-        let winner: MIXCorePlayer
-        if (optimize) {
-            winner = expanded.simulate2(moveBuffer: &moveBuffer, rng: &rng)
-        } else {
-            winner = expanded.simulate(moveBuffer: &moveBuffer, rng: &rng)
-        }
+        let winner = expanded.simulate(moveBuffer: &moveBuffer, rng: &rng)
         expanded.backpropagate(winner)
     }
 
