@@ -292,8 +292,8 @@ class BoardTests : XCTestCase {
         
         board.setPiece(Square(column: 1, line: 3))
         board.setPiece(Square(column: 3, line: 4))
-        XCTAssert(board.isMoveLegal(Move.drag(from: Square(column: 1, line: 4), to:Square(column: 1, line: 1), numberOfPieces: 1)))
-        XCTAssert(board.isMoveLegal(Move.drag(from: Square(column: 1, line: 4), to:Square(column: 4, line: 4), numberOfPieces: 1)))
+        XCTAssertFalse(board.isMoveLegal(Move.drag(from: Square(column: 1, line: 4), to:Square(column: 1, line: 1), numberOfPieces: 1)))
+        XCTAssertFalse(board.isMoveLegal(Move.drag(from: Square(column: 1, line: 4), to:Square(column: 4, line: 4), numberOfPieces: 1)))
     }
     
     func testMoveIsIllegalIfRevert() {

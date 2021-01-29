@@ -158,25 +158,26 @@ bool isDistanceRight(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare
 }
 
 
+/**
+ square1 and square2 need to be on one line (horizontally, vertically or cross). Use only internally, columnSignum and lineSignum have to be correct.
+ */
+bool isSomethingBetweenSquares(MIXCoreBoardRef boardRef, MIXCoreSquare square1, MIXCoreSquare square2, int8_t columnSignum, int8_t lineSignum) {
+    MIXCoreSquare betweenSquare = {(uint8_t)(square1.column + columnSignum), (uint8_t)(square1.line + lineSignum)};
+    while (!MIXCoreSquareIsEqualToSquare(betweenSquare, square2)) {
+        if (!isSquareEmpty(boardRef, betweenSquare)) {
+            return true;
+        }
+        betweenSquare = (MIXCoreSquare){(uint8_t)(betweenSquare.column + columnSignum), (uint8_t)(betweenSquare.line + lineSignum)};
+    }
+    return false;
+}
+
+
 bool isAPieceBetween(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to) {
 
     int8_t columnSignum = signum((int8_t)to.column - from.column);
     int8_t lineSignum = signum((int8_t)to.line - from.line);
-    
-    uint8_t columnToCheck = (uint8_t)(from.column + columnSignum);
-    uint8_t lineToCheck = (uint8_t)(from.line + lineSignum);
-    // don't use "<" or ">" for comparison - increments could be positive or
-    // negative we could come from any side.
-    // Also we need to check both column and line as one increment could be 0.
-    while (columnToCheck != to.column && lineToCheck != to.line) {
-        if (boardRef->height[columnToCheck][lineToCheck] != 0u) {
-            return true; // a piece is between
-        }
-        columnToCheck += columnSignum;
-        lineToCheck += lineSignum;
-    }
-    
-    return false; // nothing found
+    return isSomethingBetweenSquares(boardRef, from, to, columnSignum, lineSignum);
 }
 
 
@@ -304,21 +305,6 @@ bool isSettingPossible(MIXCoreBoardRef boardRef) {
                 return true;
             }
         }
-    }
-    return false;
-}
-
-
-/**
- square1 and square2 need to be on one line (horizontally, vertically or cross). Use only internally, columnSignum and lineSignum have to be correct.
- */
-bool isSomethingBetweenSquares(MIXCoreBoardRef boardRef, MIXCoreSquare square1, MIXCoreSquare square2, int8_t columnSignum, int8_t lineSignum) {
-    MIXCoreSquare betweenSquare = {(uint8_t)(square1.column + columnSignum), (uint8_t)(square1.line + lineSignum)};
-    while (!MIXCoreSquareIsEqualToSquare(betweenSquare, square2)) {
-        if (!isSquareEmpty(boardRef, betweenSquare)) {
-            return true;
-        }
-        betweenSquare = (MIXCoreSquare){(uint8_t)(betweenSquare.column + columnSignum), (uint8_t)(betweenSquare.line + lineSignum)};
     }
     return false;
 }
