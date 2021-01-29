@@ -137,24 +137,15 @@ void makePass(MIXCoreBoardRef boardRef) {
 }
 
 bool isDistanceRight(MIXCoreBoardRef boardRef, MIXCoreSquare from, MIXCoreSquare to) {
-    
+
+    if (MIXCoreSquareIsEqualToSquare(from, to)) {
+        return false;
+    }
     uint8_t height = boardRef->height[to.column][to.line];
-    
-    if (from.column == to.column) {
-        if (abs(from.line - to.line) == height) {
-            return true; // vertical drag
-        } else {
-            return false;
-        }
-    }
-    if (abs(from.column - to.column) == height) {
-        if (from.line == to.line) {
-            return true; // horizontal drag
-        } else if (abs(from.line - to.line) == height) {
-            return true; // cross drag
-        }
-    }
-    return false;
+    int8_t columnDiff = abs(from.column - to.column);
+    int8_t lineDiff = abs(from.line - to.line);
+
+    return (columnDiff == 0 || columnDiff == height) && (lineDiff == 0 || lineDiff == height);
 }
 
 
