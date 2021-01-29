@@ -21,6 +21,16 @@
 
 #define LENGTH_OF_BOARD 5
 
+/// For Monte Carlo Tree Search and other algorithms the list of legal moves is the the crucial function where CPU spends most time.
+/// This could be sped up with bitboards. A 32 bit variable could contain bits for all 25 fields. Maybe 64 bit variables are more efficient
+/// Bitshift operations and logical AND / OR could be used to identify possible moves.
+/// One 32 bit variable could contain bits for:
+/// - Exactly 4 pieces high (etc.)
+/// - Exactly 3 pieces high (etc.)
+/// - Empty fields
+/// - Upper most color is white
+/// - Second upper most color is white (etc.)
+
 /**
  - height is pretty simple - a "4" means 4 pieces
  - colors is a bit more difficult - only the last "height" bits are interesting.

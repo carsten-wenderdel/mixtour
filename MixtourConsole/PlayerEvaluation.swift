@@ -79,6 +79,7 @@ class PlayerEvaluation {
             print("\(iterations) iterations")
             print("white wins: \(100 * whiteWins / iterations)")
             print("black wins: \(100 * blackWins / iterations)")
+            print("combined: \(50 * (blackWins + whiteWins) / iterations)")
         }
     }
 
