@@ -205,7 +205,6 @@ bool isMoveLegal(MIXCoreBoardRef boardRef, MIXCoreMove move) {
             return false;
         }
         
-        uint8_t height = boardRef->height[to.column][to.line];
         if (isAPieceBetween(boardRef, from, to)) {
             return false;
         }
