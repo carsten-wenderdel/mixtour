@@ -291,7 +291,7 @@ bool isSettingPossible(MIXCoreBoardRef boardRef) {
 }
 
 
-void optimizedMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
+void optimizedMoves3(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
     kv_size(*moveArray) = 0;
     MIXCorePlayer player = playerOnTurn(boardRef);
     bool playerHasPiecesLeft = numberOfPiecesForPlayer(boardRef, player) > 0;
@@ -383,8 +383,17 @@ void optimizedMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
         kv_push(MIXCoreMove, *moveArray, lastResortMove);
     }
 }
+void generalMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray, bool optimized);
 
 void optimizedMoves2(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
+    generalMoves(boardRef, moveArray, true);
+}
+
+void optimizedMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
+    generalMoves(boardRef, moveArray, false);
+}
+
+void generalMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray, bool optimized) {
     kv_size(*moveArray) = 0;
     MIXCorePlayer player = playerOnTurn(boardRef);
     bool playerHasPiecesLeft = numberOfPiecesForPlayer(boardRef, player) > 0;
@@ -440,7 +449,7 @@ void optimizedMoves2(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                                     for (uint8_t pieces = sourceHeight; pieces >= 1; pieces--) {
                                         if (pieces + height < MIX_CORE_NUMBER_OF_PIECES_TO_WIN) {
                                             // No one would win
-                                            if (sourceHeight + height < MIX_CORE_NUMBER_OF_PIECES_TO_WIN || sourceHeight - pieces != height) {
+                                            if (!optimized || sourceHeight + height < MIX_CORE_NUMBER_OF_PIECES_TO_WIN || sourceHeight - pieces != height) {
                                                 // Otherwise the opponent could move directly back and win.
                                                 // On top is a piece of the opponent, otherwise the player could finish it now anyway.
                                                 MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
@@ -448,8 +457,9 @@ void optimizedMoves2(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                                                     kv_push(MIXCoreMove, *moveArray, move);
                                                 }
                                             }
-                                            // No else part needed. We don't want to store it as lastResortMove.
-                                            // Because sourceHeight and height combined are bigger than 5, a directly losing move would exist anyway - and that's faster.
+                                                // No else part needed. We don't want to store it as lastResortMove.
+                                                // Because sourceHeight and height combined are bigger than 5, a directly losing move would exist anyway - and that's faster.
+
                                         } else { // someone would win
                                             MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
                                             if (player == colorOfSquareAtPosition(boardRef, sourceSquare, 0)) {
