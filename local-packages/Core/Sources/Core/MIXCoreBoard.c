@@ -395,8 +395,44 @@ void optimizedMoves2(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
             uint8_t height = heightOfSquare(boardRef, square);
             if (height == 0) {
                 if (playerHasPiecesLeft) {
-                    MIXCoreMove move = MIXCoreMoveMakeSet(square);
-                    kv_push(MIXCoreMove, *moveArray, move);
+                    int8_t minLeft, maxRight, minTop, maxBottom;
+                    if (square.column == 0) {
+                        minLeft = 0;
+                        maxRight = 2;
+                    } else {
+                        minLeft = square.column - 1;
+                        if (square.column == 4) {
+                            maxRight = 4;
+                        } else {
+                            maxRight = square.column + 1;
+                        }
+                    }
+                    if (square.line == 0) {
+                        minTop = 0;
+                        maxBottom = 2;
+                    } else {
+                        minTop = square.line - 1;
+                        if (square.line == 4) {
+                            maxBottom = 4;
+                        } else {
+                            maxBottom = square.line + 1;
+                        }
+                    }
+                    bool nothingFound = true;
+                    for (int8_t column = minLeft; nothingFound && column <= maxRight; column++) {
+                        for (int8_t line = minTop; nothingFound && line <= maxBottom; line++) {
+                            MIXCoreSquare borderSquare = {column, line};
+                            if (heightOfSquare(boardRef, borderSquare) == 4) {
+                                if (player != colorOfSquareAtPosition(boardRef, borderSquare, 0)) {
+                                    nothingFound = false;
+                                }
+                            }
+                        }
+                    }
+                    if (nothingFound) {
+                        MIXCoreMove move = MIXCoreMoveMakeSet(square);
+                        kv_push(MIXCoreMove, *moveArray, move);
+                    }
                 }
             } else { // try dragging
                 // We know calculate the position of squares that have the right distance
