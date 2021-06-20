@@ -85,13 +85,8 @@ public final class MonteCarloPlayer {
         let selected = root.selectedNodeForNextVisit(explorationConstant)
         let expanded: Node
         let winner: MIXCorePlayer
-        if (optimize) {
-            expanded = selected.expandOptimized2(&rng)
-            winner = expanded.simulateOptimized(moveBuffer: &moveBuffer, rng: &rng)
-        } else {
-            expanded = selected.expand(&rng)
-            winner = expanded.simulate(moveBuffer: &moveBuffer, rng: &rng)
-        }
+        expanded = selected.expand(&rng)
+        winner = expanded.simulate(moveBuffer: &moveBuffer, rng: &rng)
         expanded.backpropagate(winner)
     }
 
