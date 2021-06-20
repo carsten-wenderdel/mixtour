@@ -86,8 +86,8 @@ public final class MonteCarloPlayer {
         let expanded: Node
         let winner: MIXCorePlayer
         if (optimize) {
-            expanded = selected.expandOptimized(&rng)
-            winner = expanded.simulateOptimized(moveBuffer: &moveBuffer, rng: &rng)
+            expanded = selected.expandOptimized2(&rng)
+            winner = expanded.simulate(moveBuffer: &moveBuffer, rng: &rng)
         } else {
             expanded = selected.expandOptimized(&rng)
             winner = expanded.simulate(moveBuffer: &moveBuffer, rng: &rng)

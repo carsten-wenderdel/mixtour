@@ -84,6 +84,26 @@ final class Node {
         return newChild
     }
 
+    func expandOptimized2<T>(_ rng: inout T) -> Node where T: RandomNumberGenerator {
+        if Core.isGameOver(&state) {
+            return self
+        }
+
+        if nonSimulatedMoves == nil {
+            nonSimulatedMoves = Board.optimizedMoves2(&self.state).shuffled(using: &rng)
+        }
+        // No need to select a random move, the array is already shuffled
+        guard let move = nonSimulatedMoves!.popLast() else {
+            assertionFailure("If moves array is empty, select should have gone deeper in tree")
+            return self
+        }
+        let newChild = Node(parent: self, move: move)
+        // We could probably save 1% performance of the whole algorithm by not appending
+        // but reusing nonSimulatedMoves array. One slot just got free.
+        childNodes.append(newChild)
+        return newChild
+    }
+
     func simulate<T>(moveBuffer: inout MIXMoveArray, rng: inout T) -> MIXCorePlayer where T: RandomNumberGenerator {
         var board = state
         var iterations = 100 // to prevent infinite loops we stop after 100 moves

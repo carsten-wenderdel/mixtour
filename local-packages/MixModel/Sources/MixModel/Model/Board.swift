@@ -162,9 +162,26 @@ public final class Board {
         return Self.optimizedMoves(&coreBoard).map { Move($0) }
     }
 
+    func optimizedMoves2() -> [Move] {
+        return Self.optimizedMoves2(&coreBoard).map { Move($0) }
+    }
+
     static func optimizedMoves( _ coreBoard: inout MIXCoreBoard) -> [MIXCoreMove] {
         var cMoves = Core.newMoveArray()
         Core.optimizedMoves(&coreBoard, &cMoves)
+        var moveArray = [MIXCoreMove]()
+        moveArray.reserveCapacity(cMoves.n)
+        for i in 0..<cMoves.n {
+            let coreMove = cMoves.a[i]
+            moveArray.append(coreMove)
+        }
+        Core.destroyMoveArray(cMoves)
+        return moveArray
+    }
+
+    static func optimizedMoves2( _ coreBoard: inout MIXCoreBoard) -> [MIXCoreMove] {
+        var cMoves = Core.newMoveArray()
+        Core.optimizedMoves2(&coreBoard, &cMoves)
         var moveArray = [MIXCoreMove]()
         moveArray.reserveCapacity(cMoves.n)
         for i in 0..<cMoves.n {
