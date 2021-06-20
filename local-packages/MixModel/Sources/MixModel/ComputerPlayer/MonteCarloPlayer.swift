@@ -89,7 +89,7 @@ public final class MonteCarloPlayer {
             expanded = selected.expandOptimized(&rng)
             winner = expanded.simulateOptimized(moveBuffer: &moveBuffer, rng: &rng)
         } else {
-            expanded = selected.expand(&rng)
+            expanded = selected.expandOptimized(&rng)
             winner = expanded.simulate(moveBuffer: &moveBuffer, rng: &rng)
         }
         expanded.backpropagate(winner)
