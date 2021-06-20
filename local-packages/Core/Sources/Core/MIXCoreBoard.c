@@ -346,7 +346,7 @@ void optimizedMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                                     uint8_t sourceHeight = heightOfSquare(boardRef, sourceSquare);
                                     for (uint8_t pieces = sourceHeight; pieces >= 1; pieces--) {
                                         if (pieces + height < MIX_CORE_NUMBER_OF_PIECES_TO_WIN) {
-                                            // No one would win, add move to array
+                                            // No one would win
                                             if (sourceHeight + height < MIX_CORE_NUMBER_OF_PIECES_TO_WIN || sourceHeight - pieces != height) {
                                                 // Otherwise the opponent could move directly back and win.
                                                 // On top is a piece of the opponent, otherwise the player could finish it now anyway.
@@ -355,6 +355,8 @@ void optimizedMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                                                     kv_push(MIXCoreMove, *moveArray, move);
                                                 }
                                             }
+                                            // No else part needed. We don't want to store it as lastResortMove.
+                                            // Because sourceHeight and height combined are bigger than 5, a directly losing move would exist anyway - and that's faster.
                                         } else { // someone would win
                                             MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
                                             if (player == colorOfSquareAtPosition(boardRef, sourceSquare, 0)) {
