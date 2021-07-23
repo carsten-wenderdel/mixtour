@@ -141,13 +141,13 @@ public final class Board {
         return Core.isDraggingPossible(&coreBoard)
     }
 
-    func allLegalMoves() -> [Move] {
-        return Self.allLegalMoves(&coreBoard).map { Move($0) }
+    func sensibleMoves() -> [Move] {
+        return Self.sensibleMoves(&coreBoard).map { Move($0) }
     }
 
-    static func allLegalMoves( _ coreBoard: inout MIXCoreBoard) -> [MIXCoreMove] {
+    static func sensibleMoves( _ coreBoard: inout MIXCoreBoard) -> [MIXCoreMove] {
         var cMoves = Core.newMoveArray()
-        Core.arrayOfLegalMoves(&coreBoard, &cMoves)
+        Core.sensibleMoves(&coreBoard, &cMoves)
         var moveArray = [MIXCoreMove]()
         moveArray.reserveCapacity(cMoves.n)
         for i in 0..<cMoves.n {

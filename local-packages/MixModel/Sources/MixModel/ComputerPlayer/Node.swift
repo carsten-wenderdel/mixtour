@@ -50,7 +50,7 @@ final class Node {
         }
 
         if nonSimulatedMoves == nil {
-            nonSimulatedMoves = Board.allLegalMoves(&self.state).shuffled(using: &rng)
+            nonSimulatedMoves = Board.sensibleMoves(&self.state).shuffled(using: &rng)
         }
         // No need to select a random move, the array is already shuffled
         guard let move = nonSimulatedMoves!.popLast() else {
@@ -69,7 +69,7 @@ final class Node {
         var iterations = 100 // to prevent infinite loops we stop after 100 moves
         while (!Core.isGameOver(&board) && iterations != 0) {
             iterations -= 1
-            Core.arrayOfLegalMoves(&board, &moveBuffer)
+            Core.sensibleMoves(&board, &moveBuffer)
             let randomIndex = Int.random(in: 0..<moveBuffer.n, using: &rng)
             let randomMove = moveBuffer.a[randomIndex]
             Core.makeMove(&board, randomMove)

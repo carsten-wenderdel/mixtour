@@ -290,7 +290,7 @@ bool isSettingPossible(MIXCoreBoardRef boardRef) {
     return false;
 }
 
-void arrayOfLegalMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
+void sensibleMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
     kv_size(*moveArray) = 0;
     MIXCorePlayer player = playerOnTurn(boardRef);
     bool playerHasPiecesLeft = numberOfPiecesForPlayer(boardRef, player) > 0;
@@ -398,7 +398,7 @@ void destroyMoveArray(MIXMoveArray moveArray) {
 
 bool isDraggingPossible(MIXCoreBoardRef boardRef) {
     MIXMoveArray moves = newMoveArray();
-    arrayOfLegalMoves(boardRef, &moves);
+    sensibleMoves(boardRef, &moves);
     bool dragFound = false;
     while (!dragFound && kv_size(moves)) {
         MIXCoreMove move = kv_pop(moves);

@@ -482,11 +482,11 @@ class BoardTests : XCTestCase {
     
     func testNumberOfMovesIs25ForEmptyBoard() {
         let board = Board()
-        let allMoves = board.allLegalMoves()
+        let allMoves = board.sensibleMoves()
         XCTAssertEqual(allMoves.count, 25)
     }
     
-    func testLegalMovesDoesNotContainRevertMove() {
+    func testSensibleMovesDoesNotContainRevertMove() {
         let board = Board()
         
         let square1 = Square(column: 1, line: 0)
@@ -495,7 +495,7 @@ class BoardTests : XCTestCase {
         board.setPiecesDirectlyToSquare(square1, .black, .white, .white)
         board.setPiecesDirectlyToSquare(square2, .black)
 
-        var allMoves = board.allLegalMoves()
+        var allMoves = board.sensibleMoves()
         XCTAssertEqual(allMoves.count, 26)
         for move in allMoves {
             XCTAssert(board.isMoveLegal(move))
@@ -503,7 +503,7 @@ class BoardTests : XCTestCase {
         
         board.makeMoveIfLegal(Move.drag(from: square1, to: square2, numberOfPieces: 2))
         
-        allMoves = board.allLegalMoves()
+        allMoves = board.sensibleMoves()
         XCTAssertEqual(allMoves.count, 25)
         for move in allMoves {
             XCTAssert(board.isMoveLegal(move))
@@ -520,13 +520,13 @@ class BoardTests : XCTestCase {
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 3), .white, .white, .white, .white)
         board.setPiecesDirectlyToSquare(Square(column: 0, line: 4), .white, .white, .white, .white)
 
-        let allMovesForWhite = board.allLegalMoves()
+        let allMovesForWhite = board.sensibleMoves()
         XCTAssertEqual(allMovesForWhite, [.pass])
         
         // given no white piece is set and 20 tiles are free
         board.setTurnDirectly(.black)
         
-        let allMovesForBlack = board.allLegalMoves()
+        let allMovesForBlack = board.sensibleMoves()
         XCTAssertEqual(allMovesForBlack.count, 20)
         for move in allMovesForBlack {
             if case .drag(_, _, _) = move {
@@ -547,7 +547,7 @@ class BoardTests : XCTestCase {
         board.setTurnDirectly(.black)
 
         // When
-        let allMovesForBlack = board.allLegalMoves()
+        let allMovesForBlack = board.sensibleMoves()
 
         // Then
         XCTAssertEqual(allMovesForBlack.count, 1)
@@ -568,7 +568,7 @@ class BoardTests : XCTestCase {
         board.setTurnDirectly(.white)
 
         // When
-        let allMoves = board.allLegalMoves()
+        let allMoves = board.sensibleMoves()
 
         // Then
         XCTAssertEqual(allMoves.count, 23)
@@ -589,7 +589,7 @@ class BoardTests : XCTestCase {
         board.setTurnDirectly(.black)
 
         // When
-        let allMoves = board.allLegalMoves()
+        let allMoves = board.sensibleMoves()
 
         // Then
         XCTAssertEqual(allMoves.count, 1)
