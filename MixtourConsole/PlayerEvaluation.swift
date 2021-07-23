@@ -61,7 +61,6 @@ class PlayerEvaluation {
     func compete() {
 //        let player1 = MonteCarloPlayer(numberOfIterations: 8_000)
         let player1 = MonteCarloPlayer(timeToThink: 0.17)
-        player1.optimize = true
 //        let player2 = MonteCarloPlayer(numberOfIterations: 8_000)
         let player2 = MonteCarloPlayer(timeToThink: 0.17)
 

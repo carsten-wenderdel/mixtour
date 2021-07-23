@@ -9,7 +9,6 @@ public final class MonteCarloPlayer {
     private let explorationConstant: Float
     private let numberOfIterations: Int
     private let timeToThink: TimeInterval?
-    public var optimize = false
     private var moveBuffer = Core.newMoveArray()
 
     public static var beginner: MonteCarloPlayer {
@@ -20,7 +19,6 @@ public final class MonteCarloPlayer {
     }
     public static var measuring: MonteCarloPlayer {
         let player = MonteCarloPlayer(numberOfIterations: 100_000, explorationConstant: perfectExploration, rng: XorShiftRNG(1))
-        player.optimize =  true
         return player
     }
 
