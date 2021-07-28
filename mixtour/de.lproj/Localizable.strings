@@ -3,4 +3,9 @@
 "White" = "Weiß";
 "Red" = "Rot";
 "Strength of Computer Player" = "Stärke Computerspieler";
-"Undo" = "Undo";
+"Undo" = "Rückgängig";
+
+// Tab Bar
+"Game" = "Spiel";
+"Rules" = "Regeln";
+"Legal" = "Impresum";
