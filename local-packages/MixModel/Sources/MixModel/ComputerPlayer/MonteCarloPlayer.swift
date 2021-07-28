@@ -22,6 +22,10 @@ public final class MonteCarloPlayer {
         return player
     }
 
+    public convenience init(config: MCPlayerConfig) {
+        self.init(numberOfIterations: config.rawValue)
+    }
+
     public convenience init(numberOfIterations: Int, explorationConstant: Float = perfectExploration) {
         self.init(
             numberOfIterations: numberOfIterations,
