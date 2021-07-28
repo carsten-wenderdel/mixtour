@@ -1,7 +1,6 @@
-/* 
-  Strings.strings
-  mixtour
-
-  Created by Carsten Wenderdel on 23.07.21.
-  Copyright © 2021 Carsten Wenderdel. All rights reserved.
-*/
+"New Game" = "Neues Spiel";
+"Your Color" = "Deine Farbe";
+"White" = "Weiß";
+"Red" = "Rot";
+"Strength of Computer Player" = "Stärke Computerspieler";
+"Undo" = "Undo";

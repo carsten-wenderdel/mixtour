@@ -14,10 +14,10 @@ struct ContentView: View {
 
                 HStack {
                     Menu {
-                        Section { Text("Deine Farbe") }
+                        Section { Text("Your Color") }
                         Section {
-                            Menu(LocalizedStringKey("Weiß")) {
-                                Section { Text("Spielstärke Computer") }
+                            Menu(LocalizedStringKey("White")) {
+                                Section { Text("Strength of Computer Player") }
                                 Section {
                                     Button(LocalizedStringKey("Anfänger")) { board.reset(color: .white, computer: .beginner) }
                                     Button(LocalizedStringKey("Fortgeschritten")) { board.reset(color: .white, computer: .advanced) }
@@ -36,7 +36,7 @@ struct ContentView: View {
                     label: {
                         Image(systemName: "plus")
                             .font(Constants.buttonImageFont)
-                        Text("Neues Spiel")
+                        Text(LocalizedStringKey("New Game"))
                             .font(Constants.buttonTextFont)
                     }
 
@@ -46,7 +46,7 @@ struct ContentView: View {
                     }) {
                         Image(systemName: "arrow.uturn.backward")
                             .font(Constants.buttonImageFont)
-                        Text("Rückgängig")
+                        Text("Undo")
                             .font(Constants.buttonTextFont)
                     }
                     .disabled(!board.undoPossible)
