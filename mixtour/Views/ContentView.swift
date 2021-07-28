@@ -16,27 +16,25 @@ struct ContentView: View {
                     Menu {
                         Section { Text("Your Color") }
                         Section {
-                            Menu(LocalizedStringKey("White")) {
-                                Section { Text("Strength of Computer Player") }
-                                Section {
-                                    Button(LocalizedStringKey("Anfänger")) { board.reset(color: .white, computer: .beginner) }
-                                    Button(LocalizedStringKey("Fortgeschritten")) { board.reset(color: .white, computer: .advanced) }
+                            ForEach([PlayerColor.white, PlayerColor.black]) { color in
+                                Menu(color.labelText) {
+                                    Section { Text("Strength of Computer Player") }
+                                    Section {
+                                        ForEach(MCPlayerConfig.allCases, id: \.self) { config in
+                                            Button(config.labelText) {
+                                                board.reset(color: color, computer: MonteCarloPlayer(config: config))
+                                            }
+                                        }
+                                    }
                                 }
                             }
-                            Menu(LocalizedStringKey("Red")) {
-                                Section { Text("Strength of Computer Player") }
-                                Section {
-                                    Button(LocalizedStringKey("Beginner")) { board.reset(color: .black, computer: .beginner) }
-                                    Button(LocalizedStringKey("Advanced")) { board.reset(color: .black, computer: .advanced) }
-                                }
-                            }
-                            Button(LocalizedStringKey("Computer vs Computer")) { board.startComputerPlay() }
+                            Button("Computer vs Computer") { board.startComputerPlay() }
                         }
                     }
                     label: {
                         Image(systemName: "plus")
                             .font(Constants.buttonImageFont)
-                        Text(LocalizedStringKey("New Game"))
+                        Text("New Game")
                             .font(Constants.buttonTextFont)
                     }
 

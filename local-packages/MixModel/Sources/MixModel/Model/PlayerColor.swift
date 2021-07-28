@@ -1,6 +1,11 @@
 import Core
 
-public enum PlayerColor: Int {
+public enum PlayerColor: Int, Identifiable {
+
+    public var id: Int {
+        self.rawValue
+    }
+
     case white = 0
     case black = 1
     

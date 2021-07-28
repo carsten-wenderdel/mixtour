@@ -1,7 +1,5 @@
 "New Game" = "Neues Spiel";
 "Your Color" = "Deine Farbe";
-"White" = "Weiß";
-"Red" = "Rot";
 "Strength of Computer Player" = "Stärke Computerspieler";
 "Undo" = "Rückgängig";
 
@@ -9,3 +7,14 @@
 "Game" = "Spiel";
 "Rules" = "Regeln";
 "Legal" = "Impresum";
+
+// Player Color
+"White" = "Weiß";
+"Red" = "Rot";
+
+// MCPlayerConfig
+"Beginner 1" = "Anfänger 1";
+"Beginner 2" = "Anfänger 2";
+"Advanced 1" = "Fortgeschritten 1";
+"Advanced 2" = "Fortgeschritten 2";
+"Expert 1" = "Experte 1";

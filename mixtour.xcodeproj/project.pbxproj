@@ -31,6 +31,9 @@
 		67811B3E25BB68C300F7FC72 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 67811B3D25BB68C300F7FC72 /* Core */; };
 		67811B4025BB68C600F7FC72 /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 67811B3F25BB68C600F7FC72 /* MixModel */; };
 		67811B6425BB8DFE00F7FC72 /* PlayerEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67811B6325BB8DFE00F7FC72 /* PlayerEvaluation.swift */; };
+		679BAB7126B16E0300C0BA77 /* MCPlayerConfig+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7026B16E0300C0BA77 /* MCPlayerConfig+Strings.swift */; };
+		679BAB7326B1749A00C0BA77 /* PlayerColor+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7226B1749A00C0BA77 /* PlayerColor+Strings.swift */; };
+		679BAB7526B1784F00C0BA77 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7426B1784F00C0BA77 /* Localization.swift */; };
 		679DCFAD257C367800E9310E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFAC257C367800E9310E /* Core */; };
 		679DCFD5257C4BFB00E9310E /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFD4257C4BFB00E9310E /* MixModel */; };
 		679DCFE3257C577100E9310E /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679DCFE2257C577100E9310E /* ExampleTests.swift */; };
@@ -103,6 +106,9 @@
 		67811B2C25BB686A00F7FC72 /* MixtourConsole */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MixtourConsole; sourceTree = BUILT_PRODUCTS_DIR; };
 		67811B2E25BB686A00F7FC72 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		67811B6325BB8DFE00F7FC72 /* PlayerEvaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEvaluation.swift; sourceTree = "<group>"; };
+		679BAB7026B16E0300C0BA77 /* MCPlayerConfig+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MCPlayerConfig+Strings.swift"; sourceTree = "<group>"; };
+		679BAB7226B1749A00C0BA77 /* PlayerColor+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerColor+Strings.swift"; sourceTree = "<group>"; };
+		679BAB7426B1784F00C0BA77 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		679DCF8B257C28FC00E9310E /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = "local-packages/Core"; sourceTree = "<group>"; };
 		679DCFC7257C489A00E9310E /* MixModel */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MixModel; path = "local-packages/MixModel"; sourceTree = "<group>"; };
 		679DCFE2257C577100E9310E /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
@@ -203,8 +209,10 @@
 			isa = PBXGroup;
 			children = (
 				67D666B1259631EF00E31102 /* BoardViewModel.swift */,
+				679BAB7026B16E0300C0BA77 /* MCPlayerConfig+Strings.swift */,
 				6708D25525989A1E002A673B /* PieceStackViewModel.swift */,
 				67D666C42596746200E31102 /* PieceViewModel.swift */,
+				679BAB7226B1749A00C0BA77 /* PlayerColor+Strings.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -221,6 +229,7 @@
 				6753842F2593B4B6002F5BEC /* Info.plist */,
 				6753842C2593B4B6002F5BEC /* Preview Content */,
 				6746176D26AADA7400359AE2 /* Localizable.strings */,
+				679BAB7426B1784F00C0BA77 /* Localization.swift */,
 			);
 			path = mixtour;
 			sourceTree = "<group>";
@@ -555,13 +564,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				6753843D2593BED4002F5BEC /* BoardView.swift in Sources */,
+				679BAB7526B1784F00C0BA77 /* Localization.swift in Sources */,
 				675384292593B4B5002F5BEC /* ContentView.swift in Sources */,
 				6708D26625994CA1002A673B /* PickedPieceStackView.swift in Sources */,
 				671456BF2597E835008870D8 /* BoardBackgroundView.swift in Sources */,
 				67D666B2259631EF00E31102 /* BoardViewModel.swift in Sources */,
+				679BAB7326B1749A00C0BA77 /* PlayerColor+Strings.swift in Sources */,
 				67E8A118259D0D7200C80637 /* PieceView.swift in Sources */,
 				67E8A110259CFFF700C80637 /* MixColors.swift in Sources */,
 				6708D25625989A1E002A673B /* PieceStackViewModel.swift in Sources */,
+				679BAB7126B16E0300C0BA77 /* MCPlayerConfig+Strings.swift in Sources */,
 				67CBE7882593DD4B00D913A1 /* PieceStackView.swift in Sources */,
 				675384272593B4B5002F5BEC /* mixtourApp.swift in Sources */,
 				67F2E77325A2777700530BFC /* PieceStoreView.swift in Sources */,
