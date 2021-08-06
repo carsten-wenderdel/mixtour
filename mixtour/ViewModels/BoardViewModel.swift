@@ -3,6 +3,8 @@ import MixModel
 
 final class BoardViewModel: ObservableObject {
 
+    private let computerPlayerQueue = DispatchQueue(label: "com.wenderdel.mixtour", qos: .userInitiated)
+
     // MARK variables set from outside
     private var board: Board
     private var humanColor: PlayerColor
@@ -244,7 +246,7 @@ extension BoardViewModel {
             return
         }
 
-        DispatchQueue.global(qos: .default).async { [self] in
+        computerPlayerQueue.async { [self] in
             let computer: MonteCarloPlayer = board.playerOnTurn()
                 == .white
                 ? .beginner
