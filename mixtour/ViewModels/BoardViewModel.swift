@@ -97,13 +97,17 @@ final class BoardViewModel: ObservableObject {
 
     func undo() {
         if let previousBoard = previousBoard {
-            reset(board: previousBoard)
+            reset(
+                board: previousBoard,
+                color: humanColor,
+                computer: computerPlayer
+            )
         }
     }
 
     func reset(board: Board = Board(),
-               color: PlayerColor = .white,
-               computer: MonteCarloPlayer = .beginner
+               color: PlayerColor,
+               computer: MonteCarloPlayer
     ) {
         objectWillChange.send()
         previousBoard = nil
@@ -259,7 +263,10 @@ final class BoardViewModel: ObservableObject {
 extension BoardViewModel {
     func startComputerPlay() {
         objectWillChange.send()
-        reset()
+        reset(
+            color: .white,
+            computer: MonteCarloPlayer(config: .beginner1)
+        )
         makeComputerMove()
     }
 
