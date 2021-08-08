@@ -3,6 +3,10 @@ import MixModel
 
 final class BoardViewModel: ObservableObject {
 
+    enum State {
+        case humanTurn, computerTurn
+    }
+
     private let computerPlayerQueue = DispatchQueue(label: "com.wenderdel.mixtour", qos: .userInitiated)
 
     // MARK variables set from outside
@@ -11,11 +15,11 @@ final class BoardViewModel: ObservableObject {
     private var computerPlayer: MonteCarloPlayer
 
     // MARK internal state
+    private var state: State
     private var previousBoard: Board?
     private var animatableMove: Move?
     private var setSquare: Square?
-    private var computerPlayerIsThinking = false
-    
+
     private var pickedPieces: PickedPieces? {
         didSet {
             if pickedPieces != nil {
@@ -36,7 +40,14 @@ final class BoardViewModel: ObservableObject {
     var undoPossible: Bool { previousBoard != nil }
     var gameOver: Bool { board.isGameOver() }
 
-    var interactionDisabled: Bool { computerPlayerIsThinking || board.isGameOver() }
+    var interactionDisabled: Bool {
+        switch state {
+        case .computerTurn:
+            return true
+        case .humanTurn:
+            return false
+        }
+    }
 
     var gameOverText: String {
         guard let winner = board.winner() else {
@@ -59,6 +70,10 @@ final class BoardViewModel: ObservableObject {
         self.board = board
         self.humanColor = color
         self.computerPlayer = computer
+        state =
+            board.playerOnTurn() == color
+            ? .humanTurn
+            : .computerTurn
     }
 
     // MARK: Change state
@@ -80,11 +95,12 @@ final class BoardViewModel: ObservableObject {
         setSquare = nil
         self.board = board
         self.humanColor = color
+        state =
+            board.playerOnTurn() == color
+            ? .humanTurn
+            : .computerTurn
         self.computerPlayer = computer
-        if (color == .white) {
-            computerPlayerIsThinking = false
-        } else {
-            computerPlayerIsThinking = true
+        if case .computerTurn = state {
             letComputermakeNextMove()
         }
     }
@@ -128,7 +144,7 @@ final class BoardViewModel: ObservableObject {
         }
         objectWillChange.send()
         previousBoard = Board(board)
-        computerPlayerIsThinking = true
+        state = .computerTurn
         animatableMove = nil
         pickedPieces = nil
         if case let .set(to) = move {
@@ -161,7 +177,7 @@ final class BoardViewModel: ObservableObject {
             } else {
                 setSquare = nil
             }
-            self.computerPlayerIsThinking = false
+            state = .humanTurn
             self.animatableMove = move
             self.board.makeMoveIfLegal(move)
         }
