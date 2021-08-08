@@ -3,8 +3,26 @@ import MixModel
 
 final class BoardViewModel: ObservableObject {
 
-    enum State {
-        case humanTurn, computerTurn
+    public enum State {
+        /// previousMove would be a computer move
+        case humanTurn(previousMove: Move?)
+        /// previousMove would be a huamn move
+        case computerTurn(previousMove: Move?)
+
+        var setSquare: Square? {
+            let move: Move?
+            switch self {
+            case .humanTurn(let previousMove):
+                move = previousMove
+            case .computerTurn(let previousMove):
+                move = previousMove
+            }
+            if case let .set(to) = move {
+                return to
+            } else {
+                return nil
+            }
+        }
     }
 
     private let computerPlayerQueue = DispatchQueue(label: "com.wenderdel.mixtour", qos: .userInitiated)
@@ -18,7 +36,6 @@ final class BoardViewModel: ObservableObject {
     private var state: State
     private var previousBoard: Board?
     private var animatableMove: Move?
-    private var setSquare: Square?
 
     private var pickedPieces: PickedPieces? {
         didSet {
@@ -72,8 +89,8 @@ final class BoardViewModel: ObservableObject {
         self.computerPlayer = computer
         state =
             board.playerOnTurn() == color
-            ? .humanTurn
-            : .computerTurn
+            ? .humanTurn(previousMove: nil)
+            : .computerTurn(previousMove: nil)
     }
 
     // MARK: Change state
@@ -92,13 +109,12 @@ final class BoardViewModel: ObservableObject {
         previousBoard = nil
         animatableMove = nil
         pickedPieces = nil
-        setSquare = nil
         self.board = board
         self.humanColor = color
         state =
             board.playerOnTurn() == color
-            ? .humanTurn
-            : .computerTurn
+            ? .humanTurn(previousMove: nil)
+            : .computerTurn(previousMove: nil)
         self.computerPlayer = computer
         if case .computerTurn = state {
             letComputermakeNextMove()
@@ -144,14 +160,9 @@ final class BoardViewModel: ObservableObject {
         }
         objectWillChange.send()
         previousBoard = Board(board)
-        state = .computerTurn
+        state = .computerTurn(previousMove: move)
         animatableMove = nil
         pickedPieces = nil
-        if case let .set(to) = move {
-            setSquare = to
-        } else {
-            setSquare = nil
-        }
         board.makeMoveIfLegal(move)
 
         let capturedBoard = board
@@ -172,12 +183,7 @@ final class BoardViewModel: ObservableObject {
     private func letComputermakeNextMove() {
         if let move = self.computerPlayer.bestMove(self.board) {
             self.objectWillChange.send()
-            if case let .set(to) = move {
-                setSquare = to
-            } else {
-                setSquare = nil
-            }
-            state = .humanTurn
+            state = .humanTurn(previousMove:move)
             self.animatableMove = move
             self.board.makeMoveIfLegal(move)
         }
@@ -222,7 +228,7 @@ final class BoardViewModel: ObservableObject {
             pieces: pieces,
             numberOfPickedPieces: numberOfPickedPieces,
             square: square,
-            useDrag: setSquare != square
+            useDrag: square != state.setSquare
         )
     }
 
