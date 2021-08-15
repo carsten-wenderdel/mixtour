@@ -10,7 +10,7 @@ struct mixtourApp: App {
                         Label("Game", systemImage: "checkerboard.rectangle")
 //                        Label("Game", systemImage: "checkerboard.shield")
                     }
-                ContentView()
+                RulesWebView()
                     .tabItem {
                         Label("Rules", systemImage: "list.bullet.rectangle.portrait.fill")
 //                        Label("Rules", systemImage: "list.bullet")
