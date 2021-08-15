@@ -1,6 +1,7 @@
 import Foundation
 import Core
 
+// This class is not thread safe. bestMove(:) may only be called by one instance at the same time.
 public final class MonteCarloPlayer {
 
     public static let perfectExploration: Float = 0.59
@@ -10,6 +11,7 @@ public final class MonteCarloPlayer {
     private let numberOfIterations: Int
     private let timeToThink: TimeInterval?
     private var moveBuffer = Core.newMoveArray()
+    private var thinking = false // Again: This class is not thread safe.
 
     public static var beginner: MonteCarloPlayer {
         MonteCarloPlayer(numberOfIterations: 1_000, explorationConstant: perfectExploration)
@@ -58,10 +60,16 @@ public final class MonteCarloPlayer {
 
     /// Returns nil if game is over
     public func bestMove(_ board: Board) -> Move? {
+        print("BestMove")
         guard !board.isGameOver() else {
             assertionFailure("Only use it with ongoing games")
             return nil
         }
+        guard thinking == false else {
+            assertionFailure("This class is not thread safe. Best call this method always from the same thread.")
+            return nil
+        }
+        thinking = true // This should find 99% of misuses, but not all - no semaphore.
 
         let root = Node(state: board.coreBoard)
 
@@ -76,6 +84,7 @@ public final class MonteCarloPlayer {
             }
         }
 
+        thinking = false
         guard let coreMove = root.winnerMove() else {
             assertionFailure("Game not ended, so there should be a move")
             return nil

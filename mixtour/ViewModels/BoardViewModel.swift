@@ -169,27 +169,35 @@ final class BoardViewModel: ObservableObject {
         pickedPieces = nil
         board.makeMoveIfLegal(move)
 
-        let capturedBoard = board
         if (board.isGameOver()) {
             return
         }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            guard let self = self else { return }
-            guard self.board === capturedBoard else {
-                // Probably a new game was started, so discard this move
-                return
-            }
-            self.letComputermakeNextMove()
-        }
+        letComputermakeNextMove()
     }
 
     private func letComputermakeNextMove() {
-        if let move = self.computerPlayer.bestMove(self.board) {
-            self.objectWillChange.send()
-            state = .humanTurn(previousMove:move)
-            self.animatableMove = move
-            self.board.makeMoveIfLegal(move)
+        // The computer move might be generated a few seconds later. Maybe the user has
+        // undone a move, in this case the computer move must not be applied. So we need
+        // to remember the board state.
+        let computerMoveBoard = Board(board)
+        computerPlayerQueue.async {
+            // We always call bestMove(:) on the same queue, so never two calls in parallel.
+            let move = self.computerPlayer.bestMove(self.board)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                guard computerMoveBoard == self.board else {
+                    // User has restarted the game or undone a move, so we don't need this computer move.
+                    return
+                }
+                guard let move = move else {
+                    assertionFailure("Move is nil, this should not happen")
+                    return
+                }
+                self.objectWillChange.send()
+                self.state = .humanTurn(previousMove:move)
+                self.animatableMove = move
+                self.board.makeMoveIfLegal(move)
+            }
         }
     }
 

@@ -162,3 +162,9 @@ public final class Board {
         printBoardDescription(&coreBoard);
     }
 }
+
+extension Board: Equatable {
+    public static func == (lhs: Board, rhs: Board) -> Bool {
+        lhs.setPieces == rhs.setPieces
+    }
+}
