@@ -43,6 +43,7 @@
 		67E2291226C9A2AF00738E88 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E2291126C9A2AF00738E88 /* WebView.swift */; };
 		67E2291426C9A3A100738E88 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E2291326C9A3A100738E88 /* WebViewModel.swift */; };
 		67E2291626C9A48900738E88 /* RulesWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E2291526C9A48900738E88 /* RulesWebView.swift */; };
+		67E2291826C9A7BF00738E88 /* RulesFiles in Resources */ = {isa = PBXBuildFile; fileRef = 67E2291726C9A7BF00738E88 /* RulesFiles */; };
 		67E8A110259CFFF700C80637 /* MixColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E8A10F259CFFF700C80637 /* MixColors.swift */; };
 		67E8A118259D0D7200C80637 /* PieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E8A117259D0D7200C80637 /* PieceView.swift */; };
 		67F2E76B25A238AC00530BFC /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F2E76A25A238AC00530BFC /* GameView.swift */; };
@@ -121,6 +122,7 @@
 		67E2291126C9A2AF00738E88 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		67E2291326C9A3A100738E88 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		67E2291526C9A48900738E88 /* RulesWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesWebView.swift; sourceTree = "<group>"; };
+		67E2291726C9A7BF00738E88 /* RulesFiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RulesFiles; sourceTree = "<group>"; };
 		67E8A10F259CFFF700C80637 /* MixColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixColors.swift; sourceTree = "<group>"; };
 		67E8A117259D0D7200C80637 /* PieceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceView.swift; sourceTree = "<group>"; };
 		67F2E76A25A238AC00530BFC /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 		67E2291026C9A22F00738E88 /* RulesTab */ = {
 			isa = PBXGroup;
 			children = (
+				67E2291726C9A7BF00738E88 /* RulesFiles */,
 				67E2291126C9A2AF00738E88 /* WebView.swift */,
 				67E2291326C9A3A100738E88 /* WebViewModel.swift */,
 				67E2291526C9A48900738E88 /* RulesWebView.swift */,
@@ -541,6 +544,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67E2291826C9A7BF00738E88 /* RulesFiles in Resources */,
 				6753842E2593B4B6002F5BEC /* Preview Assets.xcassets in Resources */,
 				6753842B2593B4B6002F5BEC /* Assets.xcassets in Resources */,
 				6746176B26AADA7400359AE2 /* Localizable.strings in Resources */,

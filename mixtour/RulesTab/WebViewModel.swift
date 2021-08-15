@@ -7,7 +7,8 @@ class WebViewModel: ObservableObject {
 
     init() {
         webView = WKWebView(frame: .zero)
-        url = URL(string: "https://www.spiegel.de")!
+        // Copied from https://spielstein.com/games/mixtour/rules
+        url = Bundle.main.url(forResource: "rules", withExtension: "html", subdirectory: "RulesFiles")!
         loadUrl()
     }
 
