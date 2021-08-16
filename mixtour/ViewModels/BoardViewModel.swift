@@ -121,7 +121,7 @@ final class BoardViewModel: ObservableObject {
             : .computerTurn(previousMove: nil)
         self.computerPlayer = computer
         if case .computerTurn = state {
-            letComputermakeNextMove()
+            letComputerMakeNextMove()
         }
     }
 
@@ -172,10 +172,14 @@ final class BoardViewModel: ObservableObject {
         if (board.isGameOver()) {
             return
         }
-        letComputermakeNextMove()
+        letComputerMakeNextMove(waitFor: 0.8)
     }
 
-    private func letComputermakeNextMove() {
+    /// timeToShowMoveAnimation - we might want to start a bit later to let the user's move animation finish.
+    /// If it's zero, the computer's move is shown as early as possible.
+    /// If it's 1, and the computer takes 1.1 seconds to think, the move is shown directly after 1.1 seconds.
+    private func letComputerMakeNextMove(waitFor seconds: Double = 0.0) {
+        let timeToShowMoveAnimation: DispatchTime = .now() + DispatchTimeInterval.milliseconds(Int(1000*seconds))
         // The computer move might be generated a few seconds later. Maybe the user has
         // undone a move, in this case the computer move must not be applied. So we need
         // to remember the board state.
@@ -183,7 +187,7 @@ final class BoardViewModel: ObservableObject {
         computerPlayerQueue.async {
             // We always call bestMove(:) on the same queue, so never two calls in parallel.
             let move = self.computerPlayer.bestMove(self.board)
-            DispatchQueue.main.async { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: timeToShowMoveAnimation) { [weak self] in
                 guard let self = self else { return }
                 guard computerMoveBoard == self.board else {
                     // User has restarted the game or undone a move, so we don't need this computer move.
