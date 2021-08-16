@@ -15,6 +15,8 @@ public enum MCPlayerConfig: Int, CaseIterable {
     case advanced1 = 1_000
     case advanced2 = 1_935
     case expert1 = 3_420
+    case expert2 = 6_150
+    case worldClass1 = 11_050
 
     public var eloRating: Int {
         switch self {
@@ -32,6 +34,10 @@ public enum MCPlayerConfig: Int, CaseIterable {
             return 1750
         case .expert1:
             return 1900
+        case .expert2:
+            return 2050
+        case .worldClass1:
+            return 2100
         }
     }
 }
@@ -236,3 +242,30 @@ public enum MCPlayerConfig: Int, CaseIterable {
 //        let player1 = MonteCarloPlayer(numberOfIterations: 3800)
 //        2139.0 iterations
 //        combined: 73.35203366058906
+
+
+
+// VS 3420 (other way around). So we picked 6150
+
+//        let player1 = MonteCarloPlayer(numberOfIterations: 6000)
+//        2079.0 iterations
+//        combined: 69.36026936026936
+
+//        let player1 = MonteCarloPlayer(numberOfIterations: 6150)
+//        5735.0 iterations
+//        combined: 70.85876198779425
+
+//        let player1 = MonteCarloPlayer(numberOfIterations: 6200)
+//        2750.0 iterations
+//        combined: 70.38181818181818
+
+//        let player1 = MonteCarloPlayer(numberOfIterations: 6250)
+//        15600.0 iterations
+//        combined: 70.82211538461539
+
+
+// VS 6150 (other way around). So wie picked 11050
+
+//        let player1 = MonteCarloPlayer(numberOfIterations: 11050)
+//        2185.0 iterations
+//        combined: 70.2974828375286

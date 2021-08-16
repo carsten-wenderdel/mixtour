@@ -20,7 +20,12 @@ extension MCPlayerConfig {
             name = "Advanced 2"
         case .expert1:
             name = "Expert 1"
+        case .expert2:
+            name = "Expert 2"
+        case .worldClass1:
+            name = "World Class 1"
         }
-        return "\(LocalizedString(name)) (ELO \(self.eloRating))"
+        return "\(LocalizedString(name))"
+//        return "\(LocalizedString(name)) (ELO \(self.eloRating))"
     }
 }
