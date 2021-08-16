@@ -37,7 +37,7 @@ public enum MCPlayerConfig: Int, CaseIterable {
         case .expert2:
             return 2050
         case .worldClass1:
-            return 2100
+            return 2200
         }
     }
 }
