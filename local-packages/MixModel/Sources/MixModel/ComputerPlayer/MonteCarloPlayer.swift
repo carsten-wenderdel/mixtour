@@ -61,6 +61,7 @@ public final class MonteCarloPlayer {
     /// Returns nil if game is over
     public func bestMove(_ board: Board) -> Move? {
         print("BestMove")
+        board.printDescription()
         guard !board.isGameOver() else {
             assertionFailure("Only use it with ongoing games")
             return nil

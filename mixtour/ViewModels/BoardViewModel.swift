@@ -3,7 +3,9 @@ import MixModel
 
 final class BoardViewModel: ObservableObject {
 
-    public enum State {
+    // MARK: internal types
+
+    enum State {
         /// previousMove would be a computer move
         case humanTurn(previousMove: Move?)
         /// previousMove would be a huamn move
@@ -25,19 +27,22 @@ final class BoardViewModel: ObservableObject {
         }
     }
 
-    private let computerPlayerQueue = DispatchQueue(label: "com.wenderdel.mixtour", qos: .userInitiated)
+    private struct PickedPieces {
+        var square: Square
+        var number: Int
+    }
 
-    // MARK variables set from outside
+    // MARK: variables set from outside
     private var board: Board
     private var humanColor: PlayerColor
     private var computerPlayer: MonteCarloPlayer
 
-    // MARK internal state
-    private var state: State
-    private var previousBoard: Board?
-    private var animatableMove: Move?
+    // MARK: internal state, to be observed from outside
+    @Published private var state: State
+    @Published private var previousBoard: Board?
+    @Published private var animatableMove: Move?
 
-    private var pickedPieces: PickedPieces? {
+    @Published private var pickedPieces: PickedPieces? {
         didSet {
             if pickedPieces != nil {
                 animatableMove = nil
@@ -45,14 +50,11 @@ final class BoardViewModel: ObservableObject {
         }
     }
 
-    private struct PickedPieces {
-        var square: Square
-        var number: Int
-    }
-
+    // MARK: internal properties
+    private let computerPlayerQueue = DispatchQueue(label: "com.wenderdel.mixtour", qos: .userInitiated)
     private var computerColor: PlayerColor { humanColor == .white ? .black : .white }
 
-    // Public properties
+    // MARK: public computed properties
 
     var undoPossible: Bool { previousBoard != nil }
     var gameOver: Bool { board.isGameOver() }
@@ -109,7 +111,6 @@ final class BoardViewModel: ObservableObject {
                color: PlayerColor,
                computer: MonteCarloPlayer
     ) {
-        objectWillChange.send()
         previousBoard = nil
         animatableMove = nil
         pickedPieces = nil
@@ -126,7 +127,6 @@ final class BoardViewModel: ObservableObject {
     }
 
     func pickPieceFromSquare(_ square: Square) {
-        objectWillChange.send()
         let oldNumber = numberOfPickedPiecesAt(square)
         let number = (oldNumber + 1) % board.heightOfSquare(square)
         pickedPieces = PickedPieces(square: square, number: number)
@@ -134,7 +134,6 @@ final class BoardViewModel: ObservableObject {
 
     func stopPickingOtherThan(_ square: Square) {
         if square != pickedPieces?.square {
-            objectWillChange.send()
             pickedPieces = nil
         }
     }
@@ -162,7 +161,6 @@ final class BoardViewModel: ObservableObject {
             assertionFailure("Human should only play their own pieces")
             return
         }
-        objectWillChange.send()
         previousBoard = Board(board)
         state = .computerTurn(previousMove: move)
         animatableMove = nil
@@ -197,7 +195,6 @@ final class BoardViewModel: ObservableObject {
                     assertionFailure("Move is nil, this should not happen")
                     return
                 }
-                self.objectWillChange.send()
                 self.state = .humanTurn(previousMove:move)
                 self.animatableMove = move
                 self.board.makeMoveIfLegal(move)
@@ -274,7 +271,6 @@ final class BoardViewModel: ObservableObject {
 // MARK: Let computer play against each other
 extension BoardViewModel {
     func startComputerPlay() {
-        objectWillChange.send()
         reset(
             color: .white,
             computer: MonteCarloPlayer(config: .beginner1)
@@ -297,7 +293,6 @@ extension BoardViewModel {
             }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
-                objectWillChange.send()
                 board.makeMoveIfLegal(move)
                 self.makeComputerMove()
                 self.board.printDescription()
