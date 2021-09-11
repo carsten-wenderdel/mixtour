@@ -15,7 +15,7 @@ struct mixtourApp: App {
                         Label("Rules", systemImage: "list.bullet.rectangle.portrait.fill")
 //                        Label("Rules", systemImage: "list.bullet")
                     }
-                ContentView()
+                LegalView()
                     .tabItem {
                         Label("Legal", systemImage: "info.circle.fill")
                     }

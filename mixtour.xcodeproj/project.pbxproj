@@ -31,6 +31,7 @@
 		679BAB7526B1784F00C0BA77 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7426B1784F00C0BA77 /* Localization.swift */; };
 		679DCFE3257C577100E9310E /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679DCFE2257C577100E9310E /* ExampleTests.swift */; };
 		67CBE7882593DD4B00D913A1 /* PieceStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CBE7872593DD4B00D913A1 /* PieceStackView.swift */; };
+		67CDB7D426ED4A720084BA2C /* LegalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CDB7D326ED4A720084BA2C /* LegalView.swift */; };
 		67D666B2259631EF00E31102 /* BoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D666B1259631EF00E31102 /* BoardViewModel.swift */; };
 		67D666C52596746200E31102 /* PieceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D666C42596746200E31102 /* PieceViewModel.swift */; };
 		67E2291226C9A2AF00738E88 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E2291126C9A2AF00738E88 /* WebView.swift */; };
@@ -87,6 +88,7 @@
 		679DCFC7257C489A00E9310E /* MixModel */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MixModel; path = "local-packages/MixModel"; sourceTree = "<group>"; };
 		679DCFE2257C577100E9310E /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		67CBE7872593DD4B00D913A1 /* PieceStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceStackView.swift; sourceTree = "<group>"; };
+		67CDB7D326ED4A720084BA2C /* LegalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalView.swift; sourceTree = "<group>"; };
 		67D666B1259631EF00E31102 /* BoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewModel.swift; sourceTree = "<group>"; };
 		67D666C42596746200E31102 /* PieceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceViewModel.swift; sourceTree = "<group>"; };
 		67E2291126C9A2AF00738E88 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		675384252593B4B5002F5BEC /* mixtour */ = {
 			isa = PBXGroup;
 			children = (
+				67CDB7D226ED4A0B0084BA2C /* LegalTab */,
 				67E2291026C9A22F00738E88 /* RulesTab */,
 				671456B72597D8B2008870D8 /* ViewModels */,
 				671456B62597D8A6008870D8 /* Views */,
@@ -211,6 +214,14 @@
 				67811B6325BB8DFE00F7FC72 /* PlayerEvaluation.swift */,
 			);
 			path = MixtourConsole;
+			sourceTree = "<group>";
+		};
+		67CDB7D226ED4A0B0084BA2C /* LegalTab */ = {
+			isa = PBXGroup;
+			children = (
+				67CDB7D326ED4A720084BA2C /* LegalView.swift */,
+			);
+			path = LegalTab;
 			sourceTree = "<group>";
 		};
 		67E2291026C9A22F00738E88 /* RulesTab */ = {
@@ -479,6 +490,7 @@
 				67E8A118259D0D7200C80637 /* PieceView.swift in Sources */,
 				67E8A110259CFFF700C80637 /* MixColors.swift in Sources */,
 				6708D25625989A1E002A673B /* PieceStackViewModel.swift in Sources */,
+				67CDB7D426ED4A720084BA2C /* LegalView.swift in Sources */,
 				679BAB7126B16E0300C0BA77 /* MCPlayerConfig+Strings.swift in Sources */,
 				67CBE7882593DD4B00D913A1 /* PieceStackView.swift in Sources */,
 				675384272593B4B5002F5BEC /* mixtourApp.swift in Sources */,
@@ -557,7 +569,7 @@
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = mixtour/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -591,7 +603,7 @@
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = mixtour/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
