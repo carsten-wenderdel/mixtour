@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5744E5201A374B1D00F2812B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5744E51F1A374B1D00F2812B /* GameView.swift */; };
-		574588081A174F3700BBADCE /* MIXAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574588071A174F3700BBADCE /* MIXAppDelegate.swift */; };
-		57943FEF1A49DD9400744ABE /* GameBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57943FEE1A49DD9400744ABE /* GameBackgroundView.swift */; };
-		57C207FA1A489917002DAFB3 /* GamePieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C207F91A489917002DAFB3 /* GamePieceView.swift */; };
-		57D21AB31A0FF52E00D1ABBC /* MIXViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D21AB21A0FF52E00D1ABBC /* MIXViewController.swift */; };
 		6708D25625989A1E002A673B /* PieceStackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708D25525989A1E002A673B /* PieceStackViewModel.swift */; };
 		6708D26625994CA1002A673B /* PickedPieceStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708D26525994CA1002A673B /* PickedPieceStackView.swift */; };
 		671456BF2597E835008870D8 /* BoardBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671456BE2597E835008870D8 /* BoardBackgroundView.swift */; };
@@ -34,8 +29,6 @@
 		679BAB7126B16E0300C0BA77 /* MCPlayerConfig+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7026B16E0300C0BA77 /* MCPlayerConfig+Strings.swift */; };
 		679BAB7326B1749A00C0BA77 /* PlayerColor+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7226B1749A00C0BA77 /* PlayerColor+Strings.swift */; };
 		679BAB7526B1784F00C0BA77 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7426B1784F00C0BA77 /* Localization.swift */; };
-		679DCFAD257C367800E9310E /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFAC257C367800E9310E /* Core */; };
-		679DCFD5257C4BFB00E9310E /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 679DCFD4257C4BFB00E9310E /* MixModel */; };
 		679DCFE3257C577100E9310E /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679DCFE2257C577100E9310E /* ExampleTests.swift */; };
 		67CBE7882593DD4B00D913A1 /* PieceStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CBE7872593DD4B00D913A1 /* PieceStackView.swift */; };
 		67D666B2259631EF00E31102 /* BoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D666B1259631EF00E31102 /* BoardViewModel.swift */; };
@@ -52,25 +45,9 @@
 		67FD17B825B9DB9F00A91931 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD17B725B9DB9F00A91931 /* ContentView.swift */; };
 		67FD17BA25B9DBA100A91931 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD17B925B9DBA100A91931 /* Assets.xcassets */; };
 		67FD17BD25B9DBA100A91931 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD17BC25B9DBA100A91931 /* Preview Assets.xcassets */; };
-		AA040637176F9DF40051363A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040636176F9DF40051363A /* Foundation.framework */; };
-		AA040639176F9DF40051363A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040638176F9DF40051363A /* CoreGraphics.framework */; };
-		AA04063B176F9DF40051363A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA04063A176F9DF40051363A /* UIKit.framework */; };
-		AA040641176F9DF40051363A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA04063F176F9DF40051363A /* InfoPlist.strings */; };
-		AA04064A176F9DF40051363A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA040648176F9DF40051363A /* Main.storyboard */; };
-		AA04064F176F9DF40051363A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA04064E176F9DF40051363A /* Images.xcassets */; };
 		AA040657176F9DF40051363A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040636176F9DF40051363A /* Foundation.framework */; };
 		AA040658176F9DF40051363A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA04063A176F9DF40051363A /* UIKit.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		AA040659176F9DF40051363A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA04062B176F9DF40051363A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AA040632176F9DF40051363A;
-			remoteInfo = mixtour;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		67811B2A25BB686A00F7FC72 /* CopyFiles */ = {
@@ -85,17 +62,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5744E51F1A374B1D00F2812B /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
-		574588071A174F3700BBADCE /* MIXAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXAppDelegate.swift; sourceTree = "<group>"; };
-		57943FEE1A49DD9400744ABE /* GameBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBackgroundView.swift; sourceTree = "<group>"; };
-		57C207F91A489917002DAFB3 /* GamePieceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePieceView.swift; sourceTree = "<group>"; };
-		57D21AB21A0FF52E00D1ABBC /* MIXViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIXViewController.swift; sourceTree = "<group>"; };
 		6708D25525989A1E002A673B /* PieceStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceStackViewModel.swift; sourceTree = "<group>"; };
 		6708D26525994CA1002A673B /* PickedPieceStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickedPieceStackView.swift; sourceTree = "<group>"; };
 		671456BE2597E835008870D8 /* BoardBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardBackgroundView.swift; sourceTree = "<group>"; };
 		672582EF25B9E14E0026D993 /* BestMoveVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestMoveVM.swift; sourceTree = "<group>"; };
-		6746176826AADA5B00359AE2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		6746176926AADA5B00359AE2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6746176A26AADA5C00359AE2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6746176C26AADA7400359AE2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6746176E26AADA9900359AE2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -133,14 +103,9 @@
 		67FD17B925B9DBA100A91931 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67FD17BC25B9DBA100A91931 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		67FD17BE25B9DBA100A91931 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA040633176F9DF40051363A /* mixtour-uikit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mixtour-uikit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA040636176F9DF40051363A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AA040638176F9DF40051363A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AA04063A176F9DF40051363A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		AA04063E176F9DF40051363A /* mixtour-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mixtour-Info.plist"; sourceTree = "<group>"; };
-		AA040640176F9DF40051363A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		AA040649176F9DF40051363A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AA04064E176F9DF40051363A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AA040654176F9DF40051363A /* mixtourTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mixtourTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA04065D176F9DF40051363A /* mixtourTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mixtourTests-Info.plist"; sourceTree = "<group>"; };
 		AA04065F176F9DF40051363A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -171,18 +136,6 @@
 			files = (
 				672582E425B9E0680026D993 /* MixModel in Frameworks */,
 				672582E625B9E06C0026D993 /* Core in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA040630176F9DF40051363A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				679DCFD5257C4BFB00E9310E /* MixModel in Frameworks */,
-				AA040639176F9DF40051363A /* CoreGraphics.framework in Frameworks */,
-				679DCFAD257C367800E9310E /* Core in Frameworks */,
-				AA04063B176F9DF40051363A /* UIKit.framework in Frameworks */,
-				AA040637176F9DF40051363A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +251,6 @@
 				679DCF8B257C28FC00E9310E /* Core */,
 				679DCFC7257C489A00E9310E /* MixModel */,
 				675384252593B4B5002F5BEC /* mixtour */,
-				AA04063C176F9DF40051363A /* mixtour-uikit */,
 				AA04065B176F9DF40051363A /* mixtourTests */,
 				67FD17B425B9DB9F00A91931 /* performance */,
 				67811B2D25BB686A00F7FC72 /* MixtourConsole */,
@@ -310,7 +262,6 @@
 		AA040634176F9DF40051363A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA040633176F9DF40051363A /* mixtour-uikit.app */,
 				AA040654176F9DF40051363A /* mixtourTests.xctest */,
 				675384242593B4B5002F5BEC /* mixtour.app */,
 				67FD17B325B9DB9F00A91931 /* performance.app */,
@@ -329,28 +280,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AA04063C176F9DF40051363A /* mixtour-uikit */ = {
-			isa = PBXGroup;
-			children = (
-				AA9E4A9917769277007CEA4B /* gameviews */,
-				574588071A174F3700BBADCE /* MIXAppDelegate.swift */,
-				AA040648176F9DF40051363A /* Main.storyboard */,
-				57D21AB21A0FF52E00D1ABBC /* MIXViewController.swift */,
-				AA04064E176F9DF40051363A /* Images.xcassets */,
-				AA04063D176F9DF40051363A /* Supporting Files */,
-			);
-			path = "mixtour-uikit";
-			sourceTree = "<group>";
-		};
-		AA04063D176F9DF40051363A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				AA04063E176F9DF40051363A /* mixtour-Info.plist */,
-				AA04063F176F9DF40051363A /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		AA04065B176F9DF40051363A /* mixtourTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,16 +296,6 @@
 				AA04065E176F9DF40051363A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		AA9E4A9917769277007CEA4B /* gameviews */ = {
-			isa = PBXGroup;
-			children = (
-				57943FEE1A49DD9400744ABE /* GameBackgroundView.swift */,
-				57C207F91A489917002DAFB3 /* GamePieceView.swift */,
-				5744E51F1A374B1D00F2812B /* GameView.swift */,
-			);
-			path = gameviews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,27 +364,6 @@
 			productReference = 67FD17B325B9DB9F00A91931 /* performance.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AA040632176F9DF40051363A /* mixtour-uikit */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AA040665176F9DF40051363A /* Build configuration list for PBXNativeTarget "mixtour-uikit" */;
-			buildPhases = (
-				AA04062F176F9DF40051363A /* Sources */,
-				AA040630176F9DF40051363A /* Frameworks */,
-				AA040631176F9DF40051363A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "mixtour-uikit";
-			packageProductDependencies = (
-				679DCFAC257C367800E9310E /* Core */,
-				679DCFD4257C4BFB00E9310E /* MixModel */,
-			);
-			productName = mixtour;
-			productReference = AA040633176F9DF40051363A /* mixtour-uikit.app */;
-			productType = "com.apple.product-type.application";
-		};
 		AA040653176F9DF40051363A /* mixtourTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA040668176F9DF40051363A /* Build configuration list for PBXNativeTarget "mixtourTests" */;
@@ -477,7 +375,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				AA04065A176F9DF40051363A /* PBXTargetDependency */,
 			);
 			name = mixtourTests;
 			productName = mixtourTests;
@@ -504,10 +401,6 @@
 					67FD17B225B9DB9F00A91931 = {
 						CreatedOnToolsVersion = 12.1;
 					};
-					AA040632176F9DF40051363A = {
-						LastSwiftMigration = 1150;
-						ProvisioningStyle = Automatic;
-					};
 					AA040653176F9DF40051363A = {
 						LastSwiftMigration = 1210;
 						TestTargetID = AA040632176F9DF40051363A;
@@ -531,7 +424,6 @@
 			projectRoot = "";
 			targets = (
 				675384232593B4B5002F5BEC /* mixtour */,
-				AA040632176F9DF40051363A /* mixtour-uikit */,
 				AA040653176F9DF40051363A /* mixtourTests */,
 				67FD17B225B9DB9F00A91931 /* performance */,
 				67811B2B25BB686A00F7FC72 /* MixtourConsole */,
@@ -557,16 +449,6 @@
 			files = (
 				67FD17BD25B9DBA100A91931 /* Preview Assets.xcassets in Resources */,
 				67FD17BA25B9DBA100A91931 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA040631176F9DF40051363A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA04064F176F9DF40051363A /* Images.xcassets in Resources */,
-				AA040641176F9DF40051363A /* InfoPlist.strings in Resources */,
-				AA04064A176F9DF40051363A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,18 +508,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AA04062F176F9DF40051363A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				57943FEF1A49DD9400744ABE /* GameBackgroundView.swift in Sources */,
-				574588081A174F3700BBADCE /* MIXAppDelegate.swift in Sources */,
-				5744E5201A374B1D00F2812B /* GameView.swift in Sources */,
-				57C207FA1A489917002DAFB3 /* GamePieceView.swift in Sources */,
-				57D21AB31A0FF52E00D1ABBC /* MIXViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AA040650176F9DF40051363A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -648,14 +518,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		AA04065A176F9DF40051363A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AA040632176F9DF40051363A /* mixtour-uikit */;
-			targetProxy = AA040659176F9DF40051363A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		6746176D26AADA7400359AE2 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -664,24 +526,6 @@
 				6746176E26AADA9900359AE2 /* de */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		AA04063F176F9DF40051363A /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA040640176F9DF40051363A /* en */,
-				6746176926AADA5B00359AE2 /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		AA040648176F9DF40051363A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA040649176F9DF40051363A /* Base */,
-				6746176826AADA5B00359AE2 /* de */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		AA04065E176F9DF40051363A /* InfoPlist.strings */ = {
@@ -1027,64 +871,6 @@
 			};
 			name = Release;
 		};
-		AA040666176F9DF40051363A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = RKX7FEU7U3;
-				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
-				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				INFOPLIST_FILE = "mixtour-uikit/mixtour-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_CFLAGS = "-Wno-padded";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wenderdel.games.stein.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WARNING_CFLAGS = (
-					"-Wall",
-					"-Wextra",
-					"-Weverything",
-				);
-			};
-			name = Debug;
-		};
-		AA040667176F9DF40051363A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = RKX7FEU7U3;
-				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
-				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "mixtour-uikit/mixtour-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_CFLAGS = "-Wno-padded";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wenderdel.games.stein.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WARNING_CFLAGS = (
-					"-Wall",
-					"-Wextra",
-					"-Weverything",
-				);
-			};
-			name = Release;
-		};
 		AA040669176F9DF40051363A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1167,15 +953,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA040665176F9DF40051363A /* Build configuration list for PBXNativeTarget "mixtour-uikit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AA040666176F9DF40051363A /* Debug */,
-				AA040667176F9DF40051363A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		AA040668176F9DF40051363A /* Build configuration list for PBXNativeTarget "mixtourTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1209,14 +986,6 @@
 			productName = Core;
 		};
 		67811B3F25BB68C600F7FC72 /* MixModel */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MixModel;
-		};
-		679DCFAC257C367800E9310E /* Core */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Core;
-		};
-		679DCFD4257C4BFB00E9310E /* MixModel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MixModel;
 		};
