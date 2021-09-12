@@ -183,18 +183,17 @@
 		675384252593B4B5002F5BEC /* mixtour */ = {
 			isa = PBXGroup;
 			children = (
-				67CDB7D226ED4A0B0084BA2C /* LegalTab */,
+				67CDB7D526EEA92A0084BA2C /* GameTab */,
 				67E2291026C9A22F00738E88 /* RulesTab */,
-				671456B72597D8B2008870D8 /* ViewModels */,
-				671456B62597D8A6008870D8 /* Views */,
+				67CDB7D226ED4A0B0084BA2C /* LegalTab */,
 				67E8A10F259CFFF700C80637 /* MixColors.swift */,
 				675A877C25AA449D0052F7FA /* Constants.swift */,
+				679BAB7426B1784F00C0BA77 /* Localization.swift */,
 				675384262593B4B5002F5BEC /* mixtourApp.swift */,
 				6753842A2593B4B6002F5BEC /* Assets.xcassets */,
 				6753842F2593B4B6002F5BEC /* Info.plist */,
 				6753842C2593B4B6002F5BEC /* Preview Content */,
 				6746176D26AADA7400359AE2 /* Localizable.strings */,
-				679BAB7426B1784F00C0BA77 /* Localization.swift */,
 			);
 			path = mixtour;
 			sourceTree = "<group>";
@@ -222,6 +221,15 @@
 				67CDB7D326ED4A720084BA2C /* LegalView.swift */,
 			);
 			path = LegalTab;
+			sourceTree = "<group>";
+		};
+		67CDB7D526EEA92A0084BA2C /* GameTab */ = {
+			isa = PBXGroup;
+			children = (
+				671456B72597D8B2008870D8 /* ViewModels */,
+				671456B62597D8A6008870D8 /* Views */,
+			);
+			path = GameTab;
 			sourceTree = "<group>";
 		};
 		67E2291026C9A22F00738E88 /* RulesTab */ = {
