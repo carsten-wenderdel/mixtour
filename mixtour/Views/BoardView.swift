@@ -14,7 +14,7 @@ struct BoardView: View {
                         let square = Square(column: column, line: line)
                         let stackVM = board.stackAtSquare(square)
 
-                        let emptyPart = PieceStackPart(pieces: [], square: square, useDrag: false)
+                        let emptyPart = PieceStackPart(pieces: [], square: square)
                         let bottomPart = stackVM.pickedPart.pieces.count > 0 ? stackVM.defaultPart : emptyPart
                         let topPart = stackVM.pickedPart.pieces.count > 0 ? stackVM.pickedPart : stackVM.defaultPart
                         let topPaddingFactor = stackVM.pickedPart.pieces.count > 0

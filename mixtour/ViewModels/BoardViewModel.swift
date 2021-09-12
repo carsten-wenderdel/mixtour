@@ -218,8 +218,7 @@ final class BoardViewModel: ObservableObject {
         }
         return PieceStackPart(
             pieces: pieces.reversed(),
-            square: Square(column: 6, line: 6),
-            useDrag: true
+            square: Square(column: 6, line: 6)
         )
     }
 
@@ -240,8 +239,7 @@ final class BoardViewModel: ObservableObject {
         return PieceStackViewModel(
             pieces: pieces,
             numberOfPickedPieces: numberOfPickedPieces,
-            square: square,
-            useDrag: square != state.setSquare
+            square: square
         )
     }
 
