@@ -20,7 +20,7 @@ struct PieceStackViewModel {
     }
 }
 
-struct PieceStackPart {
+struct PieceStackPart: Equatable {
     let pieces: [PieceViewModel]
     let square: Square
 }
