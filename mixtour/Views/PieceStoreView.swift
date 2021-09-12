@@ -4,7 +4,6 @@ import MixModel
 struct PieceStoreView: View {
     var namespace: Namespace.ID
     let stackPart: PieceStackPart
-    let paddingFactor: Double
 
     var body: some View {
         GeometryReader() { geometry in
@@ -44,8 +43,7 @@ struct PieceStoreView_Previews: PreviewProvider {
             Spacer()
             PieceStoreView(
                 namespace: namespace,
-                stackPart: dummyPartForPieces([PlayerColor].init(repeating: .white, count: 20)),
-                paddingFactor: 0.5
+                stackPart: dummyPartForPieces([PlayerColor].init(repeating: .white, count: 20))
             )
             .background(Color.black)
             .frame(height: 13.5)
@@ -53,8 +51,7 @@ struct PieceStoreView_Previews: PreviewProvider {
             Spacer()
             PieceStoreView(
                 namespace: namespace,
-                stackPart: dummyPartForPieces([PlayerColor].init(repeating: .black, count: 20)),
-                paddingFactor: 0.5
+                stackPart: dummyPartForPieces([PlayerColor].init(repeating: .black, count: 20))
             )
             .background(Color.black)
             .frame(height: 27)

@@ -12,8 +12,7 @@ struct GameView: View {
             VStack(alignment: .leading, spacing: 0) {
                 PieceStoreView(
                     namespace: namespace,
-                    stackPart: board.unusedPiecesComputer(),
-                    paddingFactor: 0
+                    stackPart: board.unusedPiecesComputer()
                 )
                 .frame(height: geometry.size.width / 5 * 0.18)
                 .padding(.bottom, geometry.size.height / 30)
@@ -30,8 +29,7 @@ struct GameView: View {
                 .zIndex(board.undoPossible ? 9 : 7)
 
                 PieceStoreView(namespace: namespace,
-                               stackPart: board.unusedPiecesHuman(),
-                               paddingFactor: 0
+                               stackPart: board.unusedPiecesHuman()
                 )
                 .frame(height: geometry.size.width / 5 * 0.18)
                 .padding(.top, geometry.size.height / 30)
