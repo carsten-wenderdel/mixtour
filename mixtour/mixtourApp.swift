@@ -2,6 +2,15 @@ import SwiftUI
 
 @main
 struct mixtourApp: App {
+
+    let tabBar = UITabBar.appearance()
+
+    init() {
+        // TODO: This is an ugly workaround. It used to work out of the box in iOS 12.
+        // Also the 1 pixel line above is gone. Checkout the launch screen how it is supposed to look like.
+        UITabBar.appearance().backgroundColor = UIColor(MixColors.tabViewBackground)
+    }
+
     var body: some Scene {
         WindowGroup {
             TabView {
