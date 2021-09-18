@@ -63,14 +63,14 @@ struct BoardView_Previews: PreviewProvider {
         Group {
             ZStack() {
                 MixColors.background
-                BoardView(board: BoardViewModel(board: .example), namespace: namespace)
+                BoardView(board: BoardViewModel(board: .example, computer: DummyComputerPlayer()), namespace: namespace)
             }
             .environment(\.colorScheme, .light)
 
 
             ZStack {
                 MixColors.background
-                BoardView(board: BoardViewModel(board: .example), namespace: namespace)
+                BoardView(board: BoardViewModel(board: .example, computer: DummyComputerPlayer()), namespace: namespace)
             }
             .environment(\.colorScheme, .dark)
         }

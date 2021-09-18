@@ -35,7 +35,7 @@ final class BoardViewModel: ObservableObject {
     // MARK: variables set from outside
     private var board: Board
     private var humanColor: PlayerColor
-    private var computerPlayer: MonteCarloPlayer
+    private var computerPlayer: ComputerPlayer
 
     // MARK: internal state, to be observed from outside
     @Published private var state: State
@@ -84,7 +84,7 @@ final class BoardViewModel: ObservableObject {
     init(
         board: Board = Board(),
         color: PlayerColor = .white,
-        computer: MonteCarloPlayer = .beginner
+        computer: ComputerPlayer
     ) {
         self.board = board
         self.humanColor = color
@@ -109,7 +109,7 @@ final class BoardViewModel: ObservableObject {
 
     func reset(board: Board = Board(),
                color: PlayerColor,
-               computer: MonteCarloPlayer
+               computer: ComputerPlayer
     ) {
         previousBoard = nil
         animatableMove = nil

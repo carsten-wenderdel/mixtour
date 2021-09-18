@@ -20,6 +20,7 @@ struct BoardBackgroundView: View {
             }
         }
         .aspectRatio(1, contentMode: .fit)
+        .background(MixColors.fieldPrimary)
     }
 }
 

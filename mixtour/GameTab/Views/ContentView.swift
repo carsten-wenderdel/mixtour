@@ -2,7 +2,7 @@ import SwiftUI
 import MixModel
 
 struct ContentView: View {
-    @StateObject private var board = BoardViewModel()
+    @StateObject private var board = BoardViewModel(computer: MonteCarloPlayer.beginner)
 
     var body: some View {
         ZStack {

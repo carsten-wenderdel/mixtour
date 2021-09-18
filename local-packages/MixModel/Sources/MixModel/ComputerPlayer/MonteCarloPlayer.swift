@@ -2,7 +2,7 @@ import Foundation
 import Core
 
 // This class is not thread safe. bestMove(:) may only be called by one instance at the same time.
-public final class MonteCarloPlayer {
+public final class MonteCarloPlayer: ComputerPlayer {
 
     public static let perfectExploration: Float = 0.59
     
