@@ -3,7 +3,7 @@ import MixModel
 
 struct GameSnapshotView: View {
 
-    private let textBoardRatio = 0.15
+    private let textBoardRatio: CGFloat = 0.15
     private var board = BoardViewModel(board: .example, computer: DummyComputerPlayer())
     @Namespace var namespace
 
@@ -48,7 +48,6 @@ struct GameSnapshotView: View {
                 ExpandedText("d")
                 ExpandedText("e")
             }
-            .tint(.purple)
         }
     }
 
