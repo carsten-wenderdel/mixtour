@@ -1,16 +1,8 @@
-fastlane_version "1.97.1"
-
-default_platform :ios
-
-platform :ios do
-
-  desc "Runs all the tests"
-  lane :test do
-    spm(
-      command: "test",
-      package_path: "./local-packages/MixModel",
-      verbose: "true",
-    )
-  end
-
+desc "Runs all the tests"
+lane :test do
+  spm(
+    command: "test",
+    package_path: "./local-packages/MixModel",
+    verbose: "true",
+  )
 end
