@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "EF48CF6E-3BF3-4809-927F-99237DFAB2D6",
+      "name" : "AllTests",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testExecutionOrdering" : "random",
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:local-packages\/MixModel",
+        "identifier" : "MixModelTests",
+        "name" : "MixModelTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:mixtour.xcodeproj",
+        "identifier" : "AA040653176F9DF40051363A",
+        "name" : "mixtourTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -76,6 +76,7 @@
 		6753842D2593B4B6002F5BEC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6753842F2593B4B6002F5BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6753843C2593BED4002F5BEC /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		67589A1926F785CC00E70FAC /* AllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllTests.xctestplan; sourceTree = "<group>"; };
 		675A877C25AA449D0052F7FA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		67811B2C25BB686A00F7FC72 /* MixtourConsole */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MixtourConsole; sourceTree = BUILT_PRODUCTS_DIR; };
 		67811B2E25BB686A00F7FC72 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -189,6 +190,7 @@
 				6753842F2593B4B6002F5BEC /* Info.plist */,
 				6753842C2593B4B6002F5BEC /* Preview Content */,
 				6746176D26AADA7400359AE2 /* Localizable.strings */,
+				67589A1926F785CC00E70FAC /* AllTests.xctestplan */,
 			);
 			path = mixtour;
 			sourceTree = "<group>";
