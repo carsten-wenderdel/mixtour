@@ -47,8 +47,6 @@
 		67FD17B825B9DB9F00A91931 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD17B725B9DB9F00A91931 /* ContentView.swift */; };
 		67FD17BA25B9DBA100A91931 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD17B925B9DBA100A91931 /* Assets.xcassets */; };
 		67FD17BD25B9DBA100A91931 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD17BC25B9DBA100A91931 /* Preview Assets.xcassets */; };
-		AA040657176F9DF40051363A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA040636176F9DF40051363A /* Foundation.framework */; };
-		AA040658176F9DF40051363A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA04063A176F9DF40051363A /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -107,9 +105,6 @@
 		67FD17B925B9DBA100A91931 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67FD17BC25B9DBA100A91931 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		67FD17BE25B9DBA100A91931 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA040636176F9DF40051363A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		AA040638176F9DF40051363A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		AA04063A176F9DF40051363A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AA040654176F9DF40051363A /* mixtourTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mixtourTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA04065D176F9DF40051363A /* mixtourTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "mixtourTests-Info.plist"; sourceTree = "<group>"; };
 		AA04065F176F9DF40051363A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -147,8 +142,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA040658176F9DF40051363A /* UIKit.framework in Frameworks */,
-				AA040657176F9DF40051363A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +269,6 @@
 				AA04065B176F9DF40051363A /* mixtourTests */,
 				67FD17B425B9DB9F00A91931 /* performance */,
 				67811B2D25BB686A00F7FC72 /* MixtourConsole */,
-				AA040635176F9DF40051363A /* Frameworks */,
 				AA040634176F9DF40051363A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -290,16 +282,6 @@
 				67811B2C25BB686A00F7FC72 /* MixtourConsole */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		AA040635176F9DF40051363A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				AA040636176F9DF40051363A /* Foundation.framework */,
-				AA040638176F9DF40051363A /* CoreGraphics.framework */,
-				AA04063A176F9DF40051363A /* UIKit.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		AA04065B176F9DF40051363A /* mixtourTests */ = {
