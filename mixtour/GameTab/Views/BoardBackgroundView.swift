@@ -3,7 +3,7 @@ import MixModel
 
 struct BoardBackgroundView: View {
     var body: some View {
-        GeometryReader { proxy in
+        GeometryReader { geometry in
             VStack(spacing: 0) {
                 ForEach(0..<numberOfSquares) { line in
                     HStack(spacing: 0) {
@@ -12,7 +12,7 @@ struct BoardBackgroundView: View {
                                 ? MixColors.fieldSecondary
                                 : MixColors.fieldPrimary
                             Rectangle()
-                                .cornerRadius(10)
+                                .cornerRadius(geometry.size.height * 0.028)
                                 .foregroundColor(color)
                         }
                     }
