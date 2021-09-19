@@ -22,6 +22,7 @@
 		675384422593C6D9002F5BEC /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 675384412593C6D9002F5BEC /* Core */; };
 		675384442593C6DD002F5BEC /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 675384432593C6DD002F5BEC /* MixModel */; };
 		675A877D25AA449D0052F7FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A877C25AA449D0052F7FA /* Constants.swift */; };
+		6778D01E26F7BDA100D539D4 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 6778D01D26F7BDA100D539D4 /* SnapshotTesting */; };
 		67811B2F25BB686A00F7FC72 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67811B2E25BB686A00F7FC72 /* main.swift */; };
 		67811B3E25BB68C300F7FC72 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 67811B3D25BB68C300F7FC72 /* Core */; };
 		67811B4025BB68C600F7FC72 /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 67811B3F25BB68C600F7FC72 /* MixModel */; };
@@ -48,6 +49,16 @@
 		67FD17BA25B9DBA100A91931 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD17B925B9DBA100A91931 /* Assets.xcassets */; };
 		67FD17BD25B9DBA100A91931 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67FD17BC25B9DBA100A91931 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6778D02726F7D68700D539D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA04062B176F9DF40051363A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 675384232593B4B5002F5BEC;
+			remoteInfo = mixtour;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		67811B2A25BB686A00F7FC72 /* CopyFiles */ = {
@@ -143,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6778D01E26F7BDA100D539D4 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,8 +393,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				6778D02826F7D68700D539D4 /* PBXTargetDependency */,
 			);
 			name = mixtourTests;
+			packageProductDependencies = (
+				6778D01D26F7BDA100D539D4 /* SnapshotTesting */,
+			);
 			productName = mixtourTests;
 			productReference = AA040654176F9DF40051363A /* mixtourTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -409,7 +425,7 @@
 					};
 					AA040653176F9DF40051363A = {
 						LastSwiftMigration = 1210;
-						TestTargetID = AA040632176F9DF40051363A;
+						TestTargetID = 675384232593B4B5002F5BEC;
 					};
 				};
 			};
@@ -424,6 +440,7 @@
 			);
 			mainGroup = AA04062A176F9DF40051363A;
 			packageReferences = (
+				6778D01C26F7BDA100D539D4 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = AA040634176F9DF40051363A /* Products */;
 			projectDirPath = "";
@@ -525,6 +542,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6778D02826F7D68700D539D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 675384232593B4B5002F5BEC /* mixtour */;
+			targetProxy = 6778D02726F7D68700D539D4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6746176D26AADA7400359AE2 /* Localizable.strings */ = {
@@ -882,7 +907,7 @@
 		AA040669176F9DF40051363A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/mixtour.app/mixtour";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -899,14 +924,14 @@
 				PRODUCT_NAME = mixtourTests;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mixtour.app/mixtour";
 			};
 			name = Debug;
 		};
 		AA04066A176F9DF40051363A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/mixtour.app/mixtour";
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "mixtourTests/mixtourTests-Info.plist";
@@ -918,7 +943,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wenderdel.games.stein.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = mixtourTests;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mixtour.app/mixtour";
 			};
 			name = Release;
 		};
@@ -972,6 +997,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		6778D01C26F7BDA100D539D4 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		672582E325B9E0680026D993 /* MixModel */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -988,6 +1024,11 @@
 		675384432593C6DD002F5BEC /* MixModel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MixModel;
+		};
+		6778D01D26F7BDA100D539D4 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6778D01C26F7BDA100D539D4 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
 		};
 		67811B3D25BB68C300F7FC72 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
