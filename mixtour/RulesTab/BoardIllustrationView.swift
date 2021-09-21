@@ -1,7 +1,7 @@
 import SwiftUI
 import MixModel
 
-struct GameSnapshotView: View {
+struct BoardIllustrationView: View {
 
     private let textBoardRatio: CGFloat = 0.15
     private var board = BoardViewModel(board: .example, computer: DummyComputerPlayer())
@@ -73,16 +73,16 @@ struct GameSnapshotView: View {
         var body: some View {
             Text(string)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .font(Constants.gameSnapshotFont)
+                .font(Constants.boardIllustrationFont)
                 .foregroundColor(.secondary)
         }
     }
 }
 
 #if DEBUG
-struct GameSnapshotView_Previews: PreviewProvider {
+struct BoardIllustrationView_Previews: PreviewProvider {
     static var previews: some View {
-        GameSnapshotView()
+        BoardIllustrationView(.example)
             .environment(\.colorScheme, .dark)
     }
 }
