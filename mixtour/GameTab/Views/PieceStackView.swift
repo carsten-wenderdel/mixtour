@@ -2,6 +2,7 @@ import SwiftUI
 import MixModel
 
 struct PieceStackView: View {
+    @EnvironmentObject var animationConstants: AnimationConstants
     var namespace: Namespace.ID
     let stackPart: PieceStackPart
     let paddingFactor: Double
@@ -19,7 +20,7 @@ struct PieceStackView: View {
                             .frame(width: pieceWidth, height: pieceHeight, alignment: .bottom)
                             .zIndex(piece.zIndex)
                             .matchedGeometryEffect(id: piece.id, in: namespace)
-                            .animation(Animation.default.speed(0.8))
+                            .animation(Animation.default.speed(animationConstants.pieceAnimationSpeed))
                     }
                 }
                 .padding(.bottom, bottomPadding)
@@ -74,6 +75,7 @@ struct PieceStackView_Previews: PreviewProvider {
             )
             .background(Color.purple)
         }
+        .environmentObject(AnimationConstants())
     }
 }
 #endif

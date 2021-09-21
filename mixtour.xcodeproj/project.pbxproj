@@ -31,6 +31,7 @@
 		679BAB7326B1749A00C0BA77 /* PlayerColor+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7226B1749A00C0BA77 /* PlayerColor+Strings.swift */; };
 		679BAB7526B1784F00C0BA77 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7426B1784F00C0BA77 /* Localization.swift */; };
 		679DCFE3257C577100E9310E /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679DCFE2257C577100E9310E /* ExampleTests.swift */; };
+		67B630F626FA6E3600563753 /* AnimationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B630F526FA6E3600563753 /* AnimationConstants.swift */; };
 		67BFBAB126F1F0FD009FB661 /* GameSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BFBAB026F1F0FD009FB661 /* GameSnapshotView.swift */; };
 		67CBE7882593DD4B00D913A1 /* PieceStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CBE7872593DD4B00D913A1 /* PieceStackView.swift */; };
 		67CDB7D426ED4A720084BA2C /* LegalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CDB7D326ED4A720084BA2C /* LegalView.swift */; };
@@ -98,6 +99,7 @@
 		679DCF8B257C28FC00E9310E /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = "local-packages/Core"; sourceTree = "<group>"; };
 		679DCFC7257C489A00E9310E /* MixModel */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MixModel; path = "local-packages/MixModel"; sourceTree = "<group>"; };
 		679DCFE2257C577100E9310E /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
+		67B630F526FA6E3600563753 /* AnimationConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationConstants.swift; sourceTree = "<group>"; };
 		67BFBAB026F1F0FD009FB661 /* GameSnapshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSnapshotView.swift; sourceTree = "<group>"; };
 		67CBE7872593DD4B00D913A1 /* PieceStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceStackView.swift; sourceTree = "<group>"; };
 		67CDB7D326ED4A720084BA2C /* LegalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalView.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				6753842C2593B4B6002F5BEC /* Preview Content */,
 				6746176D26AADA7400359AE2 /* Localizable.strings */,
 				67589A1926F785CC00E70FAC /* AllTests.xctestplan */,
+				67B630F526FA6E3600563753 /* AnimationConstants.swift */,
 			);
 			path = mixtour;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 				675384272593B4B5002F5BEC /* mixtourApp.swift in Sources */,
 				67F2E77325A2777700530BFC /* PieceStoreView.swift in Sources */,
 				675A877D25AA449D0052F7FA /* Constants.swift in Sources */,
+				67B630F626FA6E3600563753 /* AnimationConstants.swift in Sources */,
 				67F2E76B25A238AC00530BFC /* GameView.swift in Sources */,
 				67D666C52596746200E31102 /* PieceViewModel.swift in Sources */,
 			);

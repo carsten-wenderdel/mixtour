@@ -64,6 +64,7 @@ struct BoardView_Previews: PreviewProvider {
             ZStack() {
                 MixColors.background
                 BoardView(board: BoardViewModel(board: .example, computer: DummyComputerPlayer()), namespace: namespace)
+                    .environmentObject(AnimationConstants())
             }
             .environment(\.colorScheme, .light)
 
@@ -71,6 +72,7 @@ struct BoardView_Previews: PreviewProvider {
             ZStack {
                 MixColors.background
                 BoardView(board: BoardViewModel(board: .example, computer: DummyComputerPlayer()), namespace: namespace)
+                    .environmentObject(AnimationConstants())
             }
             .environment(\.colorScheme, .dark)
         }

@@ -21,6 +21,7 @@ struct GameView: View {
                 ZStack() {
                     BoardBackgroundView()
                     BoardView(board: board, namespace: namespace)
+                        .environmentObject(AnimationConstants())
                 }
                 .frame(width: geometry.size.width)
                 // When the "New Game" or "Undo" button is hit, the pieces move
