@@ -82,7 +82,7 @@ struct BoardIllustrationView: View {
 #if DEBUG
 struct BoardIllustrationView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardIllustrationView(.example)
+        BoardIllustrationView()
             .environment(\.colorScheme, .dark)
     }
 }
