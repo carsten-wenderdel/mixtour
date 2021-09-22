@@ -20,7 +20,7 @@ struct PieceStackView: View {
                             .frame(width: pieceWidth, height: pieceHeight, alignment: .bottom)
                             .zIndex(piece.zIndex)
                             .matchedGeometryEffect(id: piece.id, in: namespace)
-                            .animation(Animation.default.speed(animationConstants.pieceAnimationSpeed))
+                            .animation(animationConstants.pieceAnimation)
                     }
                 }
                 .padding(.bottom, bottomPadding)

@@ -18,7 +18,7 @@ struct PieceStoreView: View {
                     .matchedGeometryEffect(id: piece.id, in: namespace, properties: .frame)
                     .offset(x: pieceWidth * (CGFloat(index) - 10) * 0.25)
                     .zIndex(piece.zIndex)
-                    .animation(Animation.default.speed(animationConstants.pieceAnimationSpeed))
+                    .animation(animationConstants.pieceAnimation)
             }
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
         }

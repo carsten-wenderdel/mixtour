@@ -4,8 +4,12 @@ import MixModel
 struct BoardIllustrationView: View {
 
     private let textBoardRatio: CGFloat = 0.15
-    private var board = BoardViewModel(board: .example, computer: DummyComputerPlayer())
+    private let board: BoardViewModel
     @Namespace var namespace
+
+    init(_ board: Board) {
+        self.board = BoardViewModel(board: board, computer: DummyComputerPlayer())
+    }
 
     var body: some View {
         GeometryReader() { geometry in
@@ -82,8 +86,9 @@ struct BoardIllustrationView: View {
 #if DEBUG
 struct BoardIllustrationView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardIllustrationView()
+        BoardIllustrationView(.example)
             .environment(\.colorScheme, .dark)
+            .environmentObject(AnimationConstants())
     }
 }
 #endif
