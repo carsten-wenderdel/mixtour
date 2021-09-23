@@ -18,7 +18,7 @@ struct PieceView: View {
 
 extension View {
     // Stolen from https://www.hackingwithswift.com/plus/swiftui-special-effects/shadows-and-glows
-    func innerShadow<S: Shape>(using shape: S, angle: Angle = .degrees(0), color: Color = .black, width: CGFloat = 6, blur: CGFloat = 6) -> some View {
+    func innerShadow<S: Shape>(using shape: S, angle: Angle = .degrees(0), color: Color = .black, width: CGFloat, blur: CGFloat) -> some View {
         let finalX = CGFloat(cos(angle.radians - .pi / 2))
         let finalY = CGFloat(sin(angle.radians - .pi / 2))
 
