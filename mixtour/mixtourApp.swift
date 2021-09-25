@@ -14,6 +14,11 @@ struct mixtourApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
+                RulesView()
+                    .tabItem {
+                        Label("Rules", systemImage: "list.bullet.rectangle.portrait.fill")
+//                        Label("Rules", systemImage: "list.bullet")
+                    }
                 ContentView()
                     .tabItem {
                         Label("Game", systemImage: "checkerboard.rectangle")
