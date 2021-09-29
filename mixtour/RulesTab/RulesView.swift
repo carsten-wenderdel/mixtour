@@ -69,6 +69,7 @@ struct RulesView: View {
             .navigationBarTitle("Mixtour")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationViewStyle(StackNavigationViewStyle()) // full screen on iPad
     }
 }
 
