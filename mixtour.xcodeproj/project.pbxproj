@@ -29,6 +29,10 @@
 		67811B3E25BB68C300F7FC72 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 67811B3D25BB68C300F7FC72 /* Core */; };
 		67811B4025BB68C600F7FC72 /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 67811B3F25BB68C600F7FC72 /* MixModel */; };
 		67811B6425BB8DFE00F7FC72 /* PlayerEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67811B6325BB8DFE00F7FC72 /* PlayerEvaluation.swift */; };
+		678BEB0A275BCCFE00ACC888 /* TabDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678BEB09275BCCFE00ACC888 /* TabDemoApp.swift */; };
+		678BEB0C275BCCFE00ACC888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678BEB0B275BCCFE00ACC888 /* ContentView.swift */; };
+		678BEB0E275BCCFF00ACC888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 678BEB0D275BCCFF00ACC888 /* Assets.xcassets */; };
+		678BEB11275BCCFF00ACC888 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 678BEB10275BCCFF00ACC888 /* Preview Assets.xcassets */; };
 		679BAB7126B16E0300C0BA77 /* MCPlayerConfig+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7026B16E0300C0BA77 /* MCPlayerConfig+Strings.swift */; };
 		679BAB7326B1749A00C0BA77 /* PlayerColor+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7226B1749A00C0BA77 /* PlayerColor+Strings.swift */; };
 		679BAB7526B1784F00C0BA77 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7426B1784F00C0BA77 /* Localization.swift */; };
@@ -97,6 +101,11 @@
 		67811B2C25BB686A00F7FC72 /* MixtourConsole */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MixtourConsole; sourceTree = BUILT_PRODUCTS_DIR; };
 		67811B2E25BB686A00F7FC72 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		67811B6325BB8DFE00F7FC72 /* PlayerEvaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEvaluation.swift; sourceTree = "<group>"; };
+		678BEB07275BCCFD00ACC888 /* TabDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		678BEB09275BCCFE00ACC888 /* TabDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabDemoApp.swift; sourceTree = "<group>"; };
+		678BEB0B275BCCFE00ACC888 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		678BEB0D275BCCFF00ACC888 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		678BEB10275BCCFF00ACC888 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		679BAB7026B16E0300C0BA77 /* MCPlayerConfig+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MCPlayerConfig+Strings.swift"; sourceTree = "<group>"; };
 		679BAB7226B1749A00C0BA77 /* PlayerColor+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerColor+Strings.swift"; sourceTree = "<group>"; };
 		679BAB7426B1784F00C0BA77 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
@@ -144,6 +153,13 @@
 			files = (
 				67811B3E25BB68C300F7FC72 /* Core in Frameworks */,
 				67811B4025BB68C600F7FC72 /* MixModel in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		678BEB04275BCCFD00ACC888 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +247,25 @@
 			path = MixtourConsole;
 			sourceTree = "<group>";
 		};
+		678BEB08275BCCFE00ACC888 /* TabDemo */ = {
+			isa = PBXGroup;
+			children = (
+				678BEB09275BCCFE00ACC888 /* TabDemoApp.swift */,
+				678BEB0B275BCCFE00ACC888 /* ContentView.swift */,
+				678BEB0D275BCCFF00ACC888 /* Assets.xcassets */,
+				678BEB0F275BCCFF00ACC888 /* Preview Content */,
+			);
+			path = TabDemo;
+			sourceTree = "<group>";
+		};
+		678BEB0F275BCCFF00ACC888 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				678BEB10275BCCFF00ACC888 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		67CDB7D226ED4A0B0084BA2C /* LegalTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +326,7 @@
 				AA04065B176F9DF40051363A /* mixtourTests */,
 				67FD17B425B9DB9F00A91931 /* performance */,
 				67811B2D25BB686A00F7FC72 /* MixtourConsole */,
+				678BEB08275BCCFE00ACC888 /* TabDemo */,
 				AA040634176F9DF40051363A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -302,6 +338,7 @@
 				675384242593B4B5002F5BEC /* mixtour.app */,
 				67FD17B325B9DB9F00A91931 /* performance.app */,
 				67811B2C25BB686A00F7FC72 /* MixtourConsole */,
+				678BEB07275BCCFD00ACC888 /* TabDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -370,6 +407,23 @@
 			productReference = 67811B2C25BB686A00F7FC72 /* MixtourConsole */;
 			productType = "com.apple.product-type.tool";
 		};
+		678BEB06275BCCFD00ACC888 /* TabDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 678BEB14275BCCFF00ACC888 /* Build configuration list for PBXNativeTarget "TabDemo" */;
+			buildPhases = (
+				678BEB03275BCCFD00ACC888 /* Sources */,
+				678BEB04275BCCFD00ACC888 /* Frameworks */,
+				678BEB05275BCCFD00ACC888 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TabDemo;
+			productName = TabDemo;
+			productReference = 678BEB07275BCCFD00ACC888 /* TabDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 		67FD17B225B9DB9F00A91931 /* performance */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 67FD17C125B9DBA200A91931 /* Build configuration list for PBXNativeTarget "performance" */;
@@ -419,7 +473,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MIX;
-				LastSwiftUpdateCheck = 1210;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Carsten Wenderdel";
 				TargetAttributes = {
@@ -428,6 +482,9 @@
 					};
 					67811B2B25BB686A00F7FC72 = {
 						CreatedOnToolsVersion = 12.1;
+					};
+					678BEB06275BCCFD00ACC888 = {
+						CreatedOnToolsVersion = 13.2;
 					};
 					67FD17B225B9DB9F00A91931 = {
 						CreatedOnToolsVersion = 12.1;
@@ -459,6 +516,7 @@
 				AA040653176F9DF40051363A /* mixtourTests */,
 				67FD17B225B9DB9F00A91931 /* performance */,
 				67811B2B25BB686A00F7FC72 /* MixtourConsole */,
+				678BEB06275BCCFD00ACC888 /* TabDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -472,6 +530,15 @@
 				6753842E2593B4B6002F5BEC /* Preview Assets.xcassets in Resources */,
 				6753842B2593B4B6002F5BEC /* Assets.xcassets in Resources */,
 				6746176B26AADA7400359AE2 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		678BEB05275BCCFD00ACC888 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				678BEB11275BCCFF00ACC888 /* Preview Assets.xcassets in Resources */,
+				678BEB0E275BCCFF00ACC888 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +598,15 @@
 			files = (
 				67811B2F25BB686A00F7FC72 /* main.swift in Sources */,
 				67811B6425BB8DFE00F7FC72 /* PlayerEvaluation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		678BEB03275BCCFD00ACC888 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				678BEB0C275BCCFE00ACC888 /* ContentView.swift in Sources */,
+				678BEB0A275BCCFE00ACC888 /* TabDemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +772,85 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		678BEB12275BCCFF00ACC888 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TabDemo/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.myapp.TabDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		678BEB13275BCCFF00ACC888 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"TabDemo/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.myapp.TabDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -976,6 +1131,15 @@
 			buildConfigurations = (
 				67811B3125BB686A00F7FC72 /* Debug */,
 				67811B3225BB686A00F7FC72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		678BEB14275BCCFF00ACC888 /* Build configuration list for PBXNativeTarget "TabDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				678BEB12275BCCFF00ACC888 /* Debug */,
+				678BEB13275BCCFF00ACC888 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
