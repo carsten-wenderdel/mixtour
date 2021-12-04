@@ -30,7 +30,6 @@
 		67811B4025BB68C600F7FC72 /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 67811B3F25BB68C600F7FC72 /* MixModel */; };
 		67811B6425BB8DFE00F7FC72 /* PlayerEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67811B6325BB8DFE00F7FC72 /* PlayerEvaluation.swift */; };
 		678BEB0A275BCCFE00ACC888 /* TabDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678BEB09275BCCFE00ACC888 /* TabDemoApp.swift */; };
-		678BEB0C275BCCFE00ACC888 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678BEB0B275BCCFE00ACC888 /* ContentView.swift */; };
 		678BEB0E275BCCFF00ACC888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 678BEB0D275BCCFF00ACC888 /* Assets.xcassets */; };
 		678BEB11275BCCFF00ACC888 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 678BEB10275BCCFF00ACC888 /* Preview Assets.xcassets */; };
 		679BAB7126B16E0300C0BA77 /* MCPlayerConfig+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7026B16E0300C0BA77 /* MCPlayerConfig+Strings.swift */; };
@@ -103,7 +102,6 @@
 		67811B6325BB8DFE00F7FC72 /* PlayerEvaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEvaluation.swift; sourceTree = "<group>"; };
 		678BEB07275BCCFD00ACC888 /* TabDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		678BEB09275BCCFE00ACC888 /* TabDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabDemoApp.swift; sourceTree = "<group>"; };
-		678BEB0B275BCCFE00ACC888 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		678BEB0D275BCCFF00ACC888 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		678BEB10275BCCFF00ACC888 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		679BAB7026B16E0300C0BA77 /* MCPlayerConfig+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MCPlayerConfig+Strings.swift"; sourceTree = "<group>"; };
@@ -251,7 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				678BEB09275BCCFE00ACC888 /* TabDemoApp.swift */,
-				678BEB0B275BCCFE00ACC888 /* ContentView.swift */,
 				678BEB0D275BCCFF00ACC888 /* Assets.xcassets */,
 				678BEB0F275BCCFF00ACC888 /* Preview Content */,
 			);
@@ -605,7 +602,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				678BEB0C275BCCFE00ACC888 /* ContentView.swift in Sources */,
 				678BEB0A275BCCFE00ACC888 /* TabDemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
