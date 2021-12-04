@@ -5,11 +5,12 @@ struct mixtourApp: App {
 
     let tabBar = UITabBar.appearance()
 
-    init() {
-        // TODO: This is an ugly workaround. It used to work out of the box in iOS 12.
+//    init() {
+        // TODO: This is an ugly workaround. It used to work out of the box in Xcode 12.
         // Also the 1 pixel line above is gone. Checkout the launch screen how it is supposed to look like.
-        UITabBar.appearance().backgroundColor = UIColor(MixColors.tabViewBackground)
-    }
+        // Hm, pixel line is back and background colors work again (Xcode 13.2)
+//        UITabBar.appearance().backgroundColor = UIColor(MixColors.tabViewBackground)
+//    }
 
     var body: some Scene {
         WindowGroup {
