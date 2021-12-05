@@ -3,6 +3,7 @@ import MixModel
 
 struct PieceStoreView: View {
     @StateObject var animationConstants = AnimationConstants()
+    var idOffset: Int
     var namespace: Namespace.ID
     let stackPart: PieceStackPart
 
@@ -15,7 +16,8 @@ struct PieceStoreView: View {
                 let index = piece.id % 100
                 PieceView(color: piece.color)
                     .frame(width: pieceWidth, height: pieceHeight, alignment: .bottom)
-                    .matchedGeometryEffect(id: piece.id, in: namespace, properties: .frame)
+                    // See explanation in `GameView` for `idOffset`
+                    .matchedGeometryEffect(id: piece.id + idOffset, in: namespace, properties: .frame)
                     .offset(x: pieceWidth * (CGFloat(index) - 10) * 0.25)
                     .zIndex(piece.zIndex)
                     .animation(animationConstants.pieceAnimation)
@@ -28,6 +30,7 @@ struct PieceStoreView: View {
 #if DEBUG
 struct PieceStoreView_Previews: PreviewProvider {
     @Namespace static var namespace
+    @State static var idOffset = 1000
 
     static func dummyPartForPieces(_ pieceColors: [PlayerColor]) -> PieceStackPart {
         let pieces = pieceColors.enumerated().map { (index, color) in
@@ -43,6 +46,7 @@ struct PieceStoreView_Previews: PreviewProvider {
         VStack {
             Spacer()
             PieceStoreView(
+                idOffset: idOffset,
                 namespace: namespace,
                 stackPart: dummyPartForPieces([PlayerColor].init(repeating: .white, count: 20))
             )
@@ -51,6 +55,7 @@ struct PieceStoreView_Previews: PreviewProvider {
 
             Spacer()
             PieceStoreView(
+                idOffset: idOffset,
                 namespace: namespace,
                 stackPart: dummyPartForPieces([PlayerColor].init(repeating: .black, count: 20))
             )

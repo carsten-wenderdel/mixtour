@@ -3,6 +3,7 @@ import MixModel
 
 struct BoardView: View {
     @ObservedObject var board: BoardViewModel
+    var idOffset: Int
     var namespace: Namespace.ID
     @State private var draggedSquare: Square?
 
@@ -23,12 +24,14 @@ struct BoardView: View {
 
                         ZStack {
                             PieceStackView(
+                                idOffset: idOffset,
                                 namespace: namespace,
                                 stackPart: bottomPart,
                                 paddingFactor: 0.5
                             )
                             PickedPieceStackView(
                                 namespace: namespace,
+                                idOffset: idOffset,
                                 stackPart: topPart,
                                 paddingFactor: topPaddingFactor,
                                 draggedSquare: $draggedSquare,
@@ -58,12 +61,13 @@ struct BoardView: View {
 #if DEBUG
 struct BoardView_Previews: PreviewProvider {
     @Namespace static var namespace
+    @State static var idOffset = 1000
 
     static var previews: some View {
         Group {
             ZStack() {
                 MixColors.background
-                BoardView(board: BoardViewModel(board: .example, computer: DummyComputerPlayer()), namespace: namespace)
+                BoardView(board: BoardViewModel(board: .example, computer: DummyComputerPlayer()), idOffset: idOffset, namespace: namespace)
                     .environmentObject(AnimationConstants())
             }
             .environment(\.colorScheme, .light)
@@ -71,7 +75,7 @@ struct BoardView_Previews: PreviewProvider {
 
             ZStack {
                 MixColors.background
-                BoardView(board: BoardViewModel(board: .example, computer: DummyComputerPlayer()), namespace: namespace)
+                BoardView(board: BoardViewModel(board: .example, computer: DummyComputerPlayer()), idOffset: idOffset, namespace: namespace)
                     .environmentObject(AnimationConstants())
             }
             .environment(\.colorScheme, .dark)

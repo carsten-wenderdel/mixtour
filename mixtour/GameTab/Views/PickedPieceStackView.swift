@@ -3,6 +3,7 @@ import MixModel
 
 struct PickedPieceStackView: View {
     var namespace: Namespace.ID
+    var idOffset: Int
     let stackPart: PieceStackPart
     let paddingFactor: Double
     @Binding var draggedSquare: Square?
@@ -14,6 +15,7 @@ struct PickedPieceStackView: View {
     var body: some View {
         GeometryReader() { geometry in
             PieceStackView(
+                idOffset: idOffset,
                 namespace: namespace,
                 stackPart: stackPart,
                 paddingFactor: paddingFactor

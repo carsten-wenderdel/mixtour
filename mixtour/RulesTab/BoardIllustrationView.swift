@@ -6,6 +6,7 @@ struct BoardIllustrationView: View {
     private let textBoardRatio: CGFloat = 0.15
     private let board: BoardViewModel
     @Namespace var namespace
+    @State var idOffset = 1000
 
     init(_ board: Board) {
         self.board = BoardViewModel(board: board, computer: DummyComputerPlayer())
@@ -27,7 +28,11 @@ struct BoardIllustrationView: View {
 
                     ZStack() {
                         BoardBackgroundView()
-                        BoardView(board: board, namespace: namespace)
+                        BoardView(
+                            board: board,
+                            idOffset: idOffset,
+                            namespace: namespace
+                        )
                     }
                     .frame(width: boardLength, height: boardLength)
 

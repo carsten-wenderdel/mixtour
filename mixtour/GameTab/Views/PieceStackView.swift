@@ -3,6 +3,7 @@ import MixModel
 
 struct PieceStackView: View {
     @EnvironmentObject var animationConstants: AnimationConstants
+    var idOffset: Int
     var namespace: Namespace.ID
     let stackPart: PieceStackPart
     let paddingFactor: Double
@@ -19,7 +20,8 @@ struct PieceStackView: View {
                         PieceView(color: piece.color)
                             .frame(width: pieceWidth, height: pieceHeight, alignment: .bottom)
                             .zIndex(piece.zIndex)
-                            .matchedGeometryEffect(id: piece.id, in: namespace)
+                            // See explanation in `GameView` for `idOffset`
+                            .matchedGeometryEffect(id: piece.id + idOffset, in: namespace)
                             .animation(animationConstants.pieceAnimation)
                     }
                 }
@@ -34,6 +36,7 @@ struct PieceStackView: View {
 #if DEBUG
 struct PieceStackView_Previews: PreviewProvider {
     @Namespace static var namespace
+    @State static var idOffset = 1
 
     static func dummyPartForPieces(_ pieceColors: [PlayerColor]) -> PieceStackPart {
         let pieces = pieceColors.enumerated().map { (index, color) in
@@ -48,6 +51,7 @@ struct PieceStackView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             PieceStackView(
+                idOffset: idOffset,
                 namespace: namespace,
                 stackPart: dummyPartForPieces([.black, .white, .white]),
                 paddingFactor: 0.5
@@ -55,6 +59,7 @@ struct PieceStackView_Previews: PreviewProvider {
             .background(Color.blue)
 
             PieceStackView(
+                idOffset: idOffset,
                 namespace: namespace,
                 stackPart: dummyPartForPieces([]),
                 paddingFactor: 0.5
@@ -62,6 +67,7 @@ struct PieceStackView_Previews: PreviewProvider {
             .background(Color.purple)
 
             PieceStackView(
+                idOffset: idOffset,
                 namespace: namespace,
                 stackPart: dummyPartForPieces([.white, .black, .white, .black, .black, .black]),
                 paddingFactor: 0.5
@@ -69,6 +75,7 @@ struct PieceStackView_Previews: PreviewProvider {
             .background(Color.blue)
 
             PieceStackView(
+                idOffset: idOffset,
                 namespace: namespace,
                 stackPart: dummyPartForPieces([.black]),
                 paddingFactor: 0.5
