@@ -28,6 +28,7 @@ struct ContentView: View {
                                     }
                                 }
                             }
+                            Button("Computer vs Computer") { board.startComputerPlay() }
                         }
                     }
                     label: {
