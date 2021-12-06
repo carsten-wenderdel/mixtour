@@ -277,6 +277,7 @@ extension BoardViewModel {
     }
 
     private func makeComputerMove() {
+        objectWillChange.send()
         guard board.isGameOver() == false else {
             return
         }
@@ -291,6 +292,7 @@ extension BoardViewModel {
             }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
+                objectWillChange.send()
                 board.makeMoveIfLegal(move)
                 self.makeComputerMove()
                 self.board.printDescription()
