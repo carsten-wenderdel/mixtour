@@ -265,36 +265,3 @@ final class BoardViewModel: ObservableObject {
         return 0
     }
 }
-
-// MARK: Let computer play against each other
-extension BoardViewModel {
-    func startComputerPlay() {
-        reset(
-            color: .white,
-            computer: MonteCarloPlayer(config: .beginner1)
-        )
-        makeComputerMove()
-    }
-
-    private func makeComputerMove() {
-        guard board.isGameOver() == false else {
-            return
-        }
-
-        computerPlayerQueue.async { [self] in
-            let computer: MonteCarloPlayer = board.playerOnTurn()
-                == .white
-                ? .beginner
-                : .advanced
-            guard let move = computer.bestMove(board) else {
-                return
-            }
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
-                board.makeMoveIfLegal(move)
-                self.makeComputerMove()
-                self.board.printDescription()
-            }
-        }
-    }
-}
