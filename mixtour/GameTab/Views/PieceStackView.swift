@@ -8,10 +8,14 @@ struct PieceStackView: View {
     let stackPart: PieceStackPart
     let paddingFactor: Double
 
+    /// height of piece in relation to the whole square
+    static let pieceHeightRatio = 0.18
+    private static let pieceWidthRation = 0.8
+
     var body: some View {
         GeometryReader() { geometry in
-            let pieceWidth = geometry.size.width * 0.8
-            let pieceHeight = geometry.size.height * 0.18
+            let pieceWidth = geometry.size.width * PieceStackView.pieceWidthRation
+            let pieceHeight = geometry.size.height * PieceStackView.pieceHeightRatio
             let bottomPadding = pieceHeight * CGFloat(paddingFactor)
 
             HStack() {
