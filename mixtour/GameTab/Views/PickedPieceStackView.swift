@@ -54,6 +54,9 @@ struct PickedPieceStackView: View {
                     }
             )
         }
+        .onDisappear() {
+            opacity = 1.0 // Fixed a bug: Switch tab during drag and go back to game tab -> was still translucent
+        }
     }
 
     /// We need to adjust translation because of two reasons:
