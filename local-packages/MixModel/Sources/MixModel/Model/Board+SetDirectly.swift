@@ -1,7 +1,5 @@
 import Core
 
-#if DEBUG
-
 /// Not to be used in normal play but for creating game situations quickly (for example in unit tests)
 extension Board {
 
@@ -52,5 +50,3 @@ extension Board {
         return board
     }
 }
-
-#endif
