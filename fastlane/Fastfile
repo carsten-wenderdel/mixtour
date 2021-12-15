@@ -24,6 +24,9 @@ lane :upload do
   )
 
   pilot(
+    distribute_external: true,
+    groups: "Beta",
+    notify_external_testers: true,
     changelog: new_commits
   )
 end
