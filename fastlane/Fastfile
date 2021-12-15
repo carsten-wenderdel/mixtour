@@ -33,7 +33,7 @@ lane :upload do
     changelog: new_commits,
     localized_build_info: {
       "default": {
-        whats_new: changelog,
+        whats_new: new_commits,
       }
     }
   )
