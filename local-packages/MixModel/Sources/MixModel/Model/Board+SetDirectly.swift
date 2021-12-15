@@ -21,6 +21,8 @@ extension Board {
     }
 }
 
+#if DEBUG
+
 /// Some preconfigured board situations
 extension Board {
 
@@ -50,3 +52,5 @@ extension Board {
         return board
     }
 }
+
+#endif
