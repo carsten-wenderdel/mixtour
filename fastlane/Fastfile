@@ -19,8 +19,10 @@ lane :upload do
     tag_match_pattern: "*"
   )
 
+  UI.message("build number: #{ENV['BITRISE_BUILD_NUMBER']}")
+
   pilot(
-    build_number: "#{ENV['BITRISE_BUILD_NUMBER']}",
+    build_number: "2",
     changelog: new_commits
   )
 end
