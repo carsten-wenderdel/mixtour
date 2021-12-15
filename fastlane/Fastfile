@@ -15,5 +15,12 @@ lane :upload do
     clean: true,
     build_number: "#{ENV['BITRISE_BUILD_NUMBER']}"
   )
-  pilot()
+  
+  new_commits = changelog_from_git_commits(
+    tag_match_pattern: "*"
+  )
+
+  pilot(
+    changelog: new_commits
+  )
 end
