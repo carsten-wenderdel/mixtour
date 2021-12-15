@@ -27,6 +27,14 @@ lane :upload do
     distribute_external: true,
     groups: "Beta",
     notify_external_testers: true,
-    changelog: new_commits
+    changelog: new_commits,
+    localized_build_info: {
+      "default": {
+        whats_new: "Default changelog",
+      },
+      "en-GB": {
+        whats_new: "en-gb changelog",
+      }
+    }
   )
 end
