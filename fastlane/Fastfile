@@ -8,9 +8,9 @@ lane :test do
 end
 
 desc "Uploads to TestFlight and notifies users"
-lane :testflight do
+lane :upload do
   gym(
-    scheme: "mobimeo-en",
+    scheme: "mixtour-en",
     configuration: "Release",
     clean: true,
   )
