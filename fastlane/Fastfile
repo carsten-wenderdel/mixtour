@@ -13,7 +13,6 @@ lane :upload do
     scheme: "mixtour-en",
     configuration: "Release",
     clean: true,
-    build_number: "#{ENV['BITRISE_BUILD_NUMBER']}"
   )
   
   new_commits = changelog_from_git_commits(
@@ -21,6 +20,7 @@ lane :upload do
   )
 
   pilot(
+    build_number: "#{ENV['BITRISE_BUILD_NUMBER']}",
     changelog: new_commits
   )
 end
