@@ -13,6 +13,7 @@ lane :upload do
     scheme: "mixtour-en",
     configuration: "Release",
     clean: true,
+    build_number: "#{ENV['BITRISE_BUILD_NUMBER']}"
   )
   pilot()
 end
