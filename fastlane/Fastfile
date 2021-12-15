@@ -6,3 +6,13 @@ lane :test do
     testplan: "AllTests"
   )
 end
+
+desc "Uploads to TestFlight and notifies users"
+lane :testflight do
+  gym(
+    scheme: "mobimeo-en",
+    configuration: "Release",
+    clean: true,
+  )
+  pilot()
+end
