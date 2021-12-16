@@ -1,6 +1,8 @@
 import SwiftUI
 import MixModel
 
+fileprivate let standardPadding = 5.0
+
 struct RulesView: View {
     var body: some View {
         NavigationView {
@@ -11,7 +13,7 @@ struct RulesView: View {
                     .frame(maxWidth: .infinity) // On iPads push the scrollingIndicator to the left edge of the screen
                 // It's a bit strange to call `.frame` twice - but it works.
             }
-            .multilineTextAlignment(.leading)
+//            .multilineTextAlignment(.leading)
             .environmentObject(AnimationConstants())
             .navigationBarTitle("Mixtour")
             .navigationBarTitleDisplayMode(.inline)
@@ -24,12 +26,12 @@ private struct RulesTextView: View {
     var body: some View {
         Group {
             // Mixtour
-            Text("Rules_Text1-1").headline()
+            Text("Rules_Text1-1").subheadline()
 
             // Material
             Text("Rules_Title2").title()
             Text("Rules_Text2-1").listItem()
-            Text("Rules_Text2-2").listItem()
+            Text("Rules_Text2-2").listItem().padding(.bottom, standardPadding)
 
             BoardIllustrationView(Board()).frame(width: 250)
             Text("Rules_Text2-3").illustration()
@@ -49,7 +51,7 @@ private struct RulesTextView: View {
             Text("Rules_Text5-1").illustration()
             Text("Rules_Text5-2").regular()
             Text("Rules_Text5-3").listItem()
-            Text("Rules_Text5-4").listItem()
+            Text("Rules_Text5-4").listItem().padding(.bottom, standardPadding)
 
             // Enter a piece
             Text("Rules_Title6").headline()
@@ -70,10 +72,10 @@ private struct RulesTextView: View {
             Text("Rules_Text7-8").listItem()
             Text("Rules_Text7-9").listItem()
             Text("Rules_Text7-10").listItem()
-            Text("Rules_Text7-11").listItem()
+            Text("Rules_Text7-11").listItem().padding(.bottom, standardPadding)
             Text("Rules_Text7-12").regular()
             Text("Rules_Text7-13").listItem()
-            Text("Rules_Text7-14").listItem()
+            Text("Rules_Text7-14").listItem().padding(.bottom, standardPadding)
         }
         Group {
             // Examples
@@ -102,19 +104,33 @@ extension Text {
 
     func illustration() -> some View {
         foregroundColor(.secondary)
+            .padding(.bottom, standardPadding)
     }
 
     func title() -> some View {
         font(.title)
+            .padding(.top, 2 * standardPadding)
+            .padding(.bottom, 2 * standardPadding)
     }
 
     func headline() -> some View {
         frame(maxWidth: .infinity, alignment: .leading)
             .font(.headline)
+            .padding(.top, standardPadding)
+            .padding(.bottom, standardPadding)
+    }
+
+    func subheadline() -> some View {
+        foregroundColor(.secondary)
+            .font(.headline)
+            .multilineTextAlignment(.center)
+            .padding(.top, standardPadding)
+            .padding(.bottom, standardPadding)
     }
 
     func regular() -> some View {
         frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.bottom, standardPadding)
     }
 
     func listItem() -> some View {
@@ -122,6 +138,7 @@ extension Text {
             Text("\u{2022}  ")
             self.frame(maxWidth: .infinity, alignment: .leading)
         }
+        .padding(.bottom, 1)
     }
 }
 
