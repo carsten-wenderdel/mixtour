@@ -18,25 +18,6 @@ lane :upload do
     configuration: "Release",
     clean: true,
   )
-  
-  new_commits = changelog_from_git_commits(
-    tag_match_pattern: "*"
-  )
-
-  UI.message("Created changelog:")
-  UI.message(new_commits)
-
-  pilot(
-    distribute_external: true,
-    groups: "Beta",
-    notify_external_testers: true,
-    changelog: new_commits,
-    localized_build_info: {
-      "default": {
-        whats_new: new_commits,
-      }
-    }
-  )
 
   buildnumber = ENV['BITRISE_BUILD_NUMBER']
   # make it 4 characters long by adding '0' before
@@ -49,5 +30,24 @@ lane :upload do
   
   push_git_tags(
     tag: tag
+  )
+  
+  new_commits = changelog_from_git_commits(
+    tag_match_pattern: "*"
+  )
+
+  UI.message("Created changelog:\n#{new_commits}")
+
+  # This happens last because notifying external users can time out although the upload of binary succeeded.
+  pilot(
+    distribute_external: true,
+    groups: "Beta",
+    notify_external_testers: true,
+    changelog: new_commits,
+    localized_build_info: {
+      "default": {
+        whats_new: new_commits,
+      }
+    }
   )
 end
