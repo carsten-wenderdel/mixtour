@@ -18,39 +18,39 @@
 "Rules_Text4-2" = "Players decide on the colors they play. White starts, then players take turns.";
 
 "Rules_Title5" = "Play";
-"Rules_Text5-1" = "Note: In the following, a single piece is also be referred to as a “stack.”";
-"Rules_Text5-2" = "In each turn players have two options, one of which they must choose:";
-"Rules_Text5-3" = "Enter a piece";
-"Rules_Text5-4" = "Move a stack";
+"Rules_Text5-1" = "**Note:** In the following, a single piece is also be referred to as a “stack.”";
+"Rules_Text5-2" = "In each turn players have two options, **one** of which they must choose:";
+"Rules_Text5-3" = "**Enter** a piece";
+"Rules_Text5-4" = "**Move** a stack";
 
 "Rules_Title6" = "Enter a piece";
 "Rules_Text6-1" = "A player places a new piece of his own color on any empty space on the board.";
 
 "Rules_Title7" = "Move a stack";
 "Rules_Text7-1" = "A player chooses a stack and moves one or more pieces from there.";
-"Rules_Text7-2" = "Pieces move orthogonally or diagonally in straight lines.";
+"Rules_Text7-2" = "Pieces move **orthogonally** or **diagonally** in straight lines.";
 "Rules_Text7-3" = "Pieces are always taken from the top of a stack.";
-"Rules_Text7-4" = "Stacks may be split at any level. Remaining pieces stay behind.";
-"Rules_Text7-5" = "Players may move pieces of any(!) color. It is possible to move single opponent piece or a stack with an opponent piece on top.";
+"Rules_Text7-4" = "Stacks may be **split** at **any** level. Remaining pieces stay behind.";
+"Rules_Text7-5" = "Players may move pieces of **any**(!) color. It is possible to move single opponent piece or a stack with an opponent piece on top.";
 "Rules_Text7-6" = "It is not allowed to move such that the last move of the opponent is effectively taken back. Please note that such a move is often not available.";
-"Rules_Text7-7" = "Stacks may not cross occupied spaces.";
-"Rules_Text7-8" = "A move must end on another stack, moved pieces are placed on top of the target stack.";
-"Rules_Text7-9" = "Stacks may be any height.";
+"Rules_Text7-7" = "Stacks may **not** cross occupied spaces.";
+"Rules_Text7-8" = "A move **must end on another stack**, moved pieces are placed on top of the target stack.";
+"Rules_Text7-9" = "Stacks may be **any** height.";
 "Rules_Text7-10" = "And, most important:";
-"Rules_Text7-11" = "The height of the target stack determines the exact distance from where it can be reached.";
-"Rules_Text7-12" = "Note:";
-"Rules_Text7-13" = "The top piece does not determine ownership of a stack when it comes to move options.";
-"Rules_Text7-14" = "It is not the height of the moving stack that determines the length of a move. It is the height of the target stack that defines it.";
+"Rules_Text7-11" = "**The height of the target stack determines the exact distance from where it can be reached.**";
+"Rules_Text7-12" = "**Note:**";
+"Rules_Text7-13" = "The top piece does **not** determine ownership of a stack when it comes to move options.";
+"Rules_Text7-14" = "It is **not** the height of the moving stack that determines the length of a move. It is the height of the target stack that defines it.";
 
 "Rules_Title8" = "Examples";
-"Rules_Text8-1" = "**Figure 2** \U2022 The stack at e4 may move three spaces onto the stack at b4 (because it is three pieces high). The stack at e1 cannot reach b4 because it is blocked by c3. Please note that b4 may not jump on e4!";
-"Rules_Text8-2" = "**Figure 3** \U2022 The white piece in the center (at c3) is within reach of all adjacent stacks because it is a stack of height one and each of the surrounding stacks is one step away.";
+"Rules_Text8-1" = "**Figure 2** \U2022 The stack at e4 may move three spaces onto the stack at b4 (because it is three pieces high). The stack at e1 cannot reach b4 because it is blocked by c3. Please note that b4 may **not** jump on e4!";
+"Rules_Text8-2" = "**Figure 3** \U2022 The white piece in the center (at c3) is within reach of all adjacent stacks because it is a stack of height **one** and each of the surrounding stacks is **one** step away.";
 
 "Rules_Title9" = "Pass";
 "Rules_Text9-1" = "If a player cannot enter a new piece they must move a stack. If no move is available, the player must pass. The game ends in a draw if both players pass in sequence.";
 
 "Rules_Title10" = "End of the game";
-"Rules_Text10-1" = "When a player builds a stack of height 5 (or higher), this stack is removed from the board, the pieces are put back to the reserve and the player who owned the top piece of said stack, scores 1 point.";
-"Rules_Text10-2" = "For a standard game only 1 point is needed to win, but players can agree upon any other number at the beginning of the game.";
-"Rules_Text10-3" = "Please note: It is possible (although very rare) that players end up in an arrangement of single pieces in which one additional piece skips endlessly in a loop. If really none of the players is willing to break out of this situation, they should declare the game drawn. Please note, that in combinations of larger stacks this situation is not likely to occur, because scoring moves will be available.";
+"Rules_Text10-1" = "When a player builds a stack of height 5 (or higher), this stack is removed from the board, the pieces are put back to the reserve and the player who owned the top piece of said stack, scores **1 point**.";
+"Rules_Text10-2" = "For a standard game only **1 point** is needed to win, but players can agree upon any other number at the beginning of the game.";
+"Rules_Text10-3" = "**Please note:** It is possible (although very rare) that players end up in an arrangement of single pieces in which one additional piece skips endlessly in a loop. If really none of the players is willing to break out of this situation, they should declare the game drawn. Please note, that in combinations of larger stacks this situation is not likely to occur, because scoring moves will be available.";
 
