@@ -118,9 +118,10 @@ extension Text {
     }
 
     func listItem() -> some View {
-        (Text("\u{2022}  ") + self)
-            .frame(maxWidth: .infinity, alignment: .leading)
-
+        HStack(alignment: .top, spacing: 0) {
+            Text("\u{2022}  ")
+            self.frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
 }
 
