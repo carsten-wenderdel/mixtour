@@ -13,16 +13,20 @@ struct LegalView: View {
 
                 Text("Large Title").font(.largeTitle)
                 Text("Title").font(.title)
+
                 Text("Some more Text 1, so long that it ")
                     + Text("should wrap into multiple lines")
                 Text("Some more Text 2").font(.body)
                 Text("Title2").font(.title2).foregroundColor(.secondary)
+                Text("Title3").font(.title3).foregroundColor(.secondary)
                 Text("Headline").font(.headline)
                 Text("Subheadline").font(.subheadline)
-                Text("Visit: ")
-                + Text ("[www.spiegel.de](https://www.spiegel.de)")
-                Text("Tel: ")
+                Text("Callout").font(.callout)
+//                Text("Visit: ")
+//                + Text ("[www.spiegel.de](https://www.spiegel.de)")
+                Text("Caption: Tel: ")
                 + Text("[+49 123 456 789](tel:+49123456789)")
+                    .font(.caption)
             }
             .multilineTextAlignment(.center)
             .textSelection(.enabled)

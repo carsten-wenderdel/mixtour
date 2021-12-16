@@ -24,33 +24,29 @@ private struct RulesTextView: View {
     var body: some View {
         Group {
             // Mixtour
-            Text("Rules_Text1-1")
-                .font(.headline)
+            Headline(text: "Rules_Text1-1")
 
             // Material
-            Text("Rules_Title2")
-                .font(.title)
-            Text("Rules_Text2-1")
-            Text("Rules_Text2-2")
+            Title(text: "Rules_Title2")
+            ListItem(text: "Rules_Text2-1")
+            ListItem(text: "Rules_Text2-2")
 
             BoardIllustrationView(Board()).frame(width: 250)
+            IllustrationText(text: "Rules_Text2-3")
             Text("Rules_Text2-3")
 
             // Objective
-            Text("Rules_Title3")
-                .font(.title)
-            Text("Rules_Text3-1")
+            Title(text: "Rules_Title3")
+            MixText(text: "Rules_Text3-1")
         }
         Group {
             // Preparation
-            Text("Rules_Title4")
-                .font(.title)
+            Title(text: "Rules_Title4")
             Text("Rules_Text4-1")
             Text("Rules_Text4-2")
 
             // Play
-            Text("Rules_Title5")
-                .font(.title)
+            Title(text: "Rules_Title5")
             Text("Rules_Text5-1")
             Text("Rules_Text5-2")
             Text("Rules_Text5-3")
@@ -58,13 +54,11 @@ private struct RulesTextView: View {
         }
         Group {
             // Enter a piece
-            Text("Rules_Title6")
-                .font(.title)
+            Headline(text: "Rules_Title6")
             Text("Rules_Text6-1")
 
             // Move a stack
-            Text("Rules_Title7")
-                .font(.title)
+            Headline(text: "Rules_Title7")
             Text("Rules_Text7-1")
             Text("Rules_Text7-2")
             Text("Rules_Text7-3")
@@ -74,26 +68,67 @@ private struct RulesTextView: View {
         }
         Group {
             // Examples
-            Text("Rules_Title8")
-                .font(.title)
+            Headline(text: "Rules_Title8")
             BoardIllustrationView(.figure1).frame(width: 250)
             Text("Rules_Text8-1")
             BoardIllustrationView(.figure2).frame(width: 250)
             Text("Rules_Text8-2")
 
             // Pass
-            Text("Rules_Title9")
-                .font(.title)
+            Headline(text: "Rules_Title9")
             Text("Rules_Text9-1")
         }
         Group {
             // End of the game
-            Text("Rules_Title10")
-                .font(.title)
+            Title(text: "Rules_Title10")
             Text("Rules_Text10-1")
             Text("Rules_Text10-2")
             Text("Rules_Text10-3")
         }
+    }
+}
+
+fileprivate struct Title: View {
+    var text: String
+    var body: some View {
+        Text("\(LocalizedString(text))")
+            .font(.title)
+    }
+}
+
+fileprivate struct Headline: View {
+    var text: String
+    var body: some View {
+        Text("\(LocalizedString(text))")
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .font(.headline)
+    }
+}
+
+fileprivate struct MixText: View {
+    var text: String
+    var body: some View {
+        Text("\(LocalizedString(text))")
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+fileprivate struct ListItem: View {
+    var text: String
+    var body: some View {
+        Text("\u{2022} \(LocalizedString(text))")
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+fileprivate struct IllustrationText: View {
+    var text: String
+    var body: some View {
+        Text("**Bla** Bla")
+
+//        Text("\(LocalizedString(text))")
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .foregroundColor(.secondary)
     }
 }
 
