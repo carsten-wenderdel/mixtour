@@ -24,111 +24,103 @@ private struct RulesTextView: View {
     var body: some View {
         Group {
             // Mixtour
-            Headline(text: "Rules_Text1-1")
+            Text("Rules_Text1-1").headline()
 
             // Material
-            Title(text: "Rules_Title2")
-            ListItem(text: "Rules_Text2-1")
-            ListItem(text: "Rules_Text2-2")
+            Text("Rules_Title2").title()
+            Text("Rules_Text2-1").listItem()
+            Text("Rules_Text2-2").listItem()
 
             BoardIllustrationView(Board()).frame(width: 250)
-            IllustrationText(text: "Rules_Text2-3")
-            Text("Rules_Text2-3")
+            Text("Rules_Text2-3").illustration()
 
             // Objective
-            Title(text: "Rules_Title3")
-            MixText(text: "Rules_Text3-1")
+            Text("Rules_Title3").title()
+            Text("Rules_Text3-1").regular()
         }
         Group {
             // Preparation
-            Title(text: "Rules_Title4")
-            Text("Rules_Text4-1")
-            Text("Rules_Text4-2")
+            Text("Rules_Title4").title()
+            Text("Rules_Text4-1").regular()
+            Text("Rules_Text4-2").regular()
 
             // Play
-            Title(text: "Rules_Title5")
-            Text("Rules_Text5-1")
-            Text("Rules_Text5-2")
-            Text("Rules_Text5-3")
-            Text("Rules_Text5-4")
+            Text("Rules_Title5").title()
+            Text("Rules_Text5-1").illustration()
+            Text("Rules_Text5-2").regular()
+            Text("Rules_Text5-3").listItem()
+            Text("Rules_Text5-4").listItem()
+
+            // Enter a piece
+            Text("Rules_Title6").headline()
+            Text("Rules_Text6-1").regular()
         }
         Group {
-            // Enter a piece
-            Headline(text: "Rules_Title6")
-            Text("Rules_Text6-1")
-
             // Move a stack
-            Headline(text: "Rules_Title7")
-            Text("Rules_Text7-1")
-            Text("Rules_Text7-2")
-            Text("Rules_Text7-3")
-            Text("Rules_Text7-4")
-            Text("Rules_Text7-5")
-            Text("Rules_Text7-6")
+            Text("Rules_Title7").headline()
+            Text("Rules_Text7-1").regular()
+            Text("Rules_Text7-2").listItem()
+            Text("Rules_Text7-3").listItem()
+            Text("Rules_Text7-4").listItem()
+            Text("Rules_Text7-5").listItem()
+            Text("Rules_Text7-6").listItem()
+        }
+        Group {
+            Text("Rules_Text7-7").listItem()
+            Text("Rules_Text7-8").listItem()
+            Text("Rules_Text7-9").listItem()
+            Text("Rules_Text7-10").listItem()
+            Text("Rules_Text7-11").listItem()
+            Text("Rules_Text7-12").regular()
+            Text("Rules_Text7-13").listItem()
+            Text("Rules_Text7-14").listItem()
         }
         Group {
             // Examples
-            Headline(text: "Rules_Title8")
+            Text("Rules_Title8").headline()
             BoardIllustrationView(.figure1).frame(width: 250)
-            Text("Rules_Text8-1")
+            Text("Rules_Text8-1").illustration()
             BoardIllustrationView(.figure2).frame(width: 250)
-            Text("Rules_Text8-2")
+            Text("Rules_Text8-2").illustration()
 
             // Pass
-            Headline(text: "Rules_Title9")
-            Text("Rules_Text9-1")
+            Text("Rules_Title9").headline()
+            Text("Rules_Text9-1").regular()
         }
         Group {
             // End of the game
-            Title(text: "Rules_Title10")
-            Text("Rules_Text10-1")
-            Text("Rules_Text10-2")
-            Text("Rules_Text10-3")
+            Text("Rules_Title10").title()
+            Text("Rules_Text10-1").regular()
+            Text("Rules_Text10-2").regular()
+            Text("Rules_Text10-3").illustration()
         }
     }
 }
 
-fileprivate struct Title: View {
-    var text: String
-    var body: some View {
-        Text("\(LocalizedString(text))")
-            .font(.title)
-    }
-}
 
-fileprivate struct Headline: View {
-    var text: String
-    var body: some View {
-        Text("\(LocalizedString(text))")
-            .frame(maxWidth: .infinity, alignment: .leading)
+extension Text {
+
+    func illustration() -> some View {
+        foregroundColor(.secondary)
+    }
+
+    func title() -> some View {
+        font(.title)
+    }
+
+    func headline() -> some View {
+        frame(maxWidth: .infinity, alignment: .leading)
             .font(.headline)
     }
-}
 
-fileprivate struct MixText: View {
-    var text: String
-    var body: some View {
-        Text("\(LocalizedString(text))")
-            .frame(maxWidth: .infinity, alignment: .leading)
+    func regular() -> some View {
+        frame(maxWidth: .infinity, alignment: .leading)
     }
-}
 
-fileprivate struct ListItem: View {
-    var text: String
-    var body: some View {
-        Text("\u{2022} \(LocalizedString(text))")
+    func listItem() -> some View {
+        (Text("\u{2022}  ") + self)
             .frame(maxWidth: .infinity, alignment: .leading)
-    }
-}
 
-fileprivate struct IllustrationText: View {
-    var text: String
-    var body: some View {
-        Text("**Bla** Bla")
-
-//        Text("\(LocalizedString(text))")
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .foregroundColor(.secondary)
     }
 }
 
