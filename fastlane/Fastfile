@@ -10,7 +10,7 @@ end
 desc "Uploads to TestFlight and notifies users"
 lane :upload do
   increment_build_number(
-    build_number: "#{ENV['BITRISE_BUILD_NUMBER']}"
+    build_number: ENV['BITRISE_BUILD_NUMBER']
   )
 
   gym(
@@ -36,5 +36,18 @@ lane :upload do
         whats_new: new_commits,
       }
     }
+  )
+
+  buildnumber = ENV['BITRISE_BUILD_NUMBER']
+  # make it 4 characters long by adding '0' before
+  buildnumber = buildnumber.rjust(4, '0')
+  tag = "beta/#{buildnumber}"
+
+  add_git_tag(
+    tag: tag,
+  )
+  
+  push_git_tags(
+    tag: tag
   )
 end
