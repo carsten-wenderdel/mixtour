@@ -40,8 +40,11 @@ struct GameView: View {
                         board: board,
                         idOffset: idOffset,
                         namespace: namespace
-                    )
-                    .environmentObject(AnimationConstants())
+                    ).environmentObject(AnimationConstants())
+
+                    // We show both, otherwise animation will look funny because of changing text
+                    GameOverView(text: board.computerHasWonText, show: board.computerHasWon)
+                    GameOverView(text: board.humanHasWonText, show: board.humanHasWon)
                 }
                 .frame(width: geometry.size.width)
                 // When the "New Game" or "Undo" button is hit, the pieces move
@@ -64,6 +67,22 @@ struct GameView: View {
             assert(abs(idOffset) >= 1000)
             idOffset *= -1
         }
+    }
+}
+
+struct GameOverView: View {
+    var text: String
+    var show: Bool
+
+    var body: some View {
+        Text(text)
+            .font(Constants.gameOverFont)
+            .multilineTextAlignment(.center)
+            // Will increase text size when showing
+            .scaleEffect(show ? 1 : 0.5)
+            .opacity(show ? 0.8 : 0)
+            // Wait until move is made until text is shown
+            .animation(Animation.default.speed(0.6).delay(show ? 1.1 : 0), value: show)
     }
 }
 

@@ -6,7 +6,11 @@
 // Tab Bar
 "Game" = "Spiel";
 "Rules" = "Regeln";
-"Legal" = "Impresum";
+"Legal" = "Impressum";
+
+// BoardViewModel
+"You have won!" = "Du hast gewonnen!";
+"Computer has won" = "Der Computer hat gewonnen";
 
 // Player Color
 "Blue" = "Blau";

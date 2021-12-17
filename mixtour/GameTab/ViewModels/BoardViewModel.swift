@@ -72,15 +72,20 @@ final class BoardViewModel: ObservableObject {
         }
     }
 
-    var gameOverText: String {
-        guard let winner = board.winner() else {
-            return " "
-        }
-        if winner == humanColor {
-            return "You have won!"
-        } else {
-            return "You have lost"
-        }
+    var humanHasWon: Bool {
+        return gameOver && humanColor == board.winner()
+    }
+
+    var computerHasWon: Bool {
+        return gameOver && humanColor != board.winner()
+    }
+
+    var humanHasWonText: String {
+        "Game Over \n\n" + LocalizedString("You have won!")
+    }
+
+    var computerHasWonText: String {
+        "Game Over \n\n" + LocalizedString("Computer has won")
     }
 
     var computerPlayerInfo: String {
