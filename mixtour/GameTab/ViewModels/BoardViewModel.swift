@@ -61,6 +61,9 @@ final class BoardViewModel: ObservableObject {
     var gameOver: Bool { board.isGameOver() }
 
     var interactionDisabled: Bool {
+        if gameOver {
+            return true
+        }
         switch state {
         case .computerTurn:
             return true
