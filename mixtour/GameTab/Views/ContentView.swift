@@ -51,7 +51,9 @@ struct ContentView: View {
                 }
                 
                 Spacer()
-                Text(board.gameOverText)
+                Text(board.computerPlayerInfo)
+                    .foregroundColor(.secondary)
+                    .padding(.top, 10)
 
                 Spacer()
                 GameView(board: board)

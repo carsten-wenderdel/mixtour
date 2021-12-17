@@ -80,6 +80,10 @@ final class BoardViewModel: ObservableObject {
         }
     }
 
+    var computerPlayerInfo: String {
+        return "Computer: " + computerConfig.labelText
+    }
+
     // MARK: Initializers
 
     init(
