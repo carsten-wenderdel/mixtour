@@ -17,6 +17,10 @@ public enum MCPlayerConfig: Int, CaseIterable {
     case expert1 = 3_420
     case expert2 = 6_150
     case worldClass1 = 11_050
+    case worldClass2 = 19_400
+    case superNatural1 = 34920
+    case superNatural2 = 62856 // simply the previous value times 1.8
+    case superNatural3 = 113141 // simply the previous value times 1.8
 
     public var eloRating: Int {
         switch self {
@@ -38,6 +42,14 @@ public enum MCPlayerConfig: Int, CaseIterable {
             return 2050
         case .worldClass1:
             return 2200
+        case .worldClass2:
+            return 2350
+        case .superNatural1:
+            return 2500
+        case .superNatural2:
+            return 2650
+        case .superNatural3:
+            return 2800
         }
     }
 }
@@ -264,8 +276,39 @@ public enum MCPlayerConfig: Int, CaseIterable {
 //        combined: 70.82211538461539
 
 
-// VS 6150 (other way around). So wie picked 11050
+// VS 6150 (other way around). So we picked 11050
 
 //        let player1 = MonteCarloPlayer(numberOfIterations: 11050)
 //        2185.0 iterations
 //        combined: 70.2974828375286
+
+
+//VS 11050 (other way around). So we picked 19400
+
+//        let player1 = MonteCarloPlayer(numberOfIterations: 19000)
+//        1335.0 iterations
+//        combined: 69.15730337078652
+
+//        let player1 = MonteCarloPlayer(numberOfIterations: 19200)
+//        1012.0 iterations
+//        combined: 69.29347826086956
+
+//        let player1 = MonteCarloPlayer(numberOfIterations: 19280)
+//        1043.0 iterations
+//        combined: 69.99041227229147
+
+//        let player1 = MonteCarloPlayer(numberOfIterations: 19350)
+//        1274.0 iterations
+//        combined: 69.4662480376766
+
+//        let player1 = MonteCarloPlayer(numberOfIterations: 19350)
+//        1394.0 iterations
+//        combined: 70.3909612625538
+
+        //        let player1 = MonteCarloPlayer(numberOfIterations: 19500)
+        //        1091.0 iterations
+        //        combined: 73.39596700274977
+
+//        let player1 = MonteCarloPlayer(numberOfIterations: 19850)
+//        1049.0 iterations
+//        combined: 71.18684461391801
