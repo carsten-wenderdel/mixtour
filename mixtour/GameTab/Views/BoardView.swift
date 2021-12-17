@@ -67,7 +67,7 @@ struct BoardView_Previews: PreviewProvider {
         Group {
             ZStack() {
                 MixColors.background
-                BoardView(board: BoardViewModel(board: .example, computer: DummyComputerPlayer()), idOffset: idOffset, namespace: namespace)
+                BoardView(board: BoardViewModel(board: .example), idOffset: idOffset, namespace: namespace)
                     .environmentObject(AnimationConstants())
             }
             .environment(\.colorScheme, .light)
@@ -75,7 +75,7 @@ struct BoardView_Previews: PreviewProvider {
 
             ZStack {
                 MixColors.background
-                BoardView(board: BoardViewModel(board: .example, computer: DummyComputerPlayer()), idOffset: idOffset, namespace: namespace)
+                BoardView(board: BoardViewModel(board: .example), idOffset: idOffset, namespace: namespace)
                     .environmentObject(AnimationConstants())
             }
             .environment(\.colorScheme, .dark)

@@ -72,7 +72,7 @@ struct GameView_Previews: PreviewProvider {
     @Namespace static var namespace
 
     static var previews: some View {
-        GameView(board: BoardViewModel(board: .example, computer: DummyComputerPlayer()))
+        GameView(board: BoardViewModel(board: .example))
     }
 }
 #endif

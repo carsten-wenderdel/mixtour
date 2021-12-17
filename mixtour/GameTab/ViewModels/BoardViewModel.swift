@@ -36,6 +36,7 @@ final class BoardViewModel: ObservableObject {
     private var board: Board
     private var humanColor: PlayerColor
     private var computerPlayer: ComputerPlayer
+    private var computerConfig: MCPlayerConfig
 
     // MARK: internal state, to be observed from outside
     @Published private var state: State
@@ -84,15 +85,25 @@ final class BoardViewModel: ObservableObject {
     init(
         board: Board = Board(),
         color: PlayerColor = .white,
-        computer: ComputerPlayer
+        config: MCPlayerConfig
     ) {
         self.board = board
         self.humanColor = color
-        self.computerPlayer = computer
+        self.computerConfig = config
+        self.computerPlayer = CachePlayer(MonteCarloPlayer(config: config))
         state =
             board.playerOnTurn() == color
             ? .humanTurn(previousMove: nil)
             : .computerTurn(previousMove: nil)
+    }
+
+    // Returns a non playable version, for illustration purpose
+    init(board: Board) {
+        self.board = board
+        self.humanColor = .white // doesn't matter
+        self.computerConfig = .beginner1 // doesn't matter
+        self.computerPlayer = DummyComputerPlayer()
+        state = .computerTurn(previousMove: nil) // doesn't matter
     }
 
     // MARK: Change state
@@ -102,14 +113,28 @@ final class BoardViewModel: ObservableObject {
             reset(
                 board: previousBoard,
                 color: humanColor,
+                config: computerConfig,
                 computer: computerPlayer
             )
         }
     }
 
-    func reset(board: Board = Board(),
-               color: PlayerColor,
-               computer: ComputerPlayer
+    /// Always restarts the game
+    func reset(color: PlayerColor, config: MCPlayerConfig) {
+        reset(
+            board: Board(),
+            color: color,
+            config: config,
+            computer: CachePlayer(MonteCarloPlayer(config: config))
+        )
+    }
+
+    /// config and computerPlayer have to match
+    private func reset(
+        board: Board,
+        color: PlayerColor,
+        config: MCPlayerConfig,
+        computer: ComputerPlayer
     ) {
         previousBoard = nil
         animatableMove = nil
@@ -120,6 +145,7 @@ final class BoardViewModel: ObservableObject {
             board.playerOnTurn() == color
             ? .humanTurn(previousMove: nil)
             : .computerTurn(previousMove: nil)
+        computerConfig = config
         self.computerPlayer = computer
         if case .computerTurn = state {
             letComputerMakeNextMove()
@@ -271,7 +297,7 @@ extension BoardViewModel {
     func startComputerPlay() {
         reset(
             color: .white,
-            computer: MonteCarloPlayer(config: .beginner1)
+            config: .beginner1
         )
         makeComputerMove()
     }
