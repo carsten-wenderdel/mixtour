@@ -5,6 +5,12 @@
 "Rules_Title1" = "Mixtour";
 "Rules_Text1-1" = "A stacking game for 2 players by Dieter Stein";
 
+"Rules_Title1a" = "App Usage";
+"Rules_Text1a-1" = "To play in this app you can:";
+"Rules_Text1a-2" = "Enter a piece – Double tap on a square.";
+"Rules_Text1a-3" = "Move a stack – Drag and drop.";
+"Rules_Text1a-4" = "Select parts of a stack – Single tap on a stack";
+
 "Rules_Title2" = "Material";
 "Rules_Text2-1" = "Square board with 5 × 5 spaces";
 "Rules_Text2-2" = "2 × 20 of stackable pieces (blue and red)";
@@ -49,8 +55,9 @@
 "Rules_Title9" = "Pass";
 "Rules_Text9-1" = "If a player cannot enter a new piece they must move a stack. If no move is available, the player must pass. The game ends in a draw if both players pass in sequence.";
 
-"Rules_Title10" = "End of the game";
+"Rules_Title10" = "End of the Game";
 "Rules_Text10-1" = "When a player builds a stack of height 5 (or higher), this stack is removed from the board, the pieces are put back to the reserve and the player who owned the top piece of said stack, scores **1 point**.";
 "Rules_Text10-2" = "For a standard game only **1 point** is needed to win, but players can agree upon any other number at the beginning of the game.";
-"Rules_Text10-3" = "**Please note:** It is possible (although very rare) that players end up in an arrangement of single pieces in which one additional piece skips endlessly in a loop. If really none of the players is willing to break out of this situation, they should declare the game drawn. Please note, that in combinations of larger stacks this situation is not likely to occur, because scoring moves will be available.";
+"Rules_Text10-3" = "This app only implements 1 point games.";
+"Rules_Text10-4" = "**Please note:** It is possible (although very rare) that players end up in an arrangement of single pieces in which one additional piece skips endlessly in a loop. If really none of the players is willing to break out of this situation, they should declare the game drawn. Please note, that in combinations of larger stacks this situation is not likely to occur, because scoring moves will be available.";
 

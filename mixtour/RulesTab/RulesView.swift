@@ -28,6 +28,14 @@ private struct RulesTextView: View {
             // Mixtour
             Text("Rules_Text1-1").subheadline()
 
+            // App usage
+            Text("Rules_Title1a").title()
+            Text("Rules_Text1a-1").regular()
+            Text("Rules_Text1a-2").listItem()
+            Text("Rules_Text1a-3").listItem()
+            Text("Rules_Text1a-4").listItem().padding(.bottom, standardPadding)
+        }
+        Group {
             // Material
             Text("Rules_Title2").title()
             Text("Rules_Text2-1").listItem()
@@ -90,11 +98,12 @@ private struct RulesTextView: View {
             Text("Rules_Text9-1").regular()
         }
         Group {
-            // End of the game
+            // End of the Game
             Text("Rules_Title10").title()
             Text("Rules_Text10-1").regular()
             Text("Rules_Text10-2").regular()
-            Text("Rules_Text10-3").illustration()
+            Text("Rules_Text10-3").regular()
+            Text("Rules_Text10-4").illustration()
         }
     }
 }
