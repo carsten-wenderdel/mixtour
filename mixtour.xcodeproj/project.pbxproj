@@ -35,7 +35,6 @@
 		679BAB7126B16E0300C0BA77 /* MCPlayerConfig+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7026B16E0300C0BA77 /* MCPlayerConfig+Strings.swift */; };
 		679BAB7326B1749A00C0BA77 /* PlayerColor+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7226B1749A00C0BA77 /* PlayerColor+Strings.swift */; };
 		679BAB7526B1784F00C0BA77 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BAB7426B1784F00C0BA77 /* Localization.swift */; };
-		679DCFE3257C577100E9310E /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679DCFE2257C577100E9310E /* ExampleTests.swift */; };
 		67B630F626FA6E3600563753 /* AnimationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B630F526FA6E3600563753 /* AnimationConstants.swift */; };
 		67BFBAB126F1F0FD009FB661 /* BoardIllustrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BFBAB026F1F0FD009FB661 /* BoardIllustrationView.swift */; };
 		67CBE7882593DD4B00D913A1 /* PieceStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CBE7872593DD4B00D913A1 /* PieceStackView.swift */; };
@@ -105,7 +104,6 @@
 		679BAB7426B1784F00C0BA77 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		679DCF8B257C28FC00E9310E /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = "local-packages/Core"; sourceTree = "<group>"; };
 		679DCFC7257C489A00E9310E /* MixModel */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MixModel; path = "local-packages/MixModel"; sourceTree = "<group>"; };
-		679DCFE2257C577100E9310E /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		67B630F526FA6E3600563753 /* AnimationConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationConstants.swift; sourceTree = "<group>"; };
 		67BFBAB026F1F0FD009FB661 /* BoardIllustrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardIllustrationView.swift; sourceTree = "<group>"; };
 		67CBE7872593DD4B00D913A1 /* PieceStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceStackView.swift; sourceTree = "<group>"; };
@@ -332,7 +330,6 @@
 			isa = PBXGroup;
 			children = (
 				AA04065C176F9DF40051363A /* Supporting Files */,
-				679DCFE2257C577100E9310E /* ExampleTests.swift */,
 				6778D02126F7BEB800D539D4 /* BoardIllustrationSnapshotTests.swift */,
 			);
 			path = mixtourTests;
@@ -605,7 +602,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6778D02226F7BEB800D539D4 /* BoardIllustrationSnapshotTests.swift in Sources */,
-				679DCFE3257C577100E9310E /* ExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
