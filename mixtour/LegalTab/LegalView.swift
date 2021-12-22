@@ -26,7 +26,10 @@ struct LegalView: View {
 
                     Text("Known Bugs").font(.title)
                     Text("Margin between board and unused pieces is different")
-                    Text("During Undo some pieces get hidden behind other pieces during movement")
+                }
+                Group {
+                    Text("Done").font(.title)
+                    Text("Bug fixed for found case: During Undo some pieces get hidden behind other pieces during movement")
                 }
 
 //                Text("Large Title").font(.largeTitle)

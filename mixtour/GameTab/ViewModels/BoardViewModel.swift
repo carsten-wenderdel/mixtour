@@ -291,6 +291,12 @@ final class BoardViewModel: ObservableObject {
 
     /// keyPath can be "column" or "line"
     private func zIndexFor(_ keyPath: KeyPath<Square, Int>, value: Int) -> Double {
+        if case let .set(humanSet) = animatableMove, humanSet[keyPath: keyPath] == value {
+            if board.playerOnTurn() == computerColor {
+                // The human player just has set this piece. The zIndex needs to be high, so that during the animation from outside it's not hidden underneath other stacks. See unit tests for details.
+                return 4
+            }
+        }
         if let picked = pickedPieces, picked.square[keyPath: keyPath] == value {
             return 3
         } else if case let .drag(from, to, _) = animatableMove {

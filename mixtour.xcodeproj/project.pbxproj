@@ -23,6 +23,7 @@
 		675384422593C6D9002F5BEC /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 675384412593C6D9002F5BEC /* Core */; };
 		675384442593C6DD002F5BEC /* MixModel in Frameworks */ = {isa = PBXBuildFile; productRef = 675384432593C6DD002F5BEC /* MixModel */; };
 		675A877D25AA449D0052F7FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A877C25AA449D0052F7FA /* Constants.swift */; };
+		675E98E62773C4F200F1B110 /* BoardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675E98E52773C4F200F1B110 /* BoardViewModelTests.swift */; };
 		6778D01E26F7BDA100D539D4 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 6778D01D26F7BDA100D539D4 /* SnapshotTesting */; };
 		6778D02226F7BEB800D539D4 /* BoardIllustrationSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6778D02126F7BEB800D539D4 /* BoardIllustrationSnapshotTests.swift */; };
 		67811B2F25BB686A00F7FC72 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67811B2E25BB686A00F7FC72 /* main.swift */; };
@@ -91,6 +92,7 @@
 		6753843C2593BED4002F5BEC /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		67589A1926F785CC00E70FAC /* AllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllTests.xctestplan; sourceTree = "<group>"; };
 		675A877C25AA449D0052F7FA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		675E98E52773C4F200F1B110 /* BoardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewModelTests.swift; sourceTree = "<group>"; };
 		6778D02126F7BEB800D539D4 /* BoardIllustrationSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardIllustrationSnapshotTests.swift; sourceTree = "<group>"; };
 		67811B2C25BB686A00F7FC72 /* MixtourConsole */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MixtourConsole; sourceTree = BUILT_PRODUCTS_DIR; };
 		67811B2E25BB686A00F7FC72 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 			children = (
 				AA04065C176F9DF40051363A /* Supporting Files */,
 				6778D02126F7BEB800D539D4 /* BoardIllustrationSnapshotTests.swift */,
+				675E98E52773C4F200F1B110 /* BoardViewModelTests.swift */,
 			);
 			path = mixtourTests;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6778D02226F7BEB800D539D4 /* BoardIllustrationSnapshotTests.swift in Sources */,
+				675E98E62773C4F200F1B110 /* BoardViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
