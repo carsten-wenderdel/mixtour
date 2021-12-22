@@ -20,7 +20,7 @@ final class BestMoveVM: ObservableObject {
         if (isMeasuring) {
             return
         } else {
-            iterations = 0
+            iterations = -1
             timeSum = 0
             seconds = [Double]()
             isMeasuring = true
@@ -37,9 +37,11 @@ final class BestMoveVM: ObservableObject {
             let after = Date()
 
             iterations += 1
-            let time = after.timeIntervalSince(before)
-            timeSum += time
-            seconds.append(time)
+            if iterations > 0 {
+                let time = after.timeIntervalSince(before)
+                timeSum += time
+                seconds.append(time)
+            }
 
             DispatchQueue.main.async { [self] in
                 objectWillChange.send()
