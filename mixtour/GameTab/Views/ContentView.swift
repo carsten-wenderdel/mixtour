@@ -2,7 +2,7 @@ import SwiftUI
 import MixModel
 
 struct ContentView: View {
-    @StateObject private var board = BoardViewModel(config: .beginner1)
+    @StateObject private var board = BoardViewModel(computer: CachePlayer(MonteCarloPlayer.beginner))
 
     var body: some View {
         ZStack {
@@ -22,7 +22,7 @@ struct ContentView: View {
                                     Section {
                                         ForEach(MCPlayerConfig.allCases, id: \.self) { config in
                                             Button(config.labelText) {
-                                                board.reset(color: color, config: config)
+                                                board.reset(color: color, computer: CachePlayer(MonteCarloPlayer(config: config)))
                                             }
                                         }
                                     }
