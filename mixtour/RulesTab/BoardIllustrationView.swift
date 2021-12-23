@@ -9,7 +9,7 @@ struct BoardIllustrationView: View {
     @State var idOffset = 1000
 
     init(_ board: Board) {
-        self.board = BoardViewModel(board: board, computer: DummyComputerPlayer())
+        self.board = BoardViewModel(board: board, computerVM: ComputerPlayerViewModel.dummy)
     }
 
     var body: some View {

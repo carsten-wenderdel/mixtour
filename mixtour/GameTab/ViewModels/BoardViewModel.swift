@@ -35,7 +35,7 @@ final class BoardViewModel: ObservableObject {
     // MARK: variables set from outside
     private var board: Board
     private var humanColor: PlayerColor
-    private var computerPlayer: ComputerPlayer
+    private var computerVM: ComputerPlayerViewModel
 
     // MARK: internal state, to be observed from outside
     @Published private var state: State
@@ -88,7 +88,7 @@ final class BoardViewModel: ObservableObject {
     }
 
     var computerPlayerInfo: String {
-        return "Computer: " + computerConfig.labelText
+        return computerVM.description
     }
 
     // MARK: Initializers
@@ -96,11 +96,11 @@ final class BoardViewModel: ObservableObject {
     init(
         board: Board = Board(),
         color: PlayerColor = .white,
-        computer: ComputerPlayer
+        computerVM: ComputerPlayerViewModel
     ) {
         self.board = board
         self.humanColor = color
-        self.computerPlayer = computer
+        self.computerVM = computerVM
         state =
             board.playerOnTurn() == color
             ? .humanTurn(previousMove: nil)
@@ -114,14 +114,14 @@ final class BoardViewModel: ObservableObject {
             reset(
                 board: previousBoard,
                 color: humanColor,
-                computer: computerPlayer
+                computerVM: computerVM
             )
         }
     }
 
     func reset(board: Board = Board(),
                color: PlayerColor,
-               computer: ComputerPlayer
+               computerVM: ComputerPlayerViewModel
     ) {
         previousBoard = nil
         animatableMove = nil
@@ -132,7 +132,7 @@ final class BoardViewModel: ObservableObject {
             board.playerOnTurn() == color
             ? .humanTurn(previousMove: nil)
             : .computerTurn(previousMove: nil)
-        self.computerPlayer = computer
+        self.computerVM = computerVM
         if case .computerTurn = state {
             letComputerMakeNextMove()
         }
@@ -182,6 +182,11 @@ final class BoardViewModel: ObservableObject {
         if (board.isGameOver()) {
             return
         }
+
+        if computerVM.player is DummyComputerPlayer {
+            // Hack so that this function can be unit tested
+            return
+        }
         letComputerMakeNextMove(waitFor: 0.8)
     }
 
@@ -196,7 +201,7 @@ final class BoardViewModel: ObservableObject {
         let computerMoveBoard = Board(board)
         computerPlayerQueue.async {
             // We always call bestMove(:) on the same queue, so never two calls in parallel.
-            let move = self.computerPlayer.bestMove(self.board)
+            let move = self.computerVM.player.bestMove(self.board)
             DispatchQueue.main.asyncAfter(deadline: timeToShowMoveAnimation) { [weak self] in
                 guard let self = self else { return }
                 guard computerMoveBoard == self.board else {
@@ -265,8 +270,8 @@ final class BoardViewModel: ObservableObject {
 
     /// keyPath can be "column" or "line"
     private func zIndexFor(_ keyPath: KeyPath<Square, Int>, value: Int) -> Double {
-        if case let .set(humanSet) = animatableMove, humanSet[keyPath: keyPath] == value {
-            if board.playerOnTurn() == computerColor {
+        if case let .computerTurn(previousMove) = state {
+            if case let .set(square) = previousMove, square[keyPath: keyPath] == value {
                 // The human player just has set this piece. The zIndex needs to be high, so that during the animation from outside it's not hidden underneath other stacks. See unit tests for details.
                 return 4
             }
@@ -289,7 +294,7 @@ extension BoardViewModel {
     func startComputerPlay() {
         reset(
             color: .white,
-            computer: MonteCarloPlayer(config: .beginner1)
+            computerVM: ComputerPlayerViewModel(config: .beginner1)
         )
         makeComputerMove()
     }

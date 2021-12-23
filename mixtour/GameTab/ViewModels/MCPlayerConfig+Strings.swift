@@ -4,6 +4,10 @@ import MixModel
 extension MCPlayerConfig {
 
     var labelText: String {
+        return "\(LocalizedString(name))"
+    }
+
+    var name: String {
         let name: String
         switch self {
         case .beginner1:
@@ -33,7 +37,7 @@ extension MCPlayerConfig {
         case .superNatural3:
             name = "Supernatural 3"
         }
-        return "\(LocalizedString(name))"
+        return name
 //        return "\(LocalizedString(name)) (ELO \(self.eloRating))"
     }
 }

@@ -9,6 +9,8 @@
     }
   ],
   "defaultOptions" : {
+    "language" : "de",
+    "region" : "DE",
     "testExecutionOrdering" : "random",
     "testTimeoutsEnabled" : true
   },

@@ -13,8 +13,7 @@ class BoardViewModelTests: XCTestCase {
         let existingSquare = Square(column: 2, line: 3)
         board.setPiecesDirectlyToSquare(existingSquare, .white, .white, .black)
 
-        // TODO: Refactor BoardViewModel so that it can live with a DummyComputerPlayer
-        let vm = BoardViewModel(board: board, color: .white, config: .beginner1)
+        let vm = BoardViewModel(board: board, color: .white, computerVM: .dummy)
 
         // When
         let setSquare = Square(column: 1, line: 2)
