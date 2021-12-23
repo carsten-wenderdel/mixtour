@@ -31,6 +31,7 @@ struct LegalView: View {
                     Text("Done").font(.title)
                     Text("Bug fixed for found case: During Undo some pieces get hidden behind other pieces during movement")
                     Text("Bug fixed: Margin between board and unused pieces is different")
+                    Text("iPhone now only supports portrait orientation, not landscape anymore")
                 }
 
 //                Text("Large Title").font(.largeTitle)
