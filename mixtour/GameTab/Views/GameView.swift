@@ -31,7 +31,8 @@ struct GameView: View {
                     stackPart: board.unusedPiecesComputer()
                 )
                 .frame(height: geometry.size.width / 5 * 0.18)
-                .padding(.bottom, geometry.size.height / 30)
+                // Magic number: we add 1% of the screen width here, but not for the second PieceStoreView. This is because Pieces are not rendered symmetrically, they extend below their frame. This should be fixed some time, but then other margins also need to be adjusted. So let's go with this hack until then.
+                .padding(.bottom, geometry.size.height / 30 + geometry.size.width * 0.01)
                 .zIndex(8)
 
                 ZStack() {

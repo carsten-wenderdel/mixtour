@@ -25,11 +25,12 @@ struct LegalView: View {
                     Text("App Store Texts")
 
                     Text("Known Bugs").font(.title)
-                    Text("Margin between board and unused pieces is different")
+                    Text("None")
                 }
                 Group {
                     Text("Done").font(.title)
                     Text("Bug fixed for found case: During Undo some pieces get hidden behind other pieces during movement")
+                    Text("Bug fixed: Margin between board and unused pieces is different")
                 }
 
 //                Text("Large Title").font(.largeTitle)
