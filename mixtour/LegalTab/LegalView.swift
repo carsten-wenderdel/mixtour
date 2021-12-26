@@ -1,6 +1,16 @@
 import SwiftUI
 
+
 struct LegalView: View {
+    var body: some View {
+        TextDisplayView(
+            textContentView: LegalTextView(),
+            title: "Legal"
+        )
+    }
+}
+
+struct LegalTextView: View {
 
 //    let title: AttributedString = AttributedString(title)
 
@@ -63,8 +73,10 @@ struct LegalView: View {
     }
 }
 
+#if DEBUG
 struct LegalView_Previews: PreviewProvider {
     static var previews: some View {
         LegalView()
     }
 }
+#endif

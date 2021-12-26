@@ -5,20 +5,10 @@ fileprivate let standardPadding = 5.0
 
 struct RulesView: View {
     var body: some View {
-        NavigationView {
-            ScrollView([.vertical]) {
-                RulesTextView()
-                    .frame(maxWidth: 500) // Biggest phone is 428 points wide. On iPads don't use whole screen for text.
-                    .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
-                    .frame(maxWidth: .infinity) // On iPads push the scrollingIndicator to the left edge of the screen
-                // It's a bit strange to call `.frame` twice - but it works.
-            }
-//            .multilineTextAlignment(.leading)
-            .environmentObject(AnimationConstants())
-            .navigationBarTitle("Mixtour")
-            .navigationBarTitleDisplayMode(.inline)
-        }
-        .navigationViewStyle(StackNavigationViewStyle()) // full screen on iPad
+        TextDisplayView(
+            textContentView: RulesTextView(),
+            title: "Mixtour"
+        )
     }
 }
 
@@ -161,6 +151,7 @@ extension Text {
     }
 }
 
+#if DEBUG
 struct RulesView_Previews: PreviewProvider {
     static var previews: some View {
         RulesView()
@@ -168,3 +159,4 @@ struct RulesView_Previews: PreviewProvider {
             .background(.black)
     }
 }
+#endif
