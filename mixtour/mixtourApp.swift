@@ -15,6 +15,10 @@ struct mixtourApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
+//                AppStoreIconView()
+//                    .tabItem {
+//                        Label("Icon", systemImage: "info.circle.fill")
+//                    }
                 ContentView()
                     .tabItem {
                         Label("Game", systemImage: "checkerboard.rectangle")
