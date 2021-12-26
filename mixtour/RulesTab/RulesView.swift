@@ -104,6 +104,9 @@ private struct RulesTextView: View {
             Text("Rules_Text10-2").regular()
             Text("Rules_Text10-3").regular()
             Text("Rules_Text10-4").illustration()
+
+            // Spielidee
+            Text("Rules_Text11-1").bottomLink()
         }
     }
 }
@@ -132,6 +135,13 @@ extension Text {
     func subheadline() -> some View {
         foregroundColor(.secondary)
             .font(.headline)
+            .multilineTextAlignment(.center)
+            .padding(.top, standardPadding)
+            .padding(.bottom, standardPadding)
+    }
+
+    func bottomLink() -> some View {
+        font(.headline)
             .multilineTextAlignment(.center)
             .padding(.top, standardPadding)
             .padding(.bottom, standardPadding)

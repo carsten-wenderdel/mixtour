@@ -94,3 +94,7 @@
 "Rules_Text10-3" = "This app only implements 1 point games.";
 "Rules_Text10-4" = "**Please note:** It is possible (although very rare) that players end up in an arrangement of single pieces in which one additional piece skips endlessly in a loop. If really none of the players is willing to break out of this situation, they should declare the game drawn. Please note, that in combinations of larger stacks this situation is not likely to occur, because scoring moves will be available.";
 
+
+
+"Rules_Text11-1" = "Spielidee: Dieter Stein, 2011\n[https://www.spielstein.com](https://spielstein.com/games/mixtour)";
+

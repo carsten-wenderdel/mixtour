@@ -11,6 +11,12 @@ struct LegalView: View {
 
             VStack(spacing: 10) {
                 Group {
+                    Text("Legal").font(.title)
+                    Text("Author Mixtour: Dieter Stein")
+                    Text("Programming: Carsten Wenderdel")
+                }
+
+                Group {
                     Text("ToDo").font(.title)
                     Text("Legal/Impressum")
                     Text("Link to Spielstein")
@@ -18,20 +24,20 @@ struct LegalView: View {
                     Text("Web page")
                     Text("Privacy Web Page")
                     Text("Privacy Statement")
-                    Text("App Icons")
+                    Text("Screenshots for App Store")
+
                 }
                 Group {
-                    Text("Screenshots for App Store")
                     Text("App Store Texts")
-
                     Text("Known Bugs").font(.title)
                     Text("None")
                 }
                 Group {
                     Text("Done").font(.title)
-                    Text("Bug fixed for found case: During Undo some pieces get hidden behind other pieces during movement")
+                    Text("Bug fixed: During Undo some pieces get hidden behind other pieces during movement")
                     Text("Bug fixed: Margin between board and unused pieces is different")
                     Text("iPhone now only supports portrait orientation, not landscape anymore")
+                    Text("App Icons")
                 }
 
 //                Text("Large Title").font(.largeTitle)
