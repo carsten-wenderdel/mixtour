@@ -20,7 +20,10 @@ public final class MonteCarloPlayer: ComputerPlayer {
         MonteCarloPlayer(numberOfIterations: 100_000, explorationConstant: perfectExploration)
     }
     public static var measuring: MonteCarloPlayer {
-        let player = MonteCarloPlayer(numberOfIterations: 100_000, explorationConstant: perfectExploration, rng: XorShiftRNG(1))
+        let player = MonteCarloPlayer(
+            numberOfIterations: 100_000,
+            rng: XorShiftRNG.reproducable
+        )
         return player
     }
 
@@ -28,27 +31,17 @@ public final class MonteCarloPlayer: ComputerPlayer {
         self.init(numberOfIterations: config.rawValue)
     }
 
-    public convenience init(numberOfIterations: Int, explorationConstant: Float = perfectExploration) {
-        self.init(
-            numberOfIterations: numberOfIterations,
-            explorationConstant: explorationConstant,
-            rng: XorShiftRNG(UInt64.random(in: UInt64.min...UInt64.max))
-        )
-    }
-
     public convenience init(timeToThink: TimeInterval) {
         self.init(
             numberOfIterations: 0,
-            explorationConstant: Self.perfectExploration,
-            rng: XorShiftRNG(UInt64.random(in: UInt64.min...UInt64.max)),
             timeToThink: timeToThink
         )
     }
 
     init(
         numberOfIterations: Int,
-        explorationConstant: Float,
-        rng: XorShiftRNG,
+        explorationConstant: Float = MonteCarloPlayer.perfectExploration,
+        rng: XorShiftRNG = XorShiftRNG.random,
         timeToThink: TimeInterval? = nil
     ) {
         assert(numberOfIterations > 0 || timeToThink != nil)

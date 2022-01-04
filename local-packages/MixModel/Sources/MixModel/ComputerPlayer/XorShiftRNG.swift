@@ -5,10 +5,19 @@ import Foundation
 /// C implementation found here: https://en.wikipedia.org/wiki/Xorshift
 final class XorShiftRNG: RandomNumberGenerator {
 
+    private static let defaultSeed: UInt64 = 88172645463325252
     private var state: UInt64
 
+    static var random: XorShiftRNG {
+        XorShiftRNG(UInt64.random(in: 1...UInt64.max))
+    }
+
+    static var reproducable: XorShiftRNG {
+        XorShiftRNG(defaultSeed)
+    }
+
     init(_ seed: UInt64) {
-        state = seed == 0 ? 1 : seed
+        state = seed == 0 ? XorShiftRNG.defaultSeed : seed
     }
 
     func next() -> UInt64 {
