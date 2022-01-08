@@ -40,7 +40,7 @@ struct BoardView: View {
                         }
                         .zIndex(square == draggedSquare ? 10 : board.zIndexForColumn(column))
                         .contentShape(Rectangle()) // to allow taps on empty views
-                        .onTapGesture(count: stackVM.isEmpty ? 2 : 1) {
+                        .onTapGesture() {
                             if stackVM.isEmpty {
                                 board.trySettingPieceTo(square)
                             } else {
