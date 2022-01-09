@@ -1,8 +1,11 @@
 import SwiftUI
 
 
-struct LegalView: View {
-    var body: some View {
+public struct LegalView: View {
+
+    public init() {}
+    
+    public var body: some View {
         TextDisplayView(
             textContentView: LegalTextView(),
             title: "Legal"

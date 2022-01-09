@@ -11,3 +11,9 @@ struct MixColors {
     static let fieldPrimary = background
     static let fieldSecondary = Color("fieldSecondary")
 }
+
+fileprivate extension Color {
+    init(_ name: String) {
+        self.init(name, bundle: Bundle.module)
+    }
+}

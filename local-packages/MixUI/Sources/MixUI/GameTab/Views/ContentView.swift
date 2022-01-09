@@ -1,10 +1,12 @@
 import SwiftUI
 import MixModel
 
-struct ContentView: View {
+public struct ContentView: View {
     @StateObject private var board = BoardViewModel(computerVM: ComputerPlayerViewModel(config: .beginner1))
 
-    var body: some View {
+    public init() {}
+
+    public var body: some View {
         ZStack {
             MixColors.background
                 .ignoresSafeArea()
