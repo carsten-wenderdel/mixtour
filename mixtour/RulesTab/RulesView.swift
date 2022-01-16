@@ -3,11 +3,8 @@ import MixModel
 
 fileprivate let standardPadding = 5.0
 
-public struct RulesView: View {
-
-    public init() {}
-    
-    public var body: some View {
+struct RulesView: View {
+    var body: some View {
         TextDisplayView(
             textContentView: RulesTextView(),
             title: "Mixtour"
@@ -106,10 +103,6 @@ private struct RulesTextView: View {
 
 
 extension Text {
-
-    init(_ key: LocalizedStringKey) {
-        self.init(key, bundle: Bundle.module)
-    }
 
     func illustration() -> some View {
         foregroundColor(.secondary)

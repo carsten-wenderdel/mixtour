@@ -1,5 +1,4 @@
 import SwiftUI
-import MixUI
 
 @main
 struct mixtourApp: App {
