@@ -4,10 +4,10 @@ import Core
 // This class is not thread safe. bestMove(:) may only be called by one instance at the same time.
 public final class MonteCarloPlayer: ComputerPlayer {
 
-    public static let perfectExploration: Float = 0.59
+    public static let perfectExploration: Double = 0.59
     
     private var rng: XorShiftRNG
-    private let explorationConstant: Float
+    private let explorationConstant: Double
     private let numberOfIterations: Int
     private let timeToThink: TimeInterval?
     private var moveBuffer = Core.newMoveArray()
@@ -40,7 +40,7 @@ public final class MonteCarloPlayer: ComputerPlayer {
 
     init(
         numberOfIterations: Int,
-        explorationConstant: Float = MonteCarloPlayer.perfectExploration,
+        explorationConstant: Double = MonteCarloPlayer.perfectExploration,
         rng: XorShiftRNG = XorShiftRNG.random,
         timeToThink: TimeInterval? = nil
     ) {

@@ -9,8 +9,8 @@ final class Node {
     var nonSimulatedMoves: [MIXCoreMove]?
 
     var childNodes = [Node]()
-    var numberOfSimulations: Float = 0.0
-    var numberOfWins: Float = 0.0
+    var numberOfSimulations: Double = 0.0
+    var numberOfWins: Double = 0.0
 
     init(state: MIXCoreBoard) {
         self.state = state
@@ -26,7 +26,7 @@ final class Node {
         self.parent = parent
     }
 
-    func selectedNodeForNextVisit(_ explorationConstant: Float) -> Node {
+    func selectedNodeForNextVisit(_ explorationConstant: Double) -> Node {
         var selected = self
         while (selected.nonSimulatedMoves != nil) && selected.nonSimulatedMoves!.isEmpty && !selected.childNodes.isEmpty {
             selected = selected.childNodes.maxUct(
@@ -38,7 +38,7 @@ final class Node {
     }
 
     // Upper Confidence Bound applied to trees
-    fileprivate func uct(_ explorationConstant: Float, totalNumberOfSimulations: Float) -> Float {
+    fileprivate func uct(_ explorationConstant: Double, totalNumberOfSimulations: Double) -> Double {
         return (numberOfWins / numberOfSimulations)
             + explorationConstant * sqrt(log(totalNumberOfSimulations) / numberOfSimulations)
     }
@@ -79,7 +79,7 @@ final class Node {
     func backpropagate(_ winner: MIXCorePlayer) {
         let draw = (winner == MIXCorePlayerUndefined)
         var node = self
-        var winValue: Float
+        var winValue: Double
         if draw {
             winValue = 0.5
         } else if Core.playerOnTurn(&node.state) == winner {
@@ -122,9 +122,9 @@ final class Node {
 
 extension Array where Element == Node {
     /// Much more performant than the usual `max` function with a comparing closure. This shaves 7% time off the whole algorithm.
-    func maxUct(explorationConstant: Float, totalNumberOfSimulations: Float) -> Node? {
+    func maxUct(explorationConstant: Double, totalNumberOfSimulations: Double) -> Node? {
         var bestNode: Node? = nil
-        var bestUct: Float = 0.0
+        var bestUct: Double = 0.0
 
         for node in self {
             let uct = node.uct(explorationConstant, totalNumberOfSimulations: totalNumberOfSimulations)

@@ -26,8 +26,8 @@ class PlayerEvaluation {
     // 2 if c1 wins both games, -2 if c1 loses both games
     func evaluate(c1: Double, c2: Double) -> Int {
         let iterations = 60_000
-        let player1 = MonteCarloPlayer(numberOfIterations: iterations, explorationConstant: Float(c1))
-        let player2 = MonteCarloPlayer(numberOfIterations: iterations, explorationConstant: Float(c2))
+        let player1 = MonteCarloPlayer(numberOfIterations: iterations, explorationConstant: c1)
+        let player2 = MonteCarloPlayer(numberOfIterations: iterations, explorationConstant: c2)
 
         let result1 = winner(white: player1, black: player2)
         let result2 = winner(white: player2, black: player1)

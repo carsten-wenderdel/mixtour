@@ -13,7 +13,7 @@ class NodeTests : XCTestCase {
         Core.destroyMoveArray(moveBuffer)
     }
 
-    private static func dummyNode(simulations: Float, wins: Float, parent: Node? = nil, move: Move? = nil) -> Node {
+    private static func dummyNode(simulations: Double, wins: Double, parent: Node? = nil, move: Move? = nil) -> Node {
         let node = Node(
             parent: parent ?? Node(state: MIXCoreBoard.new()),
             move: (move ?? Move.pass).coreMove()
