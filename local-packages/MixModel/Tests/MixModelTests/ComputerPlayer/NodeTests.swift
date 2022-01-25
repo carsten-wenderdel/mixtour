@@ -19,6 +19,7 @@ class NodeTests : XCTestCase {
             move: (move ?? Move.pass).coreMove()
         )
         node.nonSimulatedMoves = []
+        node.childNodes = []
         node.numberOfSimulations = simulations
         node.numberOfWins = wins
         return node
@@ -31,6 +32,7 @@ class NodeTests : XCTestCase {
     private static var testNode: Node {
         let parent = Node(state: MIXCoreBoard.new())
         parent.nonSimulatedMoves = []
+        parent.childNodes = []
         let leastSimulations = dummyNode(simulations: 10, wins: 5, parent: parent)
         let ignored = dummyNode(simulations: 20, wins: 10, parent: parent)
         let bestWinRate = dummyNode(simulations: 20, wins: 11, parent: parent, move: .set(to: Square(column: 2, line: 1)))
@@ -108,12 +110,12 @@ class NodeTests : XCTestCase {
         // Given
         var rng = XorShiftRNG.reproducable
         let node = Node(state: MIXCoreBoard.new())
-        _ = node.expand(&rng)
+        _ = node.expand(moveBuffer: &moveBuffer, rng: &rng)
         XCTAssertEqual(node.nonSimulatedMoves!.count, 24)
         XCTAssertEqual(node.childNodes.count, 1)
 
         // When
-        let newChild = node.expand(&rng)
+        let newChild = node.expand(moveBuffer: &moveBuffer, rng: &rng)
 
         // Then
         XCTAssertEqual(node.nonSimulatedMoves!.count, 23)
@@ -134,10 +136,10 @@ class NodeTests : XCTestCase {
         let node = Node(state: board.coreBoard)
 
         // When
-        let potentialChild = node.expand(&rng)
+        let potentialChild = node.expand(moveBuffer: &moveBuffer, rng: &rng)
 
         // Then
-        XCTAssertEqual(node.childNodes.count, 0)
+        XCTAssertNil(node.childNodes)
         XCTAssert(potentialChild === node)
     }
 
