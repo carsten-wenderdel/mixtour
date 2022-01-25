@@ -6,9 +6,9 @@ final class Node {
     var state: MIXCoreBoard // Could also be a let, but this way we need less memory copies of state
     let move: MIXCoreMove? // The move that has lead to the state above
     unowned let parent: Node? // This was weak before - and made the whole algorithm taking 60% more time!
-    var nonSimulatedMoves: [MIXCoreMove]?
+    var nonSimulatedMoves: ContiguousArray<MIXCoreMove>?
 
-    var childNodes: [Node]! // We will only create it when expanding. Before expanding we don't access it. Maybe we never expand -> performance
+    var childNodes: ContiguousArray<Node>! // We will only create it when expanding. Before expanding we don't access it. Maybe we never expand -> performance
     var numberOfSimulations: Double = 0.0
     var numberOfWins: Double = 0.0
 
@@ -49,8 +49,9 @@ final class Node {
         }
 
         if nonSimulatedMoves == nil {
-            nonSimulatedMoves = Board.sensibleMoves(&self.state, moveBuffer: &moveBuffer).shuffled(using: &rng)
-            childNodes = [Node]()
+            nonSimulatedMoves = Board.sensibleMoves(&self.state, moveBuffer: &moveBuffer)
+            nonSimulatedMoves!.shuffle(using: &rng)
+            childNodes = ContiguousArray<Node>()
             childNodes.reserveCapacity(nonSimulatedMoves!.count / 2)
         }
         // No need to select a random move, the array is already shuffled
@@ -122,7 +123,7 @@ final class Node {
     }
 }
 
-extension Array where Element == Node {
+extension ContiguousArray where Element == Node {
     /// Much more performant than the usual `max` function with a comparing closure. This shaves 7% time off the whole algorithm.
     func maxUct(explorationConstant: Double, totalNumberOfSimulations: Double) -> Node? {
         var bestNode: Node? = nil

@@ -151,10 +151,10 @@ public final class Board {
     static func sensibleMoves(
         _ coreBoard: inout MIXCoreBoard,
         moveBuffer: inout MIXMoveArray
-    ) -> [MIXCoreMove] {
+    ) -> ContiguousArray<MIXCoreMove> {
         Core.sensibleMoves(&coreBoard, &moveBuffer)
         let buffer = UnsafeBufferPointer(start: moveBuffer.a, count: moveBuffer.n)
-        let moveArray = Array(buffer)
+        let moveArray = ContiguousArray(buffer)
         return moveArray
     }
     
