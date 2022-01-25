@@ -148,12 +148,9 @@ public final class Board {
     static func sensibleMoves( _ coreBoard: inout MIXCoreBoard) -> [MIXCoreMove] {
         var cMoves = Core.newMoveArray()
         Core.sensibleMoves(&coreBoard, &cMoves)
-        var moveArray = [MIXCoreMove]()
-        moveArray.reserveCapacity(cMoves.n)
-        for i in 0..<cMoves.n {
-            let coreMove = cMoves.a[i]
-            moveArray.append(coreMove)
-        }
+
+        let buffer = UnsafeBufferPointer(start: cMoves.a, count: cMoves.n)
+        let moveArray = Array(buffer)
         Core.destroyMoveArray(cMoves)
         return moveArray
     }
