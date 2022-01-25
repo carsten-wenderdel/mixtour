@@ -43,13 +43,13 @@ final class Node {
             + explorationConstant * sqrt(log(totalNumberOfSimulations) / numberOfSimulations)
     }
 
-    func expand<T>(_ rng: inout T) -> Node where T: RandomNumberGenerator {
+    func expand<T>(moveBuffer: inout MIXMoveArray, rng: inout T) -> Node where T: RandomNumberGenerator {
         if Core.isGameOver(&state) {
             return self
         }
 
         if nonSimulatedMoves == nil {
-            nonSimulatedMoves = Board.sensibleMoves(&self.state).shuffled(using: &rng)
+            nonSimulatedMoves = Board.sensibleMoves(&self.state, moveBuffer: &moveBuffer).shuffled(using: &rng)
             childNodes = [Node]()
             childNodes.reserveCapacity(nonSimulatedMoves!.count / 2)
         }

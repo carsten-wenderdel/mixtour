@@ -142,16 +142,19 @@ public final class Board {
     }
 
     func sensibleMoves() -> [Move] {
-        return Self.sensibleMoves(&coreBoard).map { Move($0) }
+        var moveBuffer = Core.newMoveArray()
+        let moveArray = Self.sensibleMoves(&coreBoard, moveBuffer: &moveBuffer)
+        Core.destroyMoveArray(moveBuffer)
+        return moveArray.map { Move($0) }
     }
 
-    static func sensibleMoves( _ coreBoard: inout MIXCoreBoard) -> [MIXCoreMove] {
-        var cMoves = Core.newMoveArray()
-        Core.sensibleMoves(&coreBoard, &cMoves)
-
-        let buffer = UnsafeBufferPointer(start: cMoves.a, count: cMoves.n)
+    static func sensibleMoves(
+        _ coreBoard: inout MIXCoreBoard,
+        moveBuffer: inout MIXMoveArray
+    ) -> [MIXCoreMove] {
+        Core.sensibleMoves(&coreBoard, &moveBuffer)
+        let buffer = UnsafeBufferPointer(start: moveBuffer.a, count: moveBuffer.n)
         let moveArray = Array(buffer)
-        Core.destroyMoveArray(cMoves)
         return moveArray
     }
     

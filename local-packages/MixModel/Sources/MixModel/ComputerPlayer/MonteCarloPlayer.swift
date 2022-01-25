@@ -90,7 +90,7 @@ public final class MonteCarloPlayer: ComputerPlayer {
         let selected = root.selectedNodeForNextVisit(explorationConstant)
         let expanded: Node
         let winner: MIXCorePlayer
-        expanded = selected.expand(&rng)
+        expanded = selected.expand(moveBuffer: &moveBuffer, rng: &rng)
         winner = expanded.simulate(moveBuffer: &moveBuffer, rng: &rng)
         expanded.backpropagate(winner)
     }
