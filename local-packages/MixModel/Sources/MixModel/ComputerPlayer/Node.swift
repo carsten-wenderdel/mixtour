@@ -8,7 +8,7 @@ final class Node {
     unowned let parent: Node? // This was weak before - and made the whole algorithm taking 60% more time!
     var nonSimulatedMoves: [MIXCoreMove]?
 
-    var childNodes = [Node]()
+    var childNodes: [Node]! // We will only create it when expanding. Before expanding we don't access it. Maybe we never expand -> performance
     var numberOfSimulations: Double = 0.0
     var numberOfWins: Double = 0.0
 
@@ -50,6 +50,7 @@ final class Node {
 
         if nonSimulatedMoves == nil {
             nonSimulatedMoves = Board.sensibleMoves(&self.state).shuffled(using: &rng)
+            childNodes = [Node]()
             childNodes.reserveCapacity(nonSimulatedMoves!.count / 2)
         }
         // No need to select a random move, the array is already shuffled
