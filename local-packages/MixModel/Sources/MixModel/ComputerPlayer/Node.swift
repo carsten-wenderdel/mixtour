@@ -50,6 +50,7 @@ final class Node {
 
         if nonSimulatedMoves == nil {
             nonSimulatedMoves = Board.sensibleMoves(&self.state).shuffled(using: &rng)
+            childNodes.reserveCapacity(nonSimulatedMoves!.count / 2)
         }
         // No need to select a random move, the array is already shuffled
         guard let move = nonSimulatedMoves!.popLast() else {
