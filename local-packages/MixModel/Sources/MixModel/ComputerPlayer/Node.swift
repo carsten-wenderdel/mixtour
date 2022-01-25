@@ -126,7 +126,7 @@ extension Array where Element == Node {
     /// Much more performant than the usual `max` function with a comparing closure. This shaves 7% time off the whole algorithm.
     func maxUct(explorationConstant: Double, totalNumberOfSimulations: Double) -> Node? {
         var bestNode: Node? = nil
-        var bestUct: Double = 0.0
+        var bestUct: Double = -1.0
 
         for node in self {
             let uct = node.uct(explorationConstant, totalNumberOfSimulations: totalNumberOfSimulations)
