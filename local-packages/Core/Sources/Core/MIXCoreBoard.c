@@ -343,10 +343,25 @@ void sensibleMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                                 // So we can drag as long nothing is between. Check that:
                                 if (!isSomethingBetweenSquares(boardRef, square, sourceSquare, columnSignum, lineSignum)) {
                                     uint8_t sourceHeight = heightOfSquare(boardRef, sourceSquare);
-                                    for (uint8_t pieces = sourceHeight; pieces >= 1; pieces--) {
-                                        if (pieces + height < MIX_CORE_NUMBER_OF_PIECES_TO_WIN) {
-                                            // No one would win
-                                            if (sourceHeight + height < MIX_CORE_NUMBER_OF_PIECES_TO_WIN || sourceHeight - pieces != height) {
+
+                                    if (height + sourceHeight >= MIX_CORE_NUMBER_OF_PIECES_TO_WIN) {
+                                        // Enough pieces to potentially end the game
+
+                                        // First one (for performance reasons not many) move to actually finish it.
+                                        MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, sourceHeight);
+                                        if (player == colorOfSquareAtPosition(boardRef, sourceSquare, 0)) {
+                                            // Player on turn wins; all other moves are not interesting anymore.
+                                            kv_size(*moveArray) = 0;
+                                            kv_push(MIXCoreMove, *moveArray, move);
+                                            return;
+                                        } else {
+                                            // Losing move. Will be returned if no better move is found
+                                            lastResortMove = move;
+                                        }
+
+                                        // Now let's add those moves that don't finish the game
+                                        for (uint8_t pieces = MIX_CORE_NUMBER_OF_PIECES_TO_WIN - height - 1; pieces >= 1; pieces--) {
+                                            if (sourceHeight - pieces != height) {
                                                 // Otherwise the opponent could move directly back and win.
                                                 // On top is a piece of the opponent, otherwise the player could finish it now anyway.
                                                 MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
@@ -354,18 +369,13 @@ void sensibleMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                                                     kv_push(MIXCoreMove, *moveArray, move);
                                                 }
                                             }
-                                            // No else part needed. We don't want to store it as lastResortMove.
-                                            // Because sourceHeight and height combined are at at least 5, a directly losing move would exist anyway - and that's faster.
-                                        } else { // someone would win
+                                        }
+                                    } else {
+                                        // Not enough pieces to finish the game. Let's add all possible moves.
+                                        for (uint8_t pieces = sourceHeight; pieces >= 1; pieces--) {
                                             MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
-                                            if (player == colorOfSquareAtPosition(boardRef, sourceSquare, 0)) {
-                                                // Player on turn wins; all other moves are not interesting anymore.
-                                                kv_size(*moveArray) = 0;
+                                            if (! isMoveRevertOfMove(move, boardRef->lastMove)) {
                                                 kv_push(MIXCoreMove, *moveArray, move);
-                                                return;
-                                            } else {
-                                                // Losing move. Will be returned if no better move is found
-                                                lastResortMove = move;
                                             }
                                         }
                                     }
