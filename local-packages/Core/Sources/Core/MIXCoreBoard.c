@@ -360,7 +360,8 @@ void sensibleMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                                         }
 
                                         // Now let's add those moves that don't finish the game
-                                        for (uint8_t pieces = MIX_CORE_NUMBER_OF_PIECES_TO_WIN - height - 1; pieces >= 1; pieces--) {
+                                        uint8_t sourceHeightFinishing = MIX_CORE_NUMBER_OF_PIECES_TO_WIN - height;
+                                        for (uint8_t pieces = 1; pieces < sourceHeightFinishing ; pieces++) {
                                             if (sourceHeight - pieces != height) {
                                                 // Otherwise the opponent could move directly back and win.
                                                 // On top is a piece of the opponent, otherwise the player could finish it now anyway.
@@ -372,7 +373,7 @@ void sensibleMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                                         }
                                     } else {
                                         // Not enough pieces to finish the game. Let's add all possible moves.
-                                        for (uint8_t pieces = sourceHeight; pieces >= 1; pieces--) {
+                                        for (uint8_t pieces = 1; pieces <= sourceHeight; pieces++) {
                                             MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
                                             if (! isMoveRevertOfMove(move, boardRef->lastMove)) {
                                                 kv_push(MIXCoreMove, *moveArray, move);
