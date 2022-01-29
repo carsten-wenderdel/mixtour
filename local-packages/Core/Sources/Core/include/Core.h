@@ -1,5 +1,4 @@
 // public headers
-#import "../MIXCore.h"
 #import "../MIXCoreBoard.h"
 
 // Internal headers for unit testing only

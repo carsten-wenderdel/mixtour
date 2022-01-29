@@ -15,11 +15,28 @@
 #include <stdint.h>
 #include "kvec.h"
 
-
-#include "MIXCore.h"
-
-
 #define LENGTH_OF_BOARD 5
+
+typedef enum {
+    MIXCorePlayerWhite = 0,
+    MIXCorePlayerBlack = 1,
+    MIXCorePlayerUndefined = -1
+} MIXCorePlayer;
+
+
+typedef struct {
+    uint8_t column;
+    uint8_t line;
+} MIXCoreSquare;
+
+bool MIXCoreSquareIsEqualToSquare(MIXCoreSquare square1, MIXCoreSquare square2);
+
+
+typedef struct {
+    MIXCoreSquare from;
+    MIXCoreSquare to;
+    uint8_t numberOfPieces;
+} MIXCoreMove;
 
 /// For Monte Carlo Tree Search and other algorithms the list of legal moves is the the crucial function where CPU spends most time.
 /// This could be sped up with bitboards. A 32 bit variable could contain bits for all 25 fields. Maybe 64 bit variables are more efficient
@@ -48,9 +65,21 @@ struct MIXCoreBoard {
 
 typedef struct MIXCoreBoard *MIXCoreBoardRef;
 
+extern const MIXCoreMove MIXCoreMoveNoMove;
+
+MIXCoreMove MIXCoreMoveMakeDrag(MIXCoreSquare from, MIXCoreSquare to, uint8_t numberOfPieces);
+MIXCoreMove MIXCoreMoveMakeSet(MIXCoreSquare to);
+bool isMoveDrag(MIXCoreMove move);
+bool isMoveSet(MIXCoreMove move);
+bool isMoveANoMove(MIXCoreMove move);
+bool MIXCoreMoveEqualToMove(MIXCoreMove move1, MIXCoreMove move2);
+
+/**
+ Only works for drag moves
+ */
+bool isMoveRevertOfMove(MIXCoreMove move1, MIXCoreMove move2);
 
 typedef kvec_t(MIXCoreMove) MIXMoveArray;
-
 
 /**
  Resets the board to the state for a new game
