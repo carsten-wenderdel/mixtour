@@ -404,7 +404,7 @@ void sensibleMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                             MIXCoreSquare sourceSquare = {column, line};
                             if (!isSquareEmpty(boardRef, sourceSquare)) {
                                 // So we can drag as long nothing is between. Check that:
-                                if (!isSomethingBetweenSquares(boardRef, square, sourceSquare, columnSignum, lineSignum)) {
+                                if (height == 1 || !isSomethingBetweenSquares(boardRef, square, sourceSquare, columnSignum, lineSignum)) {
                                     uint8_t sourceHeight = heightOfSquare(boardRef, sourceSquare);
 
                                     if (height + sourceHeight >= MIX_CORE_NUMBER_OF_PIECES_TO_WIN) {
