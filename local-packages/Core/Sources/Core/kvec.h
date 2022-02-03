@@ -68,13 +68,24 @@ int main() {
 		memcpy((v1).a, (v0).a, sizeof(type) * (v0).n);		\
 	} while (0)												\
 
+// Added by me. No check for size of 0, so better performance
 #define kv_push(type, v, x) do {									\
 		if ((v).n == (v).m) {										\
-			(v).m = (v).m? (v).m<<1 : 2;							\
+			(v).m = (v).m<<1;		            					\
 			(v).a = (type*)realloc((v).a, sizeof(type) * (v).m);	\
 		}															\
 		(v).a[(v).n++] = (x);										\
 	} while (0)
+
+
+// Original implementation of kv_push
+#define kv_push_safe(type, v, x) do {                                    \
+        if ((v).n == (v).m) {                                        \
+            (v).m = (v).m? (v).m<<1 : 2;                            \
+            (v).a = (type*)realloc((v).a, sizeof(type) * (v).m);    \
+        }                                                            \
+        (v).a[(v).n++] = (x);                                        \
+    } while (0)
 
 #define kv_pushp(type, v) (((v).n == (v).m)?							\
 						   ((v).m = ((v).m? (v).m<<1 : 2),				\
