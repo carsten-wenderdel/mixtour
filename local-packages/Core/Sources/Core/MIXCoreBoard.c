@@ -354,7 +354,11 @@ void sensibleMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
     MIXCorePlayer player = playerOnTurn(boardRef);
     bool playerHasPiecesLeft = numberOfPiecesForPlayer(boardRef, player) > 0;
     MIXCoreMove lastResortMove = MIXCoreMoveNoMove; // If no other move is found, this will be returned
+    // Good: Unrolling the loops brings 12% speed gain.
+    // Bad: Core.o increases from 23 to 65 KB, the whole app binary "performance" increases from 290 to 307 KB.
+#pragma clang loop unroll(full)
     for (int8_t i = 0; i < LENGTH_OF_BOARD; i++) {  // index for column to look at
+#pragma clang loop unroll(full)
         for (int8_t j = 0; j < LENGTH_OF_BOARD; j++) { // index for line to look at
             MIXCoreSquare square = {i, j};
             uint8_t height = heightOfSquare(boardRef, square);
