@@ -354,8 +354,8 @@ void sensibleMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
     MIXCorePlayer player = playerOnTurn(boardRef);
     bool playerHasPiecesLeft = numberOfPiecesForPlayer(boardRef, player) > 0;
     MIXCoreMove lastResortMove = MIXCoreMoveNoMove; // If no other move is found, this will be returned
-    // Good: Unrolling the loops brings 12% speed gain.
-    // Bad: Core.o increases from 23 to 65 KB, the whole app binary "performance" increases from 290 to 307 KB.
+    // Good: Unrolling the loops brings a big performance boost.
+    // Bad: Core.o increases a lot.
 #pragma clang loop unroll(full)
     for (int8_t i = 0; i < LENGTH_OF_BOARD; i++) {  // index for column to look at
 #pragma clang loop unroll(full)
@@ -368,78 +368,63 @@ void sensibleMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                     core_array_push(MIXCoreMove, *moveArray, move);
                 }
             } else { // try dragging
-                // We know calculate the position of squares that have the right distance
+                // We know calculate the position of source squares that have the right distance
                 // to the target square. Distance needs to be height of target square.
                 // There are up to eight directions to look at (up, down, left, right
                 // and four diagonals).
                 // Some directions we don't want to look at because it's out of the
                 // bounds of the board. So let's calculate that.
-                int8_t leftSignum;
-                int8_t leftColumn;
-                if (i - height >= 0) {
-                    // Left to the to-Square is enough board space to look for from-squares.
-                    leftSignum = -1;
-                    leftColumn = i - height;
-                } else {
-                    leftSignum = 0;
-                    leftColumn = i;
-                }
-                int8_t rightSignum = (i+height <= MIX_BIGGEST_BOARD_INDEX) ? 1 : 0;
-                int8_t topSignum;
-                int8_t topLine;
-                if (j - height >= 0) {
-                    // Above the to-Square is enough board space to look for from-squares.
-                    topSignum = -1;
-                    topLine = j - height;
-                } else {
-                    topSignum = 0;
-                    topLine = j;
-                }
-                int8_t bottomSignum = (j+height <= MIX_BIGGEST_BOARD_INDEX) ? 1 : 0;
-                int8_t column = leftColumn;
-                for (int8_t columnSignum = leftSignum; columnSignum <= rightSignum; columnSignum++, column += height) {
-                    int8_t line = topLine;
-                    for (int8_t lineSignum = topSignum; lineSignum <= bottomSignum; lineSignum++, line += height) {
-                        if (columnSignum != 0 || lineSignum != 0) { // don't look at orignal square
-                            MIXCoreSquare sourceSquare = {column, line};
-                            if (!isSquareEmpty(boardRef, sourceSquare)) {
-                                // So we can drag as long nothing is between. Check that:
-                                if (height == 1 || !isSomethingBetweenSquares(boardRef, square, sourceSquare, columnSignum, lineSignum)) {
-                                    uint8_t sourceHeight = heightOfSquare(boardRef, sourceSquare);
+                int8_t column = i - height;
+#pragma clang loop unroll(full)
+                for (int8_t columnSignum = -1; columnSignum <= 1; columnSignum++, column += height) {
+                    if (column >= 0 && column < LENGTH_OF_BOARD) {
+                        int8_t line = j - height;
+#pragma clang loop unroll(full)
+                        for (int8_t lineSignum = -1; lineSignum <= 1; lineSignum++, line += height) {
+                            if (line >= 0 && line < LENGTH_OF_BOARD) {
+                                if (columnSignum != 0 || lineSignum != 0) { // don't look at original square
+                                    MIXCoreSquare sourceSquare = {column, line};
 
-                                    if (height + sourceHeight >= MIX_CORE_NUMBER_OF_PIECES_TO_WIN) {
-                                        // Enough pieces to potentially end the game
+                                    if (!isSquareEmpty(boardRef, sourceSquare)) {
+                                        // So we can drag as long nothing is between. Check that:
+                                        if (height == 1 || !isSomethingBetweenSquares(boardRef, square, sourceSquare, columnSignum, lineSignum)) {
+                                            uint8_t sourceHeight = heightOfSquare(boardRef, sourceSquare);
 
-                                        // First one (for performance reasons not many) move to actually finish it.
-                                        MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, sourceHeight);
-                                        if (player == colorOfSquareAtPosition(boardRef, sourceSquare, 0)) {
-                                            // Player on turn wins; all other moves are not interesting anymore.
-                                            core_array_count(*moveArray) = 0;
-                                            core_array_push(MIXCoreMove, *moveArray, move);
-                                            return;
-                                        } else {
-                                            // Losing move. Will be returned if no better move is found
-                                            lastResortMove = move;
-                                        }
+                                            if (height + sourceHeight >= MIX_CORE_NUMBER_OF_PIECES_TO_WIN) {
+                                                // Enough pieces to potentially end the game
 
-                                        // Now let's add those moves that don't finish the game
-                                        uint8_t sourceHeightFinishing = MIX_CORE_NUMBER_OF_PIECES_TO_WIN - height;
-                                        for (uint8_t pieces = 1; pieces < sourceHeightFinishing ; pieces++) {
-                                            if (sourceHeight - pieces != height) {
-                                                // Otherwise the opponent could move directly back and win.
-                                                // On top is a piece of the opponent, otherwise the player could finish it now anyway.
-                                                MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
-                                                if (! isMoveRevertOfMove(move, boardRef->lastMove)) {
+                                                // First one (for performance reasons not many) move to actually finish it.
+                                                MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, sourceHeight);
+                                                if (player == colorOfSquareAtPosition(boardRef, sourceSquare, 0)) {
+                                                    // Player on turn wins; all other moves are not interesting anymore.
+                                                    core_array_count(*moveArray) = 0;
                                                     core_array_push(MIXCoreMove, *moveArray, move);
+                                                    return;
+                                                } else {
+                                                    // Losing move. Will be returned if no better move is found
+                                                    lastResortMove = move;
                                                 }
-                                            }
-                                        }
-                                    } else {
-                                        // Not enough pieces to finish the game. Let's add all possible moves.
-                                        for (uint8_t pieces = 1; pieces <= sourceHeight; pieces++) {
-                                            MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
-                                            if (! isMoveRevertOfMove(move, boardRef->lastMove)) {
-                                                core_array_push(MIXCoreMove, *moveArray, move);
+
+                                                // Now let's add those moves that don't finish the game
+                                                uint8_t sourceHeightFinishing = MIX_CORE_NUMBER_OF_PIECES_TO_WIN - height;
+                                                for (uint8_t pieces = 1; pieces < sourceHeightFinishing ; pieces++) {
+                                                    if (sourceHeight - pieces != height) {
+                                                        // Otherwise the opponent could move directly back and win.
+                                                        // On top is a piece of the opponent, otherwise the player could finish it now anyway.
+                                                        MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
+                                                        if (! isMoveRevertOfMove(move, boardRef->lastMove)) {
+                                                            core_array_push(MIXCoreMove, *moveArray, move);
+                                                        }
+                                                    }
+                                                }
+                                            } else {
+                                                // Not enough pieces to finish the game. Let's add all possible moves.
+                                                for (uint8_t pieces = 1; pieces <= sourceHeight; pieces++) {
+                                                    MIXCoreMove move = MIXCoreMoveMakeDrag(sourceSquare, square, pieces);
+                                                    if (! isMoveRevertOfMove(move, boardRef->lastMove)) {
+                                                        core_array_push(MIXCoreMove, *moveArray, move);
+                                                    }
+                                                }
                                             }
                                         }
                                     }
