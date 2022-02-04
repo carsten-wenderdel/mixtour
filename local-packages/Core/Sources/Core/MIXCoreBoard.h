@@ -13,7 +13,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "kvec.h"
+#include "CoreArray.h"
 
 #define LENGTH_OF_BOARD 5
 
@@ -79,7 +79,7 @@ bool MIXCoreMoveEqualToMove(MIXCoreMove move1, MIXCoreMove move2);
  */
 bool isMoveRevertOfMove(MIXCoreMove move1, MIXCoreMove move2);
 
-typedef kvec_t(MIXCoreMove) MIXMoveArray;
+typedef core_array_type(MIXCoreMove) MIXMoveArray;
 
 /**
  Resets the board to the state for a new game
