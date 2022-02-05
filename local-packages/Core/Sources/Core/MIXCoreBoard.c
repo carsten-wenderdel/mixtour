@@ -362,6 +362,8 @@ void sensibleMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
         for (int8_t j = 0; j < LENGTH_OF_BOARD; j++) { // index for line to look at
             MIXCoreSquare square = {i, j};
             uint8_t height = heightOfSquare(boardRef, square);
+            if (height > 4) __builtin_unreachable();  // Otherwise the game would be over. Helps compiler for performance.
+
             if (height == 0) {
                 if (playerHasPiecesLeft) {
                     MIXCoreMove move = MIXCoreMoveMakeSet(square);
@@ -389,6 +391,7 @@ void sensibleMoves(MIXCoreBoardRef boardRef, MIXMoveArray *moveArray) {
                                         // So we can drag as long nothing is between. Check that:
                                         if (height == 1 || !isSomethingBetweenSquares(boardRef, square, sourceSquare, columnSignum, lineSignum)) {
                                             uint8_t sourceHeight = heightOfSquare(boardRef, sourceSquare);
+                                            if (sourceHeight > 4) __builtin_unreachable();  // Otherwise the game would be over. Helps compiler for performance.
 
                                             if (height + sourceHeight >= MIX_CORE_NUMBER_OF_PIECES_TO_WIN) {
                                                 // Enough pieces to potentially end the game
