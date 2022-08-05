@@ -482,7 +482,7 @@
 			attributes = {
 				CLASSPREFIX = MIX;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = "Carsten Wenderdel";
 				TargetAttributes = {
 					675384232593B4B5002F5BEC = {
@@ -743,6 +743,7 @@
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = RKX7FEU7U3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -767,6 +768,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = RKX7FEU7U3;
 				ENABLE_HARDENED_RUNTIME = YES;
