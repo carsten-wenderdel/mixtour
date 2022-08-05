@@ -1,8 +1,6 @@
 import Foundation
 import Core
 
-// TODO: move it into some class or enum?
-public let numberOfSquares = 5
 
 extension MIXCoreBoard {
     static func new() -> MIXCoreBoard {

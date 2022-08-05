@@ -9,9 +9,11 @@ struct BoardView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            ForEach(0..<numberOfSquares) { line in
+            // "5" is the number of rows/columns. No global variable without compiler warning, see
+            // https://forums.swift.org/t/how-for-swiftui-foreach-init-data-range-int-viewbuilder-content-escaping-int-content-compiler-is-able-to-warn-if-range-is-not-constant/55233
+            ForEach(0..<5) { line in
                 HStack(spacing: 0) {
-                    ForEach(0..<numberOfSquares) { column in
+                    ForEach(0..<5) { column in
                         let square = Square(column: column, line: line)
                         let stackVM = board.stackAtSquare(square)
 
